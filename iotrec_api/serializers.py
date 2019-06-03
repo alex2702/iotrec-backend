@@ -39,5 +39,5 @@ class UserSerializerWithToken(serializers.ModelSerializer):
 class ThingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Thing
-        fields = ('id', 'title', 'description', 'image')
-#        fields = '__all__'
+        #fields = ('title', 'description', 'image')
+        fields = '__all__'

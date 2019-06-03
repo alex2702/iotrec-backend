@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from iotrec_api.models import Thing
 from iotrec_api.serializers import ThingSerializer
-from rest_framework import generics
+from rest_framework import generics, viewsets
 
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
@@ -38,6 +38,13 @@ class UserList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class ThingListCreate(generics.ListCreateAPIView):
-    queryset = Thing.objects.all()
+#class ThingListCreate(generics.ListCreateAPIView):
+#    queryset = Thing.objects.all()
+#    serializer_class = ThingSerializer
+
+class ThingViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows things to be viewed or edited.
+    """
+    queryset = Thing.objects.all()#.order_by('-created_at')
     serializer_class = ThingSerializer
