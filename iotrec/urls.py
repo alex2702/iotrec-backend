@@ -20,5 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('api/token-auth/', obtain_jwt_token),
-    path('', include('iotrec_api.urls'))
+    path('api/', include('iotrec_api.urls'))
 ]

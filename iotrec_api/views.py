@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
-from iotrec_api.models import Thing
-from iotrec_api.serializers import ThingSerializer
+from iotrec_api.models import Thing, Venue
+from iotrec_api.serializers import ThingSerializer, VenueSerializer
 from rest_framework import generics, viewsets
 
 from django.http import HttpResponseRedirect
@@ -23,10 +23,11 @@ def current_user(request):
     return Response(serializer.data)
 
 
-class UserList(APIView):
+class UserApiView(APIView):
     """
-    Create a new user. It's called 'UserList' because normally we'd have a get
-    method here too, for retrieving a list of all User objects.
+    API View for Users.
+    GET method does not exist.
+    POST method allows creating a new User.
     """
 
     permission_classes = (permissions.AllowAny,)
@@ -37,6 +38,15 @@ class UserList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class VenueViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Venues to be viewed or edited.
+    """
+    queryset = Venue.objects.all()#.order_by('-created_at')
+    serializer_class = VenueSerializer
+
 
 #class ThingListCreate(generics.ListCreateAPIView):
 #    queryset = Thing.objects.all()

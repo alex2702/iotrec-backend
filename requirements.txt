@@ -1,5 +1,6 @@
 Django==2.2.1
 django-cors-headers==3.0.1
+django-enumchoicefield==1.1.0
 djangorestframework==3.9.4
 djangorestframework-jwt==1.11.0
 Pillow==6.0.0
