@@ -5,7 +5,7 @@ from rest_framework_jwt.views import obtain_jwt_token
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r'venues', views.VenueViewSet)
+# router.register(r'venues', views.VenueViewSet)
 router.register(r'things', views.ThingViewSet)
 
 urlpatterns = [
@@ -13,5 +13,5 @@ urlpatterns = [
     path('current-user/', current_user),
     path('login/', obtain_jwt_token),
     path('users/', UserApiView.as_view()),
-    #path('api/things/', views.ThingListCreate.as_view())
+    # path('api/things/', views.ThingListCreate.as_view())
 ]

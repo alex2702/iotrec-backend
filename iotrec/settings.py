@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-
+import datetime
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -25,7 +25,7 @@ SECRET_KEY = 'gk25i(0qias9rwc*qm+nwq8c59_(lv6c^#aqxkd&b97_epf@7n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '192.168.178.34']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '192.168.178.47']
 
 
 # Application definition
@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'iotrec_api',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    'location_field.apps.DefaultConfig'
 ]
 
 MIDDLEWARE = [
@@ -140,5 +141,12 @@ CORS_ORIGIN_WHITELIST = (
 )
 
 JWT_AUTH = {
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'iotrec.utils.my_jwt_response_handler'
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'iotrec.utils.my_jwt_response_handler',
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=604800)  # TODO make tokens expire
+}
+
+LOCATION_FIELD = {
+    'search.provider': 'nominatim',
+    'map.provider': 'openstreetmap',
+    'provider.openstreetmap.max_zoom': 18
 }

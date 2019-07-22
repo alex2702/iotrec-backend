@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
-from iotrec_api.models import IotRecUser, Venue, Thing
+from iotrec_api.models import IotRecUser, Thing
 
 
 # from django.contrib.auth.models import User
@@ -37,10 +37,12 @@ class UserSerializerWithToken(serializers.ModelSerializer):
         fields = ('token', 'username', 'password')
 
 
+"""
 class VenueSerializer(serializers.ModelSerializer):
     class Meta:
         model = Venue
         fields = '__all__'
+"""
 
 
 class ThingSerializer(serializers.ModelSerializer):

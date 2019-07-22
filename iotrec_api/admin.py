@@ -1,4 +1,4 @@
-from iotrec_api.models import IotRecUser, Thing, Venue
+from iotrec_api.models import IotRecUser, Thing
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.contrib import admin
@@ -6,7 +6,7 @@ from django import forms
 
 
 # source: https://stackoverflow.com/a/17496836
-from iotrec_api.utils.venue import VenueChoiceField
+#from iotrec_api.utils.venue import VenueChoiceField
 
 
 class IotRecUserChangeForm(UserChangeForm):
@@ -41,25 +41,33 @@ class IotRecUserAdmin(UserAdmin):
 admin.site.register(IotRecUser, IotRecUserAdmin)
 
 
+"""
 class ThingsInLine(admin.TabularInline):
     model = Thing
     extra = 0
+"""
 
 
 class ThingAdmin(admin.ModelAdmin):
-    fields = ['type', 'uuid', 'major_id', 'minor_id', 'venue']
+    fields = ['id', 'title', 'description', 'type', 'uuid', 'major_id', 'minor_id', 'image', 'address', 'location']
     # fields = [field.name for field in Thing._meta.get_fields()]
-    list_display = ('uuid', 'major_id', 'minor_id', 'venue')
+    list_display = ('title', 'uuid', 'major_id', 'minor_id')
 
+    def get_readonly_fields(self, request, obj=None):
+        return ['id']
+
+    """"
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'venue':
             return VenueChoiceField(queryset=Venue.objects.all())
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
+    """
 
 
 admin.site.register(Thing, ThingAdmin)
 
 
+"""
 class VenueAdmin(admin.ModelAdmin):
     fields = ['title', 'description', 'image']
     # fields = [field.name for field in Venue._meta.get_fields()]
@@ -70,3 +78,4 @@ class VenueAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Venue, VenueAdmin)
+"""

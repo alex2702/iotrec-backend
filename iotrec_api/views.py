@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
-from iotrec_api.models import Thing, Venue
-from iotrec_api.serializers import ThingSerializer, VenueSerializer
+from iotrec_api.models import Thing
+from iotrec_api.serializers import ThingSerializer
 from rest_framework import generics, viewsets
 
 from django.http import HttpResponseRedirect
@@ -32,23 +32,23 @@ class UserApiView(APIView):
 
     permission_classes = (permissions.AllowAny,)
 
-    def post(self, request, format=None):
+    @staticmethod
+    def post(request, format=None):
         serializer = UserSerializerWithToken(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-class VenueViewSet(viewsets.ModelViewSet):
+    # class VenueViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows Venues to be viewed or edited.
     """
-    queryset = Venue.objects.all()#.order_by('-created_at')
-    serializer_class = VenueSerializer
+    # queryset = Venue.objects.all()#.order_by('-created_at')
+    # serializer_class = VenueSerializer
 
 
-#class ThingListCreate(generics.ListCreateAPIView):
+# class ThingListCreate(generics.ListCreateAPIView):
 #    queryset = Thing.objects.all()
 #    serializer_class = ThingSerializer
 
@@ -56,5 +56,5 @@ class ThingViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows things to be viewed or edited.
     """
-    queryset = Thing.objects.all()#.order_by('-created_at')
+    queryset = Thing.objects.all()  # .order_by('-created_at')
     serializer_class = ThingSerializer

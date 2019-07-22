@@ -2,5 +2,5 @@ from enumchoicefield import ChoiceEnum
 
 
 class ThingType(ChoiceEnum):
-    IBEAC = "Bluetooth iBeacon"
-    EDDY = "Bluetooth Eddystone Beacon"
+    BCN_I = "Bluetooth iBeacon"
+    BCN_EDDY = "Bluetooth Eddystone Beacon"
