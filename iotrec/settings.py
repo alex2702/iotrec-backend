@@ -25,7 +25,7 @@ SECRET_KEY = 'gk25i(0qias9rwc*qm+nwq8c59_(lv6c^#aqxkd&b97_epf@7n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '192.168.178.11']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '192.168.178.11', 'iotrec.ikas.info']
 
 
 # Application definition
