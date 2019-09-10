@@ -1,4 +1,6 @@
-from iotrec_api.models import IotRecUser, Thing
+from mptt.admin import MPTTModelAdmin
+
+from iotrec_api.models import User, Thing, Category
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.contrib import admin
@@ -11,19 +13,19 @@ from django import forms
 
 class IotRecUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
-        model = IotRecUser
+        model = User
 
 
 # source: https://stackoverflow.com/a/17496836
 class IotRecUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
-        model = IotRecUser
+        model = User
 
     def clean_username(self):
         username = self.cleaned_data['username']
         try:
-            IotRecUser.objects.get(username=username)
-        except IotRecUser.DoesNotExist:
+            User.objects.get(username=username)
+        except User.DoesNotExist:
             return username
         raise forms.ValidationError(self.error_messages['duplicate_username'])
 
@@ -33,12 +35,12 @@ class IotRecUserAdmin(UserAdmin):
     form = IotRecUserChangeForm
     add_form = IotRecUserCreationForm
     fieldsets = UserAdmin.fieldsets + (
-        (None, {'fields': ('extra_field1', 'extra_field2',)}),
+        (None, {'fields': ('preferences',)}),
     )
 
 
 # source: https://stackoverflow.com/a/17496836
-admin.site.register(IotRecUser, IotRecUserAdmin)
+admin.site.register(User, IotRecUserAdmin)
 
 
 """
@@ -48,10 +50,39 @@ class ThingsInLine(admin.TabularInline):
 """
 
 
+#class CategoriesInLine(admin.TabularInline):
+#    model = Thing.categories.through
+#    extra = 0
+
+
+
+#class CategoryAdmin(admin.ModelAdmin):
+#    fields = ['name', 'parent_category']
+#    list_display = ['name', 'parent_category']
+
+
+#admin.site.register(Category, CategoryAdmin)
+
+class CategoryAdmin(MPTTModelAdmin):
+    list_display = ('name', 'text_id', 'is_alias', 'get_alias_owner_full')
+
+    def get_alias_owner_full(self, obj):
+        if obj.alias_owner is not None:
+            ancestors = obj.alias_owner.get_ancestors(ascending=False, include_self=True)
+            output_string = ""
+            for a in ancestors:
+                output_string += '/' + a.name
+            return output_string
+
+admin.site.register(Category, CategoryAdmin)
+
 class ThingAdmin(admin.ModelAdmin):
-    fields = ['id', 'title', 'description', 'type', 'uuid', 'major_id', 'minor_id', 'image', 'address', 'location']
+    fields = ['id', 'title', 'description', 'categories', 'type', 'uuid', 'major_id', 'minor_id', 'image', 'address', 'location']
     # fields = [field.name for field in Thing._meta.get_fields()]
     list_display = ('title', 'uuid', 'major_id', 'minor_id')
+    #inlines = [
+    #    CategoriesInLine
+    #]
 
     def get_readonly_fields(self, request, obj=None):
         return ['id']

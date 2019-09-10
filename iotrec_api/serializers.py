@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
-from iotrec_api.models import IotRecUser, Thing
+from iotrec_api.models import User, Thing, Category
 
 
 # from django.contrib.auth.models import User
@@ -8,8 +8,12 @@ from iotrec_api.models import IotRecUser, Thing
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = IotRecUser
-        fields = ('username',)
+        model = User
+        fields = ('username', 'email', 'preferences')
+
+    #def update(self, instance, validated_data):
+    #    instance.email = validated_data.get('email', instance.email)
+    #    instance.preferences = validated_data.get('preferences', instance.preferences)
 
 
 class UserSerializerWithToken(serializers.ModelSerializer):
@@ -33,8 +37,8 @@ class UserSerializerWithToken(serializers.ModelSerializer):
         return instance
 
     class Meta:
-        model = IotRecUser
-        fields = ('token', 'username', 'password')
+        model = User
+        fields = ('token', 'username', 'email', 'password')
 
 
 """
@@ -50,3 +54,31 @@ class ThingSerializer(serializers.ModelSerializer):
         model = Thing
         # fields = ('title', 'description', 'image')
         fields = '__all__'
+
+class CategorySerializer(serializers.ModelSerializer):
+    #children = CategorySerializer(many=True)
+
+    class Meta:
+        model = Category
+        fields = ('text_id', 'name')
+
+    def get_fields(self):
+        fields = super(CategorySerializer, self).get_fields()
+        fields['children'] = CategorySerializer(many=True)
+        return fields
+
+class CategoryFlatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ('text_id', 'name', 'parent', 'level')
+
+    def to_representation(self, instance):
+        string_fields = {'text_id', 'name', 'parent'}
+        data = super().to_representation(instance)
+        for field in string_fields:
+            try:
+                if not data[field]:
+                    data[field] = ""
+            except KeyError:
+                pass
+        return data

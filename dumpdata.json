@@ -1,0 +1,58 @@
+[
+{
+  "model": "iotrec_api.category",
+  "pk": "Top/Arts",
+  "fields": {
+    "parent": null,
+    "name": "Arts",
+    "is_alias": false,
+    "alias_owner": null,
+    "lft": 1,
+    "rght": 6,
+    "tree_id": 1,
+    "level": 0
+  }
+},
+{
+  "model": "iotrec_api.category",
+  "pk": "Top/Arts/Animation",
+  "fields": {
+    "parent": "Top/Arts",
+    "name": "Animation",
+    "is_alias": false,
+    "alias_owner": null,
+    "lft": 2,
+    "rght": 3,
+    "tree_id": 1,
+    "level": 1
+  }
+},
+{
+  "model": "iotrec_api.category",
+  "pk": "Top/Arts/Shopping",
+  "fields": {
+    "parent": "Top/Arts",
+    "name": "Shopping",
+    "is_alias": false,
+    "alias_owner": null,
+    "lft": 4,
+    "rght": 5,
+    "tree_id": 1,
+    "level": 1
+  }
+},
+{
+  "model": "iotrec_api.category",
+  "pk": "Top/Shopping",
+  "fields": {
+    "parent": null,
+    "name": "Shopping",
+    "is_alias": true,
+    "alias_owner": "Top/Arts/Shopping",
+    "lft": 1,
+    "rght": 2,
+    "tree_id": 2,
+    "level": 0
+  }
+}
+]

@@ -25,7 +25,7 @@ SECRET_KEY = 'gk25i(0qias9rwc*qm+nwq8c59_(lv6c^#aqxkd&b97_epf@7n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '192.168.178.47']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '192.168.178.11']
 
 
 # Application definition
@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'iotrec_api',
     'rest_framework',
     'corsheaders',
-    'location_field.apps.DefaultConfig'
+    'location_field.apps.DefaultConfig',
+    'mptt'
 ]
 
 MIDDLEWARE = [
@@ -104,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'iotrec_api.IotRecUser'
+AUTH_USER_MODEL = 'iotrec_api.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -150,3 +151,7 @@ LOCATION_FIELD = {
     'map.provider': 'openstreetmap',
     'provider.openstreetmap.max_zoom': 18
 }
+
+MPTT_ADMIN_LEVEL_INDENT = 20
+
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 50000
