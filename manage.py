@@ -10,8 +10,9 @@ def main():
         from django.core.management import execute_from_command_line
 
         # use PyMySQL as MySQL driver
-        import pymysql
-        pymysql.install_as_MySQLdb()
+        #if os.environ.get('DJANGO_SETTINGS_MODULE') == 'iotrec.settings.production':
+        #    import pymysql
+        #    pymysql.install_as_MySQLdb()
     except ImportError as exc:
         raise ImportError(
             "Couldn't import Django. Are you sure it's installed and "
