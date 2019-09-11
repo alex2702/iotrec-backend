@@ -67,10 +67,12 @@ class Thing(models.Model):
     # categories = models.ManyToManyField(Category)
     categories = TreeManyToManyField('Category', blank=True)
 
-    def save(self, **kwargs):
+    def save(self, *args, **kwargs):
         self.id = '{0}-{1}-{2}'.format(self.uuid, self.major_id, self.minor_id)
-        super().save(*kwargs)
+        super(Thing, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
 
+    #def clean_id(self):
+    #    return '{0}-{1}-{2}'.format(self.uuid, self.major_id, self.minor_id)

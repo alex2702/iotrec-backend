@@ -99,7 +99,6 @@ class ThingViewSet(viewsets.ModelViewSet):
     queryset = Thing.objects.all()  # .order_by('-created_at')
     serializer_class = ThingSerializer
 
-
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.filter(level=0)
     serializer_class = CategorySerializer
@@ -108,3 +107,17 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class CategoryFlatViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategoryFlatSerializer
+
+
+#class ThingCreateAPIView(generics.CreateAPIView):
+#    serializer_class = ThingSerializer
+
+
+#class ThingSingleAPIView(generics.RetrieveUpdateDestroyAPIView):
+#    queryset = Thing.objects.all()
+#    serializer_class = ThingSerializer
+
+
+#class ThingListAPIView(generics.ListCreateAPIView):
+#    queryset = Thing.objects.all()
+#    serializer_class = ThingSerializer

@@ -1,6 +1,6 @@
 from django.urls import path, include
 from . import views
-from .views import UserApiView, current_user
+from .views import UserApiView, current_user#, ThingCreateAPIView, ThingSingleAPIView, ThingListAPIView
 from rest_framework_jwt.views import obtain_jwt_token, verify_jwt_token
 from rest_framework import routers
 
@@ -18,5 +18,8 @@ urlpatterns = [
     path('login/', obtain_jwt_token),
     path('verify-token/', verify_jwt_token),
     path('users/', UserApiView.as_view()),
+    #path('things/', ThingCreateAPIView.as_view()),
+    #path('things/', ThingSingleAPIView.as_view()),
+    #path('things/', ThingListAPIView.as_view()),
     # path('api/things/', views.ThingListCreate.as_view())
 ]
