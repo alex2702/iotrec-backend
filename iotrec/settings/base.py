@@ -32,7 +32,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'location_field.apps.DefaultConfig',
-    'mptt'
+    'mptt',
+    'training'
 ]
 
 MIDDLEWARE = [
@@ -51,7 +52,7 @@ ROOT_URLCONF = 'iotrec.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['iotrec/training/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

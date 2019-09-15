@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add a Training Sample</title>
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {{ thing.id }}<br />{{ thing.title }}<br />{{ thing.description }}
+    <br /><br />
+    {{ context_factor_1.id }}
+    <br /><br />
+    {{ context_factor_value_1.id }}
+    <br /><br />
+    <form method="POST" class="sample-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Send</button>
+    </form>
+</body>
+</html>

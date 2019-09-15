@@ -1,0 +1,36 @@
+[
+  {
+    "model": "training.ContextFactor",
+    "pk": 1,
+    "fields": {
+      "title": "timeOfDay",
+      "display_title": "Time of Day"
+    }
+  },
+  {
+    "model": "training.ContextFactor",
+    "pk": 2,
+    "fields": {
+      "title": "dayOfWeek",
+      "display_title": "Day of the Week"
+    }
+  },
+  {
+    "model": "training.ContextFactor",
+    "pk": 3,
+    "fields": {
+      "title": "knowledgeOfTheArea",
+      "display_title": "Knowledge of the Area"
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 1,
+    "fields": {
+      "title": "knowledgeOfTheArea",
+      "display_title": "Knowledge of the Area",
+      "description": "some description",
+      "context_factor": 1
+    }
+  }
+]
