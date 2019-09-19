@@ -8,11 +8,91 @@
     }
   },
   {
+    "model": "training.ContextFactorValue",
+    "pk": 1,
+    "fields": {
+      "title": "earlyMorning",
+      "display_title": "early morning",
+      "description": "it is early morning ().",
+      "context_factor": 1
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 2,
+    "fields": {
+      "title": "lateMorning",
+      "display_title": "late morning",
+      "description": "it is late morning ().",
+      "context_factor": 1
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 3,
+    "fields": {
+      "title": "noon",
+      "display_title": "noon",
+      "description": "it is about noon ().",
+      "context_factor": 1
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 4,
+    "fields": {
+      "title": "afternoon",
+      "display_title": "afternoon",
+      "description": "it is in the afternoon ().",
+      "context_factor": 1
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 5,
+    "fields": {
+      "title": "evening",
+      "display_title": "evening",
+      "description": "it is in the evening ().",
+      "context_factor": 1
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 6,
+    "fields": {
+      "title": "knowledgeOfTheArea",
+      "display_title": "Area",
+      "description": "it is night-time ().",
+      "context_factor": 1
+    }
+  },
+  {
     "model": "training.ContextFactor",
     "pk": 2,
     "fields": {
-      "title": "dayOfWeek",
+      "title": "dayOfTheWeek",
       "display_title": "Day of the Week"
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 7,
+    "fields": {
+      "title": "weekdays",
+      "display_title": "weekdays",
+      "description": "it is a weekday.",
+      "context_factor": 2
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 8,
+    "fields": {
+      "title": "weekend",
+      "display_title": "weekend",
+      "description": "it is the weekend.",
+      "context_factor": 2
     }
   },
   {
@@ -25,12 +105,398 @@
   },
   {
     "model": "training.ContextFactorValue",
-    "pk": 1,
+    "pk": 9,
     "fields": {
-      "title": "knowledgeOfTheArea",
-      "display_title": "Knowledge of the Area",
-      "description": "some description",
-      "context_factor": 1
+      "title": "firstTimeVisit",
+      "display_title": "first-time visit",
+      "description": "you're visiting this place for the first time.",
+      "context_factor": 3
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 10,
+    "fields": {
+      "title": "workplace",
+      "display_title": "workplace",
+      "description": "this is at your workplace.",
+      "context_factor": 3
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 11,
+    "fields": {
+      "title": "home",
+      "display_title": "home",
+      "description": "this is at your home.",
+      "context_factor": 3
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 12,
+    "fields": {
+      "title": "returningButIrregularVisit",
+      "display_title": "returning but irregular visit",
+      "description": "you have been to this place before (but not regularly).",
+      "context_factor": 3
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 13,
+    "fields": {
+      "title": "regularVisit",
+      "display_title": "regular visit",
+      "description": "you're visiting this place frequently.",
+      "context_factor": 3
+    }
+  },
+  {
+    "model": "training.ContextFactor",
+    "pk": 4,
+    "fields": {
+      "title": "social",
+      "display_title": "Social"
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 14,
+    "fields": {
+      "title": "alone",
+      "display_title": "alone",
+      "description": "you're at this place by yourself.",
+      "context_factor": 4
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 15,
+    "fields": {
+      "title": "withPartner",
+      "display_title": "with partner",
+      "description": "you're at this place with your partner (girlfriend/boyfriend/spouse/...).",
+      "context_factor": 4
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 16,
+    "fields": {
+      "title": "withFamily",
+      "display_title": "with family",
+      "description": "you're at this place with your family and kids.",
+      "context_factor": 4
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 17,
+    "fields": {
+      "title": "withFriends",
+      "display_title": "with friends",
+      "description": "you're at this place with your friends.",
+      "context_factor": 4
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 18,
+    "fields": {
+      "title": "withCoworkers",
+      "display_title": "with co-workers",
+      "description": "you're at this place with your co-workers.",
+      "context_factor": 4
+    }
+  },
+  {
+    "model": "training.ContextFactor",
+    "pk": 5,
+    "fields": {
+      "title": "crowdedness",
+      "display_title": "Crowdedness"
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 19,
+    "fields": {
+      "title": "empty",
+      "display_title": "empty",
+      "description": "nobody else is at the location or using the object.",
+      "context_factor": 5
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 20,
+    "fields": {
+      "title": "mediumCrowded",
+      "display_title": "medium crowded",
+      "description": "the place is a bit crowded.",
+      "context_factor": 5
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 21,
+    "fields": {
+      "title": "veryCrowded",
+      "display_title": "very crowded",
+      "description": "the place is very crowded.",
+      "context_factor": 5
+    }
+  },
+  {
+    "model": "training.ContextFactor",
+    "pk": 6,
+    "fields": {
+      "title": "weather",
+      "display_title": "Weather"
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 22,
+    "fields": {
+      "title": "sunny",
+      "display_title": "sunny",
+      "description": "the weather is sunny.",
+      "context_factor": 6
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 23,
+    "fields": {
+      "title": "cloudy",
+      "display_title": "cloudy",
+      "description": "the weather is cloudy (but not rainy).",
+      "context_factor": 6
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 24,
+    "fields": {
+      "title": "snowy",
+      "display_title": "snowy",
+      "description": "the weather is snowy.",
+      "context_factor": 6
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 25,
+    "fields": {
+      "title": "rainy",
+      "display_title": "rainy",
+      "description": "the weather is rainy.",
+      "context_factor": 6
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 26,
+    "fields": {
+      "title": "windy",
+      "display_title": "windy",
+      "description": "the weather is windy.",
+      "context_factor": 6
+    }
+  },
+  {
+    "model": "training.ContextFactor",
+    "pk": 7,
+    "fields": {
+      "title": "temperature",
+      "display_title": "Temperature"
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 27,
+    "fields": {
+      "title": "cold",
+      "display_title": "cold",
+      "description": "the temperature is cold (< 0 °C).",
+      "context_factor": 7
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 28,
+    "fields": {
+      "title": "cool",
+      "display_title": "cool",
+      "description": "the temperature is cool (0-9 °C).",
+      "context_factor": 7
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 29,
+    "fields": {
+      "title": "mild",
+      "display_title": "mild",
+      "description": "the temperature is mild (10-19 °C).",
+      "context_factor": 7
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 30,
+    "fields": {
+      "title": "warm",
+      "display_title": "warm",
+      "description": "the temperature is warm (20-29 °C).",
+      "context_factor": 7
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 31,
+    "fields": {
+      "title": "hot",
+      "display_title": "hot",
+      "description": "the temperature is hot (> 30 °C).",
+      "context_factor": 7
+    }
+  },
+  {
+    "model": "training.ContextFactor",
+    "pk": 8,
+    "fields": {
+      "title": "season",
+      "display_title": "Season"
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 32,
+    "fields": {
+      "title": "spring",
+      "display_title": "Spring",
+      "description": "it is spring.",
+      "context_factor": 8
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 33,
+    "fields": {
+      "title": "summer",
+      "display_title": "Summer",
+      "description": "it is summer.",
+      "context_factor": 8
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 34,
+    "fields": {
+      "title": "fall",
+      "display_title": "Fall",
+      "description": "it is fall.",
+      "context_factor": 8
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 35,
+    "fields": {
+      "title": "winter",
+      "display_title": "Winter",
+      "description": "it is winter.",
+      "context_factor": 8
+    }
+  },
+  {
+    "model": "training.ContextFactor",
+    "pk": 9,
+    "fields": {
+      "title": "timeAvailable",
+      "display_title": "Time Available"
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 36,
+    "fields": {
+      "title": "aFewMinutes",
+      "display_title": "a few minutes",
+      "description": "you have a few minutes available.",
+      "context_factor": 9
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 37,
+    "fields": {
+      "title": "aFewHours",
+      "display_title": "a few hours",
+      "description": "you have a few hours available.",
+      "context_factor": 9
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 38,
+    "fields": {
+      "title": "half a day",
+      "display_title": "halfADay",
+      "description": "you have a half day available.",
+      "context_factor": 9
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 39,
+    "fields": {
+      "title": "wholeDay",
+      "display_title": "whole day",
+      "description": "you have a whole day available.",
+      "context_factor": 9
+    }
+  },
+  {
+    "model": "training.ContextFactor",
+    "pk": 10,
+    "fields": {
+      "title": "durationOfTrip",
+      "display_title": "Duration of the Trip"
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 40,
+    "fields": {
+      "title": "upToAnHour",
+      "display_title": "up to an hour",
+      "description": "your current trip has lasted up to an hour so far.",
+      "context_factor": 10
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 41,
+    "fields": {
+      "title": "aFewHours",
+      "display_title": "aFewHours",
+      "description": "your current trip has lasted a few hours so far.",
+      "context_factor": 10
+    }
+  },
+  {
+    "model": "training.ContextFactorValue",
+    "pk": 42,
+    "fields": {
+      "title": "manyHours",
+      "display_title": "manyHours",
+      "description": "your current trip has lasted many hours or longer so far.",
+      "context_factor": 10
     }
   }
 ]

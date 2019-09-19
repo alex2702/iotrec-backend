@@ -5,8 +5,8 @@ from training.models import ContextFactorValue, Sample, ContextFactor, TrainingU
 
 
 class ReferenceThingAdmin(admin.ModelAdmin):
-    fields = ['title', 'description', 'categories', 'type', 'image']
-    list_display = ['title']
+    fields = ['title', 'description', 'indoorsLocation', 'categories', 'type', 'image']
+    list_display = ['title', 'description', 'indoorsLocation']
 
 
 admin.site.register(ReferenceThing, ReferenceThingAdmin)

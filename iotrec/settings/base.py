@@ -12,12 +12,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import datetime
 import os
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-DEBUG = False
-
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Application definition
 
@@ -33,7 +30,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'location_field.apps.DefaultConfig',
     'mptt',
-    'training'
+    'training',
+    'bootstrap4'
 ]
 
 MIDDLEWARE = [
@@ -86,9 +84,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+#PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
@@ -119,3 +117,20 @@ LOCATION_FIELD = {
 MPTT_ADMIN_LEVEL_INDENT = 20
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 50000
+
+BOOTSTRAP4 = {
+    "css_url": {
+        "href": "/static/css/bootstrap.min.css"
+    },
+    "javascript_url": {
+        "url": "/static/js/bootstrap.bundle.min.js"
+    },
+    "jquery_url": {
+        "url": "/static/js/jquery-3.4.1.min.js"
+    },
+    "popper_url": {
+        "url": ""
+    }
+}
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

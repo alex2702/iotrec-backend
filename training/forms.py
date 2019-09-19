@@ -20,9 +20,9 @@ class SampleForm(forms.Form):
     context_factor_value_5 = forms.IntegerField(widget=forms.HiddenInput())
 
     CHOICES = [
-        ('-1', ''),
-        ('0', ''),
-        ('1', '')
+        ('-1', 'negative effect'),
+        ('0', 'no effect'),
+        ('1', 'positive effect')
     ]
 
     #value_1 = forms.IntegerField(min_value=-1, max_value=1)

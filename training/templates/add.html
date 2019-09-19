@@ -1,28 +1,223 @@
+{% load static %}
+
+
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+<!--{% bootstrap_messages %}-->
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-6 mx-auto">
+                    <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Add a Training Sample</title>
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}" />
+    <style>
+        body, .btn {
+            font-size: 0.9rem;
+        }
+        h5 {
+            font-size: 1.1rem;
+        }
+        .iotrec-option-buttons {
+            float: right;
+        }
+        .iotrec-option-buttons label {
+            cursor: pointer;
+        }
+        .iotrec-option-text {
+            display: inline-flex;
+        }
+        .iotrec-option-buttons .btn-success {
+            background-color: #b3e0bd;
+            /*border-color: #b3e0bd;*/
+            color: #212529;
+        }
+        .iotrec-option-buttons .btn-secondary {
+            background-color: #cbced1;
+            /*border-color: #cbced1;*/
+            color: #212529;
+        }
+        .iotrec-option-buttons .btn-danger {
+            background-color: #f2b8bd;
+            /*border-color: #f2b8bd;*/
+            color: #212529;
+        }
+        .jumbotron {
+            margin-bottom: 0;
+            padding: 1rem;
+        }
+        .jumbotron .lead {
+            font-size: 1.1rem;
+        }
+        .jumbotron p {
+            margin-bottom: 0;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            $("input[type=radio]").change(function() {
+                if(
+                    $("input[name=value_1]:checked").length === 1 &&
+                    $("input[name=value_2]:checked").length === 1 &&
+                    $("input[name=value_3]:checked").length === 1 &&
+                    $("input[name=value_4]:checked").length === 1 &&
+                    $("input[name=value_5]:checked").length === 1
+                ) {
+                    $('#iotrec-submit-button').prop('disabled', false);
+                } else {
+                    $('#iotrec-submit-button').prop('disabled', true);
+                }
+            });
+        });
+    </script>
 </head>
 <body>
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
-        {% endfor %}
-    </ul>
-    {% endif %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-6 mx-auto">
+                <div class="jumbotron mt-3">
+                    <p class="lead">Imagine that you encounter the following object somewhere in your home, at your workplace, at school, in the city, on vacation – really anywhere in your everyday life.</p>
+                    <hr />
+                    <p>Images only serve illustration purposes, they don't describe the specific object. Assume a "typical version" of the object in question.</p>
+                </div>
+                <div class="card mt-3">
+                    <img src="media/{{ thing.image }}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ thing.title }}</h5>
+                        <p class="card-text">{{ thing.description }}</p>
+                        {% if thing.indoorsLocation is True %}<p class="card-text">The object is located indoors.</p>{% endif %}
+                        {% if thing.indoorsLocation is False %}<p class="card-text">The object is located outdoors.</p>{% endif %}
+                    </div>
+                </div>
 
+                <div class="jumbotron mt-3">
+                    <p class="lead">Now please select if the scenarios mentioned below would influence your decision to visit/use the object above and if yes, how.</p>
+                    <hr />
+                    <p>Please make sure to only indicate any <strong>changes</strong> that the scenario causes. It does not matter what your initial impression of the object is.</p>
+                </div>
+
+                <form method="POST" class="sample-form">
+                    {% csrf_token %}
+                    <div class="card mt-3">
+                        <div class="card-header">Imagine that...</div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-sm iotrec-option-text">...{{ context_factor_value_1.description }}</div>
+                                    <div class="col-sm btn-group btn-group-toggle iotrec-option-buttons" data-toggle="buttons">
+                                        {% for radio in form.value_1 %}
+                                            <label for="{{ radio.id_for_label }}" class="btn {% if forloop.counter == 1 %}btn-danger{% elif forloop.counter == 2 %}btn-secondary{% elif forloop.counter == 3 %}btn-success{% endif %}">
+                                                {{ radio.choice_label }}
+                                                {{ radio.tag }}
+                                            </label>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-sm iotrec-option-text">...{{ context_factor_value_2.description }}</div>
+                                    <div class="col-sm btn-group btn-group-toggle iotrec-option-buttons" data-toggle="buttons">
+                                        {% for radio in form.value_2 %}
+                                            <label for="{{ radio.id_for_label }}" class="btn {% if forloop.counter == 1 %}btn-danger{% elif forloop.counter == 2 %}btn-secondary{% elif forloop.counter == 3 %}btn-success{% endif %}">
+                                                {{ radio.choice_label }}
+                                                {{ radio.tag }}
+                                            </label>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-sm iotrec-option-text">...{{ context_factor_value_3.description }}</div>
+                                    <div class="col-sm btn-group btn-group-toggle iotrec-option-buttons" data-toggle="buttons">
+                                        {% for radio in form.value_3 %}
+                                            <label for="{{ radio.id_for_label }}" class="btn {% if forloop.counter == 1 %}btn-danger{% elif forloop.counter == 2 %}btn-secondary{% elif forloop.counter == 3 %}btn-success{% endif %}">
+                                                {{ radio.choice_label }}
+                                                {{ radio.tag }}
+                                            </label>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-sm iotrec-option-text">...{{ context_factor_value_4.description }}</div>
+                                    <div class="col-sm btn-group btn-group-toggle iotrec-option-buttons" data-toggle="buttons">
+                                        {% for radio in form.value_4 %}
+                                            <label for="{{ radio.id_for_label }}" class="btn {% if forloop.counter == 1 %}btn-danger{% elif forloop.counter == 2 %}btn-secondary{% elif forloop.counter == 3 %}btn-success{% endif %}">
+                                                {{ radio.choice_label }}
+                                                {{ radio.tag }}
+                                            </label>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-sm iotrec-option-text">...{{ context_factor_value_5.description }}</div>
+                                    <div class="col-sm btn-group btn-group-toggle iotrec-option-buttons" data-toggle="buttons">
+                                        {% for radio in form.value_5 %}
+                                            <label for="{{ radio.id_for_label }}" class="btn {% if forloop.counter == 1 %}btn-danger{% elif forloop.counter == 2 %}btn-secondary{% elif forloop.counter == 3 %}btn-success{% endif %}">
+                                                {{ radio.choice_label }}
+                                                {{ radio.tag }}
+                                            </label>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        {{ form.thing }}
+                        {{ form.user }}
+                        {{ form.context_factor_1 }}
+                        {{ form.context_factor_2 }}
+                        {{ form.context_factor_3 }}
+                        {{ form.context_factor_4 }}
+                        {{ form.context_factor_5 }}
+                        {{ form.context_factor_value_1 }}
+                        {{ form.context_factor_value_2 }}
+                        {{ form.context_factor_value_3 }}
+                        {{ form.context_factor_value_4 }}
+                        {{ form.context_factor_value_5 }}
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <button type="submit" id="iotrec-submit-button" class="btn btn-success btn-lg mt-3 mx-auto col-6" disabled>Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!--
     {{ thing.id }}<br />{{ thing.title }}<br />{{ thing.description }}
     <br /><br />
     {{ context_factor_1.id }}
     <br /><br />
     {{ context_factor_value_1.id }}
     <br /><br />
-    <form method="POST" class="sample-form">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Send</button>
-    </form>
+    -->
+
 </body>
 </html>

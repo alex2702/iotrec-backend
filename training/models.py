@@ -10,11 +10,13 @@ from iotrec_api.utils.thing import ThingType
 
 
 class ReferenceThing(models.Model):
-    title = models.CharField(max_length=128, default='New Thing')
+    title = models.CharField(max_length=128, default='newThing')
+    display_title = models.CharField(max_length=128, default='New Thing')
     description = models.TextField(blank=True)
     type = EnumChoiceField(ThingType, default=ThingType.BCN_I)
     image = models.ImageField(blank=True)
     categories = TreeManyToManyField(Category, blank=True)
+    indoorsLocation = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title

@@ -1,0 +1,951 @@
+[
+  {
+    "model": "training.ReferenceThing",
+    "pk": 1,
+    "fields": {
+      "title": "public transport ticket machine",
+      "display_title": "Public Transport Ticket Machine",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "public-transport-ticket-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 2,
+    "fields": {
+      "title": "public transport ticket machine",
+      "display_title": "Public Transport Ticket Machine",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "public-transport-ticket-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 3,
+    "fields": {
+      "title": "railway ticket machine",
+      "display_title": "Railway Ticket Machine",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "railway-ticket-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 4,
+    "fields": {
+      "title": "railway ticket machine",
+      "display_title": "Railway Ticket Machine",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "railway-ticket-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 5,
+    "fields": {
+      "title": "public bathroom",
+      "display_title": "Public Bathroom",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "public-bathroom.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 6,
+    "fields": {
+      "title": "ATM",
+      "display_title": "ATM/Cashpoint",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "atm.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 7,
+    "fields": {
+      "title": "ATM",
+      "display_title": "ATM/Cashpoint",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "atm.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 8,
+    "fields": {
+      "title": "vending machine with drinks",
+      "display_title": "Vending Machine with Drinks",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "vending-machine-with-drinks.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 9,
+    "fields": {
+      "title": "vending machine with drinks",
+      "display_title": "Vending Machine with Drinks",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "vending-machine-with-drinks.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 10,
+    "fields": {
+      "title": "vending machine with food",
+      "display_title": "Vending Machine with Food",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "vending-machine-with-food.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 11,
+    "fields": {
+      "title": "vending machine with food",
+      "display_title": "Vending Machine with Food",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "vending-machine-with-food.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 12,
+    "fields": {
+      "title": "printer",
+      "display_title": "Printer",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "printer.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 13,
+    "fields": {
+      "title": "photo booth",
+      "display_title": "Photo Booth",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "photo-booth.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 14,
+    "fields": {
+      "title": "coffee machine",
+      "display_title": "Coffee Machine",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "coffee-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 15,
+    "fields": {
+      "title": "laundromat",
+      "display_title": "Laundromat",
+      "description": "Public self-service laundry.",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "laundromat.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 16,
+    "fields": {
+      "title": "electric car charger",
+      "display_title": "Charging Station for Electric Cars",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "electric-car-charger.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 17,
+    "fields": {
+      "title": "electric car charger",
+      "display_title": "Charging Station for Electric Cars",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "electric-car-charger.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 18,
+    "fields": {
+      "title": "phone charging station",
+      "display_title": "Public Phone Charging Station",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "phone-charging-station.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 19,
+    "fields": {
+      "title": "arcade",
+      "display_title": "Arcade",
+      "description": "Video games, pinball, air hockey, other coin-operated machines, …",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "arcade.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 20,
+    "fields": {
+      "title": "airport check-in kiosk",
+      "display_title": "Airport Check-In Kiosk",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "airport-checkin-kiosk.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 21,
+    "fields": {
+      "title": "photo printer",
+      "display_title": "Photo Printing Station",
+      "description": "Typically found in a supermarket, drugstore or similar.",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "photo-printer.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 22,
+    "fields": {
+      "title": "food order machine in a restaurant",
+      "display_title": "Order Kiosk in a Restaurant",
+      "description": "Primarily used in fast food restaurants.",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "food-order-machine-restaurant.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 23,
+    "fields": {
+      "title": "smart home control unit",
+      "display_title": "Smart Home Control Unit",
+      "description": "Mounted screen somewhere in your home.",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "smart-home-control-unit.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 24,
+    "fields": {
+      "title": "public computer",
+      "display_title": "Public Computer or Internet Terminal",
+      "description": "Typically located in hotels, airports, …",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "public-computer.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 25,
+    "fields": {
+      "title": "drinking fountain",
+      "display_title": "Drinking Fountain",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "drinking-fountain.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 26,
+    "fields": {
+      "title": "drinking fountain",
+      "display_title": "Drinking Fountain",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "drinking-fountain.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 27,
+    "fields": {
+      "title": "gas station",
+      "display_title": "Gas Station",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "gas-station.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 28,
+    "fields": {
+      "title": "bike sharing station",
+      "display_title": "Bike Sharing Station",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "bike-sharing-station.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 29,
+    "fields": {
+      "title": "shared bike",
+      "display_title": "Sharing Bike",
+      "description": "Bike from a sharing provider, located outside a station.",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "sharing-bike.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 30,
+    "fields": {
+      "title": "e-scooter",
+      "display_title": "E-Scooter",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "e-scooter.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 31,
+    "fields": {
+      "title": "shared car",
+      "display_title": "Sharing Car",
+      "description": "Car from a sharing provider, located outside a station.",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "shared-car.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 32,
+    "fields": {
+      "title": "student card validation machine",
+      "display_title": "Student Card Validation Machine",
+      "description": "Machine used for extending your student ID (or some other identification).",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "student-card-validation-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 33,
+    "fields": {
+      "title": "payment card top-up station",
+      "display_title": "Payment Card Top-Up Station",
+      "description": "Payment cards for public transport, cashless payment at stadiums, …",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "payment-card-topup-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 34,
+    "fields": {
+      "title": "payment card top-up station",
+      "display_title": "Payment Card Top-Up Station",
+      "description": "Payment cards for public transport, cashless payment at stadiums, …",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "payment-card-topup-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 35,
+    "fields": {
+      "title": "taxi",
+      "display_title": "Taxi",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "taxi.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 36,
+    "fields": {
+      "title": "Uber car",
+      "display_title": "Uber Car",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "uber.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 37,
+    "fields": {
+      "title": "your own bike",
+      "display_title": "Your Own Bike",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "own-bike.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 38,
+    "fields": {
+      "title": "your own car",
+      "display_title": "Your Own Car",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "own-car.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 39,
+    "fields": {
+      "title": "train station",
+      "display_title": "Train Station",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "train-station.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 40,
+    "fields": {
+      "title": "bottle return machine",
+      "display_title": "Bottle Return Machine",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "bottle-return-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 41,
+    "fields": {
+      "title": "phone booth",
+      "display_title": "Phone Booth",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "phone-booth.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 42,
+    "fields": {
+      "title": "emergency phone",
+      "display_title": "Emergency Phone",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "emergency-phone.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 43,
+    "fields": {
+      "title": "emergency phone",
+      "display_title": "Emergency Phone",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "emergency-phone.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 44,
+    "fields": {
+      "title": "book vending machine",
+      "display_title": "Book Vending Machine",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "book-vending-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 45,
+    "fields": {
+      "title": "book vending machine",
+      "display_title": "Book Vending Machine",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "book-vending-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 46,
+    "fields": {
+      "title": "electronics vending machine",
+      "display_title": "Electronics Vending Machine",
+      "description": "Selling charging cables, computer mouses, phones, powerbanks, …",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "electronics-vending-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 47,
+    "fields": {
+      "title": "electronics vending machine",
+      "display_title": "Electronics Vending Machine",
+      "description": "Selling charging cables, computer mouses, phones, powerbanks, …",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "electronics-vending-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 48,
+    "fields": {
+      "title": "cigarette vending machine",
+      "display_title": "Cigarette Vending Machine",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "cigarette-vending-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 49,
+    "fields": {
+      "title": "cigarette vending machine",
+      "display_title": "Cigarette Vending Machine",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "cigarette-vending-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 50,
+    "fields": {
+      "title": "milk vending machine",
+      "display_title": "Milk Vending Machine",
+      "description": "Selling fresh, unprocessed milk. Typically requires you to bring your own bottle.",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "milk-vending-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 51,
+    "fields": {
+      "title": "milk vending machine",
+      "display_title": "Milk Vending Machine",
+      "description": "Selling fresh, unprocessed milk. Typically requires you to bring your own bottle.",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "milk-vending-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 52,
+    "fields": {
+      "title": "equipment vending machine",
+      "display_title": "Equipment Vending Machine",
+      "description": "Selling various pieces of equipment, such as bike tubes.",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "equipment-vending-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 53,
+    "fields": {
+      "title": "equipment vending machine",
+      "display_title": "Equipment Vending Machine",
+      "description": "Selling various pieces of equipment, such as bike tubes.",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "equipment-vending-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 54,
+    "fields": {
+      "title": "ice cream vending machine",
+      "display_title": "Ice Cream Vending Machine",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "ice-cream-vending-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 55,
+    "fields": {
+      "title": "ice cream vending machine",
+      "display_title": "Ice Cream Vending Machine",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "ice-cream-vending-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 56,
+    "fields": {
+      "title": "parking meter",
+      "display_title": "Parking Meter",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "parking-meter.jgp"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 57,
+    "fields": {
+      "title": "stamps vending machine",
+      "display_title": "Stamps Vending Machine",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "stamp-vending-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 58,
+    "fields": {
+      "title": "stamps vending machine",
+      "display_title": "Stamps Vending Machine",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "stamp-vending-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 59,
+    "fields": {
+      "title": "public wifi access point",
+      "display_title": "Public WiFi Access Point",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "public-wifi.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 60,
+    "fields": {
+      "title": "public wifi access point",
+      "display_title": "Public WiFi Access Point",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "public-wifi.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 61,
+    "fields": {
+      "title": "gambling machine",
+      "display_title": "Gambling Machine",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "gambling-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 62,
+    "fields": {
+      "title": "trade show booth",
+      "display_title": "Trade Show Booth",
+      "description": "One out of multiple booths at a trade show.",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "trade-show-booth.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 63,
+    "fields": {
+      "title": "trade show booth",
+      "display_title": "Trade Show Booth",
+      "description": "One out of multiple booths at a trade show.",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "trade-show-booth.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 64,
+    "fields": {
+      "title": "multimedia device in a museum",
+      "display_title": "Multimedia Device at a Museum",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "museum-multimedia.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 65,
+    "fields": {
+      "title": "painting in a museum",
+      "display_title": "Painting at a Museum",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "art-painting.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 66,
+    "fields": {
+      "title": "sculptures in a museum",
+      "display_title": "Sculpture at a Museum",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "art-sculpture.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 67,
+    "fields": {
+      "title": "photography piece in a museum",
+      "display_title": "Photography at a Museum",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "art-photography.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 68,
+    "fields": {
+      "title": "ceramics piece in a museum",
+      "display_title": "Ceramic/Pottery at a Museum",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "art-ceramics.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 69,
+    "fields": {
+      "title": "art installation in a museum",
+      "display_title": "Art Installation at a Museum",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "art-installation.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 70,
+    "fields": {
+      "title": "parking ticket machine",
+      "display_title": "Parking Ticket Machine",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "parking-ticket-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 71,
+    "fields": {
+      "title": "post box",
+      "display_title": "Post Box",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "post-box.png"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 72,
+    "fields": {
+      "title": "toy vending machine",
+      "display_title": "Toy Vending Machine",
+      "description": "",
+      "indoorsLocation": true,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "toy-vending-machine.jpg"
+    }
+  },
+  {
+    "model": "training.ReferenceThing",
+    "pk": 73,
+    "fields": {
+      "title": "toy vending machine",
+      "display_title": "Toy Vending Machine",
+      "description": "",
+      "indoorsLocation": false,
+      "categories": "",
+      "type": "Bluetooth iBeacon",
+      "image": "toy-vending-machine.jpg"
+    }
+  }
+]

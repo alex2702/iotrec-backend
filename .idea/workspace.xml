@@ -2,14 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09f20613-1e31-44ae-99f8-83d2ab175056" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/training/fixtures/context_factors.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training/templates/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training/templates/add.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training/fixtures/reference_things.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/iotrec/settings/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec/settings/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec/settings/development.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec/settings/development.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec/settings/production.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec/settings/production.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/fixtures/context_factors.json" beforeDir="false" afterPath="$PROJECT_DIR$/training/fixtures/context_factors.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/templates/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/training/templates/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +77,17 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/iotrec_api" />
+      <recent name="$PROJECT_DIR$/training/media" />
+      <recent name="$PROJECT_DIR$/static/js" />
+      <recent name="$PROJECT_DIR$/static/css" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/training/media" />
+      <recent name="$PROJECT_DIR$/training" />
+      <recent name="$PROJECT_DIR$/iotrec" />
       <recent name="$PROJECT_DIR$/iotrec/settings" />
     </key>
   </component>
@@ -150,7 +167,9 @@
       <workItem from="1568146514189" duration="13079000" />
       <workItem from="1568225022913" duration="4388000" />
       <workItem from="1568229959574" duration="703000" />
-      <workItem from="1568575525806" duration="10406000" />
+      <workItem from="1568575525806" duration="25085000" />
+      <workItem from="1568789415988" duration="917000" />
+      <workItem from="1568822008231" duration="4629000" />
     </task>
     <servers />
   </component>

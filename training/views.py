@@ -1,3 +1,4 @@
+import datetime
 import random
 
 from django.contrib import messages
@@ -21,17 +22,44 @@ def add_sample(request, context_factor=None):
                 value=form_data['value_1'],
                 user_id=form_data['user']
             )
-            #sample_2 =
-            #sample_3 =
-            #sample_4 =
-            #sample_5 =
+            sample_2 = Sample(
+                thing_id=form_data['thing'],
+                context_factor_id=form_data['context_factor_2'],
+                context_factor_value_id=form_data['context_factor_value_2'],
+                value=form_data['value_2'],
+                user_id=form_data['user']
+            )
+            sample_3 = Sample(
+                thing_id=form_data['thing'],
+                context_factor_id=form_data['context_factor_3'],
+                context_factor_value_id=form_data['context_factor_value_3'],
+                value=form_data['value_3'],
+                user_id=form_data['user']
+            )
+            sample_4 = Sample(
+                thing_id=form_data['thing'],
+                context_factor_id=form_data['context_factor_4'],
+                context_factor_value_id=form_data['context_factor_value_4'],
+                value=form_data['value_4'],
+                user_id=form_data['user']
+            )
+            sample_5 = Sample(
+                thing_id=form_data['thing'],
+                context_factor_id=form_data['context_factor_5'],
+                context_factor_value_id=form_data['context_factor_value_5'],
+                value=form_data['value_5'],
+                user_id=form_data['user']
+            )
             sample_1.save()
-            #
-            #
-            #
-            #
-            messages.success(request, 'Form submission successful. Want to submit another one?')
+            sample_2.save()
+            sample_3.save()
+            sample_4.save()
+            sample_5.save()
+            messages.success(request, 'Your ratings were submitted, thank you very much! Want to submit another one?')
             return redirect('add_sample')
+        else:
+            print(form.errors)
+            #return redirect('add_sample')
     else:
         # create user if needed
         if 'iotrec_training_user' in request.COOKIES:
@@ -89,7 +117,8 @@ def add_sample(request, context_factor=None):
                               'context_factor_value_5': model_to_dict(random_context_factor_value_5)
                           }
                           )
-        response.set_cookie(key='iotrec_training_user', value=str(user.identifier))
+
+        response.set_cookie(key='iotrec_training_user', value=str(user.identifier), expires=datetime.datetime(2020, 1, 1))
         return response
 
 
