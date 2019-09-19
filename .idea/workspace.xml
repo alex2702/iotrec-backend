@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09f20613-1e31-44ae-99f8-83d2ab175056" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec/settings/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec/settings/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec/settings/development.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec/settings/development.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec/settings/production.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec/settings/production.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/fixtures/reference_things.json" beforeDir="false" afterPath="$PROJECT_DIR$/training/fixtures/reference_things.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,6 +28,10 @@
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="db" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db [2]" type="feb32156:DbDataSourceImpl" />
       </path>
     </expand>
     <select />
@@ -158,7 +162,7 @@
       <workItem from="1568229959574" duration="703000" />
       <workItem from="1568575525806" duration="25085000" />
       <workItem from="1568789415988" duration="917000" />
-      <workItem from="1568822008231" duration="4970000" />
+      <workItem from="1568822008231" duration="5251000" />
     </task>
     <servers />
   </component>

@@ -8,7 +8,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "public-transport-ticket-machine.jpg"
     }
   },
@@ -21,7 +21,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "public-transport-ticket-machine.jpg"
     }
   },
@@ -34,7 +34,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "railway-ticket-machine.jpg"
     }
   },
@@ -47,7 +47,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "railway-ticket-machine.jpg"
     }
   },
@@ -60,7 +60,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "public-bathroom.jpg"
     }
   },
@@ -73,7 +73,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "atm.jpg"
     }
   },
@@ -86,7 +86,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "atm.jpg"
     }
   },
@@ -99,7 +99,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "vending-machine-with-drinks.jpg"
     }
   },
@@ -112,7 +112,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "vending-machine-with-drinks.jpg"
     }
   },
@@ -125,7 +125,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "vending-machine-with-food.jpg"
     }
   },
@@ -138,7 +138,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "vending-machine-with-food.jpg"
     }
   },
@@ -151,7 +151,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "printer.jpg"
     }
   },
@@ -164,7 +164,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "photo-booth.jpg"
     }
   },
@@ -177,7 +177,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "coffee-machine.jpg"
     }
   },
@@ -190,7 +190,7 @@
       "description": "Public self-service laundry.",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "laundromat.jpg"
     }
   },
@@ -203,7 +203,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "electric-car-charger.jpg"
     }
   },
@@ -216,7 +216,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "electric-car-charger.jpg"
     }
   },
@@ -229,7 +229,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "phone-charging-station.jpg"
     }
   },
@@ -242,7 +242,7 @@
       "description": "Video games, pinball, air hockey, other coin-operated machines, …",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "arcade.jpg"
     }
   },
@@ -255,7 +255,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "airport-checkin-kiosk.jpg"
     }
   },
@@ -268,7 +268,7 @@
       "description": "Typically found in a supermarket, drugstore or similar.",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "photo-printer.jpg"
     }
   },
@@ -281,7 +281,7 @@
       "description": "Primarily used in fast food restaurants.",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "food-order-machine-restaurant.jpg"
     }
   },
@@ -294,7 +294,7 @@
       "description": "Mounted screen somewhere in your home.",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "smart-home-control-unit.jpg"
     }
   },
@@ -307,7 +307,7 @@
       "description": "Typically located in hotels, airports, …",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "public-computer.jpg"
     }
   },
@@ -320,7 +320,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "drinking-fountain.jpg"
     }
   },
@@ -333,7 +333,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "drinking-fountain.jpg"
     }
   },
@@ -346,7 +346,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "gas-station.jpg"
     }
   },
@@ -359,7 +359,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "bike-sharing-station.jpg"
     }
   },
@@ -372,7 +372,7 @@
       "description": "Bike from a sharing provider, located outside a station.",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "sharing-bike.jpg"
     }
   },
@@ -385,7 +385,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "e-scooter.jpg"
     }
   },
@@ -398,7 +398,7 @@
       "description": "Car from a sharing provider, located outside a station.",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "shared-car.jpg"
     }
   },
@@ -411,7 +411,7 @@
       "description": "Machine used for extending your student ID (or some other identification).",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "student-card-validation-machine.jpg"
     }
   },
@@ -424,7 +424,7 @@
       "description": "Payment cards for public transport, cashless payment at stadiums, …",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "payment-card-topup-machine.jpg"
     }
   },
@@ -437,7 +437,7 @@
       "description": "Payment cards for public transport, cashless payment at stadiums, …",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "payment-card-topup-machine.jpg"
     }
   },
@@ -450,7 +450,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "taxi.jpg"
     }
   },
@@ -463,7 +463,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "uber.jpg"
     }
   },
@@ -476,7 +476,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "own-bike.jpg"
     }
   },
@@ -489,7 +489,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "own-car.jpg"
     }
   },
@@ -502,7 +502,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "train-station.jpg"
     }
   },
@@ -515,7 +515,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "bottle-return-machine.jpg"
     }
   },
@@ -528,7 +528,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "phone-booth.jpg"
     }
   },
@@ -541,7 +541,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "emergency-phone.jpg"
     }
   },
@@ -554,7 +554,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "emergency-phone.jpg"
     }
   },
@@ -567,7 +567,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "book-vending-machine.jpg"
     }
   },
@@ -580,7 +580,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "book-vending-machine.jpg"
     }
   },
@@ -593,7 +593,7 @@
       "description": "Selling charging cables, computer mouses, phones, powerbanks, …",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "electronics-vending-machine.jpg"
     }
   },
@@ -606,7 +606,7 @@
       "description": "Selling charging cables, computer mouses, phones, powerbanks, …",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "electronics-vending-machine.jpg"
     }
   },
@@ -619,7 +619,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "cigarette-vending-machine.jpg"
     }
   },
@@ -632,7 +632,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "cigarette-vending-machine.jpg"
     }
   },
@@ -645,7 +645,7 @@
       "description": "Selling fresh, unprocessed milk. Typically requires you to bring your own bottle.",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "milk-vending-machine.jpg"
     }
   },
@@ -658,7 +658,7 @@
       "description": "Selling fresh, unprocessed milk. Typically requires you to bring your own bottle.",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "milk-vending-machine.jpg"
     }
   },
@@ -671,7 +671,7 @@
       "description": "Selling various pieces of equipment, such as bike tubes.",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "equipment-vending-machine.jpg"
     }
   },
@@ -684,7 +684,7 @@
       "description": "Selling various pieces of equipment, such as bike tubes.",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "equipment-vending-machine.jpg"
     }
   },
@@ -697,7 +697,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "ice-cream-vending-machine.jpg"
     }
   },
@@ -710,7 +710,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "ice-cream-vending-machine.jpg"
     }
   },
@@ -723,7 +723,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "parking-meter.jgp"
     }
   },
@@ -736,7 +736,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "stamp-vending-machine.jpg"
     }
   },
@@ -749,7 +749,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "stamp-vending-machine.jpg"
     }
   },
@@ -762,7 +762,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "public-wifi.jpg"
     }
   },
@@ -775,7 +775,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "public-wifi.jpg"
     }
   },
@@ -788,7 +788,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "gambling-machine.jpg"
     }
   },
@@ -801,7 +801,7 @@
       "description": "One out of multiple booths at a trade show.",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "trade-show-booth.jpg"
     }
   },
@@ -814,7 +814,7 @@
       "description": "One out of multiple booths at a trade show.",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "trade-show-booth.jpg"
     }
   },
@@ -827,7 +827,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "museum-multimedia.jpg"
     }
   },
@@ -840,7 +840,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "art-painting.jpg"
     }
   },
@@ -853,7 +853,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "art-sculpture.jpg"
     }
   },
@@ -866,7 +866,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "art-photography.jpg"
     }
   },
@@ -879,7 +879,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "art-ceramics.jpg"
     }
   },
@@ -892,7 +892,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "art-installation.jpg"
     }
   },
@@ -905,7 +905,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "parking-ticket-machine.jpg"
     }
   },
@@ -918,7 +918,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "post-box.png"
     }
   },
@@ -931,7 +931,7 @@
       "description": "",
       "indoorsLocation": true,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "toy-vending-machine.jpg"
     }
   },
@@ -944,7 +944,7 @@
       "description": "",
       "indoorsLocation": false,
       "categories": "",
-      "type": "Bluetooth iBeacon",
+      "type": "BCN_I",
       "image": "toy-vending-machine.jpg"
     }
   }
