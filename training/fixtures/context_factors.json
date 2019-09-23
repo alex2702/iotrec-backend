@@ -445,8 +445,8 @@
     "model": "training.ContextFactorValue",
     "pk": 38,
     "fields": {
-      "title": "half a day",
-      "display_title": "halfADay",
+      "title": "halfADay",
+      "display_title": "half a day",
       "description": "you have a half day available.",
       "context_factor": 9
     }
@@ -484,7 +484,7 @@
     "pk": 41,
     "fields": {
       "title": "aFewHours",
-      "display_title": "aFewHours",
+      "display_title": "a few hours",
       "description": "your current trip has lasted a few hours so far.",
       "context_factor": 10
     }
@@ -494,7 +494,7 @@
     "pk": 42,
     "fields": {
       "title": "manyHours",
-      "display_title": "manyHours",
+      "display_title": "many hours",
       "description": "your current trip has lasted many hours or longer so far.",
       "context_factor": 10
     }
