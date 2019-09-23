@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09f20613-1e31-44ae-99f8-83d2ab175056" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/fixtures/context_factors.json" beforeDir="false" afterPath="$PROJECT_DIR$/training/fixtures/context_factors.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/templates/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/training/templates/add.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,8 +71,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/training/static" />
       <recent name="$PROJECT_DIR$/iotrec" />
+      <recent name="$PROJECT_DIR$/training/static" />
       <recent name="$PROJECT_DIR$/training/media" />
       <recent name="$PROJECT_DIR$/training" />
       <recent name="$PROJECT_DIR$/iotrec/settings" />
@@ -160,7 +163,7 @@
       <workItem from="1568229959574" duration="703000" />
       <workItem from="1568575525806" duration="25085000" />
       <workItem from="1568789415988" duration="917000" />
-      <workItem from="1568822008231" duration="7123000" />
+      <workItem from="1568822008231" duration="8747000" />
     </task>
     <servers />
   </component>

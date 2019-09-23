@@ -68,6 +68,15 @@
         .jumbotron p {
             margin-bottom: 0;
         }
+        .alert {
+            padding-bottom: 0 !important;
+        }
+        label.btn {
+            padding: .15rem .75rem !important;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
     </style>
     <script>
         $(document).ready(function() {
@@ -99,7 +108,7 @@
                 <div class="card mt-3">
                     <img src="media/{{ thing.image }}" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title">{{ thing.title }}</h5>
+                        <h5 class="card-title">{{ thing.display_title }}</h5>
                         <p class="card-text">{{ thing.description }}</p>
                         {% if thing.indoorsLocation is True %}<p class="card-text">The object is located indoors.</p>{% endif %}
                         {% if thing.indoorsLocation is False %}<p class="card-text">The object is located outdoors.</p>{% endif %}
