@@ -13,7 +13,7 @@
     "fields": {
       "title": "earlyMorning",
       "display_title": "early morning",
-      "description": "it is early morning ().",
+      "description": "it is early morning (04:00–08:00).",
       "context_factor": 1
     }
   },
@@ -23,7 +23,7 @@
     "fields": {
       "title": "lateMorning",
       "display_title": "late morning",
-      "description": "it is late morning ().",
+      "description": "it is late morning (08:00–11:00).",
       "context_factor": 1
     }
   },
@@ -33,7 +33,7 @@
     "fields": {
       "title": "noon",
       "display_title": "noon",
-      "description": "it is about noon ().",
+      "description": "it is about noon (11:00–13:00).",
       "context_factor": 1
     }
   },
@@ -43,7 +43,7 @@
     "fields": {
       "title": "afternoon",
       "display_title": "afternoon",
-      "description": "it is in the afternoon ().",
+      "description": "it is in the afternoon (13:00–18:00).",
       "context_factor": 1
     }
   },
@@ -53,7 +53,7 @@
     "fields": {
       "title": "evening",
       "display_title": "evening",
-      "description": "it is in the evening ().",
+      "description": "it is in the evening (18:00–22:00).",
       "context_factor": 1
     }
   },
@@ -63,7 +63,7 @@
     "fields": {
       "title": "knowledgeOfTheArea",
       "display_title": "Area",
-      "description": "it is night-time ().",
+      "description": "it is night-time (22:00–04:00).",
       "context_factor": 1
     }
   },
@@ -177,7 +177,7 @@
     "fields": {
       "title": "withPartner",
       "display_title": "with partner",
-      "description": "you're at this place with your partner (girlfriend/boyfriend/spouse/...).",
+      "description": "you're at this place with your partner (girlfriend/boyfriend/...).",
       "context_factor": 4
     }
   },
