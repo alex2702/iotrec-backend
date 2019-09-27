@@ -32,6 +32,7 @@ class TrainingUser(models.Model):
 class ContextFactor(models.Model):
     title = models.CharField(max_length=128, default='contextFactor')
     display_title = models.CharField(max_length=128, default='Context Factor')
+    active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.display_title
@@ -42,6 +43,7 @@ class ContextFactorValue(models.Model):
     display_title = models.CharField(max_length=128, default='Factor Value')
     description = models.CharField(max_length=255, default='Factor Value Description')
     context_factor = models.ForeignKey(ContextFactor, related_name='values', on_delete=models.CASCADE)
+    active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.display_title

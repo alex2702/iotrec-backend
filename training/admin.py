@@ -13,16 +13,16 @@ admin.site.register(ReferenceThing, ReferenceThingAdmin)
 
 
 class ContextFactorAdmin(admin.ModelAdmin):
-    fields = ['title', 'display_title']
-    list_display = ['display_title']
+    fields = ['title', 'display_title', 'active']
+    list_display = ['display_title', 'active']
 
 
 admin.site.register(ContextFactor, ContextFactorAdmin)
 
 
 class ContextFactorValueAdmin(admin.ModelAdmin):
-    fields = ['title', 'display_title', 'description', 'context_factor']
-    list_display = ['display_title', 'context_factor']
+    fields = ['title', 'display_title', 'description', 'active', 'context_factor']
+    list_display = ['display_title', 'active', 'context_factor']
 
 
 admin.site.register(ContextFactorValue, ContextFactorValueAdmin)
