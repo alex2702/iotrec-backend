@@ -72,7 +72,7 @@ def add_sample(request, context_factor=None):
             user = TrainingUser.objects.create()
 
         # get random thing, context factor and context factor value
-        random_thing = random.choice(ReferenceThing.objects.all())
+        random_thing = random.choice(ReferenceThing.objects.filter(active=True))
         random_context_factor_1 = random.choice(ContextFactor.objects.filter(active=True))
         random_context_factor_2 = random.choice(ContextFactor.objects.filter(active=True)
                                                 .exclude(pk=random_context_factor_1.pk))

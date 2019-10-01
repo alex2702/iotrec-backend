@@ -74,6 +74,15 @@ class CategoryAdmin(MPTTModelAdmin):
                 output_string += '/' + a.name
             return output_string
 
+    def get_queryset(self, request):
+        return Category.objects.annotate(ancestors=Count('sample'))
+
+    def ancestors(self, obj):
+        return obj.get_ancestors()
+
+    ancestors.short_description = 'Ancestors'
+    ancestors.admin_order_field = 'ancestors'
+
 admin.site.register(Category, CategoryAdmin)
 
 class ThingAdmin(admin.ModelAdmin):

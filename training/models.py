@@ -17,6 +17,7 @@ class ReferenceThing(models.Model):
     image = models.ImageField(blank=True)
     categories = TreeManyToManyField(Category, blank=True)
     indoorsLocation = models.BooleanField(default=True)
+    active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title
@@ -24,6 +25,8 @@ class ReferenceThing(models.Model):
 
 class TrainingUser(models.Model):
     identifier = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return str(self.identifier)
@@ -55,6 +58,8 @@ class Sample(models.Model):
     context_factor_value = models.ForeignKey(ContextFactorValue, on_delete=models.CASCADE)
     value = models.IntegerField(validators=[MinValueValidator(-1), MaxValueValidator(1)], default=0)
     user = models.ForeignKey(TrainingUser, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.thing.title + "/" + self.context_factor.title + "/" + self.context_factor_value.title

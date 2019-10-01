@@ -5,15 +5,31 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
-      "name": "Arts",
+      "name": "Root",
       "is_alias": false,
       "alias_owner": null,
       "parent": null,
       "level": 0
     },
     "type": "topic",
-    "pk": "Arts",
+    "pk": "Root",
     "level": 0
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Arts",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Root",
+      "level": 1
+    },
+    "type": "topic",
+    "pk": "Arts",
+    "level": 1
   },
   {
     "model": "iotrec_api.category",
@@ -24,12 +40,12 @@
       "name": "Business",
       "is_alias": false,
       "alias_owner": null,
-      "parent": null,
-      "level": 0
+      "parent": "Root",
+      "level": 1
     },
     "type": "topic",
     "pk": "Business",
-    "level": 0
+    "level": 1
   },
   {
     "model": "iotrec_api.category",
@@ -40,12 +56,12 @@
       "name": "Computers",
       "is_alias": false,
       "alias_owner": null,
-      "parent": null,
-      "level": 0
+      "parent": "Root",
+      "level": 1
     },
     "type": "topic",
     "pk": "Computers",
-    "level": 0
+    "level": 1
   },
   {
     "model": "iotrec_api.category",
@@ -56,12 +72,12 @@
       "name": "Games",
       "is_alias": false,
       "alias_owner": null,
-      "parent": null,
-      "level": 0
+      "parent": "Root",
+      "level": 1
     },
     "type": "topic",
     "pk": "Games",
-    "level": 0
+    "level": 1
   },
   {
     "model": "iotrec_api.category",
@@ -72,12 +88,12 @@
       "name": "Health",
       "is_alias": false,
       "alias_owner": null,
-      "parent": null,
-      "level": 0
+      "parent": "Root",
+      "level": 1
     },
     "type": "topic",
     "pk": "Health",
-    "level": 0
+    "level": 1
   },
   {
     "model": "iotrec_api.category",
@@ -88,12 +104,12 @@
       "name": "Home",
       "is_alias": false,
       "alias_owner": null,
-      "parent": null,
-      "level": 0
+      "parent": "Root",
+      "level": 1
     },
     "type": "topic",
     "pk": "Home",
-    "level": 0
+    "level": 1
   },
   {
     "model": "iotrec_api.category",
@@ -104,12 +120,12 @@
       "name": "News",
       "is_alias": false,
       "alias_owner": null,
-      "parent": null,
-      "level": 0
+      "parent": "Root",
+      "level": 1
     },
     "type": "topic",
     "pk": "News",
-    "level": 0
+    "level": 1
   },
   {
     "model": "iotrec_api.category",
@@ -120,12 +136,12 @@
       "name": "Recreation",
       "is_alias": false,
       "alias_owner": null,
-      "parent": null,
-      "level": 0
+      "parent": "Root",
+      "level": 1
     },
     "type": "topic",
     "pk": "Recreation",
-    "level": 0
+    "level": 1
   },
   {
     "model": "iotrec_api.category",
@@ -136,12 +152,12 @@
       "name": "Reference",
       "is_alias": false,
       "alias_owner": null,
-      "parent": null,
-      "level": 0
+      "parent": "Root",
+      "level": 1
     },
     "type": "topic",
     "pk": "Reference",
-    "level": 0
+    "level": 1
   },
   {
     "model": "iotrec_api.category",
@@ -152,12 +168,12 @@
       "name": "Regional",
       "is_alias": false,
       "alias_owner": null,
-      "parent": null,
-      "level": 0
+      "parent": "Root",
+      "level": 1
     },
     "type": "topic",
     "pk": "Regional",
-    "level": 0
+    "level": 1
   },
   {
     "model": "iotrec_api.category",
@@ -168,12 +184,12 @@
       "name": "Science",
       "is_alias": false,
       "alias_owner": null,
-      "parent": null,
-      "level": 0
+      "parent": "Root",
+      "level": 1
     },
     "type": "topic",
     "pk": "Science",
-    "level": 0
+    "level": 1
   },
   {
     "model": "iotrec_api.category",
@@ -184,12 +200,12 @@
       "name": "Shopping",
       "is_alias": false,
       "alias_owner": null,
-      "parent": null,
-      "level": 0
+      "parent": "Root",
+      "level": 1
     },
     "type": "topic",
     "pk": "Shopping",
-    "level": 0
+    "level": 1
   },
   {
     "model": "iotrec_api.category",
@@ -200,12 +216,12 @@
       "name": "Society",
       "is_alias": false,
       "alias_owner": null,
-      "parent": null,
-      "level": 0
+      "parent": "Root",
+      "level": 1
     },
     "type": "topic",
     "pk": "Society",
-    "level": 0
+    "level": 1
   },
   {
     "model": "iotrec_api.category",
@@ -216,12 +232,12 @@
       "name": "Sports",
       "is_alias": false,
       "alias_owner": null,
-      "parent": null,
-      "level": 0
+      "parent": "Root",
+      "level": 1
     },
     "type": "topic",
     "pk": "Sports",
-    "level": 0
+    "level": 1
   },
   {
     "model": "iotrec_api.category",
@@ -233,11 +249,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Animation",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -249,11 +265,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Architecture",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -265,11 +281,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_ArtHistory",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -281,11 +297,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Awards",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -297,11 +313,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Bodyart",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -313,11 +329,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_ChatsandForums",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -329,11 +345,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_ClassicalStudies",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -345,11 +361,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Comics",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -361,11 +377,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Contests",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -377,11 +393,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Costumes",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -393,11 +409,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Crafts",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -409,11 +425,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_CulturesandGroups",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -425,11 +441,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Design",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -441,11 +457,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Digital",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -457,11 +473,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Directories",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -473,11 +489,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Education",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -489,11 +505,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Entertainment",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -505,11 +521,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Events",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -521,11 +537,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Genres",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -537,11 +553,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_GraphicDesign",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -553,11 +569,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Humanities",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -569,11 +585,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Illustration",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -585,11 +601,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Literature",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -601,11 +617,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_MagazinesandE-zines",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -617,11 +633,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Movies",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -633,11 +649,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Music",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -649,11 +665,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_NewsandMedia",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -665,11 +681,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_OnlineWriting",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -681,11 +697,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Organizations",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -697,11 +713,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_People",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -713,11 +729,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_PerformingArts",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -729,11 +745,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_PeriodsandMovements",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -745,11 +761,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_PersonalPages",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -761,11 +777,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Photography",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -777,11 +793,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Radio",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -793,11 +809,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Regional",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -809,11 +825,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Television",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -825,11 +841,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Video",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -841,11 +857,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_VisualArts",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -857,11 +873,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_Weblogs",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -873,11 +889,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_WebRings",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -889,11 +905,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Arts",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Arts_WritersResources",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -905,11 +921,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_Accounting",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -921,11 +937,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_AerospaceandDefense",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -937,11 +953,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_AgricultureandForestry",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -953,11 +969,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_ArtsandEntertainment",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -969,11 +985,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_Associations",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -985,11 +1001,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_Automotive",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1001,11 +1017,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_BiotechnologyandPharmaceuticals",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1017,11 +1033,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_BusinessandSociety",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1033,11 +1049,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_BusinessServices",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1049,11 +1065,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_Chemicals",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1065,11 +1081,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_ConstructionandMaintenance",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1081,11 +1097,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_ConsumerGoodsandServices",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1097,11 +1113,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_Cooperatives",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1113,11 +1129,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_CustomerService",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1129,11 +1145,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_Directories",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1145,11 +1161,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_E-Commerce",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1161,11 +1177,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_EducationandTraining",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1177,11 +1193,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_ElectronicsandElectrical",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1193,11 +1209,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_Employment",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1209,11 +1225,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_Energy",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1225,11 +1241,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_Environment",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1241,11 +1257,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_FinancialServices",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1257,11 +1273,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_FoodandRelatedProducts",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1273,11 +1289,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_Healthcare",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1289,11 +1305,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_Hospitality",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1305,11 +1321,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_HumanResources",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1321,11 +1337,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_IndustrialGoodsandServices",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1337,11 +1353,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_InformationServices",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1353,11 +1369,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_InformationTechnology",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1369,11 +1385,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_InternationalBusinessandTrade",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1385,11 +1401,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_Investing",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1401,11 +1417,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_MajorCompanies",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1417,11 +1433,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_Management",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1433,11 +1449,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_MarketingandAdvertising",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1449,11 +1465,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_Materials",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1465,11 +1481,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_MiningandDrilling",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1481,11 +1497,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_NewsandMedia",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1497,11 +1513,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_Opportunities",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1513,11 +1529,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_PublishingandPrinting",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1529,11 +1545,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_RealEstate",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1545,11 +1561,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_Regional",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1561,11 +1577,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_Resources",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1577,11 +1593,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_RetailTrade",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1593,11 +1609,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_SmallBusiness",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1609,11 +1625,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_Telecommunications",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1625,11 +1641,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_TextilesandNonwovens",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1641,11 +1657,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_TransportationandLogistics",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1657,11 +1673,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Business",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Business_WholesaleTrade",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1673,11 +1689,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Algorithms",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1689,11 +1705,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_ArtificialIntelligence",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1705,11 +1721,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_ArtificialLife",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1721,11 +1737,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_BulletinBoardSystems",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1737,11 +1753,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_CADandCAM",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1753,11 +1769,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_ChatsandForums",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1769,11 +1785,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Companies",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1785,11 +1801,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_ComputerScience",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1801,11 +1817,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Conferences",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1817,11 +1833,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Consultants",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1833,11 +1849,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_DataCommunications",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1849,11 +1865,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_DataFormats",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1865,11 +1881,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_DesktopPublishing",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1881,11 +1897,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Directories",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1897,11 +1913,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_E-Books",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1913,11 +1929,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Education",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1929,11 +1945,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Emulators",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1945,11 +1961,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Ethics",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1961,11 +1977,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_FAQs,Help,andTutorials",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1977,11 +1993,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Graphics",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -1993,11 +2009,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Hacking",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2009,11 +2025,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Hardware",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2025,11 +2041,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_History",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2041,11 +2057,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_HomeAutomation",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2057,11 +2073,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Human-ComputerInteraction",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2073,11 +2089,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Internet",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2089,11 +2105,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Intranet",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2105,11 +2121,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_MailingLists",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2121,11 +2137,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_MobileComputing",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2137,11 +2153,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Multimedia",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2153,11 +2169,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_NewsandMedia",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2169,11 +2185,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_OpenSource",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2185,11 +2201,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Organizations",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2201,11 +2217,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_ParallelComputing",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2217,11 +2233,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_PerformanceandCapacity",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2233,11 +2249,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Programming",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2249,11 +2265,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Robotics",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2265,11 +2281,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Security",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2281,11 +2297,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Shopping",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2297,11 +2313,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Software",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2313,11 +2329,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_SpeechTechnology",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2329,11 +2345,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Supercomputing",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2345,11 +2361,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Systems",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2361,11 +2377,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_Usenet",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2377,11 +2393,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Computers",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Computers_VirtualReality",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2393,11 +2409,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_BoardGames",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2409,11 +2425,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_CardGames",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2425,11 +2441,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_Coin-Op",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2441,11 +2457,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_Conventions",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2457,11 +2473,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_DevelopersandPublishers",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2473,11 +2489,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_Dice",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2489,11 +2505,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_Gambling",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2505,11 +2521,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_GameStudies",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2521,11 +2537,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_Hand-EyeCoordination",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2537,11 +2553,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_HandGames",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2553,11 +2569,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_History",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2569,11 +2585,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_Miniatures",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2585,11 +2601,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_Online",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2601,11 +2617,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_PaperandPencil",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2617,11 +2633,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_PartyGames",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2633,11 +2649,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_Play-By-Mail",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2649,11 +2665,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_PlayGroups",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2665,11 +2681,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_Puzzles",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2681,11 +2697,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_Resources",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2697,11 +2713,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_Roleplaying",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2713,11 +2729,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_TileGames",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2729,11 +2745,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_TradingCardGames",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2745,11 +2761,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_VideoGames",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2761,11 +2777,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Games_Yard,Deck,andTableGames",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2777,11 +2793,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Addictions",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2793,11 +2809,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Aging",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2809,11 +2825,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Alternative",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2825,11 +2841,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Animal",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2841,11 +2857,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Beauty",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2857,11 +2873,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_ChildHealth",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2873,11 +2889,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_ConditionsandDiseases",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2889,11 +2905,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Conferences",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2905,11 +2921,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Dentistry",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2921,11 +2937,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Directories",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2937,11 +2953,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Education",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2953,11 +2969,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Fitness",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2969,11 +2985,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_HomeHealth",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -2985,11 +3001,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Medicine",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3001,11 +3017,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Men'sHealth",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3017,11 +3033,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_MentalHealth",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3033,11 +3049,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_NewsandMedia",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3049,11 +3065,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Nursing",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3065,11 +3081,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Nutrition",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3081,11 +3097,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_OccupationalHealthandSafety",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3097,11 +3113,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Organizations",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3113,11 +3129,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Pharmacy",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3129,11 +3145,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_ProductsandShopping",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3145,11 +3161,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Professions",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3161,11 +3177,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_PublicHealthandSafety",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3177,11 +3193,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Regional",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3193,11 +3209,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_ReproductiveHealth",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3209,11 +3225,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Resources",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3225,11 +3241,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_SearchEngines",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3241,11 +3257,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_SeniorHealth",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3257,11 +3273,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Senses",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3273,11 +3289,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Services",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3289,11 +3305,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_SpecificSubstances",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3305,11 +3321,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_SupportGroups",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3321,11 +3337,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_TeenHealth",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3337,11 +3353,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_WeightLoss",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3353,11 +3369,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Health",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Health_Women'sHealth",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3369,11 +3385,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Home",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Home_ApartmentLiving",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3385,11 +3401,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Home",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Home_ConsumerInformation",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3401,11 +3417,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Home",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Home_Cooking",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3417,11 +3433,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Home",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Home_Do-It-Yourself",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3433,11 +3449,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Home",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Home_EmergencyPreparation",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3449,11 +3465,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Home",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Home_Entertaining",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3465,11 +3481,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Home",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Home_Family",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3481,11 +3497,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Home",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Home_Gardening",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3497,11 +3513,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Home",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Home_Homemaking",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3513,11 +3529,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Home",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Home_Homeowners",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3529,11 +3545,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Home",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Home_HomeImprovement",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3545,11 +3561,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Home",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Home_MovingandRelocating",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3561,11 +3577,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Home",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Home_NewsandMedia",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3577,11 +3593,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Home",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Home_PersonalFinance",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3593,11 +3609,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Home",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Home_PersonalOrganization",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3609,11 +3625,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Home",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Home_RuralLiving",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3625,11 +3641,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Home",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Home_Software",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3641,11 +3657,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Home",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Home_UrbanLiving",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3657,11 +3673,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Home",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Home_Weblogs",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3673,11 +3689,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_Alternative",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3689,11 +3705,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_AnalysisandOpinion",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3705,11 +3721,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_BreakingNews",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3721,11 +3737,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_ByCategory",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3737,11 +3753,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_ByRegion",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3753,11 +3769,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_BySubject",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3769,11 +3785,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_ChatsandForums",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3785,11 +3801,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_CollegesandUniversities",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3801,11 +3817,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_CurrentEvents",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3817,11 +3833,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_Directories",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3833,11 +3849,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_ExtendedCoverage",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3849,11 +3865,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_HeadlineLinks",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3865,11 +3881,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_InternetBroadcasts",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3881,11 +3897,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_Journalism",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3897,11 +3913,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_MagazinesandE-zines",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3913,11 +3929,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_MediaIndustry",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3929,11 +3945,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_MuseumsandArchives",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3945,11 +3961,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_Newspapers",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3961,11 +3977,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_PersonalizedNews",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3977,11 +3993,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_Satire",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -3993,11 +4009,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_Weather",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4009,11 +4025,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "News",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "News_Weblogs",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4025,11 +4041,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Antiques",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4041,11 +4057,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Audio",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4057,11 +4073,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Autos",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4073,11 +4089,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Aviation",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4089,11 +4105,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Birding",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4105,11 +4121,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Boating",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4121,11 +4137,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Camps",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4137,11 +4153,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Climbing",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4153,11 +4169,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Collecting",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4169,11 +4185,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Directories",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4185,11 +4201,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Drugs",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4201,11 +4217,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Food",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4217,11 +4233,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Guns",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4233,11 +4249,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Humor",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4249,11 +4265,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Kites",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4265,11 +4281,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Knives",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4281,11 +4297,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_LivingHistory",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4297,11 +4313,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Locks",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4313,11 +4329,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Models",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4329,11 +4345,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Motorcycles",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4345,11 +4361,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Nudism",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4361,11 +4377,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Outdoors",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4377,11 +4393,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Parties",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4393,11 +4409,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Pets",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4409,11 +4425,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_PictureRatings",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4425,11 +4441,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Radio",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4441,11 +4457,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_RoadsandHighways",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4457,11 +4473,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Scouting",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4473,11 +4489,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_ThemeParks",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4489,11 +4505,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Tobacco",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4505,11 +4521,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_TrainsandRailroads",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4521,11 +4537,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Travel",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4537,11 +4553,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Recreation",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Recreation_Whips",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4553,11 +4569,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_Almanacs",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4569,11 +4585,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_Archives",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4585,11 +4601,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_AskanExpert",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4601,11 +4617,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_Bibliography",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4617,11 +4633,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_Biography",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4633,11 +4649,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_Books",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4649,11 +4665,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_Dictionaries",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4665,11 +4681,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_Directories",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4681,11 +4697,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_Education",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4697,11 +4713,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_Encyclopedias",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4713,11 +4729,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_Flags",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4729,11 +4745,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_Journals",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4745,11 +4761,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_Knots",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4761,11 +4777,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_KnowledgeManagement",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4777,11 +4793,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_Libraries",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4793,11 +4809,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_Maps",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4809,11 +4825,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_Museums",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4825,11 +4841,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_OpenAccessResources",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4841,11 +4857,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_ParliamentaryProcedure",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4857,11 +4873,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_Quotations",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4873,11 +4889,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_Thesauri",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4889,11 +4905,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_Time",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4905,11 +4921,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Reference_WorldRecords",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4921,11 +4937,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Regional",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Regional_Africa",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4937,11 +4953,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Regional",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Regional_Asia",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4953,11 +4969,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Regional",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Regional_Caribbean",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4969,11 +4985,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Regional",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Regional_CentralAmerica",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -4985,11 +5001,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Regional",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Regional_Countries",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5001,11 +5017,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Regional",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Regional_Europe",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5017,11 +5033,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Regional",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Regional_MiddleEast",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5033,11 +5049,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Regional",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Regional_NorthAmerica",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5049,11 +5065,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Regional",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Regional_Oceania",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5065,11 +5081,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Regional",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Regional_PolarRegions",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5081,11 +5097,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Regional",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Regional_SouthAmerica",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5097,11 +5113,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_AcademicDepartments",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5113,11 +5129,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_Agriculture",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5129,11 +5145,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_AnomaliesandAlternativeScience",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5145,11 +5161,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_Astronomy",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5161,11 +5177,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_Biology",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5177,11 +5193,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_ByRegion",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5193,11 +5209,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_ChatsandForums",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5209,11 +5225,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_Chemistry",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5225,11 +5241,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_Directories",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5241,11 +5257,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_EarthSciences",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5257,11 +5273,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_EducationalResources",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5273,11 +5289,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_Employment",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5289,11 +5305,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_Environment",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5305,11 +5321,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_Events",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5321,11 +5337,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_InstrumentsandSupplies",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5337,11 +5353,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_Math",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5353,11 +5369,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_MethodsandTechniques",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5369,11 +5385,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_NewsandMedia",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5385,11 +5401,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_Organizations",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5401,11 +5417,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_People",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5417,11 +5433,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_Physics",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5433,11 +5449,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_Publications",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5449,11 +5465,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_Reference",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5465,11 +5481,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_ResearchGroupsandCenters",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5481,11 +5497,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_ScienceinSociety",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5497,11 +5513,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_SearchEngines",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5513,11 +5529,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_SocialSciences",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5529,11 +5545,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_Software",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5545,11 +5561,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Science",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Science_Technology",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5561,11 +5577,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_AntiquesandCollectibles",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5577,11 +5593,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Auctions",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5593,11 +5609,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_ByRegion",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5609,11 +5625,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Children",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5625,11 +5641,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Classifieds",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5641,11 +5657,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Clothing",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5657,11 +5673,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_ConsumerElectronics",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5673,11 +5689,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Crafts",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5689,11 +5705,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_DeathCare",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5705,11 +5721,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Directories",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5721,11 +5737,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Entertainment",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5737,11 +5753,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_EthnicandRegional",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5753,11 +5769,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Flowers",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5769,11 +5785,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Food",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5785,11 +5801,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_GeneralMerchandise",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5801,11 +5817,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Gifts",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5817,11 +5833,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Health",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5833,11 +5849,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Holidays",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5849,11 +5865,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_HomeandGarden",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5865,11 +5881,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Jewelry",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5881,11 +5897,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Music",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5897,11 +5913,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Niche",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5913,11 +5929,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_OfficeProducts",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5929,11 +5945,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Pets",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5945,11 +5961,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Photography",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5961,11 +5977,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Publications",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5977,11 +5993,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Recreation",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -5993,11 +6009,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Sports",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6009,11 +6025,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Tobacco",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6025,11 +6041,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Tools",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6041,11 +6057,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_ToysandGames",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6057,11 +6073,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Travel",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6073,11 +6089,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Vehicles",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6089,11 +6105,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_VisualArts",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6105,11 +6121,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Shopping_Weddings",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6121,11 +6137,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Activism",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6137,11 +6153,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Advice",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6153,11 +6169,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Crime",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6169,11 +6185,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Death",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6185,11 +6201,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Disabled",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6201,11 +6217,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Ethnicity",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6217,11 +6233,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Folklore",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6233,11 +6249,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Future",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6249,11 +6265,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Gay,Lesbian,andBisexual",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6265,11 +6281,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Genealogy",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6281,11 +6297,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Government",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6297,11 +6313,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_History",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6313,11 +6329,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Holidays",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6329,11 +6345,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Issues",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6345,11 +6361,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Law",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6361,11 +6377,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_LifestyleChoices",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6377,11 +6393,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Military",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6393,11 +6409,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Organizations",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6409,11 +6425,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Paranormal",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6425,11 +6441,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_People",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6441,11 +6457,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Philanthropy",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6457,11 +6473,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Philosophy",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6473,11 +6489,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Politics",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6489,11 +6505,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Relationships",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6505,11 +6521,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_ReligionandSpirituality",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6521,11 +6537,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Sexuality",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6537,11 +6553,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Subcultures",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6553,11 +6569,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_SupportGroups",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6569,11 +6585,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Transgendered",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6585,11 +6601,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Society",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Society_Work",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6601,11 +6617,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_AdventureRacing",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6617,11 +6633,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Airsoft",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6633,11 +6649,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_AnimalSports",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6649,11 +6665,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Archery",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6665,11 +6681,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Badminton",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6681,11 +6697,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Baseball",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6697,11 +6713,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Basketball",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6713,11 +6729,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Bocce",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6729,11 +6745,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Boomerang",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6745,11 +6761,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Bowling",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6761,11 +6777,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Boxing",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6777,11 +6793,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Cheerleading",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6793,11 +6809,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_CollegeandUniversity",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6809,11 +6825,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Cricket",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6825,11 +6841,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Croquet",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6841,11 +6857,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_CueSports",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6857,11 +6873,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Cycling",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6873,11 +6889,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Darts",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6889,11 +6905,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Disabled",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6905,11 +6921,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Equestrian",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6921,11 +6937,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Events",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6937,11 +6953,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_ExtremeSports",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6953,11 +6969,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Fantasy",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6969,11 +6985,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Fencing",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -6985,11 +7001,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_FlyingDiscs",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7001,11 +7017,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Footbag",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7017,11 +7033,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Football",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7033,11 +7049,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Gaelic",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7049,11 +7065,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Goalball",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7065,11 +7081,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Golf",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7081,11 +7097,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_GreyhoundRacing",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7097,11 +7113,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Gymnastics",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7113,11 +7129,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Handball",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7129,11 +7145,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Hockey",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7145,11 +7161,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_InformalSports",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7161,11 +7177,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_JaiAlai",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7177,11 +7193,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Kabbadi",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7193,11 +7209,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Korfball",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7209,11 +7225,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Lacrosse",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7225,11 +7241,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_LaserGames",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7241,11 +7257,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Lumberjack",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7257,11 +7273,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_MartialArts",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7273,11 +7289,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Motorsports",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7289,11 +7305,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Multi-Sports",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7305,11 +7321,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Netball",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7321,11 +7337,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Officiating",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7337,11 +7353,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Organizations",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7353,11 +7369,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Orienteering",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7369,11 +7385,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Paddleball",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7385,11 +7401,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Paintball",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7401,11 +7417,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_People",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7417,11 +7433,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Pes\u00e4pallo",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7433,11 +7449,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Petanque",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7449,11 +7465,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Professional",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7465,11 +7481,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Racquetball",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7481,11 +7497,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Resources",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7497,11 +7513,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Rodeo",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7513,11 +7529,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_RopeSkipping",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7529,11 +7545,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Rounders",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7545,11 +7561,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Running",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7561,11 +7577,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_SepakTakraw",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7577,11 +7593,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Skateboarding",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7593,11 +7609,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Skating",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7609,11 +7625,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Soccer",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7625,11 +7641,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Softball",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7641,11 +7657,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Software",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7657,11 +7673,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Squash",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7673,11 +7689,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_StrengthSports",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7689,11 +7705,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_TableTennis",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7705,11 +7721,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Tchoukball",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7721,11 +7737,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_TeamHandball",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7737,11 +7753,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_TeamSpirit",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7753,11 +7769,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Tennis",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7769,11 +7785,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_TrackandField",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7785,11 +7801,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Volleyball",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7801,11 +7817,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Walking",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7817,11 +7833,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_WaterSports",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7833,11 +7849,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_WinterSports",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7849,11 +7865,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Women",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7865,11 +7881,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_Wrestling",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7881,11 +7897,11 @@
       "is_alias": false,
       "alias_owner": null,
       "parent": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic",
     "pk": "Sports_YouthandHighSchool",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7897,11 +7913,11 @@
       "is_alias": true,
       "parent": "Arts",
       "alias_owner": "Recreation_Antiques",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Arts_Antiques",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7913,11 +7929,11 @@
       "is_alias": true,
       "parent": "Computers",
       "alias_owner": "Computers_Usenet",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Computers_Newsgroups",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7929,11 +7945,11 @@
       "is_alias": true,
       "parent": "Computers",
       "alias_owner": "Games_VideoGames",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Computers_Games",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7945,11 +7961,11 @@
       "is_alias": true,
       "parent": "Games",
       "alias_owner": "Games_TradingCardGames",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Games_CCGs",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7961,11 +7977,11 @@
       "is_alias": true,
       "parent": "Health",
       "alias_owner": "Business_Healthcare",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Health_Healthcare Industry",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7977,11 +7993,11 @@
       "is_alias": true,
       "parent": "Health",
       "alias_owner": "Society_Disabled",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Health_Disabilities",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -7993,11 +8009,11 @@
       "is_alias": true,
       "parent": "Home",
       "alias_owner": "Computers_HomeAutomation",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Home_Home Automation",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8009,11 +8025,11 @@
       "is_alias": true,
       "parent": "Home",
       "alias_owner": "Recreation_Pets",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Home_Pets",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8025,11 +8041,11 @@
       "is_alias": true,
       "parent": "Home",
       "alias_owner": "Shopping_HomeandGarden",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Home_Shopping",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8041,11 +8057,11 @@
       "is_alias": true,
       "parent": "News",
       "alias_owner": "Reference_Journals",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "News_Journals",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8057,11 +8073,11 @@
       "is_alias": true,
       "parent": "Recreation",
       "alias_owner": "Games_Gambling",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Recreation_Gambling",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8073,11 +8089,11 @@
       "is_alias": true,
       "parent": "Recreation",
       "alias_owner": "Games",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Recreation_Games",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8089,11 +8105,11 @@
       "is_alias": true,
       "parent": "Recreation",
       "alias_owner": "Home_Gardening",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Recreation_Gardening",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8105,11 +8121,11 @@
       "is_alias": true,
       "parent": "Recreation",
       "alias_owner": "Sports_Bowling",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Recreation_Bowling",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8121,11 +8137,11 @@
       "is_alias": true,
       "parent": "Recreation",
       "alias_owner": "Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Recreation_Sports",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8137,11 +8153,11 @@
       "is_alias": true,
       "parent": "Recreation",
       "alias_owner": "Arts_Crafts",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Recreation_Crafts",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8153,11 +8169,11 @@
       "is_alias": true,
       "parent": "Recreation",
       "alias_owner": "Sports_MartialArts",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Recreation_Martial Arts",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8169,11 +8185,11 @@
       "is_alias": true,
       "parent": "Recreation",
       "alias_owner": "Society_Genealogy",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Recreation_Genealogy",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8185,11 +8201,11 @@
       "is_alias": true,
       "parent": "Reference",
       "alias_owner": "Science_Reference",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Reference_Scientific Reference",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8201,11 +8217,11 @@
       "is_alias": true,
       "parent": "Reference",
       "alias_owner": "Society_Advice",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Reference_Advice",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8217,11 +8233,11 @@
       "is_alias": true,
       "parent": "Science",
       "alias_owner": "Computers_ComputerScience",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Science_Computer Science",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8233,11 +8249,11 @@
       "is_alias": true,
       "parent": "Science",
       "alias_owner": "Science_Astronomy",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Science_Astronomy",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8249,11 +8265,11 @@
       "is_alias": true,
       "parent": "Science",
       "alias_owner": "Science_Agriculture",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Science_Agriculture",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8265,11 +8281,11 @@
       "is_alias": true,
       "parent": "Science",
       "alias_owner": "Arts_Architecture",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Science_Architecture",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8281,11 +8297,11 @@
       "is_alias": true,
       "parent": "Science",
       "alias_owner": "Computers_ArtificialLife",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Science_Artificial Life",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8297,11 +8313,11 @@
       "is_alias": true,
       "parent": "Science",
       "alias_owner": "Science_AnomaliesandAlternativeScience",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Science_Alternative Science",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8313,11 +8329,11 @@
       "is_alias": true,
       "parent": "Science",
       "alias_owner": "Computers_Algorithms",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Science_Algorithms",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8329,11 +8345,11 @@
       "is_alias": true,
       "parent": "Science",
       "alias_owner": "Computers_ArtificialIntelligence",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Science_Artificial Intelligence",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8345,11 +8361,11 @@
       "is_alias": true,
       "parent": "Shopping",
       "alias_owner": "Business_WholesaleTrade",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Shopping_Wholesale",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8361,11 +8377,11 @@
       "is_alias": true,
       "parent": "Shopping",
       "alias_owner": "Computers_Shopping",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Shopping_Computers",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8377,11 +8393,11 @@
       "is_alias": true,
       "parent": "Society",
       "alias_owner": "Science_SocialSciences",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Society_Social Sciences",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8393,11 +8409,11 @@
       "is_alias": true,
       "parent": "Society",
       "alias_owner": "Reference_Education",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Society_Education",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8409,11 +8425,11 @@
       "is_alias": true,
       "parent": "Sports",
       "alias_owner": "Shopping_Sports",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Sports_Shopping",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8425,11 +8441,11 @@
       "is_alias": true,
       "parent": "Sports",
       "alias_owner": "Sports_AnimalSports",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Sports_Animal Fighting",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8441,11 +8457,11 @@
       "is_alias": true,
       "parent": "Sports",
       "alias_owner": "Sports_AdventureRacing",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Sports_Adventure Racing",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8457,11 +8473,11 @@
       "is_alias": true,
       "parent": "Sports",
       "alias_owner": "Sports_Airsoft",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Sports_Airsoft",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8473,11 +8489,11 @@
       "is_alias": true,
       "parent": "Sports",
       "alias_owner": "Sports_Soccer",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Sports_Association Football",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8489,11 +8505,11 @@
       "is_alias": true,
       "parent": "Sports",
       "alias_owner": "Sports_TrackandField",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Sports_Athletics",
-    "level": 1
+    "level": 2
   },
   {
     "model": "iotrec_api.category",
@@ -8505,10 +8521,10 @@
       "is_alias": true,
       "parent": "Sports",
       "alias_owner": "Sports_Archery",
-      "level": 1
+      "level": 2
     },
     "type": "topic-alias",
     "pk": "Sports_Archery",
-    "level": 1
+    "level": 2
   }
 ]

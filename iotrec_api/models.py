@@ -1,3 +1,4 @@
+import math
 import uuid as uuid
 
 from django.contrib.auth.models import AbstractUser
@@ -19,6 +20,8 @@ class Category(MPTTModel):
     name = models.CharField(max_length=255)
     is_alias = models.BooleanField(default=False)
     alias_owner = TreeForeignKey('self', null=True, blank=True, related_name='target', db_index=True, on_delete=models.CASCADE)
+    nr_of_items_flat = models.IntegerField(default=0)
+    nr_of_items_recursive = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -46,8 +49,61 @@ class Venue(models.Model):
     image = models.ImageField(blank=True)
 """
 
+'''
+class ThingManager(models.Manager):
+    def get_similarity(self, other):
+        # get all categories that "self" is classified in
+        categories_self = set()
+        for category in range(len(self.categories)):
+            if category not in categories_self:
+                categories_self.add(category)
+                while category.parent is not None:
+                    category = category.parent
+                    if category not in categories_self:
+                        categories_self.add(category)
 
+        # get all categories that "other" (a thing or a user) is classified in
+        categories_other = set()
+        for category in range(len(other.categories)):
+            if category not in categories_other:
+                categories_other.add(category)
+                while category.parent is not None:
+                    category = category.parent
+                    if category not in categories_other:
+                        categories_other.add(category)
 
+        # merge the category lists
+        categories = categories_self.union(categories_other)
+
+        divident = 0
+        divisor_inner_self = 0
+        divisor_inner_other = 0
+
+        # for each category i
+        for cat in categories:
+            # 1 if self has category i, 0 otherwise
+            tf_self_i = 1 if (cat in categories_self) else 0
+
+            # 1 if other has category i, 0 otherwise
+            tf_other_i = 1 if (cat in categories_other) else 0
+
+            # number of items classified in subtree for which the parent of i is the root
+            n_p_i = cat.parent.thing_set
+
+            # number of items classified in subtree for which i is the root
+            n_i =
+
+            factor_self = tf_self_i * math.log(n_p_i/n_i)
+            factor_other = tf_other_i * math.log(n_p_i/n_i)
+
+            divident += factor_self * factor_other
+            divisor_inner_self += factor_self * factor_self
+            divisor_inner_other += factor_other * factor_other
+
+        result = divident / (math.sqrt(divisor_inner_self) * math.sqrt(divisor_inner_other))
+
+        return result
+'''
 
 
 class Thing(models.Model):
@@ -66,9 +122,18 @@ class Thing(models.Model):
     location = PlainLocationField(based_fields=['address'], blank=True)
     # categories = models.ManyToManyField(Category)
     categories = TreeManyToManyField('Category', blank=True)
+    #objects = ThingManager()
 
     def save(self, *args, **kwargs):
         self.id = '{0}-{1}-{2}'.format(self.uuid, self.major_id, self.minor_id)
+
+        '''
+        # go through all categories of this thing
+            # cycle through 
+        for cat in self.categories:
+            Thing.objects.all
+        '''
+
         super(Thing, self).save(*args, **kwargs)
 
     def __str__(self):
