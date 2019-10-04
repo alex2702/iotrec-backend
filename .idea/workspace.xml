@@ -2,14 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09f20613-1e31-44ae-99f8-83d2ab175056" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/iotrec_api/permissions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec/settings/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec/settings/base.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/iotrec_api/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/fixtures/structure.rdf.u8.json" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/fixtures/structure.rdf.u8.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/iotrec_api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/training/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training/fixtures/reference_things.json" beforeDir="false" afterPath="$PROJECT_DIR$/training/fixtures/reference_things.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -170,6 +172,8 @@
       <workItem from="1568822008231" duration="10508000" />
       <workItem from="1569586372009" duration="1320000" />
       <workItem from="1569865551645" duration="13078000" />
+      <workItem from="1570031895987" duration="35494000" />
+      <workItem from="1570213688350" duration="2878000" />
     </task>
     <servers />
   </component>

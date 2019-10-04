@@ -42,9 +42,9 @@ admin.site.register(ContextFactor, ContextFactorAdmin)
 
 
 class ContextFactorValueAdmin(admin.ModelAdmin):
-    readonly_fields = ['samples_count']
-    fields = ['title', 'display_title', 'description', 'active', 'context_factor', 'samples_count']
-    list_display = ['display_title', 'active', 'context_factor', 'samples_count']
+    readonly_fields = ['context_factor_active', 'samples_count']
+    fields = ['title', 'display_title', 'description', 'active', 'context_factor', 'context_factor_active', 'samples_count']
+    list_display = ['display_title', 'active', 'context_factor_active', 'context_factor', 'samples_count']
 
     def get_queryset(self, request):
         return ContextFactorValue.objects.annotate(samples_count=Count('sample'))
@@ -52,8 +52,15 @@ class ContextFactorValueAdmin(admin.ModelAdmin):
     def samples_count(self, obj):
         return obj.samples_count
 
+    def context_factor_active(self, obj):
+        return obj.context_factor.active
+
+    context_factor_active.boolean = True
+
     samples_count.short_description = 'Samples Count'
     samples_count.admin_order_field = 'samples_count'
+    context_factor_active.short_description = 'Context Factor Active'
+    context_factor_active.admin_order_field = 'context_factor__active'
 
 
 admin.site.register(ContextFactorValue, ContextFactorValueAdmin)

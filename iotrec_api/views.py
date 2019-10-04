@@ -4,9 +4,11 @@ from rest_framework.generics import get_object_or_404
 from rest_framework_jwt.views import ObtainJSONWebToken
 
 import iotrec_api
-from iotrec_api.models import Thing, Category, User
-from iotrec_api.serializers import ThingSerializer, CategorySerializer, CategoryFlatSerializer
-from rest_framework import generics, viewsets
+from iotrec_api.models import Thing, Category, User, Recommendation, Feedback, Preference
+from iotrec_api.permissions import IsSignupOrIsAuthenticated
+from iotrec_api.serializers import ThingSerializer, CategorySerializer, CategoryFlatSerializer, \
+    RecommendationSerializer, FeedbackSerializer, PreferenceSerializer
+from rest_framework import generics, viewsets, mixins
 
 from django.http import HttpResponseRedirect
 #from django.contrib.auth.models import User
@@ -62,7 +64,7 @@ def current_user(request):
 #            return Response(serializer.data, status=status.HTTP_200_OK)
 #        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+'''
 class UserApiView(APIView):
     """
     API View for Users.
@@ -86,11 +88,31 @@ class UserApiView(APIView):
     """
     # queryset = Venue.objects.all()#.order_by('-created_at')
     # serializer_class = VenueSerializer
+'''
 
+
+class UserViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, viewsets.GenericViewSet):
+    """
+    User API endpoint.
+    """
+    #queryset = User.objects.all()
+    serializer_class = UserSerializerWithToken
+    permission_classes = (IsSignupOrIsAuthenticated,)
+
+    def create(self, request, **kwargs):
+        serializer = UserSerializerWithToken(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def get_queryset(self):
+        return User.objects.filter(id=self.request.user.id)
 
 # class ThingListCreate(generics.ListCreateAPIView):
 #    queryset = Thing.objects.all()
 #    serializer_class = ThingSerializer
+
 
 class ThingViewSet(viewsets.ModelViewSet):
     """
@@ -98,6 +120,7 @@ class ThingViewSet(viewsets.ModelViewSet):
     """
     queryset = Thing.objects.all()  # .order_by('-created_at')
     serializer_class = ThingSerializer
+
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.filter(level=0)
@@ -121,3 +144,44 @@ class CategoryFlatViewSet(viewsets.ModelViewSet):
 #class ThingListAPIView(generics.ListCreateAPIView):
 #    queryset = Thing.objects.all()
 #    serializer_class = ThingSerializer
+
+
+class RecommendationViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows recommendations to be viewed or edited.
+    """
+    #queryset = Recommendation.objects.all()
+    serializer_class = RecommendationSerializer
+
+    def get_queryset(self):
+        return Recommendation.objects.filter(user=self.request.user)
+
+
+class FeedbackViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows feedbacks to be viewed or edited.
+    """
+    serializer_class = FeedbackSerializer
+
+    def get_queryset(self):
+        return Feedback.objects.filter(recommendation=self.kwargs['recommendation_pk'])
+
+
+class PreferenceViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows preferences to be viewed or edited.
+    """
+    serializer_class = PreferenceSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data={
+            **request.data,
+            "user": request.user.id,
+        })
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def get_queryset(self):
+        return Preference.objects.filter(user=self.kwargs['user_pk'])
