@@ -10,6 +10,15 @@ class ReferenceThingAdmin(admin.ModelAdmin):
     fields = ['title', 'description', 'indoorsLocation', 'categories', 'type', 'image', 'active', 'samples_count']
     list_display = ['title', 'description', 'indoorsLocation', 'active', 'samples_count']
 
+    def activate(self, request, queryset):
+        queryset.update(active=True)
+
+    def deactivate(self, request, queryset):
+        queryset.update(active=False)
+
+    activate.short_description = "Mark selected thing as active"
+    deactivate.short_description = "Mark selected thing as inactive"
+
     def get_queryset(self, request):
         return ReferenceThing.objects.annotate(samples_count=Count('sample'))
 
@@ -18,6 +27,8 @@ class ReferenceThingAdmin(admin.ModelAdmin):
 
     samples_count.short_description = 'Samples Count'
     samples_count.admin_order_field = 'samples_count'
+
+    actions = [activate, deactivate]
 
 
 admin.site.register(ReferenceThing, ReferenceThingAdmin)
@@ -28,6 +39,15 @@ class ContextFactorAdmin(admin.ModelAdmin):
     fields = ['title', 'display_title', 'active', 'samples_count']
     list_display = ['display_title', 'active', 'samples_count']
 
+    def activate(self, request, queryset):
+        queryset.update(active=True)
+
+    def deactivate(self, request, queryset):
+        queryset.update(active=False)
+
+    activate.short_description = "Mark selected context factors as active"
+    deactivate.short_description = "Mark selected context factors as inactive"
+
     def get_queryset(self, request):
         return ContextFactor.objects.annotate(samples_count=Count('sample'))
 
@@ -37,6 +57,8 @@ class ContextFactorAdmin(admin.ModelAdmin):
     samples_count.short_description = 'Samples Count'
     samples_count.admin_order_field = 'samples_count'
 
+    actions = [activate, deactivate]
+
 
 admin.site.register(ContextFactor, ContextFactorAdmin)
 
@@ -45,6 +67,15 @@ class ContextFactorValueAdmin(admin.ModelAdmin):
     readonly_fields = ['context_factor_active', 'samples_count']
     fields = ['title', 'display_title', 'description', 'active', 'context_factor', 'context_factor_active', 'samples_count']
     list_display = ['display_title', 'active', 'context_factor_active', 'context_factor', 'samples_count']
+
+    def activate(self, request, queryset):
+        queryset.update(active=True)
+
+    def deactivate(self, request, queryset):
+        queryset.update(active=False)
+
+    activate.short_description = "Mark selected context factor values as active"
+    deactivate.short_description = "Mark selected context factor values as inactive"
 
     def get_queryset(self, request):
         return ContextFactorValue.objects.annotate(samples_count=Count('sample'))
@@ -62,6 +93,7 @@ class ContextFactorValueAdmin(admin.ModelAdmin):
     context_factor_active.short_description = 'Context Factor Active'
     context_factor_active.admin_order_field = 'context_factor__active'
 
+    actions = [activate, deactivate]
 
 admin.site.register(ContextFactorValue, ContextFactorValueAdmin)
 
