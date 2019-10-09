@@ -1,4 +1,6 @@
 from django.urls import path, include
+from django.views.generic import TemplateView
+
 from . import views
 from .views import current_user#, ThingCreateAPIView, ThingSingleAPIView, ThingListAPIView
 from rest_framework_jwt.views import obtain_jwt_token, verify_jwt_token

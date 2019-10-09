@@ -1,7 +1,9 @@
 from django.db.models import Count
+from django.utils.html import conditional_escape
+from django.utils.safestring import mark_safe
 from mptt.admin import MPTTModelAdmin
 
-from iotrec_api.models import User, Thing, Category, Recommendation, Feedback, Preference
+from iotrec_api.models import User, Thing, Category, Recommendation, Feedback, Preference, IotRecSettings
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.contrib import admin
@@ -46,6 +48,9 @@ class PreferencesInLine(admin.TabularInline):
     formset = InlineFormset
 
 
+admin.site.register(IotRecSettings)
+
+
 # source: https://stackoverflow.com/a/17496836
 class IotRecUserAdmin(UserAdmin):
     form = IotRecUserChangeForm
@@ -80,6 +85,9 @@ class ThingsInLine(admin.TabularInline):
 
 class CategoryAdmin(MPTTModelAdmin):
     list_display = ('name', 'text_id', 'is_alias', 'get_alias_owner_full')
+
+    def get_queryset(self, request):
+        return Category.objects.exclude(text_id="Root")
 
     def get_alias_owner_full(self, obj):
         if obj.alias_owner is not None:
@@ -175,4 +183,3 @@ class PreferenceAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Preference, PreferenceAdmin)
-

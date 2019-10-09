@@ -32,6 +32,9 @@
         body, .btn {
             font-size: 0.9rem;
         }
+        body {
+            background-color: #e9ecef;
+        }
         h5 {
             font-size: 1.1rem;
         }
@@ -78,9 +81,61 @@
             justify-content: center;
             display: flex;
         }
+        .jumbotron {
+            border-radius: .175rem;
+            /* background-color: #fff; */
+            border: 1px solid;
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+        }
+        .card {
+            border-radius: .175rem;
+        }
+        .btn, .btn-lg {
+            border-radius: .175rem;
+        }
+        @media only screen and (max-width: 575px) {
+            .iotrec-option-text {
+                margin-bottom: 8px;
+            }
+            label.btn {
+                padding: .33rem .75rem !important;
+            }
+        }
+        h5 {
+            margin-bottom: 0;
+        }
+        .iotrec-instruction-nr {
+            display: inline;
+            font-size: 3.5rem;
+            font-weight: bold;
+            float: left;
+            line-height: 2rem;
+            margin-top: 8px;
+        }
     </style>
     <script>
         $(document).ready(function() {
+            $("input[name=value_1]:checked").parent().addClass('active')
+            $("input[name=value_2]:checked").parent().addClass('active')
+            $("input[name=value_3]:checked").parent().addClass('active')
+            $("input[name=value_4]:checked").parent().addClass('active')
+            $("input[name=value_5]:checked").parent().addClass('active')
+
+            if(
+                $("input[name=value_1]:checked").length === 1 &&
+                $("input[name=value_2]:checked").length === 1 &&
+                $("input[name=value_3]:checked").length === 1 &&
+                $("input[name=value_4]:checked").length === 1 &&
+                $("input[name=value_5]:checked").length === 1
+            ) {
+                $('#iotrec-submit-button').prop('disabled', false);
+                $('.iotrec-submit-note').hide();
+            } else {
+                $('#iotrec-submit-button').prop('disabled', true);
+                $('.iotrec-submit-note').show();
+            }
+
             $("input[type=radio]").change(function() {
                 if(
                     $("input[name=value_1]:checked").length === 1 &&
@@ -90,8 +145,10 @@
                     $("input[name=value_5]:checked").length === 1
                 ) {
                     $('#iotrec-submit-button').prop('disabled', false);
+                    $('.iotrec-submit-note').hide();
                 } else {
                     $('#iotrec-submit-button').prop('disabled', true);
+                    $('.iotrec-submit-note').show();
                 }
             });
         });
@@ -102,7 +159,7 @@
         <div class="row">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-6 mx-auto">
                 <div class="jumbotron mt-3">
-                    <p class="lead">Imagine that you encounter the following object somewhere in your home, at your workplace, at school, in the city, on vacation – really anywhere in your everyday life.</p>
+                    <div class="lead"><div class="iotrec-instruction-nr">1.&nbsp;</div>Imagine that you encounter the following object somewhere in your home, at your workplace, at school, in the city, on vacation – really anywhere in your everyday life.</div>
                     <hr />
                     <p>Images only serve illustration purposes, they don't describe the specific object. Assume any version of the object in question, e.g. as you know it from your city.</p>
                 </div>
@@ -117,7 +174,7 @@
                 </div>
 
                 <div class="jumbotron mt-3">
-                    <p class="lead">Now please select if the scenarios mentioned below would influence your decision to visit/use the object above and if yes, how.</p>
+                    <div class="lead"><div class="iotrec-instruction-nr">2.&nbsp;</div>Now please select if the scenarios mentioned below would influence your decision to visit/use the object above and if yes, how.</div>
                     <hr />
                     <p>Please make sure to only indicate any <strong>changes</strong> that the scenario causes. It does not matter what your initial impression of the object is.</p>
                 </div>
@@ -125,7 +182,7 @@
                 <form method="POST" class="sample-form">
                     {% csrf_token %}
                     <div class="card mt-3">
-                        <div class="card-header">Imagine that...</div>
+                        <div class="card-header"><h5>Imagine that...</h5></div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                                 <div class="row">
@@ -208,8 +265,13 @@
                         {{ form.context_factor_value_4 }}
                         {{ form.context_factor_value_5 }}
                     </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="text-danger iotrec-submit-note text-center mt-3 mb-2">Please make a choice for every situation.</div>
+                        </div>
+                    </div>
                     <div class="row justify-content-md-center">
-                        <button type="submit" id="iotrec-submit-button" class="btn btn-success btn-lg mt-3 mx-auto col-6" disabled>Send</button>
+                        <button type="submit" id="iotrec-submit-button" class="btn btn-success btn-lg mt-3 mx-auto col-6" disabled="disabled">Send</button>
                     </div>
                 </form>
             </div>

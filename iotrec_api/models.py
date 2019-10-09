@@ -2,6 +2,7 @@ import math
 import uuid as uuid
 
 from django.contrib.auth.models import AbstractUser
+from django.core.cache import cache
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils import timezone
@@ -13,6 +14,30 @@ from mptt.models import MPTTModel
 from rest_framework.exceptions import ValidationError
 
 from iotrec_api.utils.thing import ThingType
+
+
+# source: https://steelkiwi.com/blog/practical-application-singleton-design-pattern/
+class IotRecSettings(models.Model):
+    recommendation_threshold = models.FloatField(default=0)
+
+    def save(self, *args, **kwargs):
+        self.pk = 1
+        super(IotRecSettings, self).save(*args, **kwargs)
+        self.set_cache()
+
+    def delete(self, *args, **kwargs):
+        pass
+
+    @classmethod
+    def load(cls):
+        if cache.get(cls.__name__) is None:
+            obj, created = cls.objects.get_or_create(pk=1)
+            if not created:
+                obj.set_cache()
+        return cache.get(cls.__name__)
+
+    def set_cache(self):
+        cache.set(self.__class__.__name__, self)
 
 
 class Category(MPTTModel):
@@ -248,6 +273,9 @@ class ThingManager(models.Manager):
         else:
             result = 0
 
+        # normalize to interval [0, 1] (from [-1, 1])
+        result = (result + 1)/2
+
         return result
 
 
@@ -313,10 +341,15 @@ class Recommendation(models.Model):
             self.created_at = timezone.now()
         self.updated_at = timezone.now()
         self.score = Thing.objects.get_similarity_of_user(self.thing, self.user)
+        self.invoke_rec = self.get_invoke_rec(self.score)
         super(Recommendation, self).save(*args, **kwargs)
 
     def __str__(self):
         return str(self.id)
+
+    def get_invoke_rec(self, score, *args, **kwargs):
+        settings = IotRecSettings.load()
+        return score > settings.recommendation_threshold
 
 
 class Feedback(models.Model):

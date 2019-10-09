@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09f20613-1e31-44ae-99f8-83d2ab175056" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/iotrec_api/context_processors.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec/settings/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec/settings/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec/settings/production.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec/settings/production.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/iotrec_api/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/templates/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/training/templates/add.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,8 +50,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -166,18 +172,12 @@
       <workItem from="1569586372009" duration="1320000" />
       <workItem from="1569865551645" duration="13078000" />
       <workItem from="1570031895987" duration="35494000" />
-      <workItem from="1570213688350" duration="3976000" />
+      <workItem from="1570213688350" duration="4365000" />
+      <workItem from="1570221917803" duration="5227000" />
+      <workItem from="1570561823914" duration="1730000" />
+      <workItem from="1570563683479" duration="4844000" />
     </task>
     <servers />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
