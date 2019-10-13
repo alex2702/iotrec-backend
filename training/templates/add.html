@@ -168,8 +168,8 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ thing.display_title }}</h5>
                         <p class="card-text">{{ thing.description }}</p>
-                        {% if thing.indoorsLocation is True %}<p class="card-text">The object is located indoors.</p>{% endif %}
-                        {% if thing.indoorsLocation is False %}<p class="card-text">The object is located outdoors.</p>{% endif %}
+                        {% if thing.indoorsLocation is True %}<p class="card-text"><strong>The object is located <mark>indoors</mark>.</strong></p>{% endif %}
+                        {% if thing.indoorsLocation is False %}<p class="card-text"><strong>The object is located <mark>outdoors</mark>.</strong></p>{% endif %}
                     </div>
                 </div>
 

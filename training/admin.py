@@ -9,6 +9,7 @@ class ReferenceThingAdmin(admin.ModelAdmin):
     readonly_fields = ['samples_count']
     fields = ['title', 'description', 'indoorsLocation', 'categories', 'type', 'image', 'active', 'samples_count']
     list_display = ['title', 'description', 'indoorsLocation', 'active', 'samples_count']
+    list_filter = ['active', 'indoorsLocation']
 
     def activate(self, request, queryset):
         queryset.update(active=True)
@@ -38,6 +39,7 @@ class ContextFactorAdmin(admin.ModelAdmin):
     readonly_fields = ['samples_count']
     fields = ['title', 'display_title', 'active', 'samples_count']
     list_display = ['display_title', 'active', 'samples_count']
+    list_filter = ['active']
 
     def activate(self, request, queryset):
         queryset.update(active=True)
@@ -65,8 +67,10 @@ admin.site.register(ContextFactor, ContextFactorAdmin)
 
 class ContextFactorValueAdmin(admin.ModelAdmin):
     readonly_fields = ['context_factor_active', 'samples_count']
-    fields = ['title', 'display_title', 'description', 'active', 'context_factor', 'context_factor_active', 'samples_count']
+    fields = ['title', 'display_title', 'description', 'active', 'context_factor', 'context_factor_active',
+              'samples_count']
     list_display = ['display_title', 'active', 'context_factor_active', 'context_factor', 'samples_count']
+    list_filter = ['active']
 
     def activate(self, request, queryset):
         queryset.update(active=True)
@@ -95,6 +99,7 @@ class ContextFactorValueAdmin(admin.ModelAdmin):
 
     actions = [activate, deactivate]
 
+
 admin.site.register(ContextFactorValue, ContextFactorValueAdmin)
 
 
@@ -108,8 +113,18 @@ admin.site.register(Sample, SampleAdmin)
 
 
 class TrainingUserAdmin(admin.ModelAdmin):
-    readonly_fields = ['identifier', 'created_at', 'updated_at']
-    list_display = ['identifier']
+    readonly_fields = ['identifier', 'created_at', 'updated_at', 'samples_count']
+    fields = ['identifier', 'samples_count', 'created_at', 'updated_at']
+    list_display = ['created_at', 'identifier', 'samples_count']
+
+    def get_queryset(self, request):
+        return TrainingUser.objects.annotate(samples_count=Count('sample'))
+
+    def samples_count(self, obj):
+        return obj.samples_count
+
+    samples_count.short_description = 'Samples Count'
+    samples_count.admin_order_field = 'samples_count'
 
 
 admin.site.register(TrainingUser, TrainingUserAdmin)
