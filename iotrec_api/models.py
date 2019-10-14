@@ -329,11 +329,11 @@ class Thing(models.Model):
 class Recommendation(models.Model):
     id = models.UUIDField(default=None, primary_key=True, editable=False)
     created_at = models.DateTimeField(editable=False, null=True, blank=True)
-    updated_at = models.DateTimeField(null=True, blank=True)
+    updated_at = models.DateTimeField(editable=False, null=True, blank=True)
     user = models.ForeignKey("User", on_delete=models.CASCADE)
     thing = models.ForeignKey("Thing", on_delete=models.CASCADE)
-    invoke_rec = models.BooleanField(default=False)
-    score = models.FloatField(default=0)
+    invoke_rec = models.BooleanField(editable=False, default=False)
+    score = models.FloatField(editable=False, default=0)
 
     def save(self, *args, **kwargs):
         if not self.pk:
@@ -355,7 +355,7 @@ class Recommendation(models.Model):
 class Feedback(models.Model):
     id = models.UUIDField(default=None, primary_key=True, editable=False)
     created_at = models.DateTimeField(editable=False, null=True, blank=True)
-    updated_at = models.DateTimeField(null=True, blank=True)
+    updated_at = models.DateTimeField(editable=False, null=True, blank=True)
     recommendation = models.ForeignKey("Recommendation", on_delete=models.CASCADE)
     value = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=0)
 
@@ -376,9 +376,10 @@ class Preference(models.Model):
         (1, '1'),
     ]
 
-    id = models.UUIDField(default=None, primary_key=True, editable=False)
+    #id = models.UUIDField(default=None, primary_key=True, editable=False)
+    id = models.CharField(max_length=255, primary_key=True, editable=False)
     created_at = models.DateTimeField(editable=False, null=True, blank=True)
-    updated_at = models.DateTimeField(null=True, blank=True)
+    updated_at = models.DateTimeField(editable=False, null=True, blank=True)
     category = TreeForeignKey("Category", on_delete=models.CASCADE)
     value = models.IntegerField(choices=VALUE_CHOICES, default=0)
     user = models.ForeignKey("User", related_name="preferences", on_delete=models.CASCADE)
@@ -391,9 +392,10 @@ class Preference(models.Model):
             raise ValidationError('User already has that preference')
 
     def save(self, *args, **kwargs):
-        self.validate_unique()
+        #self.validate_unique()
         if not self.pk:
-            self.pk = uuid.uuid4()
+            #self.pk = uuid.uuid4()
+            self.pk = self.category.text_id
             self.created_at = timezone.now()
         self.updated_at = timezone.now()
         super(Preference, self).save(*args, **kwargs)
