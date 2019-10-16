@@ -6,6 +6,7 @@ from django.core.cache import cache
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import gettext as _
 
 from enumchoicefield import ChoiceEnum, EnumChoiceField
 from location_field.models.plain import PlainLocationField
@@ -197,14 +198,14 @@ class ThingManager(models.Manager):
             if len(user.preferences.filter(category=cat)) > 0 and user.preferences.get(category=cat).value != 0:
                 # check if category is directly part of a user preference and if yes, get the value
                 tf_user_i = user.preferences.get(category=cat).value
-                print(cat)
-                print(tf_user_i)
+                #print(cat)
+                #print(tf_user_i)
             else:
                 # check if a child category is a preference and
                 user_prefs_below_cat = set(cat.get_descendants(include_self=False).all()).intersection(user_categories)
                 if len(user_prefs_below_cat) > 0:
                     # if yes, build an average of the childrens' preferences values
-                    print(str(user_prefs_below_cat))
+                    #print(str(user_prefs_below_cat))
                     nr_of_user_prefs_below_cat = len(user_prefs_below_cat)
                     values_of_user_prefs_below_cat = 0
                     for i in user_prefs_below_cat:
@@ -295,6 +296,18 @@ class Thing(models.Model):
     categories = TreeManyToManyField('Category', blank=True)
     objects = ThingManager()
 
+    #def clean(self):
+    #    for category in self.categories.all():
+    #        print(category)
+    #        if category.get_level() < 2:
+    #            raise ValidationError({
+    #                'categories': ValidationError(_('Selected categories must be in level 2.'), code='invalid'),
+    #            })
+    #    super(Thing, self).clean()
+
+    #def clean_categories(self):
+    #    print("clean_categories in Thing model")
+
     def save(self, *args, **kwargs):
         print(str(self.pk))
         if not self.pk:
@@ -353,18 +366,53 @@ class Recommendation(models.Model):
 
 
 class Feedback(models.Model):
+    VALUE_CHOICES = [
+        (-1, '-1'),
+        (1, '1'),
+    ]
+
+    id = models.UUIDField(default=None, primary_key=True, editable=False)
+    created_at = models.DateTimeField(editable=False, null=True, blank=True)
+    updated_at = models.DateTimeField(editable=False, null=True, blank=True)
+    recommendation = models.ForeignKey("Recommendation", on_delete=models.CASCADE)
+    value = models.IntegerField(choices=VALUE_CHOICES, default=0)
+
+    def validate_unique(self, exclude=None):
+        # reject if the given recommendation has a feedback already
+        if Feedback.objects.filter(recommendation=self.recommendation).exists():
+            raise ValidationError({'recommendation': ["The recommendation already has received feedback.", ]})
+
+    def save(self, *args, **kwargs):
+        self.validate_unique()
+        if not self.pk:
+            self.pk = uuid.uuid4()
+            self.created_at = timezone.now()
+        self.updated_at = timezone.now()
+        super(Feedback, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return str(self.id)
+
+
+class Rating(models.Model):
     id = models.UUIDField(default=None, primary_key=True, editable=False)
     created_at = models.DateTimeField(editable=False, null=True, blank=True)
     updated_at = models.DateTimeField(editable=False, null=True, blank=True)
     recommendation = models.ForeignKey("Recommendation", on_delete=models.CASCADE)
     value = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=0)
 
+    def validate_unique(self, exclude=None):
+        # reject if the given recommendation has a feedback already
+        if Rating.objects.filter(recommendation=self.recommendation).exists():
+            raise ValidationError({'recommendation': ["The recommendation already has received a rating.", ]})
+
     def save(self, *args, **kwargs):
+        self.validate_unique()
         if not self.pk:
             self.pk = uuid.uuid4()
             self.created_at = timezone.now()
         self.updated_at = timezone.now()
-        super(Feedback, self).save(*args, **kwargs)
+        super(Rating, self).save(*args, **kwargs)
 
     def __str__(self):
         return str(self.id)
@@ -389,12 +437,11 @@ class Preference(models.Model):
         user_prefs = Preference.objects.filter(user=self.user)
         # reject new preference if user has it already
         if user_prefs.filter(category=self.category).exists():
-            raise ValidationError('User already has that preference')
+            raise ValidationError({'category': ["The user already has that preference.", ]})
 
     def save(self, *args, **kwargs):
-        #self.validate_unique()
+        self.validate_unique()
         if not self.pk:
-            #self.pk = uuid.uuid4()
             self.pk = self.category.text_id
             self.created_at = timezone.now()
         self.updated_at = timezone.now()

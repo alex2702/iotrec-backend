@@ -67,8 +67,8 @@
     "model": "training.ContextFactorValue",
     "pk": 6,
     "fields": {
-      "title": "knowledgeOfTheArea",
-      "display_title": "Area",
+      "title": "night",
+      "display_title": "night",
       "description": "it is night-time (22:00–04:00).",
       "context_factor": 1,
       "active": true

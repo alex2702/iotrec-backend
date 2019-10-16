@@ -1,9 +1,14 @@
+import pdb
+
 from django.db.models import Count
-from django.utils.html import conditional_escape
+from django.forms import Select, SelectMultiple
+from django.utils.encoding import smart_text
+from django.utils.html import conditional_escape, escape
 from django.utils.safestring import mark_safe
+from jwt.utils import force_unicode
 from mptt.admin import MPTTModelAdmin
 
-from iotrec_api.models import User, Thing, Category, Recommendation, Feedback, Preference, IotRecSettings
+from iotrec_api.models import User, Thing, Category, Recommendation, Feedback, Preference, IotRecSettings, Rating
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.contrib import admin
@@ -18,7 +23,7 @@ class InlineFormset(forms.models.BaseInlineFormSet):
     def clean(self):
         for form in self.forms:
             for field in form.changed_data:
-                print (form.cleaned_data[field])
+                print(form.cleaned_data[field])
 
 
 class IotRecUserChangeForm(UserChangeForm):
@@ -42,8 +47,8 @@ class IotRecUserCreationForm(UserCreationForm):
 
 class PreferencesInLine(admin.TabularInline):
     model = Preference
-    #fields = ['category', 'value']
-    #readonly_fields = ['id', 'created_at', 'updated_at']
+    # fields = ['category', 'value']
+    # readonly_fields = ['id', 'created_at', 'updated_at']
     extra = 0
     formset = InlineFormset
 
@@ -55,9 +60,9 @@ admin.site.register(IotRecSettings)
 class IotRecUserAdmin(UserAdmin):
     form = IotRecUserChangeForm
     add_form = IotRecUserCreationForm
-    #fieldsets = UserAdmin.fieldsets + (
+    # fieldsets = UserAdmin.fieldsets + (
     #    (None, {'fields': ('preferences',)}),
-    #)
+    # )
     inlines = [PreferencesInLine]
 
 
@@ -101,12 +106,101 @@ class CategoryAdmin(MPTTModelAdmin):
 admin.site.register(Category, CategoryAdmin)
 
 
+class SelectMultipleWithDisabled(SelectMultiple):
+    def create_option(self, name, value, label, selected, index, subindex=None, attrs=None):
+        option = super().create_option(name, value, label, selected, index, subindex, attrs)
+
+        if attrs is None:
+            attrs = {}
+        if label is None:
+            label = {}
+        option_attrs = self.build_attrs(self.attrs, attrs) if self.option_inherits_attrs else {}
+        if 'selected' in label and label['selected'] is True:
+            option_attrs.update(self.checked_attribute)
+        if 'id' in option_attrs:
+            option_attrs['id'] = self.id_for_label(option_attrs['id'], index)
+        if 'disabled' in label and label['disabled'] is True:
+            option_attrs['disabled'] = 'disabled'
+        if 'label' in label:
+            option['label'] = label['label']
+        if 'selected' in label:
+            option['selected'] = label['selected']
+        option['attrs'] = option_attrs
+
+        return option
+
+
+class ThingAdminForm(forms.ModelForm):
+    class Meta:
+        model = Thing
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        self.level_indicator = kwargs.pop('level_indicator', u'  ')
+
+        super(ThingAdminForm, self).__init__(*args, **kwargs)
+
+        queryset = Category.objects.all()
+        mptt_opts = queryset.model._mptt_meta
+        queryset = queryset.order_by(mptt_opts.tree_id_attr, mptt_opts.left_attr)
+
+        choices = []
+        for item in queryset:
+            level = getattr(item, item._mptt_meta.level_attr)
+            value = item.text_id
+            label = mark_safe(conditional_escape(self.level_indicator) * level + smart_text(item.name))
+            if item.is_leaf_node():
+                choices.append(
+                    (value, {'selected': item in self.instance.categories.all(), 'label': label, 'disabled': False}))
+            else:
+                choices.append(
+                    (value, {'selected': item in self.instance.categories.all(), 'label': label, 'disabled': True}))
+
+        self.fields['categories'] = forms.ChoiceField(choices=choices, widget=SelectMultipleWithDisabled)
+        # self.fields['categories'] = forms.ModelChoiceField(queryset=Category.objects.all(), widget=SelectMultipleWithDisabled)
+
+    def clean_categories(self):
+        print("clean_categories")
+        print(self.__dict__)
+        data = self.cleaned_data.get('categories', '')
+        print(data)
+        return data
+
+    def clean(self):
+        pdb.set_trace()
+        print("clean")
+        print(self.data)
+        data = dict(self.data)
+        string_categories = data['categories']
+        for i in range(len(string_categories)):
+            print(string_categories[i])
+
+        super(ThingAdminForm, self).clean()
+
+    def save(self, commit=True):
+        self.full_clean()
+        print("save")
+        pdb.set_trace()
+        instance = super().save(commit=False)
+        # categories = self.cleaned_data['categories']
+        # instance.publication = Publication.objects.get(pk=pub)
+        instance.save(commit)
+        return instance
+
+
 class ThingAdmin(admin.ModelAdmin):
     fields = ['id', 'title', 'description', 'categories', 'type', 'uuid', 'major_id', 'minor_id', 'image', 'address',
               'location', 'created_at', 'updated_at']
     # fields = [field.name for field in Thing._meta.get_fields()]
     list_display = ('title', 'uuid', 'major_id', 'minor_id')
     ordering = ('-created_at',)
+    #form = ThingAdminForm
+
+    class Media:
+        js = ('js/thing_admin.js',)
+        css = {
+            'all': ('css/thing_admin.css',)
+        }
 
     # inlines = [
     #    CategoriesInLine
@@ -145,7 +239,7 @@ class RecommendationAdmin(admin.ModelAdmin):
     ordering = ('-created_at',)
 
     def get_readonly_fields(self, request, obj=None):
-        return ['id', 'created_at', 'updated_at', 'score']
+        return ['id', 'created_at', 'updated_at', 'score', 'invoke_rec']
 
 
 admin.site.register(Recommendation, RecommendationAdmin)
@@ -162,6 +256,19 @@ class FeedbackAdmin(admin.ModelAdmin):
 
 admin.site.register(Feedback, FeedbackAdmin)
 
+
+class RatingAdmin(admin.ModelAdmin):
+    fields = ['id', 'recommendation', 'value', 'created_at', 'updated_at']
+    list_display = ('id', 'created_at', 'recommendation', 'value')
+    ordering = ('-created_at',)
+
+    def get_readonly_fields(self, request, obj=None):
+        return ['id', 'created_at', 'updated_at']
+
+
+admin.site.register(Rating, RatingAdmin)
+
+
 '''
 class ThingsInLine(admin.TabularInline):
     model = Thing
@@ -172,6 +279,7 @@ class CategoriesInLine(admin.TabularInline):
     model = Thing
     extra = 0
 '''
+
 
 class PreferenceAdmin(admin.ModelAdmin):
     fields = ['id', 'user', 'category', 'value', 'created_at', 'updated_at']

@@ -4,10 +4,10 @@ from rest_framework.generics import get_object_or_404
 from rest_framework_jwt.views import ObtainJSONWebToken
 
 import iotrec_api
-from iotrec_api.models import Thing, Category, User, Recommendation, Feedback, Preference
+from iotrec_api.models import Thing, Category, User, Recommendation, Feedback, Preference, Rating
 from iotrec_api.permissions import IsSignupOrIsAuthenticated
 from iotrec_api.serializers import ThingSerializer, CategorySerializer, CategoryFlatSerializer, \
-    RecommendationSerializer, FeedbackSerializer, PreferenceSerializer
+    RecommendationSerializer, FeedbackSerializer, PreferenceSerializer, RatingSerializer
 from rest_framework import generics, viewsets, mixins
 
 from django.http import HttpResponseRedirect
@@ -157,6 +157,7 @@ class RecommendationViewSet(viewsets.ModelViewSet):
         return Recommendation.objects.filter(user=self.request.user)
 
     def create(self, request, *args, **kwargs):
+        #print(request.data)
         serializer = self.get_serializer(data={
             **request.data,
             "user": request.user.id,
@@ -176,6 +177,38 @@ class FeedbackViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return Feedback.objects.filter(recommendation=self.kwargs['recommendation_pk'])
 
+    def create(self, request, *args, **kwargs):
+        print(request.data)
+        serializer = self.get_serializer(data={
+            **request.data,
+            "recommendation": self.kwargs['recommendation_pk'],
+        })
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
+class RatingViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows ratings to be viewed or edited.
+    """
+    serializer_class = RatingSerializer
+
+    def get_queryset(self):
+        return Rating.objects.filter(recommendation=self.kwargs['recommendation_pk'])
+
+    def create(self, request, *args, **kwargs):
+        print(request.data)
+        serializer = self.get_serializer(data={
+            **request.data,
+            "recommendation": self.kwargs['recommendation_pk'],
+        })
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
 
 class PreferenceViewSet(viewsets.ModelViewSet):
     """
@@ -192,6 +225,24 @@ class PreferenceViewSet(viewsets.ModelViewSet):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    '''
+    def update(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data={
+            **request.data,
+            "category": request.data['id'],
+            "user": request.user.id,
+        })
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK, headers=headers)
+    '''
+
+    #def list(self, request, **kwargs):
+    #    queryset = Preference.objects.filter(user=self.kwargs['user_pk'])
+    #    serializer = PreferenceSerializer(queryset, many=True)
+    #    return Response(serializer.data)
 
     def get_queryset(self):
         return Preference.objects.filter(user=self.kwargs['user_pk'])

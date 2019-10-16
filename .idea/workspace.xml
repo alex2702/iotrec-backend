@@ -2,8 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09f20613-1e31-44ae-99f8-83d2ab175056" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/iotrec_api/static/css/thing_admin.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iotrec_api/static/js/thing_admin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training/static/css/ref_thing_admin.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training/static/js/ref_thing_admin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/iotrec_api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/fixtures/context_factors.json" beforeDir="false" afterPath="$PROJECT_DIR$/training/fixtures/context_factors.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,8 +53,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
+        <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -57,7 +69,8 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="settings.editor.selected.configurable" value="http.proxy" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -69,11 +82,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/iotrec_api/static" />
       <recent name="$PROJECT_DIR$/iotrec" />
       <recent name="$PROJECT_DIR$/training/static" />
       <recent name="$PROJECT_DIR$/training/media" />
       <recent name="$PROJECT_DIR$/training" />
-      <recent name="$PROJECT_DIR$/iotrec/settings" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -170,7 +183,15 @@
       <workItem from="1570561823914" duration="1730000" />
       <workItem from="1570563683479" duration="6680000" />
       <workItem from="1570990666638" duration="1683000" />
-      <workItem from="1571068157901" duration="2352000" />
+      <workItem from="1571068157901" duration="19770000" />
+      <workItem from="1571166527231" duration="12568000" />
+      <workItem from="1571220798454" duration="4058000" />
+      <workItem from="1571225077780" duration="162000" />
+      <workItem from="1571225254349" duration="521000" />
+      <workItem from="1571225792471" duration="32000" />
+      <workItem from="1571225853023" duration="1360000" />
+      <workItem from="1571228214924" duration="1104000" />
+      <workItem from="1571238423649" duration="11014000" />
     </task>
     <servers />
   </component>
@@ -189,16 +210,6 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/iotrec_api/admin.py</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="masterDetails">
     <states>

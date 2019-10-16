@@ -1,7 +1,9 @@
-from rest_framework import serializers
-from rest_framework_jwt.settings import api_settings
-from iotrec_api.models import User, Thing, Category, Recommendation, Feedback, Preference
 
+from django.utils import timezone
+from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
+from rest_framework_jwt.settings import api_settings
+from iotrec_api.models import User, Thing, Category, Recommendation, Feedback, Preference, Rating
 
 # from django.contrib.auth.models import User
 
@@ -17,17 +19,19 @@ class PreferenceRelatedField(serializers.RelatedField):
 
 
 class PreferenceSerializer(serializers.ModelSerializer):
-    #user = serializers.IntegerField(read_only=True)
-    #user = UserSerializer()
-    #user = UserSerializer(source='user', read_only=True)
-
     #def create(self, validated_data):
     #    validated_data['user'] = User.objects.get('user')
     #    return Preference.objects.create(**validated_data)
 
+    #def get_fields(self):
+    #    fields = super(PreferenceSerializer, self).get_fields()
+    #    del fields['category']
+    #    return fields
+
     class Meta:
         model = Preference
         fields = '__all__'
+        #fields = ('id', 'created_at', 'updated_at', 'category', 'value', 'user')
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -35,11 +39,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'preferences')
-
-    #def update(self, instance, validated_data):
-    #    instance.email = validated_data.get('email', instance.email)
-    #    instance.preferences = validated_data.get('preferences', instance.preferences)
+        fields = ('id', 'username', 'email', 'preferences')
 
 
 class UserSerializerWithToken(serializers.ModelSerializer):
@@ -63,9 +63,26 @@ class UserSerializerWithToken(serializers.ModelSerializer):
         instance.save()
         return instance
 
+    def update(self, instance, validated_data):
+        instance.email = validated_data.get('email', instance.email)
+        instance.save()
+
+        preferences = validated_data.get('preferences', instance.preferences)
+
+        for preference in preferences:
+            category = preference.get('category', None)
+            preference_id = category.text_id
+            if preference_id:
+                preference_item = Preference.objects.get(id=preference_id, user=instance)
+                preference_item.updated_at = timezone.now()
+                preference_item.value = preference.get('value', preference_item.value)
+                preference_item.save()
+
+        return instance
+
     class Meta:
         model = User
-        fields = ('token', 'username', 'email', 'password', 'preferences')
+        fields = ('id', 'token', 'username', 'email', 'password', 'preferences')
 
 
 """
@@ -125,6 +142,10 @@ class FeedbackSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class RatingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Rating
+        fields = '__all__'
 
 
 

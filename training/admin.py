@@ -11,6 +11,12 @@ class ReferenceThingAdmin(admin.ModelAdmin):
     list_display = ['title', 'description', 'indoorsLocation', 'active', 'samples_count']
     list_filter = ['active', 'indoorsLocation']
 
+    class Media:
+        js = ('js/ref_thing_admin.js',)
+        css = {
+            'all': ('css/ref_thing_admin.css',)
+        }
+
     def activate(self, request, queryset):
         queryset.update(active=True)
 
