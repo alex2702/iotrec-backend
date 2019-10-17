@@ -124,21 +124,64 @@
                                     <td>{{ total_counter }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Number of unambiguous combinations (4)</th>
+                                    <th scope="row">Number of samples</th>
+                                    <td>{{ samples_counter }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Number of unambiguous combinations (with at least 4 samples)</th>
                                     <td>{{ unambiguous_counter_4 }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Number of unambiguous combinations (5)</th>
+                                    <th scope="row">Number of unambiguous combinations (with at least 5 samples)</th>
                                     <td>{{ unambiguous_counter_5 }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Number of significant combinations (5)</th>
+                                    <th scope="row">Number of unambiguous combinations (with at least 6 samples)</th>
+                                    <td>{{ unambiguous_counter_6 }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Number of significant combinations (with at least 4 samples)</th>
+                                    <td>{{ significant_counter_4 }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Number of significant combinations (with at least 5 samples)</th>
                                     <td>{{ significant_counter_5 }}</td>
                                 </tr>
-                            <tr>
-                                    <th scope="row">Number of significant combinations (6)</th>
+                                <tr>
+                                    <th scope="row">Number of significant combinations (with at least 6 samples)</th>
                                     <td>{{ significant_counter_6 }}</td>
                                 </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <h3 class="mt-5">Significant Combinations (4)</h3>
+                <div class="col-12 mt-3">
+                    <div class="card">
+                        <table class="table iotrec-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Thing ID</th>
+                                    <th scope="col">Thing Title</th>
+                                    <th scope="col">Context Factor</th>
+                                    <th scope="col">CF Value</th>
+                                    <th scope="col">Rating Avg</th>
+                                    <th scope="col">Effect</th>
+                                    <th scope="col">p-Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for s in significant_samples_4 %}
+                                    <tr>
+                                        <td>{{ s.thingId }}</td>
+                                        <td>{{ s.thing }}</td>
+                                        <td>{{ s.contextFactor }}</td>
+                                        <td>{{ s.cfValue }}</td>
+                                        <td>{{ s.ratingAvg }}</td>
+                                        <td>{% if s.ratingAvg > 0 %}⬆{% elif s.ratingAvg < 0 %}⬇{% endif %}</td>
+                                        <td>{{ s.pValue }}</td>
+                                    </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -154,6 +197,7 @@
                                     <th scope="col">Context Factor</th>
                                     <th scope="col">CF Value</th>
                                     <th scope="col">Rating Avg</th>
+                                    <th scope="col">Effect</th>
                                     <th scope="col">p-Value</th>
                                 </tr>
                             </thead>
@@ -165,6 +209,7 @@
                                         <td>{{ s.contextFactor }}</td>
                                         <td>{{ s.cfValue }}</td>
                                         <td>{{ s.ratingAvg }}</td>
+                                        <td>{% if s.ratingAvg > 0 %}⬆{% elif s.ratingAvg < 0 %}⬇{% endif %}</td>
                                         <td>{{ s.pValue }}</td>
                                     </tr>
                                 {% endfor %}
@@ -183,6 +228,7 @@
                                     <th scope="col">Context Factor</th>
                                     <th scope="col">CF Value</th>
                                     <th scope="col">Rating Avg</th>
+                                    <th scope="col">Effect</th>
                                     <th scope="col">p-Value</th>
                                 </tr>
                             </thead>
@@ -194,6 +240,7 @@
                                         <td>{{ s.contextFactor }}</td>
                                         <td>{{ s.cfValue }}</td>
                                         <td>{{ s.ratingAvg }}</td>
+                                        <td>{% if s.ratingAvg > 0 %}⬆{% elif s.ratingAvg < 0 %}⬇{% endif %}</td>
                                         <td>{{ s.pValue }}</td>
                                     </tr>
                                 {% endfor %}

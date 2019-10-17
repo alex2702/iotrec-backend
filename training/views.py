@@ -64,7 +64,7 @@ def is_combination_qualified(user, thing, context_factor, context_factor_value):
     if len(samples) > 0:
         return False
 
-    if is_combination_unambiguous(thing, context_factor, context_factor_value):
+    if is_combination_unambiguous(thing, context_factor, context_factor_value, 4):
         return False
 
     if 0 <= is_combination_significant(thing, context_factor, context_factor_value, 6) <= 0.1:
@@ -300,12 +300,16 @@ def add_sample(request, context_factor=None):
 
 
 def get_statistics(request):
+    samples_counter = Sample.objects.count()
 
     unambiguous_counter_4 = 0
     unambiguous_counter_5 = 0
+    unambiguous_counter_6 = 0
+    significant_counter_4 = 0
     significant_counter_5 = 0
     significant_counter_6 = 0
     total_counter = 0
+    significant_samples_4 = []
     significant_samples_5 = []
     significant_samples_6 = []
 
@@ -326,8 +330,21 @@ def get_statistics(request):
                     unambiguous_counter_4 += 1
                 if is_combination_unambiguous(thing, context_factor, cf_value, 5):
                     unambiguous_counter_5 += 1
+                if is_combination_unambiguous(thing, context_factor, cf_value, 6):
+                    unambiguous_counter_6 += 1
+                p_value_4 = is_combination_significant(thing, context_factor, cf_value, 4)
                 p_value_5 = is_combination_significant(thing, context_factor, cf_value, 5)
                 p_value_6 = is_combination_significant(thing, context_factor, cf_value, 6)
+                if 0 <= p_value_4 <= 0.1:
+                    significant_counter_4 += 1
+                    significant_samples_4.append({
+                        'thing': thing.title,
+                        'thingId': thing.id,
+                        'contextFactor': context_factor.title,
+                        'cfValue': cf_value.title,
+                        'ratingAvg': rating_avg,
+                        'pValue': round(p_value_4, 8)
+                    })
                 if 0 <= p_value_5 <= 0.1:
                     significant_counter_5 += 1
                     significant_samples_5.append({
@@ -352,8 +369,12 @@ def get_statistics(request):
     response = render(request, 'statistics.html',
                       {
                             'total_counter': total_counter,
+                            'samples_counter': samples_counter,
                             'unambiguous_counter_4': unambiguous_counter_4,
                             'unambiguous_counter_5': unambiguous_counter_5,
+                            'unambiguous_counter_6': unambiguous_counter_6,
+                            'significant_counter_4': significant_counter_4,
+                            'significant_samples_4': significant_samples_4,
                             'significant_counter_5': significant_counter_5,
                             'significant_samples_5': significant_samples_5,
                             'significant_counter_6': significant_counter_6,
