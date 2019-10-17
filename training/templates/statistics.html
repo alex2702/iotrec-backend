@@ -107,7 +107,14 @@
             <div class="row">
                 <div class="col-12">
                     <span>Number of combinations: {{ total_counter }}</span><br />
-                    <span>Number of unambiguous combinations: {{ unambiguous_counter }}</span>
+                    <span>Number of unambiguous combinations: {{ unambiguous_counter }}</span><br />
+                    <span>Number of significant combinations: {{ significant_counter }}</span>
+                </div>
+                <div class="col-12">
+                    <strong>Significant combinations:</strong><br />
+                    {% for s in significant_samples %}
+                        <span>{{ s }}</span><br />
+                    {% endfor %}
                 </div>
             </div>
         </div>

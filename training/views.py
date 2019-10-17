@@ -1,6 +1,7 @@
 import datetime
 import random
 
+import scipy.stats
 from django.contrib import messages
 from django.forms import model_to_dict
 from django.shortcuts import render, redirect
@@ -10,7 +11,7 @@ from training.models import TrainingUser, ReferenceThing, ContextFactor, Sample
 
 
 def is_combination_unambiguous(thing, context_factor, context_factor_value):
-    # check if we already have an unambiguous influence on the given thing/context_factor/context_factor_value combination
+    # check if we already have an unambiguous influence on the given thing/context_factor/cf_value combination
     samples = Sample.objects.filter(thing=thing, context_factor=context_factor,
                                     context_factor_value=context_factor_value)
     # we need at least 4 samples
@@ -24,6 +25,30 @@ def is_combination_unambiguous(thing, context_factor, context_factor_value):
                 break
         return all_values_identical
     return False
+
+
+# do a one-sample two-tailed t-test
+def is_combination_significant(thing, context_factor, context_factor_value):
+    # check if we already have a significant influence on the given thing/context_factor/cf_value combination
+    samples = Sample.objects.filter(thing=thing, context_factor=context_factor,
+                                    context_factor_value=context_factor_value)
+
+    # we need at least 6 samples
+    if len(samples) >= 6:
+        # get the values from all samples
+        values = []
+        for sample in samples:
+            values.append(sample.value)
+
+        # do the t-test
+        ttest_results = scipy.stats.ttest_1samp(values, 0)
+        p_value = ttest_results[1]
+
+        # check if significant and return
+        return p_value
+        #return p_value <= 0.05
+    return -1
+    #return False
 
 
 def add_sample(request, context_factor=None):
@@ -278,7 +303,9 @@ def add_sample(request, context_factor=None):
 def get_statistics(request):
 
     unambiguous_counter = 0
+    significant_counter = 0
     total_counter = 0
+    significant_samples = set()
 
     # go through all possible combinations and check for unambiguousness
     all_things = ReferenceThing.objects.filter(active=True)
@@ -291,11 +318,17 @@ def get_statistics(request):
                 total_counter += 1
                 if is_combination_unambiguous(thing, context_factor, cf_value):
                     unambiguous_counter += 1
+                p_value = is_combination_significant(thing, context_factor, cf_value)
+                if 0 <= p_value <= 0.05:
+                    significant_counter += 1
+                    significant_samples.add(thing.title + "(" + str(thing.id) + ") | " + str(context_factor.title) + " | " + str(cf_value.title) + " | " + str(p_value))
 
     response = render(request, 'statistics.html',
                       {
                             'total_counter': total_counter,
-                            'unambiguous_counter': unambiguous_counter
+                            'unambiguous_counter': unambiguous_counter,
+                            'significant_counter': significant_counter,
+                            'significant_samples': significant_samples
                       })
 
     return response
