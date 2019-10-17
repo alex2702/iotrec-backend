@@ -113,6 +113,7 @@ class SampleAdmin(admin.ModelAdmin):
     readonly_fields = ['created_at', 'updated_at']
     fields = ['thing', 'context_factor', 'context_factor_value', 'value', 'user']
     list_display = ['created_at', 'thing', 'context_factor', 'context_factor_value', 'value', 'user']
+    list_filter = ['value', 'thing', 'context_factor', 'context_factor_value', 'user']
 
 
 admin.site.register(Sample, SampleAdmin)
