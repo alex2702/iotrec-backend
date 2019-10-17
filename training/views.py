@@ -281,12 +281,12 @@ def get_statistics(request):
     total_counter = 0
 
     # go through all possible combinations and check for unambiguousness
-    all_things = ReferenceThing.objects.all()
-    all_context_factors = ContextFactor.objects.all()
+    all_things = ReferenceThing.objects.filter(active=True)
+    all_context_factors = ContextFactor.objects.filter(active=True)
 
     for thing in all_things:
         for context_factor in all_context_factors:
-            cf_values = context_factor.values.all()
+            cf_values = context_factor.values.filter(active=True)
             for cf_value in cf_values:
                 total_counter += 1
                 if is_combination_unambiguous(thing, context_factor, cf_value):
