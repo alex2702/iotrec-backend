@@ -3,6 +3,7 @@ import random
 
 import scipy.stats
 from django.contrib import messages
+from django.db.models import Avg
 from django.forms import model_to_dict
 from django.shortcuts import render, redirect
 
@@ -316,6 +317,7 @@ def get_statistics(request):
         for context_factor in all_context_factors:
             cf_values = context_factor.values.filter(active=True)
             for cf_value in cf_values:
+                rating_avg = round(Sample.objects.all().aggregate(Avg('value'))['value__avg'], 2)
                 total_counter += 1
                 if is_combination_unambiguous(thing, context_factor, cf_value, 4):
                     unambiguous_counter_4 += 1
@@ -330,6 +332,7 @@ def get_statistics(request):
                         'thingId': thing.id,
                         'contextFactor': context_factor.title,
                         'cfValue': cf_value.title,
+                        'ratingAvg': rating_avg,
                         'pValue': round(p_value_5, 8)
                     })
                 if 0 <= p_value_6 <= 0.1:
@@ -339,6 +342,7 @@ def get_statistics(request):
                         'thingId': thing.id,
                         'contextFactor': context_factor.title,
                         'cfValue': cf_value.title,
+                        'ratingAvg': rating_avg,
                         'pValue': round(p_value_6, 8)
                     })
 
