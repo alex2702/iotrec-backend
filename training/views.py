@@ -10,12 +10,12 @@ from training.forms import SampleForm
 from training.models import TrainingUser, ReferenceThing, ContextFactor, Sample
 
 
-def is_combination_unambiguous(thing, context_factor, context_factor_value):
+def is_combination_unambiguous(thing, context_factor, context_factor_value, min_nr_of_samples):
     # check if we already have an unambiguous influence on the given thing/context_factor/cf_value combination
     samples = Sample.objects.filter(thing=thing, context_factor=context_factor,
                                     context_factor_value=context_factor_value)
-    # we need at least 4 samples
-    if len(samples) >= 4:
+    # we need at least min_nr_of_samples samples
+    if len(samples) >= min_nr_of_samples:
         # check if all values in the samples are identical
         all_values_identical = True
         value_of_sample_1 = samples[0].value
@@ -300,7 +300,8 @@ def add_sample(request, context_factor=None):
 
 def get_statistics(request):
 
-    unambiguous_counter = 0
+    unambiguous_counter_4 = 0
+    unambiguous_counter_5 = 0
     significant_counter_5 = 0
     significant_counter_6 = 0
     total_counter = 0
@@ -316,8 +317,10 @@ def get_statistics(request):
             cf_values = context_factor.values.filter(active=True)
             for cf_value in cf_values:
                 total_counter += 1
-                if is_combination_unambiguous(thing, context_factor, cf_value):
-                    unambiguous_counter += 1
+                if is_combination_unambiguous(thing, context_factor, cf_value, 4):
+                    unambiguous_counter_4 += 1
+                if is_combination_unambiguous(thing, context_factor, cf_value, 5):
+                    unambiguous_counter_5 += 1
                 p_value_5 = is_combination_significant(thing, context_factor, cf_value, 5)
                 p_value_6 = is_combination_significant(thing, context_factor, cf_value, 6)
                 if 0 <= p_value_5 <= 0.1:
@@ -342,7 +345,8 @@ def get_statistics(request):
     response = render(request, 'statistics.html',
                       {
                             'total_counter': total_counter,
-                            'unambiguous_counter': unambiguous_counter,
+                            'unambiguous_counter_4': unambiguous_counter_4,
+                            'unambiguous_counter_5': unambiguous_counter_5,
                             'significant_counter_5': significant_counter_5,
                             'significant_samples_5': significant_samples_5,
                             'significant_counter_6': significant_counter_6,
