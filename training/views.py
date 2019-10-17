@@ -28,13 +28,13 @@ def is_combination_unambiguous(thing, context_factor, context_factor_value):
 
 
 # do a one-sample two-tailed t-test
-def is_combination_significant(thing, context_factor, context_factor_value):
+def is_combination_significant(thing, context_factor, context_factor_value, min_nr_of_samples):
     # check if we already have a significant influence on the given thing/context_factor/cf_value combination
     samples = Sample.objects.filter(thing=thing, context_factor=context_factor,
                                     context_factor_value=context_factor_value)
 
-    # we need at least 6 samples
-    if len(samples) >= 6:
+    # we need at least min_nr_of_samples samples
+    if len(samples) >= min_nr_of_samples:
         # get the values from all samples
         values = []
         for sample in samples:
@@ -49,6 +49,27 @@ def is_combination_significant(thing, context_factor, context_factor_value):
         #return p_value <= 0.05
     return -1
     #return False
+
+
+# checks if a combination should be asked to the given user, depending on three criteria
+# - combination should not be ambiguous already
+# - combination should not be significant already
+# - combination should not be answered by the same user already
+def is_combination_qualified(user, thing, context_factor, context_factor_value):
+    # has the user answered that combination already?
+    samples = Sample.objects.filter(user=user, thing=thing, context_factor=context_factor,
+                                    context_factor_value=context_factor_value)
+
+    if len(samples) > 0:
+        return False
+
+    if is_combination_unambiguous(thing, context_factor, context_factor_value):
+        return False
+
+    if 0 <= is_combination_significant(thing, context_factor, context_factor_value, 6) <= 0.1:
+        return False
+
+    return True
 
 
 def add_sample(request, context_factor=None):
@@ -109,12 +130,13 @@ def add_sample(request, context_factor=None):
                 user = TrainingUser.objects.get(identifier=request.COOKIES['iotrec_training_user'])
             except TrainingUser.DoesNotExist:
                 user = TrainingUser.objects.create()
-
         else:
             user = TrainingUser.objects.create()
 
         # get random thing, context factor and context factor value
         random_thing = random.choice(ReferenceThing.objects.filter(active=True))
+
+
 
 
         random_context_factor_1 = random.choice(ContextFactor.objects.filter(active=True))
@@ -149,22 +171,19 @@ def add_sample(request, context_factor=None):
                                                       .exclude(pk=random_context_factor_value_3.pk)
                                                       .exclude(pk=random_context_factor_value_4.pk))
 
+
+
+
         '''
         while True:
             try:
                 random_context_factor_1 = random.choice(ContextFactor.objects.filter(active=True))
                 random_context_factor_value_1 = random.choice(random_context_factor_1.values.filter(active=True))
 
-                while is_combination_unambiguous(random_thing, random_context_factor_1, random_context_factor_value_1):
+                while not is_combination_qualified(user, random_thing, random_context_factor_1, random_context_factor_value_1):
                     random_context_factor_1 = random.choice(ContextFactor.objects.filter(active=True))
                     random_context_factor_value_1 = random.choice(random_context_factor_1.values.filter(active=True))
-
-                print(random_context_factor_1)
-                print(random_context_factor_value_1)
             except IndexError:
-                print(random_context_factor_1)
-                print(random_context_factor_value_1)
-                print("IndexError, retrying...")
                 continue
             break
 
@@ -174,17 +193,11 @@ def add_sample(request, context_factor=None):
                 random_context_factor_value_2 = random.choice(random_context_factor_2.values.filter(active=True)
                                                               .exclude(pk=random_context_factor_value_1.pk))
 
-                while is_combination_unambiguous(random_thing, random_context_factor_2, random_context_factor_value_2):
+                while not is_combination_qualified(user, random_thing, random_context_factor_2, random_context_factor_value_2):
                     random_context_factor_2 = random.choice(ContextFactor.objects.filter(active=True))
                     random_context_factor_value_2 = random.choice(random_context_factor_2.values.filter(active=True)
                                                                   .exclude(pk=random_context_factor_value_1.pk))
-
-                print(random_context_factor_2)
-                print(random_context_factor_value_2)
             except IndexError:
-                print(random_context_factor_2)
-                print(random_context_factor_value_2)
-                print("IndexError, retrying...")
                 continue
             break
 
@@ -195,18 +208,12 @@ def add_sample(request, context_factor=None):
                                                               .exclude(pk=random_context_factor_value_1.pk)
                                                               .exclude(pk=random_context_factor_value_2.pk))
 
-                while is_combination_unambiguous(random_thing, random_context_factor_3, random_context_factor_value_3):
+                while not is_combination_qualified(user, random_thing, random_context_factor_3, random_context_factor_value_3):
                     random_context_factor_3 = random.choice(ContextFactor.objects.filter(active=True))
                     random_context_factor_value_3 = random.choice(random_context_factor_3.values.filter(active=True)
                                                                   .exclude(pk=random_context_factor_value_1.pk)
                                                                   .exclude(pk=random_context_factor_value_2.pk))
-
-                print(random_context_factor_3)
-                print(random_context_factor_value_3)
             except IndexError:
-                print(random_context_factor_3)
-                print(random_context_factor_3)
-                print("IndexError, retrying...")
                 continue
             break
 
@@ -218,19 +225,13 @@ def add_sample(request, context_factor=None):
                                                               .exclude(pk=random_context_factor_value_2.pk)
                                                               .exclude(pk=random_context_factor_value_3.pk))
 
-                while is_combination_unambiguous(random_thing, random_context_factor_4, random_context_factor_value_4):
+                while not is_combination_qualified(user, random_thing, random_context_factor_4, random_context_factor_value_4):
                     random_context_factor_4 = random.choice(ContextFactor.objects.filter(active=True))
                     random_context_factor_value_4 = random.choice(random_context_factor_4.values.filter(active=True)
                                                                   .exclude(pk=random_context_factor_value_1.pk)
                                                                   .exclude(pk=random_context_factor_value_2.pk)
                                                                   .exclude(pk=random_context_factor_value_3.pk))
-
-                print(random_context_factor_4)
-                print(random_context_factor_value_4)
             except IndexError:
-                print(random_context_factor_4)
-                print(random_context_factor_4)
-                print("IndexError, retrying...")
                 continue
             break
 
@@ -243,23 +244,20 @@ def add_sample(request, context_factor=None):
                                                               .exclude(pk=random_context_factor_value_3.pk)
                                                               .exclude(pk=random_context_factor_value_4.pk))
 
-                while is_combination_unambiguous(random_thing, random_context_factor_5, random_context_factor_value_5):
+                while not is_combination_qualified(user, random_thing, random_context_factor_5, random_context_factor_value_5):
                     random_context_factor_5 = random.choice(ContextFactor.objects.filter(active=True))
                     random_context_factor_value_5 = random.choice(random_context_factor_5.values.filter(active=True)
                                                                   .exclude(pk=random_context_factor_value_1.pk)
                                                                   .exclude(pk=random_context_factor_value_2.pk)
                                                                   .exclude(pk=random_context_factor_value_3.pk)
                                                                   .exclude(pk=random_context_factor_value_4.pk))
-
-                print(random_context_factor_5)
-                print(random_context_factor_value_5)
             except IndexError:
-                print(random_context_factor_5)
-                print(random_context_factor_5)
-                print("IndexError, retrying...")
                 continue
             break
         '''
+
+
+
 
         form = SampleForm(
             initial={
@@ -303,9 +301,11 @@ def add_sample(request, context_factor=None):
 def get_statistics(request):
 
     unambiguous_counter = 0
-    significant_counter = 0
+    significant_counter_5 = 0
+    significant_counter_6 = 0
     total_counter = 0
-    significant_samples = set()
+    significant_samples_5 = []
+    significant_samples_6 = []
 
     # go through all possible combinations and check for unambiguousness
     all_things = ReferenceThing.objects.filter(active=True)
@@ -318,17 +318,35 @@ def get_statistics(request):
                 total_counter += 1
                 if is_combination_unambiguous(thing, context_factor, cf_value):
                     unambiguous_counter += 1
-                p_value = is_combination_significant(thing, context_factor, cf_value)
-                if 0 <= p_value <= 0.05:
-                    significant_counter += 1
-                    significant_samples.add(thing.title + "(" + str(thing.id) + ") | " + str(context_factor.title) + " | " + str(cf_value.title) + " | " + str(p_value))
+                p_value_5 = is_combination_significant(thing, context_factor, cf_value, 5)
+                p_value_6 = is_combination_significant(thing, context_factor, cf_value, 6)
+                if 0 <= p_value_5 <= 0.1:
+                    significant_counter_5 += 1
+                    significant_samples_5.append({
+                        'thing': thing.title,
+                        'thingId': thing.id,
+                        'contextFactor': context_factor.title,
+                        'cfValue': cf_value.title,
+                        'pValue': round(p_value_5, 8)
+                    })
+                if 0 <= p_value_6 <= 0.1:
+                    significant_counter_6 += 1
+                    significant_samples_6.append({
+                        'thing': thing.title,
+                        'thingId': thing.id,
+                        'contextFactor': context_factor.title,
+                        'cfValue': cf_value.title,
+                        'pValue': round(p_value_6, 8)
+                    })
 
     response = render(request, 'statistics.html',
                       {
                             'total_counter': total_counter,
                             'unambiguous_counter': unambiguous_counter,
-                            'significant_counter': significant_counter,
-                            'significant_samples': significant_samples
+                            'significant_counter_5': significant_counter_5,
+                            'significant_samples_5': significant_samples_5,
+                            'significant_counter_6': significant_counter_6,
+                            'significant_samples_6': significant_samples_6
                       })
 
     return response

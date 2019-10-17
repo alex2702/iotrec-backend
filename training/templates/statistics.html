@@ -10,7 +10,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Add a Training Sample</title>
+        <title>Training Statistics</title>
         <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}" />
         <style>
             body, .btn {
@@ -97,6 +97,15 @@
                 line-height: 2rem;
                 margin-top: 8px;
             }
+
+            .iotrec-table {
+                margin-bottom: 0;
+            }
+
+            .iotrec-table tr:first-child td,
+            .iotrec-table tr:first-child th {
+                border-top: 0;
+            }
         </style>
         <script>
 
@@ -105,16 +114,84 @@
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <span>Number of combinations: {{ total_counter }}</span><br />
-                    <span>Number of unambiguous combinations: {{ unambiguous_counter }}</span><br />
-                    <span>Number of significant combinations: {{ significant_counter }}</span>
+                <h1 class="mt-3">Training Statistics</h1>
+                <div class="col-12 mt-3">
+                    <div class="card">
+                        <table class="table iotrec-table">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Number of combinations</th>
+                                    <td>{{ total_counter }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Number of unambiguous combinations</th>
+                                    <td>{{ unambiguous_counter }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Number of significant combinations (5)</th>
+                                    <td>{{ significant_counter_5 }}</td>
+                                </tr>
+                            <tr>
+                                    <th scope="row">Number of significant combinations (6)</th>
+                                    <td>{{ significant_counter_6 }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="col-12">
-                    <strong>Significant combinations:</strong><br />
-                    {% for s in significant_samples %}
-                        <span>{{ s }}</span><br />
-                    {% endfor %}
+                <h3 class="mt-5">Significant Combinations (5)</h3>
+                <div class="col-12 mt-3">
+                    <div class="card">
+                        <table class="table iotrec-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Thing ID</th>
+                                    <th scope="col">Thing Title</th>
+                                    <th scope="col">Context Factor</th>
+                                    <th scope="col">CF Value</th>
+                                    <th scope="col">p-Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for s in significant_samples_5 %}
+                                    <tr>
+                                        <td>{{ s.thingId }}</td>
+                                        <td>{{ s.thing }}</td>
+                                        <td>{{ s.contextFactor }}</td>
+                                        <td>{{ s.cfValue }}</td>
+                                        <td>{{ s.pValue }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <h3 class="mt-5">Significant Combinations (6)</h3>
+                <div class="col-12 mt-3">
+                    <div class="card">
+                        <table class="table iotrec-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Thing ID</th>
+                                    <th scope="col">Thing Title</th>
+                                    <th scope="col">Context Factor</th>
+                                    <th scope="col">CF Value</th>
+                                    <th scope="col">p-Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for s in significant_samples_6 %}
+                                    <tr>
+                                        <td>{{ s.thingId }}</td>
+                                        <td>{{ s.thing }}</td>
+                                        <td>{{ s.contextFactor }}</td>
+                                        <td>{{ s.cfValue }}</td>
+                                        <td>{{ s.pValue }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
