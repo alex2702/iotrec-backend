@@ -2,13 +2,15 @@ import datetime
 import random
 
 import scipy.stats
+import numpy as np
 from django.contrib import messages
 from django.db.models import Avg
+from django.db.models.functions import Coalesce
 from django.forms import model_to_dict
 from django.shortcuts import render, redirect
 
 from training.forms import SampleForm
-from training.models import TrainingUser, ReferenceThing, ContextFactor, Sample
+from training.models import TrainingUser, ReferenceThing, ContextFactor, Sample, ContextFactorValue
 
 
 def is_combination_unambiguous(thing, context_factor, context_factor_value, min_nr_of_samples):
@@ -64,11 +66,13 @@ def is_combination_qualified(user, thing, context_factor, context_factor_value):
     if len(samples) > 0:
         return False
 
+    '''
     if is_combination_unambiguous(thing, context_factor, context_factor_value, 4):
         return False
 
     if 0 <= is_combination_significant(thing, context_factor, context_factor_value, 6) <= 0.1:
         return False
+    '''
 
     return True
 
@@ -139,7 +143,7 @@ def add_sample(request, context_factor=None):
 
 
 
-
+        '''
         random_context_factor_1 = random.choice(ContextFactor.objects.filter(active=True))
         random_context_factor_2 = random.choice(ContextFactor.objects.filter(active=True)
                                                 .exclude(pk=random_context_factor_1.pk))
@@ -171,11 +175,10 @@ def add_sample(request, context_factor=None):
                                                       .exclude(pk=random_context_factor_value_2.pk)
                                                       .exclude(pk=random_context_factor_value_3.pk)
                                                       .exclude(pk=random_context_factor_value_4.pk))
-
-
-
-
         '''
+
+
+
         while True:
             try:
                 random_context_factor_1 = random.choice(ContextFactor.objects.filter(active=True))
@@ -255,7 +258,7 @@ def add_sample(request, context_factor=None):
             except IndexError:
                 continue
             break
-        '''
+
 
 
 
@@ -379,6 +382,236 @@ def get_statistics(request):
                             'significant_samples_5': significant_samples_5,
                             'significant_counter_6': significant_counter_6,
                             'significant_samples_6': significant_samples_6
+                      })
+
+    return response
+
+def get_results(request):
+    '''
+    Perform matrix factorization to predict empty entries in a matrix.
+
+    Arguments
+        - R (ndarray)    : item-context rating matrix
+        - d (int)        : number of latent dimensions
+        - gamma (float)  : learning rate
+        - lambda (float) : regularization parameter
+    '''
+
+    def calc_mse():
+        '''
+        Compute the total mean square error
+        '''
+
+        predicted = full_matrix()
+        error = 0
+
+        for rtId in predicted:
+            for cfvId in predicted[rtId]:
+                error += pow(R[rtId][cfvId] - predicted[rtId][cfvId], 2)
+
+        return np.sqrt(error)
+
+
+    def sgd():
+        '''
+        Perform stochastic gradient descent
+        '''
+
+        for i, c, r in samples:
+            #print("i: " + str(i))
+            #print("c: " + str(c))
+            #print("r: " + str(r))
+            prediction = get_rating(i, [c])
+            e = r - prediction
+
+            # update bias
+            b_i_c[i][c] += gamma * (e - lambd * b_i_c[i][c])
+
+    def get_rating(ref_thing, context_factor_values):
+        '''
+        Get the predicted rating of a given user in a given context
+        '''
+
+        sum_of_context_biases = 0
+        for cfv in context_factor_values:
+            sum_of_context_biases += b_i_c[ref_thing][cfv]
+        return b_i[ref_thing] + sum_of_context_biases
+
+    def full_matrix():
+        '''
+        Compute the full matrix using the resultant bias B
+        '''
+
+        #return two_dim_dict_to_matrix(b_i) + two_dim_dict_to_matrix(b_i_c)
+        full_matrix = {}
+        for rt in ref_things:
+            full_matrix[rt.id] = {}
+            for cfv in context_factor_values:
+                full_matrix[rt.id][cfv.id] = b_i[rt.id] + b_i_c[rt.id][cfv.id]
+
+        return full_matrix
+
+    def two_dim_dict_to_matrix(dict):
+        result_matrix = np.zeros(len(dict), len(list(dict)[0]))
+        for i in dict:
+            dict_in_i = list(dict)[i]
+            for j in dict_in_i:
+                result_matrix[i][j] = j
+
+        print(dict)
+        print(result_matrix)
+
+        return result_matrix
+
+
+    # collect data
+    ref_things = ReferenceThing.objects.filter(active=True)
+    context_factor_values = ContextFactorValue.objects.filter(active=True)
+
+    # populate rating dataset for learning
+    R = {}
+    for rt in ref_things:
+        R[rt.id] = {}
+        for cfv in context_factor_values:
+            R[rt.id][cfv.id] = Sample.objects.filter(thing=rt, context_factor=cfv.context_factor,
+                                                     context_factor_value=cfv).aggregate(avg=Coalesce(Avg('value'), 0))['avg']
+
+    num_ref_things = len(ref_things)
+    num_context_factor_values = len(context_factor_values)
+    gamma = 0.01 # learning rate
+    lambd = 0.01 # regularization parameter
+    iterations = 1000
+
+    # initialize biases
+    b_i_c = {}
+    b_i = {}
+    for rt in ref_things:
+        # initialize item-context biases with 0
+        b_i_c[rt.id] = {}
+        for cfv in context_factor_values:
+            b_i_c[rt.id][cfv.id] = 0
+        # item bias is the average of all ratings for the item
+        b_i[rt.id] = Sample.objects.filter(thing=rt).aggregate(avg=Coalesce(Avg('value'), 0))['avg']
+
+    #print("b_i_c")
+    #print(b_i_c)
+
+    #print("b_i")
+    #print(b_i)
+
+    # create a list of the training samples
+    samples = [
+        (i.id, c.id, R[i.id][c.id])
+        for i in ref_things
+        for c in context_factor_values
+    ]
+
+    #print(samples)
+
+    # perform stochastic gradient descent
+    training_process = []
+    training_process_string = ""
+    for it in range(iterations):
+        np.random.shuffle(samples)
+        sgd()
+        mse = calc_mse()
+        training_process.append((it, mse))
+        training_process_string += "Iteration: %d - error = %.4f\n" % (it+1, mse)
+        #print("Iteration: %d - error = %.4f" % (it+1, mse))
+
+    #print(training_process)
+
+    print("\n\nBASELINES")
+    baselines_string = ""
+    baselines_table_header = []
+    baselines_table_body = {}
+
+    headers_c = "cf_value    "
+    for c in b_i_c[list(b_i_c)[0]]:
+        headers_c += "{:9d}".format(c)
+        cf_name = str(context_factor_values.get(id=c).title)
+        baselines_table_header.append(str(c) + "\n" + ((cf_name[:8] + '...') if len(cf_name) > 11 else cf_name))
+    #print(headers_c)
+    baselines_string += headers_c + "\n"
+
+    for i in b_i_c:
+        i_string = ""
+        baselines_table_body[i] = {}
+        for c in b_i_c[i]:
+            i_string += "{:7.3f}".format(b_i_c[i][c]) + ", "
+            baselines_table_body[i][c] = ("{:.2f}".format(b_i_c[i][c]))
+        #print("b_i_c[" + str(i) + "][] = " + i_string)
+        baselines_string += "b_i_c[" + str(i) + "][] = " + i_string + "\n"
+
+    print(baselines_string)
+
+    print("\n\nRATINGS DATASET")
+    ratings_string = ""
+    ratings_table_header = []
+    ratings_table_body = {}
+
+    headers_c = "cf_value"
+    for c in R[list(R)[0]]:
+        headers_c += "{:9d}".format(c)
+        cf_name = str(context_factor_values.get(id=c).title)
+        ratings_table_header.append(str(c) + "\n" + ((cf_name[:8] + '...') if len(cf_name) > 11 else cf_name))
+    #print(headers_c)
+    ratings_string += headers_c + "\n"
+
+    for i in R:
+        i_string = ""
+        ratings_table_body[i] = {}
+        for c in R[i]:
+            i_string += "{:7.3f}".format(R[i][c]) + ", "
+            ratings_table_body[i][c] = ("{:.2f}".format(R[i][c]))
+        #print("R[" + str(i) + "][] = " + i_string)
+        ratings_string += "R[" + str(i) + "][] = " + i_string + "\n"
+
+    print(ratings_string)
+
+    print("\n\nRATING PREDICTIONS")
+    predictions_string = ""
+    predictions_table_header = []
+    predictions_table_body = {}
+
+    matrix = full_matrix()
+
+    headers_c = "cf_value        "
+    for c in matrix[list(matrix)[0]]:
+        headers_c += "{:9d}".format(c)
+        cf_name = str(context_factor_values.get(id=c).title)
+        predictions_table_header.append(str(c) + "\n" + ((cf_name[:8] + '...') if len(cf_name) > 11 else cf_name))
+    #print(headers_c)
+    predictions_string += headers_c + "\n"
+
+    for i in matrix:
+        i_string = ""
+        predictions_table_body[i] = {}
+        for c in matrix[i]:
+            i_string += "{:7.3f}".format(matrix[i][c]) + ", "
+            predictions_table_body[i][c] = ("{:.2f}".format(matrix[i][c]))
+        #print("predicted[" + str(i) + "][] = " + i_string)
+        predictions_string += "predicted[" + str(i) + "][] = " + i_string + "\n"
+
+    print(predictions_string)
+
+    #print("\n\nTEST PREDICTIONS")
+    #print("get_rating[33, 1] = " + str(get_rating(33, [1])))
+    #print("get_rating[33, 21] = " + str(get_rating(33, [21])))
+    #print("get_rating[58, 9] = " + str(get_rating(58, [9])))
+    #print("get_rating[58, 16] = " + str(get_rating(58, [16])))
+
+    response = render(request, 'results.html',
+                      {
+                          'baselines': baselines_string,
+                          'ratings': ratings_string,
+                          'predictions': predictions_string,
+                          'ratings_table_header': ratings_table_header,
+                          'ratings_table_body': ratings_table_body,
+                          'predictions_table_header': predictions_table_header,
+                          'predictions_table_body': predictions_table_body,
+                          'baselines_table_header': baselines_table_header,
+                          'baselines_table_body': baselines_table_body
                       })
 
     return response
