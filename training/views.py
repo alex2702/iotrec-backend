@@ -397,7 +397,24 @@ def get_results(request):
         - lambda (float) : regularization parameter
     '''
 
-    def calc_mse():
+    def calc_mse(dataset):
+        '''
+        Compute the total mean square error
+        '''
+
+        predicted = full_matrix()
+        error = 0
+
+        #for rtId in predicted:
+        #    for cfvId in predicted[rtId]:
+        #        error += pow(R[rtId][cfvId] - predicted[rtId][cfvId], 2)
+
+        for tuple in dataset:
+            error += pow(tuple[2] - predicted[tuple[0]][tuple[1]], 2)
+
+        return np.sqrt(error)
+
+    def calc_mse_old():
         '''
         Compute the total mean square error
         '''
@@ -411,13 +428,14 @@ def get_results(request):
 
         return np.sqrt(error)
 
-
-    def sgd():
+    def sgd(dataset):
         '''
         Perform stochastic gradient descent
         '''
 
-        for i, c, r in samples:
+        #print(dataset)
+
+        for i, c, r in dataset:
             #print("i: " + str(i))
             #print("c: " + str(c))
             #print("r: " + str(r))
@@ -432,10 +450,23 @@ def get_results(request):
         Get the predicted rating of a given user in a given context
         '''
 
+        print("number of context factor values: " + str(len(context_factor_values)))
+
         sum_of_context_biases = 0
         for cfv in context_factor_values:
             sum_of_context_biases += b_i_c[ref_thing][cfv]
-        return b_i[ref_thing] + sum_of_context_biases
+        predicted_rating = b_i[ref_thing] + sum_of_context_biases
+
+        print("predicted rating (not normalized): " + str(predicted_rating))
+
+        # normalize
+        #minimum_rating = -1 * (1 + len(context_factor_values))
+        #maximum_rating = 1 + len(context_factor_values)
+        #predicted_rating = (predicted_rating - minimum_rating)/(maximum_rating - minimum_rating)
+
+        print("predicted rating (normalized): " + str(predicted_rating))
+
+        return predicted_rating
 
     def full_matrix():
         '''
@@ -448,8 +479,21 @@ def get_results(request):
             full_matrix[rt.id] = {}
             for cfv in context_factor_values:
                 full_matrix[rt.id][cfv.id] = b_i[rt.id] + b_i_c[rt.id][cfv.id]
+                # normalize (number of context factor values is fixed to 1 here, the function is only used for training where it's always 1, not for making predictions)
+                #full_matrix[rt.id][cfv.id] = (full_matrix[rt.id][cfv.id] + 2) / 4
 
         return full_matrix
+
+    def normalize_matrix(matrix_in, nr_of_context_factors):
+        matrix_out = {}
+        min_rating = -1 * (nr_of_context_factors)
+        max_rating = nr_of_context_factors
+        for i in matrix_in:
+            matrix_out[i] = {}
+            for j in matrix_in[i]:
+                matrix_out[i][j] = (matrix_in[i][j] - min_rating)/(max_rating - min_rating)
+
+        return matrix_out
 
     def two_dim_dict_to_matrix(dict):
         result_matrix = np.zeros(len(dict), len(list(dict)[0]))
@@ -505,6 +549,8 @@ def get_results(request):
         for i in ref_things
         for c in context_factor_values
     ]
+    training_set = []
+    testing_set = []
 
     #print(samples)
 
@@ -513,13 +559,18 @@ def get_results(request):
     training_process_string = ""
     for it in range(iterations):
         np.random.shuffle(samples)
-        sgd()
-        mse = calc_mse()
-        training_process.append((it, mse))
-        training_process_string += "Iteration: %d - error = %.4f\n" % (it+1, mse)
+        size_of_training_set = round(len(samples) * 0.8)
+        training_set = samples[:size_of_training_set]
+        testing_set = samples[size_of_training_set:]
+
+        sgd(training_set)
+        mse_training = calc_mse(training_set)
+        mse_testing = calc_mse(testing_set)
+        training_process.append((it + 1, "{:.4f}".format(mse_training), "{:.4f}".format(mse_testing)))
+        training_process_string += "Iteration: %d - training error = %.4f - testing error = %.4f\n" % (it+1, mse_training, mse_testing)
         #print("Iteration: %d - error = %.4f" % (it+1, mse))
 
-    #print(training_process)
+    print(training_process_string)
 
     print("\n\nBASELINES")
     baselines_string = ""
@@ -595,8 +646,24 @@ def get_results(request):
 
     print(predictions_string)
 
+    # PREDICTIONS NORMALIZED
+
+    predictions_norm_table_header = []
+    predictions_norm_table_body = {}
+
+    matrix_normalized = normalize_matrix(matrix, 1)
+
+    for c in matrix_normalized[list(matrix_normalized)[0]]:
+        cf_name = str(context_factor_values.get(id=c).title)
+        predictions_norm_table_header.append(str(c) + "\n" + ((cf_name[:8] + '...') if len(cf_name) > 11 else cf_name))
+
+    for i in matrix_normalized:
+        predictions_norm_table_body[i] = {}
+        for c in matrix_normalized[i]:
+            predictions_norm_table_body[i][c] = ("{:.2f}".format(matrix_normalized[i][c]))
+
     #print("\n\nTEST PREDICTIONS")
-    #print("get_rating[33, 1] = " + str(get_rating(33, [1])))
+    #print("get_rating[33, [1, 8, 17, 39]] = " + str(get_rating(33, [1, 8])))
     #print("get_rating[33, 21] = " + str(get_rating(33, [21])))
     #print("get_rating[58, 9] = " + str(get_rating(58, [9])))
     #print("get_rating[58, 16] = " + str(get_rating(58, [16])))
@@ -611,7 +678,10 @@ def get_results(request):
                           'predictions_table_header': predictions_table_header,
                           'predictions_table_body': predictions_table_body,
                           'baselines_table_header': baselines_table_header,
-                          'baselines_table_body': baselines_table_body
+                          'baselines_table_body': baselines_table_body,
+                          'training_process': training_process,
+                          'predictions_norm_table_header': predictions_norm_table_header,
+                          'predictions_norm_table_body': predictions_norm_table_body
                       })
 
     return response
