@@ -17,9 +17,12 @@ router.register(r'users', views.UserViewSet, base_name='user')
 recommendations_router = routers.NestedSimpleRouter(router, r'recommendations', lookup='recommendation')
 recommendations_router.register(r'feedback', views.FeedbackViewSet, base_name='recommendation-feedback')
 recommendations_router.register(r'rating', views.RatingViewSet, base_name='recommendation-rating')
+#recommendations_router.register(r'context', views.ContextViewSet, base_name='recommendation-context')
+
 
 users_router = routers.NestedSimpleRouter(router, r'users', lookup='user')
 users_router.register(r'preferences', views.PreferenceViewSet, base_name='user-preference')
+users_router.register(r'stays', views.StayViewSet, base_name='user-stay')
 
 #router.register(r'current-user', views.CurrentUserViewSet, basename='current-user')
 

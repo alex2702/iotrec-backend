@@ -14,15 +14,28 @@ from mptt.fields import TreeForeignKey, TreeManyToManyField
 from mptt.models import MPTTModel
 from rest_framework.exceptions import ValidationError
 
-from iotrec_api.utils.thing import ThingType
+from iotrec_api.utils.context import WeatherType, TemperatureType, LengthOfTripType, CrowdednessType, TimeOfDayType
+from iotrec_api.utils.recommendation import get_recommendation_score
+from iotrec_api.utils.similarity_reference import calculate_similarity_references_per_thing
+from iotrec_api.utils.thing import ThingType, get_utility
 
 
 # source: https://steelkiwi.com/blog/practical-application-singleton-design-pattern/
+from training.models import ContextFactor, ContextFactorValue
+
+
 class IotRecSettings(models.Model):
-    recommendation_threshold = models.FloatField(default=0)
+    recommendation_threshold = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(1)], default=0)
+    nr_of_reference_things_per_thing = models.IntegerField(default=3)
+    category_weight = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(1)], default=0)
+    locality_weight = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(1)], default=0, editable=False)
+    prediction_weight = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(1)], default=0)
+    context_weight = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(1)], default=0, editable=False)
 
     def save(self, *args, **kwargs):
         self.pk = 1
+        self.locality_weight = 1 - self.category_weight
+        self.context_weight = 1 - self.prediction_weight
         super(IotRecSettings, self).save(*args, **kwargs)
         self.set_cache()
 
@@ -79,207 +92,6 @@ class Venue(models.Model):
     image = models.ImageField(blank=True)
 """
 
-
-class ThingManager(models.Manager):
-    def get_similarity_of_thing(self, this_thing, other_thing, *args, **kwargs):
-        # get all categories that "self" is classified in
-        this_thing_categories = this_thing.categories.all()
-        this_thing_categories_all = set()
-        for i in range(len(this_thing_categories)):
-            if this_thing_categories[i] not in this_thing_categories_all:
-                this_thing_categories_all.add(this_thing_categories[i])
-            i_ancestors = this_thing_categories[i].get_ancestors()
-            for j in range(len(i_ancestors)):
-                if i_ancestors[j] not in this_thing_categories_all:
-                    this_thing_categories_all.add(i_ancestors[j])
-
-        # get all categories that "other" is classified in
-        other_thing_categories = other_thing.categories.all()
-
-        other_thing_categories_all = set()
-        for i in range(len(other_thing_categories)):
-            if other_thing_categories[i] not in other_thing_categories_all:
-                other_thing_categories_all.add(other_thing_categories[i])
-            i_ancestors = other_thing_categories[i].get_ancestors()
-            for j in range(len(i_ancestors)):
-                if i_ancestors[j] not in other_thing_categories_all:
-                    other_thing_categories_all.add(i_ancestors[j])
-
-        # merge the category lists
-        categories_all = this_thing_categories_all.union(other_thing_categories_all)
-
-        divident = 0
-        divisor_inner_this = 0
-        divisor_inner_other = 0
-
-        # for each category i
-        for cat in categories_all:
-            # 1 if self has category i, 0 otherwise
-            tf_this_i = 1 if (cat in this_thing_categories_all) else 0
-
-            # 1 if other has category i, 0 otherwise
-            tf_other_i = 1 if (cat in other_thing_categories_all) else 0
-
-            # number of items classified in subtree for which the parent of i is the root
-            # (loop through all descendants of that category, including itself, and add up the things count)
-            subtree_root = None
-            if cat.is_root_node():
-                subtree_root = cat
-            else:
-                subtree_root = cat.get_ancestors(ascending=True)[0]
-
-            n_p_i = 0
-            n_p_i_things_counted = set()  # prevent counting a thing multiple times
-            for sub_cat in subtree_root.get_descendants(include_self=True):
-                n_p_i += len((set(sub_cat.thing_set.all()) - n_p_i_things_counted))
-                n_p_i_things_counted = n_p_i_things_counted.union(set(sub_cat.thing_set.all()))
-
-            # number of items classified in subtree for which i is the root
-            # (loop through all descendants of that category, including itself, and add up the things count)
-            n_i = 0
-            n_i_things_counted = set()  # prevent counting a thing multiple times
-            for sub_cat in cat.get_descendants(include_self=True):
-                n_i += len((set(sub_cat.thing_set.all()) - n_i_things_counted))
-                n_i_things_counted = n_i_things_counted.union(set(sub_cat.thing_set.all()))
-
-            factor_this = tf_this_i * math.log(n_p_i / n_i)
-            factor_other = tf_other_i * math.log(n_p_i / n_i)
-
-            divident += factor_this * factor_other
-            divisor_inner_this += factor_this * factor_this
-            divisor_inner_other += factor_other * factor_other
-
-        result = divident / (math.sqrt(divisor_inner_this) * math.sqrt(divisor_inner_other))
-
-        return result
-
-    def get_similarity_of_user(self, this_thing, user, *args, **kwargs):
-        # get all categories that "self" is classified in
-        this_thing_categories = this_thing.categories.all()
-        this_thing_categories_all = set()
-        for i in range(len(this_thing_categories)):
-            if this_thing_categories[i] not in this_thing_categories_all:
-                this_thing_categories_all.add(this_thing_categories[i])
-            i_ancestors = this_thing_categories[i].get_ancestors()
-            for j in range(len(i_ancestors)):
-                if i_ancestors[j] not in this_thing_categories_all:
-                    this_thing_categories_all.add(i_ancestors[j])
-
-        # get all categories that "user" is classified in (from their preferences)
-        user_preferences = user.preferences.all()
-        user_categories = set()
-        for i in user_preferences:
-            if i.value != 0:
-                user_categories.add(i.category)
-
-        user_categories_all = set()
-        for i in user_categories:
-            if i not in user_categories_all:
-                user_categories_all.add(i)
-            i_ancestors = i.get_ancestors()
-            for j in range(len(i_ancestors)):
-                if i_ancestors[j] not in user_categories_all:
-                    user_categories_all.add(i_ancestors[j])
-
-        # merge the category lists
-        categories_all = this_thing_categories_all.union(user_categories_all)
-
-        divident = 0
-        divisor_inner_this = 0
-        divisor_inner_other = 0
-
-        # for each category i
-        for cat in categories_all:
-            # 1 if self has category i, 0 otherwise
-            tf_this_i = 1 if (cat in this_thing_categories_all) else 0
-
-            # 1 or -1 if user has category i, 0 otherwise
-            # get frequency of category in user preferences
-            if len(user.preferences.filter(category=cat)) > 0 and user.preferences.get(category=cat).value != 0:
-                # check if category is directly part of a user preference and if yes, get the value
-                tf_user_i = user.preferences.get(category=cat).value
-                #print(cat)
-                #print(tf_user_i)
-            else:
-                # check if a child category is a preference and
-                user_prefs_below_cat = set(cat.get_descendants(include_self=False).all()).intersection(user_categories)
-                if len(user_prefs_below_cat) > 0:
-                    # if yes, build an average of the childrens' preferences values
-                    #print(str(user_prefs_below_cat))
-                    nr_of_user_prefs_below_cat = len(user_prefs_below_cat)
-                    values_of_user_prefs_below_cat = 0
-                    for i in user_prefs_below_cat:
-                        # get the corresponding preference
-                        pref = user.preferences.get(category=i)
-                        # add up the value
-                        values_of_user_prefs_below_cat += pref.value
-                    tf_user_i = values_of_user_prefs_below_cat/nr_of_user_prefs_below_cat
-                else:
-                    tf_user_i = 0
-
-            # this approach is missing tf_user_i for the parents of preferences
-            # because parents are not selected in the profile
-            # idea: on every category, check if a child category is a preference
-            # if yes, build an average of the childrens' preferences values
-
-            # number of items classified in subtree for which the parent of i is the root
-            # (loop through all descendants of that category, including itself, and add up the things count)
-            subtree_root = None
-            if cat.is_root_node():
-                subtree_root = cat
-            else:
-                subtree_root = cat.get_ancestors(ascending=True)[0]
-            # if cat.text_id != "Root":
-            #    subtree_root = cat.get_ancestors(ascending=True)[0]
-            # else:
-            #    subtree_root = cat
-
-            n_p_i = 0
-            user_flag = 0  # prevent counting the user multiple times
-            n_p_i_things_counted = set()  # prevent counting a thing multiple times
-            for sub_cat in subtree_root.get_descendants(include_self=True):
-                # check if user has that preference
-                if sub_cat in user_categories:
-                    user_flag = 1
-                n_p_i += len((set(sub_cat.thing_set.all()) - n_p_i_things_counted))
-                n_p_i_things_counted = n_p_i_things_counted.union(set(sub_cat.thing_set.all()))
-
-            if user_flag == 1:
-                n_p_i += 1
-
-            # number of items classified in subtree for which i is the root
-            # (loop through all descendants of that category, including itself, and add up the things count)
-            n_i = 0
-            user_flag = 0  # prevent counting the user multiple times
-            n_i_things_counted = set()  # prevent counting a thing multiple times
-            for sub_cat in cat.get_descendants(include_self=True):
-                # check if user has that preference
-                if sub_cat in user_categories:
-                    user_flag = 1
-                n_i += len((set(sub_cat.thing_set.all()) - n_i_things_counted))
-                n_i_things_counted = n_i_things_counted.union(set(sub_cat.thing_set.all()))
-
-            if user_flag == 1:
-                n_i += 1
-
-            factor_this = tf_this_i * math.log(n_p_i / n_i)
-            factor_other = tf_user_i * math.log(n_p_i / n_i)
-
-            divident += factor_this * factor_other
-            divisor_inner_this += factor_this * factor_this
-            divisor_inner_other += factor_other * factor_other
-
-        if math.sqrt(divisor_inner_this) * math.sqrt(divisor_inner_other) != 0:
-            result = divident / (math.sqrt(divisor_inner_this) * math.sqrt(divisor_inner_other))
-        else:
-            result = 0
-
-        # normalize to interval [0, 1] (from [-1, 1])
-        result = (result + 1)/2
-
-        return result
-
-
 class Thing(models.Model):
     id = models.CharField(max_length=128, default=None, primary_key=True)
     title = models.CharField(max_length=128, default='New Thing')
@@ -294,7 +106,7 @@ class Thing(models.Model):
     address = models.CharField(max_length=255, blank=True)
     location = PlainLocationField(based_fields=['address'], blank=True)
     categories = TreeManyToManyField('Category', blank=True)
-    objects = ThingManager()
+    indoorsLocation = models.BooleanField(default=None, blank=True, null=True)
 
     #def clean(self):
     #    for category in self.categories.all():
@@ -313,7 +125,6 @@ class Thing(models.Model):
         if not self.pk:
             self.created_at = timezone.now()
         self.updated_at = timezone.now()
-
         self.id = '{0}-{1}-{2}'.format(self.uuid, self.major_id, self.minor_id)
 
         '''
@@ -325,6 +136,7 @@ class Thing(models.Model):
 
         try:
             self.full_clean()
+            calculate_similarity_references_per_thing(self)
         except ValidationError as e:
             pass
 
@@ -345,6 +157,7 @@ class Recommendation(models.Model):
     updated_at = models.DateTimeField(editable=False, null=True, blank=True)
     user = models.ForeignKey("User", on_delete=models.CASCADE)
     thing = models.ForeignKey("Thing", on_delete=models.CASCADE)
+    context = models.OneToOneField("Context", on_delete=models.CASCADE)
     invoke_rec = models.BooleanField(editable=False, default=False)
     score = models.FloatField(editable=False, default=0)
 
@@ -353,7 +166,7 @@ class Recommendation(models.Model):
             self.pk = uuid.uuid4()
             self.created_at = timezone.now()
         self.updated_at = timezone.now()
-        self.score = Thing.objects.get_similarity_of_user(self.thing, self.user)
+        self.score = get_recommendation_score(self.thing, self.user, self.context)
         self.invoke_rec = self.get_invoke_rec(self.score)
         super(Recommendation, self).save(*args, **kwargs)
 
@@ -374,16 +187,16 @@ class Feedback(models.Model):
     id = models.UUIDField(default=None, primary_key=True, editable=False)
     created_at = models.DateTimeField(editable=False, null=True, blank=True)
     updated_at = models.DateTimeField(editable=False, null=True, blank=True)
-    recommendation = models.ForeignKey("Recommendation", on_delete=models.CASCADE)
+    recommendation = models.OneToOneField("Recommendation", on_delete=models.CASCADE)
     value = models.IntegerField(choices=VALUE_CHOICES, default=0)
 
-    def validate_unique(self, exclude=None):
-        # reject if the given recommendation has a feedback already
-        if Feedback.objects.filter(recommendation=self.recommendation).exists():
-            raise ValidationError({'recommendation': ["The recommendation already has received feedback.", ]})
+    #def validate_unique(self, exclude=None):
+    #    # reject if the given recommendation has a feedback already
+    #    if Feedback.objects.filter(recommendation=self.recommendation).exists():
+    #        raise ValidationError({'recommendation': ["The recommendation already has received feedback.", ]})
 
     def save(self, *args, **kwargs):
-        self.validate_unique()
+    #    self.validate_unique()
         if not self.pk:
             self.pk = uuid.uuid4()
             self.created_at = timezone.now()
@@ -398,16 +211,16 @@ class Rating(models.Model):
     id = models.UUIDField(default=None, primary_key=True, editable=False)
     created_at = models.DateTimeField(editable=False, null=True, blank=True)
     updated_at = models.DateTimeField(editable=False, null=True, blank=True)
-    recommendation = models.ForeignKey("Recommendation", on_delete=models.CASCADE)
+    recommendation = models.OneToOneField("Recommendation", on_delete=models.CASCADE)
     value = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=0)
 
-    def validate_unique(self, exclude=None):
-        # reject if the given recommendation has a feedback already
-        if Rating.objects.filter(recommendation=self.recommendation).exists():
-            raise ValidationError({'recommendation': ["The recommendation already has received a rating.", ]})
+    #def validate_unique(self, exclude=None):
+    #    # reject if the given recommendation has a feedback already
+    #    if Rating.objects.filter(recommendation=self.recommendation).exists():
+    #        raise ValidationError({'recommendation': ["The recommendation already has received a rating.", ]})
 
     def save(self, *args, **kwargs):
-        self.validate_unique()
+    #    self.validate_unique()
         if not self.pk:
             self.pk = uuid.uuid4()
             self.created_at = timezone.now()
@@ -449,3 +262,125 @@ class Preference(models.Model):
 
     def __str__(self):
         return str(self.category) + " (" + str(self.value) + ")"
+
+
+class SimilarityReference(models.Model):
+    id = models.CharField(max_length=255, primary_key=True, editable=False)
+    created_at = models.DateTimeField(editable=False, null=True, blank=True)
+    updated_at = models.DateTimeField(editable=False, null=True, blank=True)
+    reference_thing = models.ForeignKey('training.ReferenceThing', on_delete=models.CASCADE)
+    thing = models.ForeignKey("Thing", on_delete=models.CASCADE)
+    similarity = models.FloatField(editable=False, default=0)
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.pk = uuid.uuid4()
+            self.created_at = timezone.now()
+        self.updated_at = timezone.now()
+        super(SimilarityReference, self).save(*args, **kwargs)
+
+
+class Stay(models.Model):
+    id = models.CharField(max_length=255, primary_key=True, editable=False)
+    created_at = models.DateTimeField(editable=False, null=True, blank=True)
+    updated_at = models.DateTimeField(editable=False, null=True, blank=True)
+    thing = models.ForeignKey("Thing", on_delete=models.CASCADE)
+    user = models.ForeignKey("User", on_delete=models.CASCADE)
+    start = models.DateTimeField(editable=True, null=True, blank=True) # TODO make non-editable
+    end = models.DateTimeField(editable=True, null=True, blank=True) # TODO make non-editable
+    last_checkin = models.DateTimeField(editable=True, null=True, blank=True) # TODO make non-editable
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.pk = uuid.uuid4()
+            self.created_at = timezone.now()
+            self.start = timezone.now()
+            self.last_checkin = timezone.now()
+        self.updated_at = timezone.now()
+        super(Stay, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return '{} ({} - {})'.format(self.pk, self.start, self.last_checkin)
+
+
+class Context(models.Model):
+    id = models.CharField(max_length=255, primary_key=True, editable=False)
+    created_at = models.DateTimeField(editable=False, null=True, blank=True)
+    updated_at = models.DateTimeField(editable=False, null=True, blank=True)
+    weather_raw = EnumChoiceField(WeatherType, null=True)
+    temperature_raw = models.IntegerField(default=0)
+    length_of_trip_raw = models.IntegerField(validators=[MinValueValidator(0)], default=0)
+    crowdedness_raw = EnumChoiceField(CrowdednessType, null=True)
+    time_of_day_raw = EnumChoiceField(TimeOfDayType, null=True)
+    weather = models.ForeignKey('training.ContextFactorValue', related_name='weather', on_delete=models.SET_NULL, null=True)
+    temperature = models.ForeignKey('training.ContextFactorValue', related_name='temperature', on_delete=models.SET_NULL, null=True)
+    length_of_trip = models.ForeignKey('training.ContextFactorValue', related_name='length_of_trip', on_delete=models.SET_NULL, null=True)
+    crowdedness = models.ForeignKey('training.ContextFactorValue', related_name='crowdedness', on_delete=models.SET_NULL, blank=True, null=True)
+    time_of_day = models.ForeignKey('training.ContextFactorValue', related_name='time_of_day', on_delete=models.SET_NULL, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.pk = uuid.uuid4()
+            self.created_at = timezone.now()
+        self.updated_at = timezone.now()
+
+        # set temperature
+        cf_temperature = ContextFactor.objects.get(title='temperature')
+        if self.temperature_raw < 0:
+            self.temperature = ContextFactorValue.objects.get(context_factor=cf_temperature, title='cold')
+        elif 0 >= self.temperature_raw < 10:
+            self.temperature = ContextFactorValue.objects.get(context_factor=cf_temperature, title='cool')
+        elif 10 >= self.temperature_raw < 20:
+            self.temperature = ContextFactorValue.objects.get(context_factor=cf_temperature, title='mild')
+        elif 20 >= self.temperature_raw < 30:
+            self.temperature = ContextFactorValue.objects.get(context_factor=cf_temperature, title='warm')
+        else:
+            self.temperature = ContextFactorValue.objects.get(context_factor=cf_temperature, title='hot')
+
+        # set length_of_trip
+        cf_length_of_trip = ContextFactor.objects.get(title='durationOfTrip')
+        if self.length_of_trip_raw <= 60:
+            self.length_of_trip = ContextFactorValue.objects.get(context_factor=cf_length_of_trip, title='upToAnHour')
+        elif 60 < self.length_of_trip_raw <= 180:
+            self.length_of_trip = ContextFactorValue.objects.get(context_factor=cf_length_of_trip, title='aFewHours')
+        else:
+            self.length_of_trip = ContextFactorValue.objects.get(context_factor=cf_length_of_trip, title='manyHours')
+
+        # set weather
+        cf_weather = ContextFactor.objects.get(title='weather')
+        if self.weather_raw == WeatherType.SUNNY:
+            self.weather = ContextFactorValue.objects.get(context_factor=cf_weather, title='sunny')
+        elif self.weather_raw == WeatherType.CLOUDY:
+            self.weather = ContextFactorValue.objects.get(context_factor=cf_weather, title='cloudy')
+        elif self.weather_raw == WeatherType.SNOWY:
+            self.weather = ContextFactorValue.objects.get(context_factor=cf_weather, title='snowy')
+        elif self.weather_raw == WeatherType.RAINY:
+            self.weather = ContextFactorValue.objects.get(context_factor=cf_weather, title='rainy')
+        elif self.weather_raw == WeatherType.WINDY:
+            self.weather = ContextFactorValue.objects.get(context_factor=cf_weather, title='windy')
+
+        # set crowdedness
+        cf_crowdedness = ContextFactor.objects.get(title='crowdedness')
+        if self.crowdedness_raw == CrowdednessType.VERY_CROWDED:
+            self.crowdedness = ContextFactorValue.objects.get(context_factor=cf_crowdedness, title='veryCrowded')
+        elif self.crowdedness_raw == CrowdednessType.MEDIUM_CROWDED:
+            self.crowdedness = ContextFactorValue.objects.get(context_factor=cf_crowdedness, title='mediumCrowded')
+        elif self.crowdedness_raw == CrowdednessType.EMPTY:
+            self.crowdedness = ContextFactorValue.objects.get(context_factor=cf_crowdedness, title='empty')
+
+        # set time of day
+        cf_time_of_day = ContextFactor.objects.get(title='timeOfDay')
+        if self.time_of_day_raw == TimeOfDayType.EARLY_MORNING:
+            self.time_of_day = ContextFactorValue.objects.get(context_factor=cf_time_of_day, title='earlyMorning')
+        elif self.time_of_day_raw == TimeOfDayType.LATE_MORNING:
+            self.time_of_day = ContextFactorValue.objects.get(context_factor=cf_time_of_day, title='lateMorning')
+        elif self.time_of_day_raw == TimeOfDayType.NOON:
+            self.time_of_day = ContextFactorValue.objects.get(context_factor=cf_time_of_day, title='noon')
+        elif self.time_of_day_raw == TimeOfDayType.AFTERNOON:
+            self.time_of_day = ContextFactorValue.objects.get(context_factor=cf_time_of_day, title='afternoon')
+        elif self.time_of_day_raw == TimeOfDayType.EVENING:
+            self.time_of_day = ContextFactorValue.objects.get(context_factor=cf_time_of_day, title='evening')
+        elif self.time_of_day_raw == TimeOfDayType.NIGHT:
+            self.time_of_day = ContextFactorValue.objects.get(context_factor=cf_time_of_day, title='night')
+
+        super(Context, self).save(*args, **kwargs)

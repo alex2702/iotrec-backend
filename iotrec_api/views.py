@@ -1,13 +1,19 @@
+import datetime
+
 from django.contrib import auth
+from django.db.models import Case, When, Q, BooleanField, Avg, F, DateTimeField, Func, ExpressionWrapper, fields, \
+    DurationField
 from django.shortcuts import render
+from django.utils import timezone
 from rest_framework.generics import get_object_or_404
 from rest_framework_jwt.views import ObtainJSONWebToken
 
 import iotrec_api
-from iotrec_api.models import Thing, Category, User, Recommendation, Feedback, Preference, Rating
+from iotrec_api.models import Thing, Category, User, Recommendation, Feedback, Preference, Rating, Context, Stay
 from iotrec_api.permissions import IsSignupOrIsAuthenticated
 from iotrec_api.serializers import ThingSerializer, CategorySerializer, CategoryFlatSerializer, \
-    RecommendationSerializer, FeedbackSerializer, PreferenceSerializer, RatingSerializer
+    RecommendationSerializer, FeedbackSerializer, PreferenceSerializer, RatingSerializer, ContextSerializer, \
+    StaySerializer
 from rest_framework import generics, viewsets, mixins
 
 from django.http import HttpResponseRedirect
@@ -16,6 +22,9 @@ from rest_framework import permissions, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+from iotrec_api.utils.context import get_time_of_day
+from iotrec_api.utils.thing import get_crowdedness
 from .serializers import UserSerializer, UserSerializerWithToken
 
 
@@ -121,6 +130,53 @@ class ThingViewSet(viewsets.ModelViewSet):
     queryset = Thing.objects.all()  # .order_by('-created_at')
     serializer_class = ThingSerializer
 
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+
+        '''
+        # get average stay time at this Thing
+        past_stays = Stay.objects.annotate(
+            is_ended=Case(
+                When(
+                    condition=Q(end__isnull=False),
+                    then=True
+                ),
+                default=False,
+                output_field=BooleanField()
+            )
+        ).filter(thing=instance, is_ended=True)
+
+        past_stays = Stay.objects.filter(end__isnull=False).all()
+
+        stay_time = ExpressionWrapper(F('end') - F('start'), output_field=DurationField())
+        avg_stay_time = past_stays.annotate(
+            stay_time=stay_time
+        ).aggregate(
+            avg_stay_time=Avg('stay_time')
+        )['avg_stay_time']
+        '''
+
+        # check if there are any active Stays for the Thing that need to be ended
+        stays = Stay.objects.filter(thing=instance, end=None).all()
+        for stay in stays:
+            # if the last checkin was more than 15 minutes ago, terminate the stay
+            if (timezone.now() - stay.last_checkin).total_seconds() > 15 * 60:
+                stay.end = stay.last_checkin
+                stay.save()
+
+        # check if there is an active Stay for the current User and Thing
+        try:
+            # if yes, update the last_checkin
+            stay = Stay.objects.get(thing=instance, user=request.user, end=None)
+            stay.last_checkin = timezone.now()
+            stay.save()
+        except Stay.DoesNotExist:
+            # if not, create a new Stay
+            Stay.objects.create(thing=instance, user=request.user)
+
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.filter(level=0)
@@ -157,10 +213,11 @@ class RecommendationViewSet(viewsets.ModelViewSet):
         return Recommendation.objects.filter(user=self.request.user)
 
     def create(self, request, *args, **kwargs):
-        #print(request.data)
+        request.data['context']['crowdedness_raw'] = get_crowdedness(request.data['thing'])
+        request.data['context']['time_of_day_raw'] = get_time_of_day(datetime.datetime.now().time())
         serializer = self.get_serializer(data={
             **request.data,
-            "user": request.user.id,
+            "user": request.user.id
         })
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
@@ -246,3 +303,43 @@ class PreferenceViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Preference.objects.filter(user=self.kwargs['user_pk'])
+
+'''
+class ContextViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows a recommendation's context to be viewed or edited.
+    """
+    serializer_class = ContextSerializer
+
+    def get_queryset(self):
+        return Context.objects.filter(recommendation=self.kwargs['recommendation_pk'])
+
+    def create(self, request, *args, **kwargs):
+        print(request.data)
+        get_crowdedness(1)
+        serializer = self.get_serializer(data={
+            **request.data,
+            "recommendation": self.kwargs['recommendation_pk'],
+            #"crowdedness": get_crowdedness()
+        })
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+'''
+
+class StayViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows a user's stays to be viewed or edited.
+    """
+    serializer_class = StaySerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data={
+            **request.data,
+            "user": request.user.id,
+        })
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)

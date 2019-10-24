@@ -31,7 +31,9 @@ INSTALLED_APPS = [
     'location_field.apps.DefaultConfig',
     'mptt',
     'training',
-    'bootstrap4'
+    'bootstrap4',
+    'django.contrib.sites',
+    'chroniker',
 ]
 
 MIDDLEWARE = [
@@ -107,7 +109,7 @@ CORS_ORIGIN_WHITELIST = (
 
 JWT_AUTH = {
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'iotrec.utils.my_jwt_response_handler',
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=604800)  # TODO make tokens expire
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=31536000) # one year
 }
 
 LOCATION_FIELD = {

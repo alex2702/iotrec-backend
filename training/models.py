@@ -2,10 +2,10 @@ import uuid
 
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.utils import timezone
 from enumchoicefield import EnumChoiceField
 from mptt.fields import TreeManyToManyField
 
-from iotrec_api.models import Category
 from iotrec_api.utils.thing import ThingType
 
 
@@ -15,7 +15,7 @@ class ReferenceThing(models.Model):
     description = models.TextField(blank=True)
     type = EnumChoiceField(ThingType, default=ThingType.BCN_I)
     image = models.ImageField(blank=True)
-    categories = TreeManyToManyField(Category, blank=True)
+    categories = TreeManyToManyField('iotrec_api.Category', blank=True)
     indoorsLocation = models.BooleanField(default=True)
     active = models.BooleanField(default=True)
 
@@ -33,7 +33,7 @@ class TrainingUser(models.Model):
 
 
 class ContextFactor(models.Model):
-    title = models.CharField(max_length=128, default='contextFactor')
+    title = models.CharField(max_length=128, default='contextFactor', editable=False, unique=True)
     display_title = models.CharField(max_length=128, default='Context Factor')
     active = models.BooleanField(default=True)
 
@@ -42,7 +42,7 @@ class ContextFactor(models.Model):
 
 
 class ContextFactorValue(models.Model):
-    title = models.CharField(max_length=128, default='factorValue')
+    title = models.CharField(max_length=128, default='factorValue', editable=False)
     display_title = models.CharField(max_length=128, default='Factor Value')
     description = models.CharField(max_length=255, default='Factor Value Description')
     context_factor = models.ForeignKey(ContextFactor, related_name='values', on_delete=models.CASCADE)
@@ -63,3 +63,25 @@ class Sample(models.Model):
 
     def __str__(self):
         return self.thing.title + "/" + self.context_factor.title + "/" + self.context_factor_value.title
+
+
+class ContextBaseline(models.Model):
+    updated_at = models.DateTimeField(editable=False, null=True, blank=True)
+    reference_thing = models.ForeignKey("ReferenceThing", on_delete=models.CASCADE)
+    context_factor = models.ForeignKey("ContextFactor", on_delete=models.CASCADE)
+    context_factor_value = models.ForeignKey("ContextFactorValue", on_delete=models.CASCADE)
+    value = models.FloatField(editable=False, default=0)
+
+    def save(self, *args, **kwargs):
+        self.updated_at = timezone.now()
+        super(ContextBaseline, self).save(*args, **kwargs)
+
+
+class ThingBaseline(models.Model):
+    updated_at = models.DateTimeField(editable=False, null=True, blank=True)
+    reference_thing = models.ForeignKey("ReferenceThing", on_delete=models.CASCADE)
+    value = models.FloatField(editable=False, default=0)
+
+    def save(self, *args, **kwargs):
+        self.updated_at = timezone.now()
+        super(ThingBaseline, self).save(*args, **kwargs)

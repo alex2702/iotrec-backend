@@ -11,6 +11,7 @@ from django.shortcuts import render, redirect
 
 from training.forms import SampleForm
 from training.models import TrainingUser, ReferenceThing, ContextFactor, Sample, ContextFactorValue
+from training.utils.baseline import calculate_baselines
 
 
 def is_combination_unambiguous(thing, context_factor, context_factor_value, min_nr_of_samples):
@@ -387,188 +388,8 @@ def get_statistics(request):
     return response
 
 def get_results(request):
-    '''
-    Perform matrix factorization to predict empty entries in a matrix.
-
-    Arguments
-        - R (ndarray)    : item-context rating matrix
-        - d (int)        : number of latent dimensions
-        - gamma (float)  : learning rate
-        - lambda (float) : regularization parameter
-    '''
-
-    def calc_mse(dataset):
-        '''
-        Compute the total mean square error
-        '''
-
-        predicted = full_matrix()
-        error = 0
-
-        #for rtId in predicted:
-        #    for cfvId in predicted[rtId]:
-        #        error += pow(R[rtId][cfvId] - predicted[rtId][cfvId], 2)
-
-        for tuple in dataset:
-            error += pow(tuple[2] - predicted[tuple[0]][tuple[1]], 2)
-
-        return np.sqrt(error)
-
-    def calc_mse_old():
-        '''
-        Compute the total mean square error
-        '''
-
-        predicted = full_matrix()
-        error = 0
-
-        for rtId in predicted:
-            for cfvId in predicted[rtId]:
-                error += pow(R[rtId][cfvId] - predicted[rtId][cfvId], 2)
-
-        return np.sqrt(error)
-
-    def sgd(dataset):
-        '''
-        Perform stochastic gradient descent
-        '''
-
-        #print(dataset)
-
-        for i, c, r in dataset:
-            #print("i: " + str(i))
-            #print("c: " + str(c))
-            #print("r: " + str(r))
-            prediction = get_rating(i, [c])
-            e = r - prediction
-
-            # update bias
-            b_i_c[i][c] += gamma * (e - lambd * b_i_c[i][c])
-
-    def get_rating(ref_thing, context_factor_values):
-        '''
-        Get the predicted rating of a given user in a given context
-        '''
-
-        print("number of context factor values: " + str(len(context_factor_values)))
-
-        sum_of_context_biases = 0
-        for cfv in context_factor_values:
-            sum_of_context_biases += b_i_c[ref_thing][cfv]
-        predicted_rating = b_i[ref_thing] + sum_of_context_biases
-
-        print("predicted rating (not normalized): " + str(predicted_rating))
-
-        # normalize
-        #minimum_rating = -1 * (1 + len(context_factor_values))
-        #maximum_rating = 1 + len(context_factor_values)
-        #predicted_rating = (predicted_rating - minimum_rating)/(maximum_rating - minimum_rating)
-
-        print("predicted rating (normalized): " + str(predicted_rating))
-
-        return predicted_rating
-
-    def full_matrix():
-        '''
-        Compute the full matrix using the resultant bias B
-        '''
-
-        #return two_dim_dict_to_matrix(b_i) + two_dim_dict_to_matrix(b_i_c)
-        full_matrix = {}
-        for rt in ref_things:
-            full_matrix[rt.id] = {}
-            for cfv in context_factor_values:
-                full_matrix[rt.id][cfv.id] = b_i[rt.id] + b_i_c[rt.id][cfv.id]
-                # normalize (number of context factor values is fixed to 1 here, the function is only used for training where it's always 1, not for making predictions)
-                #full_matrix[rt.id][cfv.id] = (full_matrix[rt.id][cfv.id] + 2) / 4
-
-        return full_matrix
-
-    def normalize_matrix(matrix_in, nr_of_context_factors):
-        matrix_out = {}
-        min_rating = -1 * (nr_of_context_factors)
-        max_rating = nr_of_context_factors
-        for i in matrix_in:
-            matrix_out[i] = {}
-            for j in matrix_in[i]:
-                matrix_out[i][j] = (matrix_in[i][j] - min_rating)/(max_rating - min_rating)
-
-        return matrix_out
-
-    def two_dim_dict_to_matrix(dict):
-        result_matrix = np.zeros(len(dict), len(list(dict)[0]))
-        for i in dict:
-            dict_in_i = list(dict)[i]
-            for j in dict_in_i:
-                result_matrix[i][j] = j
-
-        print(dict)
-        print(result_matrix)
-
-        return result_matrix
-
-
-    # collect data
-    ref_things = ReferenceThing.objects.filter(active=True)
     context_factor_values = ContextFactorValue.objects.filter(active=True)
-
-    # populate rating dataset for learning
-    R = {}
-    for rt in ref_things:
-        R[rt.id] = {}
-        for cfv in context_factor_values:
-            R[rt.id][cfv.id] = Sample.objects.filter(thing=rt, context_factor=cfv.context_factor,
-                                                     context_factor_value=cfv).aggregate(avg=Coalesce(Avg('value'), 0))['avg']
-
-    num_ref_things = len(ref_things)
-    num_context_factor_values = len(context_factor_values)
-    gamma = 0.01 # learning rate
-    lambd = 0.01 # regularization parameter
-    iterations = 1000
-
-    # initialize biases
-    b_i_c = {}
-    b_i = {}
-    for rt in ref_things:
-        # initialize item-context biases with 0
-        b_i_c[rt.id] = {}
-        for cfv in context_factor_values:
-            b_i_c[rt.id][cfv.id] = 0
-        # item bias is the average of all ratings for the item
-        b_i[rt.id] = Sample.objects.filter(thing=rt).aggregate(avg=Coalesce(Avg('value'), 0))['avg']
-
-    #print("b_i_c")
-    #print(b_i_c)
-
-    #print("b_i")
-    #print(b_i)
-
-    # create a list of the training samples
-    samples = [
-        (i.id, c.id, R[i.id][c.id])
-        for i in ref_things
-        for c in context_factor_values
-    ]
-    training_set = []
-    testing_set = []
-
-    #print(samples)
-
-    # perform stochastic gradient descent
-    training_process = []
-    training_process_string = ""
-    for it in range(iterations):
-        np.random.shuffle(samples)
-        size_of_training_set = round(len(samples) * 0.8)
-        training_set = samples[:size_of_training_set]
-        testing_set = samples[size_of_training_set:]
-
-        sgd(training_set)
-        mse_training = calc_mse(training_set)
-        mse_testing = calc_mse(testing_set)
-        training_process.append((it + 1, "{:.4f}".format(mse_training), "{:.4f}".format(mse_testing)))
-        training_process_string += "Iteration: %d - training error = %.4f - testing error = %.4f\n" % (it+1, mse_training, mse_testing)
-        #print("Iteration: %d - error = %.4f" % (it+1, mse))
+    R, b_i_c, matrix, matrix_normalized, training_process, training_process_string = calculate_baselines()
 
     print(training_process_string)
 
@@ -582,7 +403,6 @@ def get_results(request):
         headers_c += "{:9d}".format(c)
         cf_name = str(context_factor_values.get(id=c).title)
         baselines_table_header.append(str(c) + "\n" + ((cf_name[:8] + '...') if len(cf_name) > 11 else cf_name))
-    #print(headers_c)
     baselines_string += headers_c + "\n"
 
     for i in b_i_c:
@@ -615,7 +435,6 @@ def get_results(request):
         for c in R[i]:
             i_string += "{:7.3f}".format(R[i][c]) + ", "
             ratings_table_body[i][c] = ("{:.2f}".format(R[i][c]))
-        #print("R[" + str(i) + "][] = " + i_string)
         ratings_string += "R[" + str(i) + "][] = " + i_string + "\n"
 
     print(ratings_string)
@@ -624,8 +443,6 @@ def get_results(request):
     predictions_string = ""
     predictions_table_header = []
     predictions_table_body = {}
-
-    matrix = full_matrix()
 
     headers_c = "cf_value        "
     for c in matrix[list(matrix)[0]]:
@@ -651,8 +468,6 @@ def get_results(request):
     predictions_norm_table_header = []
     predictions_norm_table_body = {}
 
-    matrix_normalized = normalize_matrix(matrix, 1)
-
     for c in matrix_normalized[list(matrix_normalized)[0]]:
         cf_name = str(context_factor_values.get(id=c).title)
         predictions_norm_table_header.append(str(c) + "\n" + ((cf_name[:8] + '...') if len(cf_name) > 11 else cf_name))
@@ -661,12 +476,6 @@ def get_results(request):
         predictions_norm_table_body[i] = {}
         for c in matrix_normalized[i]:
             predictions_norm_table_body[i][c] = ("{:.2f}".format(matrix_normalized[i][c]))
-
-    #print("\n\nTEST PREDICTIONS")
-    #print("get_rating[33, [1, 8, 17, 39]] = " + str(get_rating(33, [1, 8])))
-    #print("get_rating[33, 21] = " + str(get_rating(33, [21])))
-    #print("get_rating[58, 9] = " + str(get_rating(58, [9])))
-    #print("get_rating[58, 16] = " + str(get_rating(58, [16])))
 
     response = render(request, 'results.html',
                       {

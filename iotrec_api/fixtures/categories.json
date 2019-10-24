@@ -7980,7 +7980,7 @@
       "level": 2
     },
     "type": "topic-alias",
-    "pk": "Health_Healthcare Industry",
+    "pk": "Health_HealthcareIndustry",
     "level": 2
   },
   {
@@ -8012,7 +8012,7 @@
       "level": 2
     },
     "type": "topic-alias",
-    "pk": "Home_Home Automation",
+    "pk": "Home_HomeAutomation",
     "level": 2
   },
   {
@@ -8172,7 +8172,7 @@
       "level": 2
     },
     "type": "topic-alias",
-    "pk": "Recreation_Martial Arts",
+    "pk": "Recreation_MartialArts",
     "level": 2
   },
   {
@@ -8204,7 +8204,7 @@
       "level": 2
     },
     "type": "topic-alias",
-    "pk": "Reference_Scientific Reference",
+    "pk": "Reference_ScientificReference",
     "level": 2
   },
   {
@@ -8236,7 +8236,7 @@
       "level": 2
     },
     "type": "topic-alias",
-    "pk": "Science_Computer Science",
+    "pk": "Science_ComputerScience",
     "level": 2
   },
   {
@@ -8300,7 +8300,7 @@
       "level": 2
     },
     "type": "topic-alias",
-    "pk": "Science_Artificial Life",
+    "pk": "Science_ArtificialLife",
     "level": 2
   },
   {
@@ -8316,7 +8316,7 @@
       "level": 2
     },
     "type": "topic-alias",
-    "pk": "Science_Alternative Science",
+    "pk": "Science_AlternativeScience",
     "level": 2
   },
   {
@@ -8348,7 +8348,7 @@
       "level": 2
     },
     "type": "topic-alias",
-    "pk": "Science_Artificial Intelligence",
+    "pk": "Science_ArtificialIntelligence",
     "level": 2
   },
   {
@@ -8396,7 +8396,7 @@
       "level": 2
     },
     "type": "topic-alias",
-    "pk": "Society_Social Sciences",
+    "pk": "Society_SocialSciences",
     "level": 2
   },
   {
@@ -8444,23 +8444,7 @@
       "level": 2
     },
     "type": "topic-alias",
-    "pk": "Sports_Animal Fighting",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
-      "name": "Adventure Racing",
-      "is_alias": true,
-      "parent": "Sports",
-      "alias_owner": "Sports_AdventureRacing",
-      "level": 2
-    },
-    "type": "topic-alias",
-    "pk": "Sports_Adventure Racing",
+    "pk": "Sports_AnimalFighting",
     "level": 2
   },
   {
@@ -8492,7 +8476,7 @@
       "level": 2
     },
     "type": "topic-alias",
-    "pk": "Sports_Association Football",
+    "pk": "Sports_AssociationFootball",
     "level": 2
   },
   {

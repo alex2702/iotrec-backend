@@ -3,7 +3,7 @@ from django.utils import timezone
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 from rest_framework_jwt.settings import api_settings
-from iotrec_api.models import User, Thing, Category, Recommendation, Feedback, Preference, Rating
+from iotrec_api.models import User, Thing, Category, Recommendation, Feedback, Preference, Rating, Stay, Context
 
 # from django.contrib.auth.models import User
 
@@ -130,12 +130,6 @@ class CategoryFlatSerializer(serializers.ModelSerializer):
         return data
 
 
-class RecommendationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Recommendation
-        fields = '__all__'
-
-
 class FeedbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feedback
@@ -148,4 +142,35 @@ class RatingSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class StaySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Stay
+        fields = '__all__'
 
+
+class ContextSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Context
+        fields = '__all__'
+
+
+class RecommendationSerializer(serializers.ModelSerializer):
+    context = ContextSerializer(many=False)
+
+    def create(self, validated_data):
+        context_data = validated_data.pop('context')
+        context = Context.objects.create(
+            weather_raw=context_data['weather_raw'],
+            temperature_raw=context_data['temperature_raw'],
+            length_of_trip_raw=context_data['length_of_trip_raw'],
+            crowdedness_raw=context_data['crowdedness_raw'],
+            time_of_day_raw=context_data['time_of_day_raw']
+        )
+        instance = self.Meta.model(**validated_data)
+        instance.context = context
+        instance.save()
+        return instance
+
+    class Meta:
+        model = Recommendation
+        fields = '__all__'

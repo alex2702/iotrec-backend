@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.db.models import Count
 
-from iotrec_api.models import Thing
-from training.models import ContextFactorValue, Sample, ContextFactor, TrainingUser, ReferenceThing
+from training.models import ContextFactorValue, Sample, ContextFactor, TrainingUser, ReferenceThing, ContextBaseline, \
+    ThingBaseline
 
 
 class ReferenceThingAdmin(admin.ModelAdmin):
@@ -42,7 +42,7 @@ admin.site.register(ReferenceThing, ReferenceThingAdmin)
 
 
 class ContextFactorAdmin(admin.ModelAdmin):
-    readonly_fields = ['samples_count']
+    readonly_fields = ['title', 'samples_count']
     fields = ['title', 'display_title', 'active', 'samples_count']
     list_display = ['display_title', 'active', 'samples_count']
     list_filter = ['active']
@@ -72,7 +72,7 @@ admin.site.register(ContextFactor, ContextFactorAdmin)
 
 
 class ContextFactorValueAdmin(admin.ModelAdmin):
-    readonly_fields = ['context_factor_active', 'samples_count']
+    readonly_fields = ['title', 'context_factor_active', 'samples_count']
     fields = ['title', 'display_title', 'description', 'active', 'context_factor', 'context_factor_active',
               'samples_count']
     list_display = ['display_title', 'active', 'context_factor_active', 'context_factor', 'samples_count']
@@ -135,3 +135,21 @@ class TrainingUserAdmin(admin.ModelAdmin):
 
 
 admin.site.register(TrainingUser, TrainingUserAdmin)
+
+
+class ContextBaselineAdmin(admin.ModelAdmin):
+    readonly_fields = ['reference_thing', 'context_factor', 'context_factor_value', 'value', 'updated_at']
+    fields = ['reference_thing', 'context_factor', 'context_factor_value', 'value', 'updated_at']
+    list_display = ['updated_at', 'reference_thing', 'context_factor', 'context_factor_value', 'value']
+
+
+admin.site.register(ContextBaseline, ContextBaselineAdmin)
+
+
+class ThingBaselineAdmin(admin.ModelAdmin):
+    readonly_fields = ['reference_thing', 'value', 'updated_at']
+    fields = ['reference_thing', 'value', 'updated_at']
+    list_display = ['updated_at', 'reference_thing', 'value']
+
+
+admin.site.register(ThingBaseline, ThingBaselineAdmin)

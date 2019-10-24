@@ -8,7 +8,8 @@ from django.utils.safestring import mark_safe
 from jwt.utils import force_unicode
 from mptt.admin import MPTTModelAdmin
 
-from iotrec_api.models import User, Thing, Category, Recommendation, Feedback, Preference, IotRecSettings, Rating
+from iotrec_api.models import User, Thing, Category, Recommendation, Feedback, Preference, IotRecSettings, Rating, Stay, \
+    SimilarityReference, Context
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.contrib import admin
@@ -18,6 +19,9 @@ from django import forms
 # source: https://stackoverflow.com/a/17496836
 # from iotrec_api.utils.venue import VenueChoiceField
 
+# display seconds in admin
+from django.conf.locale.en import formats as en_formats
+en_formats.DATETIME_FORMAT = "d-m-Y H:i:s"
 
 class InlineFormset(forms.models.BaseInlineFormSet):
     def clean(self):
@@ -53,7 +57,15 @@ class PreferencesInLine(admin.TabularInline):
     formset = InlineFormset
 
 
-admin.site.register(IotRecSettings)
+class IotRecSettingsAdmin(admin.ModelAdmin):
+    fields = ['recommendation_threshold', 'nr_of_reference_things_per_thing', 'category_weight', 'locality_weight', 'prediction_weight', 'context_weight']
+    list_display = ('pk', 'recommendation_threshold', 'nr_of_reference_things_per_thing', 'category_weight', 'locality_weight', 'prediction_weight', 'context_weight')
+
+    def get_readonly_fields(self, request, obj=None):
+        return ['locality_weight', 'context_weight']
+
+
+admin.site.register(IotRecSettings, IotRecSettingsAdmin)
 
 
 # source: https://stackoverflow.com/a/17496836
@@ -234,7 +246,7 @@ admin.site.register(Venue, VenueAdmin)
 
 
 class RecommendationAdmin(admin.ModelAdmin):
-    fields = ['id', 'user', 'thing', 'score', 'invoke_rec', 'created_at', 'updated_at']
+    fields = ['id', 'user', 'thing', 'context', 'score', 'invoke_rec', 'created_at', 'updated_at']
     list_display = ('id', 'created_at', 'user', 'thing', 'score', 'invoke_rec')
     ordering = ('-created_at',)
 
@@ -291,3 +303,36 @@ class PreferenceAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Preference, PreferenceAdmin)
+
+
+class SimilarityReferenceAdmin(admin.ModelAdmin):
+    fields = ['id', 'reference_thing', 'thing', 'similarity', 'created_at', 'updated_at']
+    list_display = ('id', 'reference_thing', 'thing', 'similarity')
+
+    def get_readonly_fields(self, request, obj=None):
+        return ['id', 'created_at', 'updated_at']
+
+
+admin.site.register(SimilarityReference, SimilarityReferenceAdmin)
+
+
+class StayAdmin(admin.ModelAdmin):
+    fields = ['id', 'user', 'thing', 'start', 'last_checkin', 'end', 'created_at', 'updated_at']
+    list_display = ('id', 'user', 'thing', 'start', 'last_checkin', 'end')
+
+    def get_readonly_fields(self, request, obj=None):
+        return ['id', 'created_at', 'updated_at']
+
+
+admin.site.register(Stay, StayAdmin)
+
+
+class ContextAdmin(admin.ModelAdmin):
+    fields = ['id', 'weather', 'temperature_raw', 'temperature', 'length_of_trip_raw', 'length_of_trip', 'crowdedness', 'time_of_day', 'created_at', 'updated_at']
+    list_display = ('id', 'created_at', 'weather', 'temperature', 'length_of_trip', 'crowdedness', 'time_of_day')
+
+    def get_readonly_fields(self, request, obj=None):
+        return ['id', 'created_at', 'updated_at']
+
+
+admin.site.register(Context, ContextAdmin)
