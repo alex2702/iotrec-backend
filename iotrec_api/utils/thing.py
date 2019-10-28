@@ -1,11 +1,15 @@
 import math
 from datetime import datetime, timedelta
 
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from enumchoicefield import ChoiceEnum
 
 from iotrec_api import models
 from iotrec_api.utils.context import CrowdednessType
 from django.apps import apps
+from iotrec_api.utils import similarity_reference
+
 
 class ThingType(ChoiceEnum):
     BCN_I = "Bluetooth iBeacon"
@@ -239,15 +243,15 @@ def get_context_fit(thing, context):
 
     # get the context factors
     context_factors = []
-    if context.crowdedness is not None:
+    if context.crowdedness is not None and context.crowdedness.active_in_prediction:
         context_factors.append(context.crowdedness)
-    if context.time_of_day is not None:
+    if context.time_of_day is not None and context.time_of_day.active_in_prediction:
         context_factors.append(context.time_of_day)
-    if context.temperature is not None:
+    if context.temperature is not None and context.temperature.active_in_prediction:
         context_factors.append(context.temperature)
-    if context.weather is not None:
+    if context.weather is not None and context.weather.active_in_prediction:
         context_factors.append(context.weather)
-    if context.length_of_trip is not None:
+    if context.length_of_trip is not None and context.length_of_trip.active_in_prediction:
         context_factors.append(context.length_of_trip)
 
     # if no context is given, return -1, so context gets no weight
@@ -405,3 +409,7 @@ def get_crowdedness(thing):
     else:
         return CrowdednessType.VERY_CROWDED
 
+
+@receiver(post_save, sender='iotrec_api.Thing')
+def my_handler(sender, instance, **kwargs):
+    similarity_reference.calculate_similarity_references_per_thing(instance)

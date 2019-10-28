@@ -9,7 +9,7 @@ from jwt.utils import force_unicode
 from mptt.admin import MPTTModelAdmin
 
 from iotrec_api.models import User, Thing, Category, Recommendation, Feedback, Preference, IotRecSettings, Rating, Stay, \
-    SimilarityReference, Context
+    SimilarityReference, Context, AnalyticsEvent
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.contrib import admin
@@ -201,8 +201,8 @@ class ThingAdminForm(forms.ModelForm):
 
 
 class ThingAdmin(admin.ModelAdmin):
-    fields = ['id', 'title', 'description', 'categories', 'type', 'uuid', 'major_id', 'minor_id', 'image', 'address',
-              'location', 'created_at', 'updated_at']
+    fields = ['id', 'title', 'description', 'categories', 'type', 'uuid', 'major_id', 'minor_id', 'image',
+              'indoorsLocation', 'address', 'location', 'created_at', 'updated_at']
     # fields = [field.name for field in Thing._meta.get_fields()]
     list_display = ('title', 'uuid', 'major_id', 'minor_id')
     ordering = ('-created_at',)
@@ -336,3 +336,14 @@ class ContextAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Context, ContextAdmin)
+
+
+class AnalyticsEventAdmin(admin.ModelAdmin):
+    fields = ['id', 'type', 'user', 'thing', 'recommendation', 'value', 'created_at', 'updated_at']
+    list_display = ('id', 'created_at', 'type', 'user', 'thing', 'recommendation', 'value')
+
+    def get_readonly_fields(self, request, obj=None):
+        return ['id', 'created_at', 'updated_at']
+
+
+admin.site.register(AnalyticsEvent, AnalyticsEventAdmin)

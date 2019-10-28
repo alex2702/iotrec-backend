@@ -6,20 +6,22 @@ from django.db.models import Case, When, Q, BooleanField, Avg, F, DateTimeField,
 from django.shortcuts import render
 from django.utils import timezone
 from rest_framework.generics import get_object_or_404
+from rest_framework.renderers import JSONRenderer
 from rest_framework_jwt.views import ObtainJSONWebToken
 
 import iotrec_api
-from iotrec_api.models import Thing, Category, User, Recommendation, Feedback, Preference, Rating, Context, Stay
+from iotrec_api.models import Thing, Category, User, Recommendation, Feedback, Preference, Rating, Context, Stay, \
+    AnalyticsEvent
 from iotrec_api.permissions import IsSignupOrIsAuthenticated
 from iotrec_api.serializers import ThingSerializer, CategorySerializer, CategoryFlatSerializer, \
     RecommendationSerializer, FeedbackSerializer, PreferenceSerializer, RatingSerializer, ContextSerializer, \
-    StaySerializer
+    StaySerializer, AnalyticsEventSerializer
 from rest_framework import generics, viewsets, mixins
 
-from django.http import HttpResponseRedirect
-#from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect, JsonResponse
+# from django.contrib.auth.models import User
 from rest_framework import permissions, status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, action
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -45,12 +47,11 @@ def current_user(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# @api_view(['PATCH'])
+# def update_current_user(request):
 
-#@api_view(['PATCH'])
-#def update_current_user(request):
 
-
-#class CurrentUserViewSet(viewsets.ViewSet):
+# class CurrentUserViewSet(viewsets.ViewSet):
 #    #queryset = User.objects.all()
 #    #serializer_class = UserSerializer
 #
@@ -100,11 +101,12 @@ class UserApiView(APIView):
 '''
 
 
-class UserViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, viewsets.GenericViewSet):
+class UserViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin,
+                  viewsets.GenericViewSet):
     """
     User API endpoint.
     """
-    #queryset = User.objects.all()
+    # queryset = User.objects.all()
     serializer_class = UserSerializerWithToken
     permission_classes = (IsSignupOrIsAuthenticated,)
 
@@ -118,6 +120,7 @@ class UserViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.Upd
     def get_queryset(self):
         return User.objects.filter(id=self.request.user.id)
 
+
 # class ThingListCreate(generics.ListCreateAPIView):
 #    queryset = Thing.objects.all()
 #    serializer_class = ThingSerializer
@@ -129,6 +132,17 @@ class ThingViewSet(viewsets.ModelViewSet):
     """
     queryset = Thing.objects.all()  # .order_by('-created_at')
     serializer_class = ThingSerializer
+
+    '''
+    @action(detail=True)
+    def occupation(self, request, pk=None):
+        # get the number of active stays
+        active_stays = Stay.objects.filter(thing=pk, end__isnull=True).all().count()
+        # put into dict
+        data = {}
+        data['occupation'] = active_stays
+        return JsonResponse(data)
+    '''
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -175,7 +189,10 @@ class ThingViewSet(viewsets.ModelViewSet):
             Stay.objects.create(thing=instance, user=request.user)
 
         serializer = self.get_serializer(instance)
-        return Response(serializer.data)
+        return_data = serializer.data
+        return_data['occupation'] = stays.count()
+        print(return_data)
+        return Response(return_data)
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -186,18 +203,20 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class CategoryFlatViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategoryFlatSerializer
+    authentication_classes = []
+    permission_classes = []
 
 
-#class ThingCreateAPIView(generics.CreateAPIView):
+# class ThingCreateAPIView(generics.CreateAPIView):
 #    serializer_class = ThingSerializer
 
 
-#class ThingSingleAPIView(generics.RetrieveUpdateDestroyAPIView):
+# class ThingSingleAPIView(generics.RetrieveUpdateDestroyAPIView):
 #    queryset = Thing.objects.all()
 #    serializer_class = ThingSerializer
 
 
-#class ThingListAPIView(generics.ListCreateAPIView):
+# class ThingListAPIView(generics.ListCreateAPIView):
 #    queryset = Thing.objects.all()
 #    serializer_class = ThingSerializer
 
@@ -206,7 +225,7 @@ class RecommendationViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows recommendations to be viewed or edited.
     """
-    #queryset = Recommendation.objects.all()
+    # queryset = Recommendation.objects.all()
     serializer_class = RecommendationSerializer
 
     def get_queryset(self):
@@ -219,10 +238,14 @@ class RecommendationViewSet(viewsets.ModelViewSet):
             **request.data,
             "user": request.user.id
         })
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        try:
+            if serializer.is_valid():
+                self.perform_create(serializer)
+                headers = self.get_success_headers(serializer.data)
+                return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except KeyError as e:
+            return Response("", status=status.HTTP_400_BAD_REQUEST)
 
 
 class FeedbackViewSet(viewsets.ModelViewSet):
@@ -296,13 +319,14 @@ class PreferenceViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK, headers=headers)
     '''
 
-    #def list(self, request, **kwargs):
+    # def list(self, request, **kwargs):
     #    queryset = Preference.objects.filter(user=self.kwargs['user_pk'])
     #    serializer = PreferenceSerializer(queryset, many=True)
     #    return Response(serializer.data)
 
     def get_queryset(self):
         return Preference.objects.filter(user=self.kwargs['user_pk'])
+
 
 '''
 class ContextViewSet(viewsets.ModelViewSet):
@@ -328,11 +352,26 @@ class ContextViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 '''
 
+
 class StayViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows a user's stays to be viewed or edited.
     """
     serializer_class = StaySerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data={
+            **request.data,
+            "user": request.user.id,
+        })
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
+class AnalyticsEventViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
+    serializer_class = AnalyticsEventSerializer
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data={

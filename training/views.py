@@ -182,25 +182,25 @@ def add_sample(request, context_factor=None):
 
         while True:
             try:
-                random_context_factor_1 = random.choice(ContextFactor.objects.filter(active=True))
-                random_context_factor_value_1 = random.choice(random_context_factor_1.values.filter(active=True))
+                random_context_factor_1 = random.choice(ContextFactor.objects.filter(active_in_training=True))
+                random_context_factor_value_1 = random.choice(random_context_factor_1.values.filter(active_in_training=True))
 
                 while not is_combination_qualified(user, random_thing, random_context_factor_1, random_context_factor_value_1):
-                    random_context_factor_1 = random.choice(ContextFactor.objects.filter(active=True))
-                    random_context_factor_value_1 = random.choice(random_context_factor_1.values.filter(active=True))
+                    random_context_factor_1 = random.choice(ContextFactor.objects.filter(active_in_training=True))
+                    random_context_factor_value_1 = random.choice(random_context_factor_1.values.filter(active_in_training=True))
             except IndexError:
                 continue
             break
 
         while True:
             try:
-                random_context_factor_2 = random.choice(ContextFactor.objects.filter(active=True))
-                random_context_factor_value_2 = random.choice(random_context_factor_2.values.filter(active=True)
+                random_context_factor_2 = random.choice(ContextFactor.objects.filter(active_in_training=True))
+                random_context_factor_value_2 = random.choice(random_context_factor_2.values.filter(active_in_training=True)
                                                               .exclude(pk=random_context_factor_value_1.pk))
 
                 while not is_combination_qualified(user, random_thing, random_context_factor_2, random_context_factor_value_2):
-                    random_context_factor_2 = random.choice(ContextFactor.objects.filter(active=True))
-                    random_context_factor_value_2 = random.choice(random_context_factor_2.values.filter(active=True)
+                    random_context_factor_2 = random.choice(ContextFactor.objects.filter(active_in_training=True))
+                    random_context_factor_value_2 = random.choice(random_context_factor_2.values.filter(active_in_training=True)
                                                                   .exclude(pk=random_context_factor_value_1.pk))
             except IndexError:
                 continue
@@ -208,14 +208,14 @@ def add_sample(request, context_factor=None):
 
         while True:
             try:
-                random_context_factor_3 = random.choice(ContextFactor.objects.filter(active=True))
-                random_context_factor_value_3 = random.choice(random_context_factor_3.values.filter(active=True)
+                random_context_factor_3 = random.choice(ContextFactor.objects.filter(active_in_training=True))
+                random_context_factor_value_3 = random.choice(random_context_factor_3.values.filter(active_in_training=True)
                                                               .exclude(pk=random_context_factor_value_1.pk)
                                                               .exclude(pk=random_context_factor_value_2.pk))
 
                 while not is_combination_qualified(user, random_thing, random_context_factor_3, random_context_factor_value_3):
-                    random_context_factor_3 = random.choice(ContextFactor.objects.filter(active=True))
-                    random_context_factor_value_3 = random.choice(random_context_factor_3.values.filter(active=True)
+                    random_context_factor_3 = random.choice(ContextFactor.objects.filter(active_in_training=True))
+                    random_context_factor_value_3 = random.choice(random_context_factor_3.values.filter(active_in_training=True)
                                                                   .exclude(pk=random_context_factor_value_1.pk)
                                                                   .exclude(pk=random_context_factor_value_2.pk))
             except IndexError:
@@ -224,15 +224,15 @@ def add_sample(request, context_factor=None):
 
         while True:
             try:
-                random_context_factor_4 = random.choice(ContextFactor.objects.filter(active=True))
-                random_context_factor_value_4 = random.choice(random_context_factor_4.values.filter(active=True)
+                random_context_factor_4 = random.choice(ContextFactor.objects.filter(active_in_training=True))
+                random_context_factor_value_4 = random.choice(random_context_factor_4.values.filter(active_in_training=True)
                                                               .exclude(pk=random_context_factor_value_1.pk)
                                                               .exclude(pk=random_context_factor_value_2.pk)
                                                               .exclude(pk=random_context_factor_value_3.pk))
 
                 while not is_combination_qualified(user, random_thing, random_context_factor_4, random_context_factor_value_4):
-                    random_context_factor_4 = random.choice(ContextFactor.objects.filter(active=True))
-                    random_context_factor_value_4 = random.choice(random_context_factor_4.values.filter(active=True)
+                    random_context_factor_4 = random.choice(ContextFactor.objects.filter(active_in_training=True))
+                    random_context_factor_value_4 = random.choice(random_context_factor_4.values.filter(active_in_training=True)
                                                                   .exclude(pk=random_context_factor_value_1.pk)
                                                                   .exclude(pk=random_context_factor_value_2.pk)
                                                                   .exclude(pk=random_context_factor_value_3.pk))
@@ -242,16 +242,16 @@ def add_sample(request, context_factor=None):
 
         while True:
             try:
-                random_context_factor_5 = random.choice(ContextFactor.objects.filter(active=True))
-                random_context_factor_value_5 = random.choice(random_context_factor_5.values.filter(active=True)
+                random_context_factor_5 = random.choice(ContextFactor.objects.filter(active_in_training=True))
+                random_context_factor_value_5 = random.choice(random_context_factor_5.values.filter(active_in_training=True)
                                                               .exclude(pk=random_context_factor_value_1.pk)
                                                               .exclude(pk=random_context_factor_value_2.pk)
                                                               .exclude(pk=random_context_factor_value_3.pk)
                                                               .exclude(pk=random_context_factor_value_4.pk))
 
                 while not is_combination_qualified(user, random_thing, random_context_factor_5, random_context_factor_value_5):
-                    random_context_factor_5 = random.choice(ContextFactor.objects.filter(active=True))
-                    random_context_factor_value_5 = random.choice(random_context_factor_5.values.filter(active=True)
+                    random_context_factor_5 = random.choice(ContextFactor.objects.filter(active_in_training=True))
+                    random_context_factor_value_5 = random.choice(random_context_factor_5.values.filter(active_in_training=True)
                                                                   .exclude(pk=random_context_factor_value_1.pk)
                                                                   .exclude(pk=random_context_factor_value_2.pk)
                                                                   .exclude(pk=random_context_factor_value_3.pk)
@@ -319,11 +319,11 @@ def get_statistics(request):
 
     # go through all possible combinations and check for unambiguousness
     all_things = ReferenceThing.objects.filter(active=True)
-    all_context_factors = ContextFactor.objects.filter(active=True)
+    all_context_factors = ContextFactor.objects.filter(active_in_training=True)
 
     for thing in all_things:
         for context_factor in all_context_factors:
-            cf_values = context_factor.values.filter(active=True)
+            cf_values = context_factor.values.filter(active_in_training=True)
             for cf_value in cf_values:
                 rating_avg = Sample.objects.filter(thing=thing, context_factor=context_factor,
                                     context_factor_value=cf_value).aggregate(Avg('value'))['value__avg']
@@ -388,7 +388,7 @@ def get_statistics(request):
     return response
 
 def get_results(request):
-    context_factor_values = ContextFactorValue.objects.filter(active=True)
+    context_factor_values = ContextFactorValue.objects.filter(active_in_training=True)
     R, b_i_c, matrix, matrix_normalized, training_process, training_process_string = calculate_baselines()
 
     print(training_process_string)

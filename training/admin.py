@@ -43,18 +43,26 @@ admin.site.register(ReferenceThing, ReferenceThingAdmin)
 
 class ContextFactorAdmin(admin.ModelAdmin):
     readonly_fields = ['title', 'samples_count']
-    fields = ['title', 'display_title', 'active', 'samples_count']
-    list_display = ['display_title', 'active', 'samples_count']
-    list_filter = ['active']
+    fields = ['title', 'display_title', 'active_in_training', 'active_in_prediction', 'samples_count']
+    list_display = ['display_title', 'active_in_training', 'active_in_prediction', 'samples_count']
+    list_filter = ['active_in_training', 'active_in_prediction']
 
-    def activate(self, request, queryset):
-        queryset.update(active=True)
+    def activate_in_training(self, request, queryset):
+        queryset.update(active_in_training=True)
 
-    def deactivate(self, request, queryset):
-        queryset.update(active=False)
+    def deactivate_in_training(self, request, queryset):
+        queryset.update(active_in_training=False)
 
-    activate.short_description = "Mark selected context factors as active"
-    deactivate.short_description = "Mark selected context factors as inactive"
+    def activate_in_prediction(self, request, queryset):
+        queryset.update(active_in_prediction=True)
+
+    def deactivate_in_prediction(self, request, queryset):
+        queryset.update(active_in_prediction=False)
+
+    activate_in_training.short_description = "Mark selected context factors as active for training"
+    deactivate_in_training.short_description = "Mark selected context factors as inactive for training"
+    activate_in_prediction.short_description = "Mark selected context factors as active for prediction"
+    deactivate_in_prediction.short_description = "Mark selected context factors as inactive for prediction"
 
     def get_queryset(self, request):
         return ContextFactor.objects.annotate(samples_count=Count('sample'))
@@ -65,27 +73,35 @@ class ContextFactorAdmin(admin.ModelAdmin):
     samples_count.short_description = 'Samples Count'
     samples_count.admin_order_field = 'samples_count'
 
-    actions = [activate, deactivate]
+    actions = [activate_in_training, deactivate_in_training, activate_in_prediction, deactivate_in_prediction]
 
 
 admin.site.register(ContextFactor, ContextFactorAdmin)
 
 
 class ContextFactorValueAdmin(admin.ModelAdmin):
-    readonly_fields = ['title', 'context_factor_active', 'samples_count']
-    fields = ['title', 'display_title', 'description', 'active', 'context_factor', 'context_factor_active',
+    readonly_fields = ['title', 'context_factor_active_training', 'context_factor_active_prediction', 'samples_count']
+    fields = ['title', 'display_title', 'description', 'active_in_training', 'active_in_prediction', 'context_factor', 'context_factor_active_training', 'context_factor_active_prediction',
               'samples_count']
-    list_display = ['display_title', 'active', 'context_factor_active', 'context_factor', 'samples_count']
-    list_filter = ['active']
+    list_display = ['display_title', 'active_in_training', 'active_in_prediction', 'context_factor_active_training', 'context_factor_active_prediction', 'context_factor', 'samples_count']
+    list_filter = ['active_in_training', 'active_in_prediction']
 
-    def activate(self, request, queryset):
-        queryset.update(active=True)
+    def activate_training(self, request, queryset):
+        queryset.update(active_in_training=True)
 
-    def deactivate(self, request, queryset):
-        queryset.update(active=False)
+    def deactivate_training(self, request, queryset):
+        queryset.update(active_in_training=False)
 
-    activate.short_description = "Mark selected context factor values as active"
-    deactivate.short_description = "Mark selected context factor values as inactive"
+    def activate_prediction(self, request, queryset):
+        queryset.update(active_in_prediction=True)
+
+    def deactivate_prediction(self, request, queryset):
+        queryset.update(active_in_prediction=False)
+
+    activate_training.short_description = "Mark selected context factor values as active for training"
+    deactivate_training.short_description = "Mark selected context factor values as inactive for training"
+    activate_prediction.short_description = "Mark selected context factor values as active for prediction"
+    deactivate_prediction.short_description = "Mark selected context factor values as inactive for prediction"
 
     def get_queryset(self, request):
         return ContextFactorValue.objects.annotate(samples_count=Count('sample'))
@@ -93,17 +109,23 @@ class ContextFactorValueAdmin(admin.ModelAdmin):
     def samples_count(self, obj):
         return obj.samples_count
 
-    def context_factor_active(self, obj):
-        return obj.context_factor.active
+    def context_factor_active_training(self, obj):
+        return obj.context_factor.active_in_training
 
-    context_factor_active.boolean = True
+    def context_factor_active_prediction(self, obj):
+        return obj.context_factor.active_in_prediction
+
+    context_factor_active_training.boolean = True
+    context_factor_active_prediction.boolean = True
 
     samples_count.short_description = 'Samples Count'
     samples_count.admin_order_field = 'samples_count'
-    context_factor_active.short_description = 'Context Factor Active'
-    context_factor_active.admin_order_field = 'context_factor__active'
+    context_factor_active_training.short_description = 'Context Factor Active (Training)'
+    context_factor_active_training.admin_order_field = 'context_factor__active_training'
+    context_factor_active_prediction.short_description = 'Context Factor Active (Prediction)'
+    context_factor_active_prediction.admin_order_field = 'context_factor__active_prediction'
 
-    actions = [activate, deactivate]
+    actions = [activate_training, deactivate_training, activate_prediction, deactivate_prediction]
 
 
 admin.site.register(ContextFactorValue, ContextFactorValueAdmin)

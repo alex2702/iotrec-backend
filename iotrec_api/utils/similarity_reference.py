@@ -1,6 +1,8 @@
 from iotrec_api import models
-from iotrec_api.utils.thing import get_thing_similarity
-from training.models import ReferenceThing
+from iotrec_api.utils import thing
+#from training.models import ReferenceThing
+from django.apps import apps
+
 
 
 def calculate_similarity_references():
@@ -13,15 +15,16 @@ def calculate_similarity_references():
     nr_of_top_ref_things_to_save = settings.nr_of_reference_things_per_thing
 
     things = models.Thing.objects.all()
+    ReferenceThing = apps.get_model('training.ReferenceThing')
     ref_things = ReferenceThing.objects.filter(active=True)
 
     nr_of_sr_deleted = 0
     nr_of_sr_created = 0
 
-    for thing in things:
+    for t in things:
         # calculate the similarity to all reference_things
         similarities = [
-            (ref_thing, get_thing_similarity(thing, ref_thing))
+            (ref_thing, thing.get_thing_similarity(t, ref_thing))
             for ref_thing in ref_things
         ]
 
@@ -30,18 +33,18 @@ def calculate_similarity_references():
         top_similarities = similarities[:nr_of_top_ref_things_to_save]
 
         # clear all existing similarity_references for the given thing
-        delete_result = models.SimilarityReference.objects.filter(thing=thing).delete()
+        delete_result = models.SimilarityReference.objects.filter(thing=t).delete()
         nr_of_sr_deleted += delete_result[0]
 
         # save the top N reference_things as new similarity_references
         for ref_thing, similarity in top_similarities:
-            models.SimilarityReference.objects.create(reference_thing=ref_thing, thing=thing, similarity=similarity)
+            models.SimilarityReference.objects.create(reference_thing=ref_thing, thing=t, similarity=similarity)
             nr_of_sr_created += 1
 
     return nr_of_sr_deleted, nr_of_sr_created
 
 
-def calculate_similarity_references_per_thing(thing):
+def calculate_similarity_references_per_thing(t):
     '''
     Calculates the most similar ReferenceThings for a given Thing.
     Used when a new thing is created.
@@ -51,6 +54,7 @@ def calculate_similarity_references_per_thing(thing):
     settings = models.IotRecSettings.load()
     nr_of_top_ref_things_to_save = settings.nr_of_reference_things_per_thing
 
+    ReferenceThing = apps.get_model('training.ReferenceThing')
     ref_things = ReferenceThing.objects.filter(active=True)
 
     nr_of_sr_deleted = 0
@@ -58,13 +62,13 @@ def calculate_similarity_references_per_thing(thing):
 
     # calculate the similarity to all reference_things
     similarities = [
-        (ref_thing, get_thing_similarity(thing, ref_thing))
+        (ref_thing, thing.get_thing_similarity(t, ref_thing))
         for ref_thing in ref_things
     ]
 
     # sort the results by score and truncate to N
     sorted(similarities, key=lambda elem: elem[1])
-    if thing.indoorsLocation is None:
+    if t.indoorsLocation is None:
         # go through all similarities and duplicate reference_things (by name)
         # we do this to avoid weighing the same ref_thing double, i.e. with "inside" AND "outside", even though we don't
         # know if the thing under consideration is inside or outside
@@ -84,12 +88,12 @@ def calculate_similarity_references_per_thing(thing):
     print(top_similarities)
 
     # clear all existing similarity_references for the given thing
-    delete_result = models.SimilarityReference.objects.filter(thing=thing).delete()
+    delete_result = models.SimilarityReference.objects.filter(thing=t).delete()
     nr_of_sr_deleted += delete_result[0]
 
     # save the top N reference_things as new similarity_references
     for ref_thing, similarity in top_similarities:
-        models.SimilarityReference.objects.create(reference_thing=ref_thing, thing=thing, similarity=similarity)
+        models.SimilarityReference.objects.create(reference_thing=ref_thing, thing=t, similarity=similarity)
         nr_of_sr_created += 1
 
     return nr_of_sr_deleted, nr_of_sr_created

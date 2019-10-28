@@ -86,7 +86,7 @@ def calculate_baselines():
 
     # collect data
     ref_things = ReferenceThing.objects.filter(active=True)
-    context_factor_values = ContextFactorValue.objects.filter(active=True)
+    context_factor_values = ContextFactorValue.objects.filter(active_in_training=True)
 
     # populate rating dataset for learning
     R = {}

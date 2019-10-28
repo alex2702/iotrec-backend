@@ -12,8 +12,10 @@ from enumchoicefield import ChoiceEnum, EnumChoiceField
 from location_field.models.plain import PlainLocationField
 from mptt.fields import TreeForeignKey, TreeManyToManyField
 from mptt.models import MPTTModel
-from rest_framework.exceptions import ValidationError
+from django.core.exceptions import ValidationError
+from rest_framework import exceptions
 
+from iotrec_api.utils.analyticsevent import AnalyticsEventType
 from iotrec_api.utils.context import WeatherType, TemperatureType, LengthOfTripType, CrowdednessType, TimeOfDayType
 from iotrec_api.utils.recommendation import get_recommendation_score
 from iotrec_api.utils.similarity_reference import calculate_similarity_references_per_thing
@@ -121,26 +123,16 @@ class Thing(models.Model):
     #    print("clean_categories in Thing model")
 
     def save(self, *args, **kwargs):
-        print(str(self.pk))
         if not self.pk:
             self.created_at = timezone.now()
         self.updated_at = timezone.now()
         self.id = '{0}-{1}-{2}'.format(self.uuid, self.major_id, self.minor_id)
 
-        '''
-        # go through all categories of this thing
-            # cycle through 
-        for cat in self.categories:
-            Thing.objects.all
-        '''
-
         try:
             self.full_clean()
-            calculate_similarity_references_per_thing(self)
+            super(Thing, self).save(*args, **kwargs)
         except ValidationError as e:
-            pass
-
-        super(Thing, self).save(*args, **kwargs)
+            raise exceptions.ValidationError({'id': ["Thing with this Id already exists.", ]})
 
     def __str__(self):
         return self.title
@@ -168,7 +160,14 @@ class Recommendation(models.Model):
         self.updated_at = timezone.now()
         self.score = get_recommendation_score(self.thing, self.user, self.context)
         self.invoke_rec = self.get_invoke_rec(self.score)
-        super(Recommendation, self).save(*args, **kwargs)
+
+        try:
+            self.full_clean()
+            super(Recommendation, self).save(*args, **kwargs)
+        except ValidationError as e:
+            print(e)
+            #raise exceptions.ValidationError({'id': ["Thing with this Id already exists.", ]})
+
 
     def __str__(self):
         return str(self.id)
@@ -212,7 +211,8 @@ class Rating(models.Model):
     created_at = models.DateTimeField(editable=False, null=True, blank=True)
     updated_at = models.DateTimeField(editable=False, null=True, blank=True)
     recommendation = models.OneToOneField("Recommendation", on_delete=models.CASCADE)
-    value = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=0)
+    value = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=0)
+    improvements = models.CharField(max_length=1024, null=True, blank=True)
 
     #def validate_unique(self, exclude=None):
     #    # reject if the given recommendation has a feedback already
@@ -384,3 +384,21 @@ class Context(models.Model):
             self.time_of_day = ContextFactorValue.objects.get(context_factor=cf_time_of_day, title='night')
 
         super(Context, self).save(*args, **kwargs)
+
+
+class AnalyticsEvent(models.Model):
+    id = models.CharField(max_length=255, primary_key=True, editable=False)
+    created_at = models.DateTimeField(editable=False, null=True, blank=True)
+    updated_at = models.DateTimeField(editable=False, null=True, blank=True)
+    type = EnumChoiceField(AnalyticsEventType, null=True, blank=True)
+    user = models.ForeignKey("User", on_delete=models.CASCADE, null=True, blank=True)
+    thing = models.ForeignKey("Thing", on_delete=models.CASCADE, null=True, blank=True)
+    recommendation = models.ForeignKey("Recommendation", on_delete=models.CASCADE, null=True, blank=True)
+    value = models.FloatField(default=0)
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.pk = uuid.uuid4()
+            self.created_at = timezone.now()
+        self.updated_at = timezone.now()
+        super(AnalyticsEvent, self).save(*args, **kwargs)

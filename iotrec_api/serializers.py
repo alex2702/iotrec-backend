@@ -3,7 +3,8 @@ from django.utils import timezone
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 from rest_framework_jwt.settings import api_settings
-from iotrec_api.models import User, Thing, Category, Recommendation, Feedback, Preference, Rating, Stay, Context
+from iotrec_api.models import User, Thing, Category, Recommendation, Feedback, Preference, Rating, Stay, Context, \
+    AnalyticsEvent
 
 # from django.contrib.auth.models import User
 
@@ -173,4 +174,10 @@ class RecommendationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Recommendation
+        fields = '__all__'
+
+
+class AnalyticsEventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AnalyticsEvent
         fields = '__all__'
