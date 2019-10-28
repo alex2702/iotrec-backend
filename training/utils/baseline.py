@@ -1,8 +1,9 @@
 import numpy as np
 from django.db.models import Avg
 from django.db.models.functions import Coalesce
+from django.utils import timezone
 
-from training.models import ReferenceThing, ContextFactorValue, Sample, ContextBaseline, ThingBaseline
+from training.models import ReferenceThing, ContextFactorValue, Sample, ContextBaseline, ThingBaseline, TrainingUser
 
 
 def calculate_baselines():
@@ -97,6 +98,43 @@ def calculate_baselines():
                 .objects\
                 .filter(thing=rt, context_factor=cfv.context_factor, context_factor_value=cfv)\
                 .aggregate(avg=Coalesce(Avg('value'), 0))['avg']
+
+
+
+
+            # !!!
+            # test this here, then actually remove them
+            # !!!
+
+            # temp dataset
+            dataset = Sample\
+                .objects\
+                .filter(thing=rt, context_factor=cfv.context_factor, context_factor_value=cfv)
+
+            # loop through all users
+            for user in TrainingUser.objects.all():
+                # in dataset,find all Sample combinations (thing/cf/cfv) where one user has submitted multiple
+                combination_count = dataset.filter(user=user).count()
+
+                # check if there are duplicates
+                if combination_count > 1:
+                    # go through them and find oldest
+                    oldest = timezone.now()
+                    for sample in dataset.filter(user=user):
+                        if sample.created_at < oldest:
+                            oldest = sample.created_at
+
+                    # from dataset, exclude all Samples of that combination and user where timestamp > oldest
+                    to_delete = dataset.filter(user=user, created_at__gt=oldest)
+                    dataset = dataset.exclude(user=user, created_at__gt=oldest)
+                    to_delete.delete()
+
+
+
+
+
+
+
 
     gamma = 0.01  # learning rate
     lambd = 0.01  # regularization parameter
