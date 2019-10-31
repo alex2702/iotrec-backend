@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="09f20613-1e31-44ae-99f8-83d2ab175056" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/iotrec_api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/utils/thing.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/utils/thing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/iotrec_api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -257,6 +255,7 @@
       <workItem from="1572253164684" duration="4717000" />
       <workItem from="1572517783408" duration="862000" />
       <workItem from="1572518905465" duration="4769000" />
+      <workItem from="1572547646128" duration="1963000" />
     </task>
     <servers />
   </component>

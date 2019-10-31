@@ -128,7 +128,11 @@ class Thing(models.Model):
         if not self.pk:
             self.created_at = timezone.now()
         self.updated_at = timezone.now()
-        self.id = '{0}-{1}-{2}'.format(self.uuid, self.major_id, self.minor_id)
+
+        if self.type is ThingType.BCN_I:
+            self.id = '{0}-{1}-{2}'.format(self.ibeacon_uuid, self.ibeacon_major_id, self.ibeacon_minor_id)
+        else:
+            self.id = '{0}-{1}'.format(self.eddystone_namespace_id, self.eddystone_instance_id)
 
         try:
             self.full_clean()
