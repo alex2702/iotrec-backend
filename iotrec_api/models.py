@@ -127,10 +127,11 @@ class Thing(models.Model):
     def save(self, *args, **kwargs):
         if not self.pk:
             self.created_at = timezone.now()
-            if self.type is ThingType.BCN_I:
-                self.id = '{0}-{1}-{2}'.format(self.ibeacon_uuid, self.ibeacon_major_id, self.ibeacon_minor_id)
-            else:
-                self.id = '{0}-{1}'.format(self.eddystone_namespace_id, self.eddystone_instance_id)
+
+        if self.type is ThingType.BCN_I:
+            self.id = '{0}-{1}-{2}'.format(self.ibeacon_uuid, self.ibeacon_major_id, self.ibeacon_minor_id)
+        else:
+            self.id = '{0}-{1}'.format(self.eddystone_namespace_id, self.eddystone_instance_id)
         self.updated_at = timezone.now()
 
         try:
