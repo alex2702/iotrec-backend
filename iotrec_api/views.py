@@ -239,6 +239,7 @@ class RecommendationViewSet(viewsets.ModelViewSet):
             **request.data,
             "user": request.user.id
         })
+        print(request.data)
         try:
             if serializer.is_valid():
                 self.perform_create(serializer)

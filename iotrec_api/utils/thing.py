@@ -112,7 +112,7 @@ def get_thing_similarity(this_thing, other_thing, *args, **kwargs):
 
 
 def get_thing_user_similarity(this_thing, user, *args, **kwargs):
-    print(str(timezone.now()) + " get_thing_user_similarity started")
+    #print(str(timezone.now()) + " get_thing_user_similarity started")
     # get all categories that "this_thing" is classified in
     this_thing_categories = this_thing.categories.all()
     this_thing_categories_all = set()
@@ -240,7 +240,7 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
 
 
 def get_context_fit(thing, context):
-    print(str(timezone.now()) + " get_context_fit started")
+    #print(str(timezone.now()) + " get_context_fit started")
     ThingBaseline = apps.get_model('training.ThingBaseline')
     ContextBaseline = apps.get_model('training.ContextBaseline')
 
@@ -306,27 +306,27 @@ def get_context_fit(thing, context):
 
 
 def get_utility(thing, user, context):
-    print(str(timezone.now()) + " get_utility started")
+    #print(str(timezone.now()) + " get_utility started")
     thing_user_similarity = get_thing_user_similarity(thing, user)
-    print(str(timezone.now()) + " thing_user_similarity returned")
+    #print(str(timezone.now()) + " thing_user_similarity returned")
     context_fit = get_context_fit(thing, context)
-    print(str(timezone.now()) + " context_fit returned")
+    #print(str(timezone.now()) + " context_fit returned")
 
     settings = models.IotRecSettings.load()
     prediction_weight = settings.prediction_weight
     context_weight = settings.context_weight
 
     if thing_user_similarity >= 0 and context_fit >= 0:
-        print(str(timezone.now()) + " get_utility returned")
+        #print(str(timezone.now()) + " get_utility returned")
         return prediction_weight * thing_user_similarity + context_weight * context_fit
     elif thing_user_similarity >= 0:
-        print(str(timezone.now()) + " get_utility returned")
+        #print(str(timezone.now()) + " get_utility returned")
         return prediction_weight * thing_user_similarity
     elif context_fit >= 0:
-        print(str(timezone.now()) + " get_utility returned")
+        #print(str(timezone.now()) + " get_utility returned")
         return context_weight * context_fit
     else:
-        print(str(timezone.now()) + " get_utility returned")
+        #print(str(timezone.now()) + " get_utility returned")
         return 0
 
 
