@@ -20,8 +20,9 @@ class ThingType(ChoiceEnum):
 def get_thing_similarity(this_thing, other_thing, *args, **kwargs):
     # get all categories that "this_thing" is classified in
     this_thing_categories = this_thing.categories.all()
+    this_thing_categories_count = this_thing.categories.count()
     this_thing_categories_all = set()
-    for i in range(len(this_thing_categories)):
+    for i in range(this_thing_categories_count):
         if this_thing_categories[i] not in this_thing_categories_all:
             this_thing_categories_all.add(this_thing_categories[i])
         i_ancestors = this_thing_categories[i].get_ancestors()
@@ -31,9 +32,10 @@ def get_thing_similarity(this_thing, other_thing, *args, **kwargs):
 
     # get all categories that "other" is classified in
     other_thing_categories = other_thing.categories.all()
+    other_thing_categories_count = other_thing.categories.count()
 
     other_thing_categories_all = set()
-    for i in range(len(other_thing_categories)):
+    for i in range(other_thing_categories_count):
         if other_thing_categories[i] not in other_thing_categories_all:
             other_thing_categories_all.add(other_thing_categories[i])
         i_ancestors = other_thing_categories[i].get_ancestors()
@@ -116,8 +118,9 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
 
     # get all categories that "this_thing" is classified in (i.e. also children)
     this_thing_categories = this_thing.categories.all()
+    this_thing_categories_count = this_thing.categories.count()
     this_thing_categories_all = set()
-    for i in range(len(this_thing_categories)):
+    for i in range(this_thing_categories_count):
         if this_thing_categories[i] not in this_thing_categories_all:
             this_thing_categories_all.add(this_thing_categories[i])
         i_ancestors = this_thing_categories[i].get_ancestors()
@@ -125,12 +128,16 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
             if i_ancestors[j] not in this_thing_categories_all:
                 this_thing_categories_all.add(i_ancestors[j])
 
+    print(str(timezone.now()) + " get_thing_user_similarity - marker 1")
+
     # get all categories that "user" is classified in (from their preferences)
     user_preferences = user.preferences.all()
     user_categories = set()
     for i in user_preferences:
         if i.value != 0:
             user_categories.add(i.category)
+
+    print(str(timezone.now()) + " get_thing_user_similarity - marker 2")
 
     # get children of those categories
     user_categories_all = set()
@@ -142,8 +149,12 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
             if i_ancestors[j] not in user_categories_all:
                 user_categories_all.add(i_ancestors[j])
 
+    print(str(timezone.now()) + " get_thing_user_similarity - marker 3")
+
     # merge the category lists
     categories_all = this_thing_categories_all.union(user_categories_all)
+
+    print(str(timezone.now()) + " get_thing_user_similarity - marker 4")
 
     divident = 0
     divisor_inner_this = 0
@@ -156,7 +167,7 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
 
         # 1 or -1 if user has category i, 0 otherwise
         # get frequency of category in user preferences
-        if len(user.preferences.filter(category=cat)) > 0 and user.preferences.get(category=cat).value != 0:
+        if user.preferences.filter(category=cat).count() > 0 and user.preferences.get(category=cat).value != 0:
             # check if category is directly part of a user preference and if yes, get the value
             tf_user_i = user.preferences.get(category=cat).value
             # print(cat)
@@ -177,6 +188,8 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
                 tf_user_i = values_of_user_prefs_below_cat / nr_of_user_prefs_below_cat
             else:
                 tf_user_i = 0
+
+        print(str(timezone.now()) + " get_thing_user_similarity - marker 5.1")
 
         # TODO is this true?
         # this approach is missing tf_user_i for the parents of preferences
@@ -206,6 +219,8 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
             n_p_i += len((set(sub_cat.thing_set.all()) - n_p_i_things_counted))
             n_p_i_things_counted = n_p_i_things_counted.union(set(sub_cat.thing_set.all()))
 
+        print(str(timezone.now()) + " get_thing_user_similarity - marker 5.2")
+
         if user_flag == 1:
             n_p_i += 1
 
@@ -221,6 +236,8 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
             n_i += len((set(sub_cat.thing_set.all()) - n_i_things_counted))
             n_i_things_counted = n_i_things_counted.union(set(sub_cat.thing_set.all()))
 
+        print(str(timezone.now()) + " get_thing_user_similarity - marker 5.3")
+
         if user_flag == 1:
             n_i += 1
 
@@ -231,10 +248,14 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
         divisor_inner_this += factor_this * factor_this
         divisor_inner_other += factor_other * factor_other
 
+    print(str(timezone.now()) + " get_thing_user_similarity - marker 5")
+
     if math.sqrt(divisor_inner_this) * math.sqrt(divisor_inner_other) != 0:
         result = divident / (math.sqrt(divisor_inner_this) * math.sqrt(divisor_inner_other))
     else:
         result = 0
+
+    print(str(timezone.now()) + " get_thing_user_similarity - marker 6")
 
     # normalize to interval [0, 1] (from [-1, 1])
     result = (result + 1) / 2
