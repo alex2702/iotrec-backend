@@ -201,10 +201,12 @@ class ThingAdminForm(forms.ModelForm):
 
 
 class ThingAdmin(admin.ModelAdmin):
-    fields = ['id', 'title', 'description', 'categories', 'type', 'uuid', 'major_id', 'minor_id', 'image',
+    fields = ['id', 'title', 'description', 'categories', 'type', 'ibeacon_uuid', 'ibeacon_major_id',
+              'ibeacon_minor_id', 'eddystone_namespace_id', 'eddystone_instance_id', 'image',
               'indoorsLocation', 'address', 'location', 'created_at', 'updated_at']
     # fields = [field.name for field in Thing._meta.get_fields()]
-    list_display = ('title', 'uuid', 'major_id', 'minor_id')
+    list_display = ('title', 'ibeacon_uuid', 'ibeacon_major_id', 'ibeacon_minor_id', 'eddystone_namespace_id',
+                    'eddystone_instance_id')
     ordering = ('-created_at',)
     #form = ThingAdminForm
 

@@ -5,6 +5,7 @@ from django.db.models import Case, When, Q, BooleanField, Avg, F, DateTimeField,
     DurationField
 from django.shortcuts import render
 from django.utils import timezone
+from django.utils.timezone import make_aware
 from rest_framework.generics import get_object_or_404
 from rest_framework.renderers import JSONRenderer
 from rest_framework_jwt.views import ObtainJSONWebToken
@@ -175,14 +176,14 @@ class ThingViewSet(viewsets.ModelViewSet):
         for stay in stays:
             # if the last checkin was more than 15 minutes ago, terminate the stay
             if (timezone.now() - stay.last_checkin).total_seconds() > 15 * 60:
-                stay.end = stay.last_checkin
+                stay.end = make_aware(stay.last_checkin)
                 stay.save()
 
         # check if there is an active Stay for the current User and Thing
         try:
             # if yes, update the last_checkin
             stay = Stay.objects.get(thing=instance, user=request.user, end=None)
-            stay.last_checkin = timezone.now()
+            stay.last_checkin = make_aware(timezone.now())
             stay.save()
         except Stay.DoesNotExist:
             # if not, create a new Stay
@@ -191,7 +192,7 @@ class ThingViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(instance)
         return_data = serializer.data
         return_data['occupation'] = stays.count()
-        print(return_data)
+        #print(return_data)
         return Response(return_data)
 
 
