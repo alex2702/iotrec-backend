@@ -1,10 +1,12 @@
 import pdb
 
+from django.contrib.admin.actions import delete_selected
 from django.db.models import Count
 from django.forms import Select, SelectMultiple
 from django.utils.encoding import smart_text
 from django.utils.html import conditional_escape, escape
 from django.utils.safestring import mark_safe
+from django.utils.translation import ugettext_lazy
 from jwt.utils import force_unicode
 from mptt.admin import MPTTModelAdmin
 
@@ -21,6 +23,9 @@ from django import forms
 
 # display seconds in admin
 from django.conf.locale.en import formats as en_formats
+
+from iotrec_api.utils import similarity_reference
+
 en_formats.DATETIME_FORMAT = "d-m-Y H:i:s"
 
 class InlineFormset(forms.models.BaseInlineFormSet):
@@ -101,7 +106,10 @@ class ThingsInLine(admin.TabularInline):
 # admin.site.register(Category, CategoryAdmin)
 
 class CategoryAdmin(MPTTModelAdmin):
-    list_display = ('name', 'text_id', 'is_alias', 'get_alias_owner_full')
+    list_display = ('name', 'text_id', 'nr_of_items_recursive', 'is_alias', 'get_alias_owner_full')
+
+    def get_readonly_fields(self, request, obj=None):
+        return ['nr_of_items_recursive']
 
     def get_queryset(self, request):
         return Category.objects.exclude(text_id="Root")
@@ -171,6 +179,7 @@ class ThingAdminForm(forms.ModelForm):
         self.fields['categories'] = forms.ChoiceField(choices=choices, widget=SelectMultipleWithDisabled)
         # self.fields['categories'] = forms.ModelChoiceField(queryset=Category.objects.all(), widget=SelectMultipleWithDisabled)
 
+    '''
     def clean_categories(self):
         print("clean_categories")
         print(self.__dict__)
@@ -188,7 +197,9 @@ class ThingAdminForm(forms.ModelForm):
             print(string_categories[i])
 
         super(ThingAdminForm, self).clean()
+    '''
 
+    '''
     def save(self, commit=True):
         self.full_clean()
         print("save")
@@ -198,9 +209,49 @@ class ThingAdminForm(forms.ModelForm):
         # instance.publication = Publication.objects.get(pk=pub)
         instance.save(commit)
         return instance
+    '''
 
 
-class ThingAdmin(admin.ModelAdmin):
+class BulkDeleteMixin(object):
+    class SafeDeleteQuerysetWrapper(object):
+        def __init__(self, wrapped_queryset):
+            self.wrapped_queryset = wrapped_queryset
+
+        def _safe_delete(self):
+            for obj in self.wrapped_queryset:
+                categories = set(obj.categories.all())
+                obj.delete()
+                for cat in categories:
+                    cat.save()
+
+        def __getattr__(self, attr):
+            if attr == 'delete':
+                return self._safe_delete
+            else:
+                return getattr(self.wrapped_queryset, attr, None)
+
+        def __iter__(self):
+            for obj in self.wrapped_queryset:
+                yield obj
+
+        def __getitem__(self, index):
+            return self.wrapped_queryset[index]
+
+        def __len__(self):
+            return len(self.wrapped_queryset)
+
+    def get_actions(self, request):
+        #actions = super(BulkDeleteMixin, self).get_actions(request)
+        actions = getattr(super(BulkDeleteMixin, self), "get_actions")(request)
+        actions['delete_selected'] = (BulkDeleteMixin.action_safe_bulk_delete, 'delete_selected', ugettext_lazy("Delete selected %(verbose_name_plural)s"))
+        return actions
+
+    def action_safe_bulk_delete(self, request, queryset):
+        wrapped_queryset = BulkDeleteMixin.SafeDeleteQuerysetWrapper(queryset)
+        return delete_selected(self, request, wrapped_queryset)
+
+
+class ThingAdmin(BulkDeleteMixin, admin.ModelAdmin):
     fields = ['id', 'title', 'description', 'categories', 'type', 'ibeacon_uuid', 'ibeacon_major_id',
               'ibeacon_minor_id', 'eddystone_namespace_id', 'eddystone_instance_id', 'image',
               'indoorsLocation', 'address', 'location', 'created_at', 'updated_at']
@@ -222,6 +273,28 @@ class ThingAdmin(admin.ModelAdmin):
 
     def get_readonly_fields(self, request, obj=None):
         return ['id', 'created_at', 'updated_at']
+
+    def save_related(self, request, form, formsets, change):
+        old_categories = set(form.instance.categories.all())
+
+        super(ThingAdmin, self).save_related(request, form, formsets, change)
+
+        new_categories = set(form.instance.categories.all())
+
+        for old_cat in old_categories:
+            old_cat.save()
+        for new_cat in new_categories:
+            new_cat.save()
+
+        #similarity_reference.calculate_similarity_references_per_thing(form.instance)
+
+    def delete_model(self, request, obj):
+        categories = set(obj.categories.all())
+
+        super(ThingAdmin, self).delete_model(self, obj)
+
+        for cat in categories:
+            cat.save()
 
     """"
     def formfield_for_foreignkey(self, db_field, request, **kwargs):

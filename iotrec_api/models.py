@@ -1,5 +1,6 @@
 import math
 import uuid as uuid
+from time import sleep
 
 from django.contrib.auth.models import AbstractUser
 from django.core.cache import cache
@@ -66,7 +67,10 @@ class Category(MPTTModel):
     alias_owner = TreeForeignKey('self', null=True, blank=True, related_name='target', db_index=True,
                                  on_delete=models.CASCADE)
     #nr_of_items_flat = models.IntegerField(default=0) # TODO maybe use this to make calculations more efficient?
-    #nr_of_items_recursive = models.IntegerField(default=0) # TODO maybe use this to make calculations more efficient?
+    nr_of_items_recursive = models.IntegerField(default=0)
+
+    #def save(self, *args, **kwargs):
+    #    super(Category, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -94,6 +98,7 @@ class Venue(models.Model):
     image = models.ImageField(blank=True)
 """
 
+
 class Thing(models.Model):
     id = models.CharField(max_length=128, default=None, primary_key=True)
     title = models.CharField(max_length=128, default='New Thing')
@@ -111,6 +116,11 @@ class Thing(models.Model):
     location = PlainLocationField(based_fields=['address'], blank=True)
     categories = TreeManyToManyField('Category', blank=True)
     indoorsLocation = models.BooleanField(default=None, blank=True, null=True)
+
+    #def clean(self):
+    #    print("clean")
+    #    print(self.categories.all())
+    #    super(Thing, self).clean()
 
     #def clean(self):
     #    for category in self.categories.all():

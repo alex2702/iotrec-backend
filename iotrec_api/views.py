@@ -26,6 +26,8 @@ from rest_framework.decorators import api_view, action
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from iotrec_api.utils import similarity_reference
+from iotrec_api.utils.category import calc_items_in_cat_full
 from iotrec_api.utils.context import get_time_of_day
 from iotrec_api.utils.thing import get_crowdedness
 from .serializers import UserSerializer, UserSerializerWithToken
@@ -120,7 +122,7 @@ class UserViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.Upd
 
     def get_queryset(self):
         queryset = User.objects.filter(id=self.request.user.id)
-        queryset = self.get_serializer_class().setup_eager_loading(queryset)
+        #queryset = self.get_serializer_class().setup_eager_loading(queryset)
         return queryset
 
 
@@ -146,6 +148,48 @@ class ThingViewSet(viewsets.ModelViewSet):
         data['occupation'] = active_stays
         return JsonResponse(data)
     '''
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+
+        instance = serializer.instance
+        for cat in instance.categories.all():
+            cat.save()
+
+        #calc_items_in_cat_full()
+
+        similarity_reference.calculate_similarity_references_per_thing(instance)
+
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+
+        categories_before = set(instance.categories.all())
+
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        categories_after = set(instance.categories.all())
+
+        print("categories_before: " + str(categories_before))
+
+        for cat in (categories_before | categories_after):
+            cat.save()
+
+        similarity_reference.calculate_similarity_references_per_thing(instance)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+
+        return Response(serializer.data)
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -233,7 +277,7 @@ class RecommendationViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = Recommendation.objects.filter(user=self.request.user)
-        queryset = self.get_serializer_class().setup_eager_loading(queryset)
+        #queryset = self.get_serializer_class().setup_eager_loading(queryset)
         return queryset
 
     def create(self, request, *args, **kwargs):
