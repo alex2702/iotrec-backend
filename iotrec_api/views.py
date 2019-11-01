@@ -119,7 +119,9 @@ class UserViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.Upd
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get_queryset(self):
-        return User.objects.filter(id=self.request.user.id)
+        queryset = User.objects.filter(id=self.request.user.id)
+        queryset = self.get_serializer_class().setup_eager_loading(queryset)
+        return queryset
 
 
 # class ThingListCreate(generics.ListCreateAPIView):
@@ -230,7 +232,9 @@ class RecommendationViewSet(viewsets.ModelViewSet):
     serializer_class = RecommendationSerializer
 
     def get_queryset(self):
-        return Recommendation.objects.filter(user=self.request.user)
+        queryset = Recommendation.objects.filter(user=self.request.user)
+        queryset = self.get_serializer_class().setup_eager_loading(queryset)
+        return queryset
 
     def create(self, request, *args, **kwargs):
         request.data['context']['crowdedness_raw'] = get_crowdedness(request.data['thing'])

@@ -38,6 +38,12 @@ class PreferenceSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     preferences = PreferenceSerializer(many=True)
 
+    @staticmethod
+    def setup_eager_loading(cls, queryset):
+        """ Perform necessary eager loading of data. """
+        queryset = queryset.prefetch_related('preferences')
+        return queryset
+
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'preferences')
@@ -175,6 +181,12 @@ class RecommendationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recommendation
         fields = '__all__'
+
+    @staticmethod
+    def setup_eager_loading(queryset):
+        """ Perform necessary eager loading of data. """
+        queryset = queryset.select_related('context')
+        return queryset
 
 
 class AnalyticsEventSerializer(serializers.ModelSerializer):

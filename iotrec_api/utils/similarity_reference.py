@@ -57,6 +57,8 @@ def calculate_similarity_references_per_thing(t):
     ReferenceThing = apps.get_model('training.ReferenceThing')
     ref_things = ReferenceThing.objects.filter(active=True)
 
+    print("got the ref things")
+
     nr_of_sr_deleted = 0
     nr_of_sr_created = 0
 
@@ -66,10 +68,12 @@ def calculate_similarity_references_per_thing(t):
         for ref_thing in ref_things
     ]
 
+    print("got the similarities")
+
     # sort the results by score and truncate to N
     sorted(similarities, key=lambda elem: elem[1])
     if t.indoorsLocation is None:
-        # go through all similarities and duplicate reference_things (by name)
+        # go through all similarities and find duplicate reference_things (by name)
         # we do this to avoid weighing the same ref_thing double, i.e. with "inside" AND "outside", even though we don't
         # know if the thing under consideration is inside or outside
         ref_thing_names_found = []
@@ -95,5 +99,7 @@ def calculate_similarity_references_per_thing(t):
     for ref_thing, similarity in top_similarities:
         models.SimilarityReference.objects.create(reference_thing=ref_thing, thing=t, similarity=similarity)
         nr_of_sr_created += 1
+
+    print("created similarity_references")
 
     return nr_of_sr_deleted, nr_of_sr_created

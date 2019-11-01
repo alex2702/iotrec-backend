@@ -132,6 +132,7 @@ class Thing(models.Model):
             self.id = '{0}-{1}-{2}'.format(self.ibeacon_uuid, self.ibeacon_major_id, self.ibeacon_minor_id)
         else:
             self.id = '{0}-{1}'.format(self.eddystone_namespace_id, self.eddystone_instance_id)
+
         self.updated_at = timezone.now()
 
         try:
@@ -247,7 +248,7 @@ class Preference(models.Model):
     id = models.CharField(max_length=255, primary_key=True, editable=False)
     created_at = models.DateTimeField(editable=False, null=True, blank=True)
     updated_at = models.DateTimeField(editable=False, null=True, blank=True)
-    category = TreeForeignKey("Category", on_delete=models.CASCADE)
+    category = TreeForeignKey("Category", related_name="preferences", on_delete=models.CASCADE)
     value = models.IntegerField(choices=VALUE_CHOICES, default=0)
     user = models.ForeignKey("User", related_name="preferences", on_delete=models.CASCADE)
 
