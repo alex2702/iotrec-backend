@@ -77,6 +77,14 @@ def get_thing_similarity(this_thing, ref_thing, *args, **kwargs):
     this_thing_categories_all = this_thing_categories_all.distinct()
     ref_thing_categories_all = ref_thing_categories_all.distinct()
 
+    print("thing=" + str(this_thing))
+    print("ref_thing=" + str(ref_thing))
+    print("this_thing_categories_immediate=" + str(this_thing_categories_immediate))
+    print("this_thing_categories_all=" + str(this_thing_categories_all))
+    print("ref_thing_categories_immediate=" + str(ref_thing_categories_immediate))
+    print("ref_thing_categories_all=" + str(ref_thing_categories_all))
+    print("categories_all=" + str(categories_all))
+
     #print("get_thing_similarity - query marker 5: " + str(len(connection.queries)))
 
     divident = 0
@@ -144,6 +152,8 @@ def get_thing_similarity(this_thing, ref_thing, *args, **kwargs):
         #print("get_thing_similarity - query marker 6.4: " + str(len(connection.queries)))
 
         #print("query marker 4.6: " + str(len(connection.queries)))
+
+        print("tf_this_i=" + str(tf_this_i) + ", tf_other_i=" + str(tf_other_i) + ", n_p_i=" + str(n_p_i) + ", n_i=" + str(n_i))
 
         factor_this = tf_this_i * math.log(n_p_i / n_i)
         factor_other = tf_other_i * math.log(n_p_i / n_i)
