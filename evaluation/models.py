@@ -27,7 +27,8 @@ class Experiment(models.Model):
 class Question(models.Model):
     created_at = models.DateTimeField(editable=False, null=True, blank=True)
     updated_at = models.DateTimeField(editable=False, null=True, blank=True)
-    title = models.CharField(max_length=255)
+    short_name = models.CharField(max_length=255)
+    text = models.CharField(max_length=255)
 
     def save(self, *args, **kwargs):
         if not self.pk:

@@ -261,7 +261,7 @@ class BulkDeleteMixin(object):
 
 
 class ThingAdmin(BulkDeleteMixin, admin.ModelAdmin):
-    fields = ['id', 'title', 'description', 'categories_assigned', 'categories', 'type', 'ibeacon_uuid', 'ibeacon_major_id',
+    fields = ['id', 'title', 'description', 'categories', 'type', 'ibeacon_uuid', 'ibeacon_major_id',
               'ibeacon_minor_id', 'eddystone_namespace_id', 'eddystone_instance_id', 'scenario', 'image',
               'indoorsLocation', 'address', 'location', 'created_at', 'updated_at']
     # fields = [field.name for field in Thing._meta.get_fields()]

@@ -1,3 +1,4 @@
+import random
 import uuid as uuid
 
 import numpy as np
@@ -14,7 +15,7 @@ from mptt.models import MPTTModel
 from django.core.exceptions import ValidationError
 from rest_framework import exceptions
 
-from evaluation.models import Experiment
+from evaluation.models import Experiment, Scenario
 from iotrec_api.utils.context import WeatherType, CrowdednessType, TimeOfDayType
 from iotrec_api.utils.recommendation import get_recommendation_score
 from iotrec_api.utils.thing import ThingType
@@ -92,17 +93,20 @@ class User(AbstractUser):
             (False, False)
         ]
 
-        np.random.shuffle(experiments)
+        scenarios = sorted(Scenario.objects.all(), key=lambda x: random.random())
 
-        for index, (context_act, preferences_act) in enumerate(experiments, start=1):
-            Experiment.objects.create(
-                user=self,
-                context_active=context_act,
-                preferences_active=preferences_act,
-                order=index,
-                completed=False,
-                ongoing=False
-            )
+        print(scenarios)
+
+        for sc in scenarios:
+            np.random.shuffle(experiments)
+            for index, (context_act, preferences_act) in enumerate(experiments, start=1):
+                Experiment.objects.create(
+                    user=self,
+                    context_active=context_act,
+                    preferences_active=preferences_act,
+                    order=index,
+                    scenario=sc
+                )
 
 
 
@@ -163,7 +167,7 @@ class Thing(models.Model):
             self.id = '{0}-{1}'.format(self.eddystone_namespace_id, self.eddystone_instance_id)
 
         if self.scenario is not None:
-            self.id += self.id + '-' + self.scenario.text_id
+            self.id = self.id + '-' + self.scenario.text_id
 
         self.updated_at = timezone.now()
 

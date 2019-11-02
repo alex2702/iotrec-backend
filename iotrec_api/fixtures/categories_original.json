@@ -165,6 +165,22 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
+      "name": "Regional",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Root",
+      "level": 1
+    },
+    "type": "topic",
+    "pk": "Regional",
+    "level": 1
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
       "name": "Science",
       "is_alias": false,
       "alias_owner": null,
@@ -309,6 +325,22 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
+      "name": "Chats and Forums",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Arts",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Arts_ChatsandForums",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
       "name": "Classical Studies",
       "is_alias": false,
       "alias_owner": null,
@@ -437,6 +469,22 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
+      "name": "Directories",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Arts",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Arts_Directories",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
       "name": "Education",
       "is_alias": false,
       "alias_owner": null,
@@ -477,6 +525,22 @@
     },
     "type": "topic",
     "pk": "Arts_Events",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Genres",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Arts",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Arts_Genres",
     "level": 2
   },
   {
@@ -693,6 +757,22 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
+      "name": "Personal Pages",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Arts",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Arts_PersonalPages",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
       "name": "Photography",
       "is_alias": false,
       "alias_owner": null,
@@ -781,6 +861,38 @@
     },
     "type": "topic",
     "pk": "Arts_VisualArts",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Weblogs",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Arts",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Arts_Weblogs",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Web Rings",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Arts",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Arts_WebRings",
     "level": 2
   },
   {
@@ -1021,6 +1133,22 @@
     },
     "type": "topic",
     "pk": "Business_CustomerService",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Directories",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Business",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Business_Directories",
     "level": 2
   },
   {
@@ -1757,6 +1885,22 @@
     },
     "type": "topic",
     "pk": "Computers_DesktopPublishing",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Directories",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Computers",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Computers_Directories",
     "level": 2
   },
   {
@@ -2789,6 +2933,22 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
+      "name": "Directories",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Health",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Health_Directories",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
       "name": "Education",
       "is_alias": false,
       "alias_owner": null,
@@ -3509,6 +3669,22 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
+      "name": "Weblogs",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Home",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Home_Weblogs",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
       "name": "Alternative",
       "is_alias": false,
       "alias_owner": null,
@@ -3550,7 +3726,71 @@
     "type": "topic",
     "pk": "News_BreakingNews",
     "level": 2
-  }
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "By Category",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "News",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "News_ByCategory",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "By Region",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "News",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "News_ByRegion",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "By Subject",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "News",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "News_BySubject",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Chats and Forums",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "News",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "News_ChatsandForums",
+    "level": 2
+  },
   {
     "model": "iotrec_api.category",
     "fields": {
@@ -3589,6 +3829,22 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
+      "name": "Directories",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "News",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "News_Directories",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
       "name": "Extended Coverage",
       "is_alias": false,
       "alias_owner": null,
@@ -3597,6 +3853,22 @@
     },
     "type": "topic",
     "pk": "News_ExtendedCoverage",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Headline Links",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "News",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "News_HeadlineLinks",
     "level": 2
   },
   {
@@ -3749,6 +4021,22 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
+      "name": "Weblogs",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "News",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "News_Weblogs",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
       "name": "Antiques",
       "is_alias": false,
       "alias_owner": null,
@@ -3885,6 +4173,22 @@
     },
     "type": "topic",
     "pk": "Recreation_Collecting",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Directories",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Recreation",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Recreation_Directories",
     "level": 2
   },
   {
@@ -4109,6 +4413,22 @@
     },
     "type": "topic",
     "pk": "Recreation_Pets",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Picture Ratings",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Recreation",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Recreation_PictureRatings",
     "level": 2
   },
   {
@@ -4357,6 +4677,22 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
+      "name": "Directories",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Reference",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Reference_Directories",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
       "name": "Education",
       "is_alias": false,
       "alias_owner": null,
@@ -4597,6 +4933,182 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
+      "name": "Africa",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Regional",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Regional_Africa",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Asia",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Regional",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Regional_Asia",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Caribbean",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Regional",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Regional_Caribbean",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Central America",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Regional",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Regional_CentralAmerica",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Countries",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Regional",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Regional_Countries",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Europe",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Regional",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Regional_Europe",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Middle East",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Regional",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Regional_MiddleEast",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "North America",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Regional",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Regional_NorthAmerica",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Oceania",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Regional",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Regional_Oceania",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Polar Regions",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Regional",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Regional_PolarRegions",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "South America",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Regional",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Regional_SouthAmerica",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
       "name": "Academic Departments",
       "is_alias": false,
       "alias_owner": null,
@@ -4670,7 +5182,39 @@
     "type": "topic",
     "pk": "Science_Biology",
     "level": 2
-  }
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "By Region",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Science",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Science_ByRegion",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Chats and Forums",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Science",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Science_ChatsandForums",
+    "level": 2
+  },
   {
     "model": "iotrec_api.category",
     "fields": {
@@ -4685,6 +5229,22 @@
     },
     "type": "topic",
     "pk": "Science_Chemistry",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Directories",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Science",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Science_Directories",
     "level": 2
   },
   {
@@ -5045,6 +5605,22 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
+      "name": "By Region",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Shopping",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Shopping_ByRegion",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
       "name": "Children",
       "is_alias": false,
       "alias_owner": null,
@@ -5133,6 +5709,22 @@
     },
     "type": "topic",
     "pk": "Shopping_DeathCare",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Directories",
+      "is_alias": false,
+      "alias_owner": null,
+      "parent": "Shopping",
+      "level": 2
+    },
+    "type": "topic",
+    "pk": "Shopping_Directories",
     "level": 2
   },
   {
@@ -7309,6 +7901,614 @@
     },
     "type": "topic",
     "pk": "Sports_YouthandHighSchool",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Antiques",
+      "is_alias": true,
+      "parent": "Arts",
+      "alias_owner": "Recreation_Antiques",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Arts_Antiques",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Newsgroups",
+      "is_alias": true,
+      "parent": "Computers",
+      "alias_owner": "Computers_Usenet",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Computers_Newsgroups",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Games",
+      "is_alias": true,
+      "parent": "Computers",
+      "alias_owner": "Games_VideoGames",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Computers_Games",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "CCGs",
+      "is_alias": true,
+      "parent": "Games",
+      "alias_owner": "Games_TradingCardGames",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Games_CCGs",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Healthcare Industry",
+      "is_alias": true,
+      "parent": "Health",
+      "alias_owner": "Business_Healthcare",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Health_HealthcareIndustry",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Disabilities",
+      "is_alias": true,
+      "parent": "Health",
+      "alias_owner": "Society_Disabled",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Health_Disabilities",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Home Automation",
+      "is_alias": true,
+      "parent": "Home",
+      "alias_owner": "Computers_HomeAutomation",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Home_HomeAutomation",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Pets",
+      "is_alias": true,
+      "parent": "Home",
+      "alias_owner": "Recreation_Pets",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Home_Pets",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Shopping",
+      "is_alias": true,
+      "parent": "Home",
+      "alias_owner": "Shopping_HomeandGarden",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Home_Shopping",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Journals",
+      "is_alias": true,
+      "parent": "News",
+      "alias_owner": "Reference_Journals",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "News_Journals",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Gambling",
+      "is_alias": true,
+      "parent": "Recreation",
+      "alias_owner": "Games_Gambling",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Recreation_Gambling",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Games",
+      "is_alias": true,
+      "parent": "Recreation",
+      "alias_owner": "Games",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Recreation_Games",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Gardening",
+      "is_alias": true,
+      "parent": "Recreation",
+      "alias_owner": "Home_Gardening",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Recreation_Gardening",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Bowling",
+      "is_alias": true,
+      "parent": "Recreation",
+      "alias_owner": "Sports_Bowling",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Recreation_Bowling",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Sports",
+      "is_alias": true,
+      "parent": "Recreation",
+      "alias_owner": "Sports",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Recreation_Sports",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Crafts",
+      "is_alias": true,
+      "parent": "Recreation",
+      "alias_owner": "Arts_Crafts",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Recreation_Crafts",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Martial Arts",
+      "is_alias": true,
+      "parent": "Recreation",
+      "alias_owner": "Sports_MartialArts",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Recreation_MartialArts",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Genealogy",
+      "is_alias": true,
+      "parent": "Recreation",
+      "alias_owner": "Society_Genealogy",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Recreation_Genealogy",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Scientific Reference",
+      "is_alias": true,
+      "parent": "Reference",
+      "alias_owner": "Science_Reference",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Reference_ScientificReference",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Advice",
+      "is_alias": true,
+      "parent": "Reference",
+      "alias_owner": "Society_Advice",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Reference_Advice",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Computer Science",
+      "is_alias": true,
+      "parent": "Science",
+      "alias_owner": "Computers_ComputerScience",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Science_ComputerScience",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Astronomy",
+      "is_alias": true,
+      "parent": "Science",
+      "alias_owner": "Science_Astronomy",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Science_Astronomy",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Agriculture",
+      "is_alias": true,
+      "parent": "Science",
+      "alias_owner": "Science_Agriculture",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Science_Agriculture",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Architecture",
+      "is_alias": true,
+      "parent": "Science",
+      "alias_owner": "Arts_Architecture",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Science_Architecture",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Artificial Life",
+      "is_alias": true,
+      "parent": "Science",
+      "alias_owner": "Computers_ArtificialLife",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Science_ArtificialLife",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Alternative Science",
+      "is_alias": true,
+      "parent": "Science",
+      "alias_owner": "Science_AnomaliesandAlternativeScience",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Science_AlternativeScience",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Algorithms",
+      "is_alias": true,
+      "parent": "Science",
+      "alias_owner": "Computers_Algorithms",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Science_Algorithms",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Artificial Intelligence",
+      "is_alias": true,
+      "parent": "Science",
+      "alias_owner": "Computers_ArtificialIntelligence",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Science_ArtificialIntelligence",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Wholesale",
+      "is_alias": true,
+      "parent": "Shopping",
+      "alias_owner": "Business_WholesaleTrade",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Shopping_Wholesale",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Computers",
+      "is_alias": true,
+      "parent": "Shopping",
+      "alias_owner": "Computers_Shopping",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Shopping_Computers",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Social Sciences",
+      "is_alias": true,
+      "parent": "Society",
+      "alias_owner": "Science_SocialSciences",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Society_SocialSciences",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Education",
+      "is_alias": true,
+      "parent": "Society",
+      "alias_owner": "Reference_Education",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Society_Education",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Shopping",
+      "is_alias": true,
+      "parent": "Sports",
+      "alias_owner": "Shopping_Sports",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Sports_Shopping",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Animal Fighting",
+      "is_alias": true,
+      "parent": "Sports",
+      "alias_owner": "Sports_AnimalSports",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Sports_AnimalFighting",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Airsoft",
+      "is_alias": true,
+      "parent": "Sports",
+      "alias_owner": "Sports_Airsoft",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Sports_Airsoft",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Association Football",
+      "is_alias": true,
+      "parent": "Sports",
+      "alias_owner": "Sports_Soccer",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Sports_AssociationFootball",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Athletics",
+      "is_alias": true,
+      "parent": "Sports",
+      "alias_owner": "Sports_TrackandField",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Sports_Athletics",
+    "level": 2
+  },
+  {
+    "model": "iotrec_api.category",
+    "fields": {
+      "lft": 0,
+      "rght": 0,
+      "tree_id": 0,
+      "name": "Archery",
+      "is_alias": true,
+      "parent": "Sports",
+      "alias_owner": "Sports_Archery",
+      "level": 2
+    },
+    "type": "topic-alias",
+    "pk": "Sports_Archery",
     "level": 2
   }
 ]

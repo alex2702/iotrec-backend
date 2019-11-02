@@ -1,0 +1,122 @@
+[
+  {
+    "model": "evaluation.question",
+    "pk": 1,
+    "fields": {
+      "created_at": "2019-11-02T21:22:26.710Z",
+      "updated_at": "2019-11-02T21:26:42.285Z",
+      "short_name": "accuracy",
+      "text": "The items recommended to me matched my interests."
+    }
+  },
+  {
+    "model": "evaluation.question",
+    "pk": 2,
+    "fields": {
+      "created_at": "2019-11-02T21:23:25.910Z",
+      "updated_at": "2019-11-02T21:26:32.726Z",
+      "short_name": "relative_accuracy",
+      "text": "The recommendation I received better fits my interests than what I may receive from a friend."
+    }
+  },
+  {
+    "model": "evaluation.question",
+    "pk": 3,
+    "fields": {
+      "created_at": "2019-11-02T21:23:41.486Z",
+      "updated_at": "2019-11-02T21:23:41.486Z",
+      "short_name": "familiarity",
+      "text": "Some of the recommended items are familiar to me."
+    }
+  },
+  {
+    "model": "evaluation.question",
+    "pk": 4,
+    "fields": {
+      "created_at": "2019-11-02T21:23:52.898Z",
+      "updated_at": "2019-11-02T21:23:52.898Z",
+      "short_name": "novelty",
+      "text": "The items recommended to me are novel and interesting."
+    }
+  },
+  {
+    "model": "evaluation.question",
+    "pk": 5,
+    "fields": {
+      "created_at": "2019-11-02T21:24:07.681Z",
+      "updated_at": "2019-11-02T21:24:07.681Z",
+      "short_name": "diversity",
+      "text": "The items recommended to me are diverse."
+    }
+  },
+  {
+    "model": "evaluation.question",
+    "pk": 6,
+    "fields": {
+      "created_at": "2019-11-02T21:24:25.177Z",
+      "updated_at": "2019-11-02T21:24:25.177Z",
+      "short_name": "context_compatibility",
+      "text": "The items recommended to me took my personal context requirements into consideration."
+    }
+  },
+  {
+    "model": "evaluation.question",
+    "pk": 7,
+    "fields": {
+      "created_at": "2019-11-02T21:24:54.563Z",
+      "updated_at": "2019-11-02T21:24:54.563Z",
+      "short_name": "ease_of_pref_elicitation",
+      "text": "I found it easy to tell the system about my preferences."
+    }
+  },
+  {
+    "model": "evaluation.question",
+    "pk": 8,
+    "fields": {
+      "created_at": "2019-11-02T21:25:08.657Z",
+      "updated_at": "2019-11-02T21:25:08.657Z",
+      "short_name": "ease_of_decision_making",
+      "text": "I was able to take advantage of the recommender very quickly."
+    }
+  },
+  {
+    "model": "evaluation.question",
+    "pk": 9,
+    "fields": {
+      "created_at": "2019-11-02T21:25:26.880Z",
+      "updated_at": "2019-11-02T21:25:26.880Z",
+      "short_name": "perceived_usefulness",
+      "text": "I feel supported to find what I like with the help of the recommender."
+    }
+  },
+  {
+    "model": "evaluation.question",
+    "pk": 10,
+    "fields": {
+      "created_at": "2019-11-02T21:25:39.931Z",
+      "updated_at": "2019-11-02T21:25:39.931Z",
+      "short_name": "control_transparency",
+      "text": "I feel in control of telling the recommender what I want."
+    }
+  },
+  {
+    "model": "evaluation.question",
+    "pk": 11,
+    "fields": {
+      "created_at": "2019-11-02T21:25:54.083Z",
+      "updated_at": "2019-11-02T21:25:54.083Z",
+      "short_name": "attitudes",
+      "text": "Overall, I am satisfied with the recommender."
+    }
+  },
+  {
+    "model": "evaluation.question",
+    "pk": 12,
+    "fields": {
+      "created_at": "2019-11-02T21:26:14.214Z",
+      "updated_at": "2019-11-02T21:26:14.214Z",
+      "short_name": "continuance_frequency",
+      "text": "I will use this recommender again."
+    }
+  }
+]

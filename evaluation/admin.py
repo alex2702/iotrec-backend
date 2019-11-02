@@ -15,8 +15,8 @@ admin.site.register(Experiment, ExperimentAdmin)
 
 
 class QuestionAdmin(admin.ModelAdmin):
-    fields = ['id', 'title', 'created_at', 'updated_at']
-    list_display = ['id', 'title', 'created_at', 'updated_at']
+    fields = ['id', 'short_name', 'text', 'created_at', 'updated_at']
+    list_display = ['id', 'short_name', 'text', 'created_at', 'updated_at']
 
     def get_readonly_fields(self, request, obj=None):
         return ['id', 'created_at', 'updated_at']

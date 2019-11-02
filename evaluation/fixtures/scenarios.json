@@ -1,0 +1,20 @@
+[
+  {
+    "model": "evaluation.scenario",
+    "pk": "museum",
+    "fields": {
+      "created_at": "2019-11-01T00:00:00.000Z",
+      "updated_at": "2019-11-01T00:00:00.000Z",
+      "title": "Museum"
+    }
+  },
+  {
+    "model": "evaluation.scenario",
+    "pk": "jobfair",
+    "fields": {
+      "created_at": "2019-11-01T00:00:00.000Z",
+      "updated_at": "2019-11-01T00:00:00.000Z",
+      "title": "Job Fair"
+    }
+  }
+]

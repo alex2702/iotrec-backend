@@ -7,7 +7,7 @@ from training.models import ContextFactorValue, Sample, ContextFactor, TrainingU
 
 class ReferenceThingAdmin(admin.ModelAdmin):
     readonly_fields = ['samples_count']
-    fields = ['title', 'description', 'indoorsLocation', 'categories_assigned', 'categories', 'type', 'image', 'active', 'samples_count']
+    fields = ['title', 'description', 'indoorsLocation', 'categories', 'type', 'image', 'active', 'samples_count']
     list_display = ['title', 'description', 'indoorsLocation', 'active', 'samples_count', 'categories_assigned']
     list_filter = ['active', 'indoorsLocation']
 
