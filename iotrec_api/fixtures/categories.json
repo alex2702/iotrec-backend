@@ -3550,7 +3550,7 @@
     "type": "topic",
     "pk": "News_BreakingNews",
     "level": 2
-  }
+  },
   {
     "model": "iotrec_api.category",
     "fields": {
@@ -4670,7 +4670,7 @@
     "type": "topic",
     "pk": "Science_Biology",
     "level": 2
-  }
+  },
   {
     "model": "iotrec_api.category",
     "fields": {
