@@ -63,16 +63,19 @@ def get_thing_similarity(this_thing, ref_thing, *args, **kwargs):
     #print("get_thing_similarity - query marker 2: " + str(len(connection.queries)))
 
     for node, meta in tree_item_iterator(this_thing_categories_immediate):
-        this_thing_categories_all = (this_thing_categories_all | node.get_ancestors()).distinct()
+        this_thing_categories_all = (this_thing_categories_all | node.get_ancestors())
 
     #print("get_thing_similarity - query marker 3: " + str(len(connection.queries)))
 
     for node, meta in tree_item_iterator(ref_thing_categories_immediate):
-        ref_thing_categories_all = (ref_thing_categories_all | node.get_ancestors()).distinct()
+        ref_thing_categories_all = (ref_thing_categories_all | node.get_ancestors())
 
     #print("get_thing_similarity - query marker 4: " + str(len(connection.queries)))
 
     categories_all = (this_thing_categories_all | ref_thing_categories_all).distinct()
+
+    this_thing_categories_all = this_thing_categories_all.distinct()
+    ref_thing_categories_all = ref_thing_categories_all.distinct()
 
     #print("get_thing_similarity - query marker 5: " + str(len(connection.queries)))
 

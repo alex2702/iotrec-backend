@@ -2,34 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09f20613-1e31-44ae-99f8-83d2ab175056" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/evaluation/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evaluation/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evaluation/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evaluation/fixtures/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evaluation/fixtures/questions.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evaluation/fixtures/scenarios.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evaluation/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evaluation/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evaluation/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evaluation/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evaluation/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iotrec_api/fixtures/things.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iotrec_api/management/commands/calculatethingcounts.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec/settings/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec/settings/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/fixtures/jobs.json" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/fixtures/jobs.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/migrations/0010_analyticsevent.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/migrations/0010_analyticsevent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/utils/analyticsevent.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/utils/analyticsevent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/utils/category.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/utils/category.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/utils/similarity_reference.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/utils/similarity_reference.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/iotrec_api/utils/thing.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/utils/thing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/admin.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -293,6 +267,7 @@
       <workItem from="1572702282889" duration="812000" />
       <workItem from="1572703404267" duration="1132000" />
       <workItem from="1572716819649" duration="2210000" />
+      <workItem from="1572721565296" duration="635000" />
     </task>
     <servers />
   </component>
