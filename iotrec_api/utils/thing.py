@@ -153,7 +153,7 @@ def get_thing_similarity(this_thing, ref_thing, *args, **kwargs):
 
         #print("query marker 4.6: " + str(len(connection.queries)))
 
-        print("tf_this_i=" + str(tf_this_i) + ", tf_other_i=" + str(tf_other_i) + ", n_p_i=" + str(n_p_i) + ", n_i=" + str(n_i))
+        print("cat=" + str(cat) + ", tf_this_i=" + str(tf_this_i) + ", tf_other_i=" + str(tf_other_i) + ", n_p_i=" + str(n_p_i) + ", n_i=" + str(n_i))
 
         factor_this = tf_this_i * math.log(n_p_i / n_i)
         factor_other = tf_other_i * math.log(n_p_i / n_i)
