@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'django.contrib.sites',
     'chroniker',
+    'evaluation'
 ]
 
 MIDDLEWARE = [

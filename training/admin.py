@@ -7,8 +7,8 @@ from training.models import ContextFactorValue, Sample, ContextFactor, TrainingU
 
 class ReferenceThingAdmin(admin.ModelAdmin):
     readonly_fields = ['samples_count']
-    fields = ['title', 'description', 'indoorsLocation', 'categories', 'type', 'image', 'active', 'samples_count']
-    list_display = ['title', 'description', 'indoorsLocation', 'active', 'samples_count']
+    fields = ['title', 'description', 'indoorsLocation', 'categories_assigned', 'categories', 'type', 'image', 'active', 'samples_count']
+    list_display = ['title', 'description', 'indoorsLocation', 'active', 'samples_count', 'categories_assigned']
     list_filter = ['active', 'indoorsLocation']
 
     class Media:
@@ -34,6 +34,12 @@ class ReferenceThingAdmin(admin.ModelAdmin):
 
     samples_count.short_description = 'Samples Count'
     samples_count.admin_order_field = 'samples_count'
+
+    def categories_assigned(self, obj):
+        return obj.categories.count()
+
+    categories_assigned.short_description = 'Categories Assigned'
+    categories_assigned.admin_order_field = 'categories_assigned'
 
     actions = [activate, deactivate]
 

@@ -21,8 +21,10 @@ class ThingType(ChoiceEnum):
     BCN_EDDY = "Bluetooth Eddystone Beacon"
 
 
-def get_thing_similarity(this_thing, other_thing, *args, **kwargs):
-    #print("query marker 1: " + str(len(connection.queries)))
+def get_thing_similarity(this_thing, ref_thing, *args, **kwargs):
+    #print("get_thing_similarity - query marker 1: " + str(len(connection.queries)))
+
+    '''
     # get all categories that "this_thing" is classified in
     this_thing_categories = this_thing.categories.all()
     this_thing_categories_count = this_thing.categories.count()
@@ -36,42 +38,65 @@ def get_thing_similarity(this_thing, other_thing, *args, **kwargs):
             if i_ancestors[j] not in this_thing_categories_all:
                 this_thing_categories_all.add(i_ancestors[j])
 
-    #print("query marker 2: " + str(len(connection.queries)))
-
     # get all categories that "other" is classified in
-    other_thing_categories = other_thing.categories.all()
-    other_thing_categories_count = other_thing.categories.count()
+    ref_thing_categories = ref_thing.categories.all()
+    ref_thing_categories_count = ref_thing.categories.count()
 
-    other_thing_categories_all = set()
-    for i in range(other_thing_categories_count):
-        if other_thing_categories[i] not in other_thing_categories_all:
-            other_thing_categories_all.add(other_thing_categories[i])
-        i_ancestors = other_thing_categories[i].get_ancestors()
+    ref_thing_categories_all = set()
+    for i in range(ref_thing_categories_count):
+        if ref_thing_categories[i] not in ref_thing_categories_all:
+            ref_thing_categories_all.add(ref_thing_categories[i])
+        i_ancestors = ref_thing_categories[i].get_ancestors()
         for j in range(len(i_ancestors)):
-            if i_ancestors[j] not in other_thing_categories_all:
-                other_thing_categories_all.add(i_ancestors[j])
-
-    #print("query marker 3: " + str(len(connection.queries)))
+            if i_ancestors[j] not in ref_thing_categories_all:
+                ref_thing_categories_all.add(i_ancestors[j])
 
     # merge the category lists
-    categories_all = this_thing_categories_all.union(other_thing_categories_all)
-    #print(categories_all)
+    categories_all = this_thing_categories_all.union(ref_thing_categories_all)
+    '''
+
+    this_thing_categories_immediate = models.Category.objects.filter(thing=this_thing)
+    this_thing_categories_all = this_thing_categories_immediate
+    ref_thing_categories_immediate = models.Category.objects.filter(referencething=ref_thing)
+    ref_thing_categories_all = ref_thing_categories_immediate
+
+    #print("get_thing_similarity - query marker 2: " + str(len(connection.queries)))
+
+    for node, meta in tree_item_iterator(this_thing_categories_immediate):
+        this_thing_categories_all = (this_thing_categories_all | node.get_ancestors()).distinct()
+
+    #print("get_thing_similarity - query marker 3: " + str(len(connection.queries)))
+
+    for node, meta in tree_item_iterator(ref_thing_categories_immediate):
+        ref_thing_categories_all = (ref_thing_categories_all | node.get_ancestors()).distinct()
+
+    #print("get_thing_similarity - query marker 4: " + str(len(connection.queries)))
+
+    categories_all = (this_thing_categories_all | ref_thing_categories_all).distinct()
+
+    #print("get_thing_similarity - query marker 5: " + str(len(connection.queries)))
 
     divident = 0
     divisor_inner_this = 0
     divisor_inner_other = 0
 
-    #print("query marker 4: " + str(len(connection.queries)))
+    #print("get_thing_similarity - query marker 6: " + str(len(connection.queries)))
+    #print(categories_all)
 
     # for each category i
     for cat in categories_all:
+        #print("get_thing_similarity - query marker 6.1: " + str(len(connection.queries)))
         #print("checking cat " + str(cat))
         #print("query marker 4.1: " + str(len(connection.queries)))
         # 1 if self has category i, 0 otherwise
         tf_this_i = 1 if (cat in this_thing_categories_all) else 0
 
+        #print("get_thing_similarity - query marker 6.2: " + str(len(connection.queries)))
+
         # 1 if other has category i, 0 otherwise
-        tf_other_i = 1 if (cat in other_thing_categories_all) else 0
+        tf_other_i = 1 if (cat in ref_thing_categories_all) else 0
+
+        #print("get_thing_similarity - query marker 6.3: " + str(len(connection.queries)))
 
         '''
         # number of items classified in subtree for which the parent of i is the root
@@ -113,6 +138,8 @@ def get_thing_similarity(this_thing, other_thing, *args, **kwargs):
         else:
             n_p_i = cat.parent.nr_of_items_recursive
 
+        #print("get_thing_similarity - query marker 6.4: " + str(len(connection.queries)))
+
         #print("query marker 4.6: " + str(len(connection.queries)))
 
         factor_this = tf_this_i * math.log(n_p_i / n_i)
@@ -121,6 +148,10 @@ def get_thing_similarity(this_thing, other_thing, *args, **kwargs):
         divident += factor_this * factor_other
         divisor_inner_this += factor_this * factor_this
         divisor_inner_other += factor_other * factor_other
+
+        #print("get_thing_similarity - query marker 6.5: " + str(len(connection.queries)))
+
+    #print("get_thing_similarity - query marker 7: " + str(len(connection.queries)))
 
     if math.sqrt(divisor_inner_this) * math.sqrt(divisor_inner_other) != 0:
         category_result = divident / (math.sqrt(divisor_inner_this) * math.sqrt(divisor_inner_other))
@@ -131,8 +162,8 @@ def get_thing_similarity(this_thing, other_thing, *args, **kwargs):
     #result = (result + 1) / 2 # shouldn't be necessary because things don't have anti-preferences
 
     locality_result = -1
-    if this_thing.indoorsLocation is not None and other_thing.indoorsLocation is not None:
-        if this_thing.indoorsLocation == other_thing.indoorsLocation:
+    if this_thing.indoorsLocation is not None and ref_thing.indoorsLocation is not None:
+        if this_thing.indoorsLocation == ref_thing.indoorsLocation:
             locality_result = 1
         else:
             locality_result = 0
@@ -216,20 +247,20 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
     categories_user = categories_user_immediate
 
     for node, meta in tree_item_iterator(categories_thing):
-        categories_thing = categories_thing | node.get_ancestors()
+        categories_thing = (categories_thing | node.get_ancestors()).distinct()
 
     for node, meta in tree_item_iterator(categories_user):
-        categories_user = categories_user | node.get_ancestors()
+        categories_user = (categories_user | node.get_ancestors()).distinct()
 
-    categories_all = categories_thing | categories_user
+    categories_all = (categories_thing | categories_user).distinct()
 
     #print(str(timezone.now()) + " get_thing_user_similarity - marker 2")
 
-    #print(str(categories_thing_immediate))
-    #print(str(categories_thing))
-    #print(str(categories_user_immediate))
-    #print(str(categories_user))
-    #print(str(categories_all))
+    print(str(categories_thing_immediate))
+    print(str(categories_thing))
+    print(str(categories_user_immediate))
+    print(str(categories_user))
+    print(str(categories_all))
 
     #print(str(timezone.now()) + " get_thing_user_similarity - marker 4")
 
@@ -265,89 +296,8 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
             else:
                 tf_user_i = 0
 
-        #print("query marker 3: " + str(len(connection.queries)))
-
-        #print(str(timezone.now()) + " get_thing_user_similarity - marker 5.1")
-
-        #print("tf_user_i=" + str(tf_user_i))
-        #print("tf_this_i=" + str(tf_this_i))
-
-        # TODO is this true?
-        # this approach is missing tf_user_i for the parents of preferences
-        # because parents are not selected in the profile
-        # idea: on every category, check if a child category is a preference
-        # if yes, build an average of the childrens' preferences values
-
         # number of items classified in subtree for which the parent of i is the root
         # (loop through all descendants of that category, including itself, and add up the things count)
-        #subtree_root = None
-        #if cat.is_root_node():
-        #    subtree_root = cat
-        #else:
-        #    subtree_root = cat.get_ancestors(ascending=True)[0]
-
-
-        #print("query marker 4: " + str(len(connection.queries)))
-
-
-
-
-
-        '''
-        n_p_i = 0
-        user_flag = 0  # prevent counting the user multiple times
-        n_p_i_things_counted = set()  # prevent counting a thing multiple times
-        print("query marker 4.1: " + str(len(connection.queries)))
-        for sub_cat in subtree_root.get_descendants(include_self=True):
-            print("query marker 4.2: " + str(len(connection.queries)))
-            # check if user has that preference
-            if sub_cat in categories_user:
-                user_flag = 1
-            if sub_cat.thing_set.count() > 0:
-                sub_cat_things = set(sub_cat.thing_set.all())
-                print("query marker 4.3: " + str(len(connection.queries)))
-                #print(str(sub_cat))
-                #print(str(sub_cat.thing_set.all()))
-                #print(str(n_p_i_things_counted))
-                n_p_i += len((sub_cat_things - n_p_i_things_counted))
-                n_p_i_things_counted = n_p_i_things_counted.union(sub_cat_things)
-            print("query marker 4.4: " + str(len(connection.queries)))
-
-        print("query marker 5: " + str(len(connection.queries)))
-
-        print(str(timezone.now()) + " get_thing_user_similarity - marker 5.2")
-
-        if user_flag == 1:
-            n_p_i += 1
-
-        # number of items classified in subtree for which i is the root
-        # (loop through all descendants of that category, including itself, and add up the things count)
-        print("query marker 6: " + str(len(connection.queries)))
-        n_i = 0
-        user_flag = 0  # prevent counting the user multiple times
-        n_i_things_counted = set()  # prevent counting a thing multiple times
-        print("query marker 6.1: " + str(len(connection.queries)))
-        for sub_cat in cat.get_descendants(include_self=True):
-            print("query marker 6.2: " + str(len(connection.queries)))
-            # check if user has that preference
-            if sub_cat in categories_user:
-                user_flag = 1
-            if sub_cat.thing_set.count() > 0:
-                sub_cat_things = set(sub_cat.thing_set.all())
-                print("query marker 6.3: " + str(len(connection.queries)))
-                n_i += len((sub_cat_things - n_i_things_counted))
-                n_i_things_counted = n_i_things_counted.union(sub_cat_things)
-            print("query marker 6.4: " + str(len(connection.queries)))
-
-        if user_flag == 1:
-            n_i += 1
-        '''
-
-
-
-
-
-
         n_i = cat.nr_of_items_recursive
         if (cat.get_descendants(include_self=True) & categories_user).count() > 0:
             n_i += 1 # increase because user has one of the categories
@@ -359,60 +309,6 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
             n_p_i = parent.nr_of_items_recursive
             if (parent.get_descendants(include_self=True) & categories_user).count() > 0:
                 n_p_i += 1  # increase because user has one of the categories
-
-        #print("n_i=" + str(n_i))
-        #print("n_p_i=" + str(n_p_i))
-
-
-
-        '''
-        # (loop through all descendants of that category, including itself, and add up the things count)
-        n_i = 0     # number of items classified in subtree for which i is the root
-        n_p_i = 0   # number of items classified in subtree for which the parent of i is the root
-        user_flag_n_i = 0  # prevent counting the user multiple times
-        user_flag_n_p_i = 0  # prevent counting the user multiple times
-        n_i_things_counted = set()  # prevent counting a thing multiple times
-        n_p_i_things_counted = set()  # prevent counting a thing multiple times
-        print("query marker 6: " + str(len(connection.queries)))
-        cat_descendants = cat.get_descendants(include_self=True)
-
-        for sub_cat in subtree_root.get_descendants(include_self=True):
-            sub_cat_things_n_p_i = set(sub_cat.thing_set.all())
-            # check if user has that preference
-            if sub_cat in categories_user:
-                user_flag_n_p_i = 1
-            n_p_i += len((sub_cat_things_n_p_i - n_p_i_things_counted))
-            n_p_i_things_counted = n_p_i_things_counted.union(sub_cat_things_n_p_i)
-
-            if sub_cat in cat_descendants:
-                #sub_sub_cat = cat_descendants.get(category=sub_cat)
-                sub_cat_things_n_i = set(sub_cat.thing_set.all())
-                # check if user has that preference
-                if sub_cat in categories_user:
-                    user_flag_n_i = 1
-                n_i += len((sub_cat_things_n_i - n_i_things_counted))
-                n_i_things_counted = n_i_things_counted.union(sub_cat_things_n_i)
-
-        if user_flag_n_i == 1:
-            n_i += 1
-
-        if user_flag_n_p_i == 1:
-            n_p_i += 1
-        '''
-
-
-
-
-
-
-
-
-
-
-
-
-        #print("query marker 7: " + str(len(connection.queries)))
-        #print(str(timezone.now()) + " get_thing_user_similarity - marker 5.3")
 
         #print("cat=" + str(cat) + ", tf_this_i=" + str(tf_this_i) + ", tf_user_i=" + str(tf_user_i) + ", n_p_i=" + str(n_p_i) + ", n_i=" + str(n_i))
 
@@ -524,16 +420,16 @@ def get_utility(thing, user, context):
 
     if thing_user_similarity >= 0 and context_fit >= 0:
         #print(str(timezone.now()) + " get_utility returned")
-        return prediction_weight * thing_user_similarity + context_weight * context_fit
+        return thing_user_similarity, context_fit, (prediction_weight * thing_user_similarity + context_weight * context_fit)
     elif thing_user_similarity >= 0:
         #print(str(timezone.now()) + " get_utility returned")
-        return prediction_weight * thing_user_similarity
+        return thing_user_similarity, 0, (prediction_weight * thing_user_similarity)
     elif context_fit >= 0:
         #print(str(timezone.now()) + " get_utility returned")
-        return context_weight * context_fit
+        return 0, context_fit, (context_weight * context_fit)
     else:
         #print(str(timezone.now()) + " get_utility returned")
-        return 0
+        return 0, 0, 0
 
 
 
@@ -625,14 +521,3 @@ def get_crowdedness(thing):
         return CrowdednessType.MEDIUM_CROWDED
     else:
         return CrowdednessType.VERY_CROWDED
-
-
-@receiver(post_delete, sender='iotrec_api.Thing')
-def my_handler(sender, instance, **kwargs):
-    pass
-    #print("sender")
-    #print(sender.__dict__)
-    #print("instance")
-    #print(instance.__dict__)
-    #calc_items_in_cat_from_thing(instance) # TODO possible to only run on API request?
-    #similarity_reference.calculate_similarity_references_per_thing(instance) # TODO possible to only run on API request?

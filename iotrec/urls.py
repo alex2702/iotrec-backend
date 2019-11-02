@@ -24,7 +24,8 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('iotrec_api.urls')),
-    path('training/', include('training.urls'))
+    path('training/', include('training.urls')),
+    path('api/', include('evaluation.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

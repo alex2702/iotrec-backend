@@ -11,12 +11,11 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework_jwt.views import ObtainJSONWebToken
 
 import iotrec_api
-from iotrec_api.models import Thing, Category, User, Recommendation, Feedback, Preference, Rating, Context, Stay, \
-    AnalyticsEvent
+from iotrec_api.models import Thing, Category, User, Recommendation, Feedback, Preference, Rating, Context, Stay
 from iotrec_api.permissions import IsSignupOrIsAuthenticated
 from iotrec_api.serializers import ThingSerializer, CategorySerializer, CategoryFlatSerializer, \
     RecommendationSerializer, FeedbackSerializer, PreferenceSerializer, RatingSerializer, ContextSerializer, \
-    StaySerializer, AnalyticsEventSerializer
+    StaySerializer
 from rest_framework import generics, viewsets, mixins
 
 from django.http import HttpResponseRedirect, JsonResponse
@@ -27,7 +26,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from iotrec_api.utils import similarity_reference
-from iotrec_api.utils.category import calc_items_in_cat_full
+from iotrec_api.utils.category import calc_items_in_cat_full, calc_items_in_cat_list
 from iotrec_api.utils.context import get_time_of_day
 from iotrec_api.utils.thing import get_crowdedness
 from .serializers import UserSerializer, UserSerializerWithToken
@@ -155,8 +154,9 @@ class ThingViewSet(viewsets.ModelViewSet):
         self.perform_create(serializer)
 
         instance = serializer.instance
-        for cat in instance.categories.all():
-            cat.save()
+        #for cat in instance.categories.all():
+        #    cat.save()
+        calc_items_in_cat_list(instance.categories.all())
 
         #calc_items_in_cat_full()
 
@@ -177,10 +177,9 @@ class ThingViewSet(viewsets.ModelViewSet):
 
         categories_after = set(instance.categories.all())
 
-        print("categories_before: " + str(categories_before))
-
-        for cat in (categories_before | categories_after):
-            cat.save()
+        #for cat in (categories_before | categories_after):
+        #    cat.save()
+        calc_items_in_cat_list((categories_before | categories_after))
 
         similarity_reference.calculate_similarity_references_per_thing(instance)
 
@@ -420,15 +419,4 @@ class StayViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
-class AnalyticsEventViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
-    serializer_class = AnalyticsEventSerializer
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data={
-            **request.data,
-            "user": request.user.id,
-        })
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)

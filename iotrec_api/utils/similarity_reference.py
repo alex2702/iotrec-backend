@@ -1,3 +1,6 @@
+from django.db import connection
+from django.utils import timezone
+
 from iotrec_api import models
 from iotrec_api.utils import thing
 #from training.models import ReferenceThing
@@ -51,13 +54,17 @@ def calculate_similarity_references_per_thing(t):
     The number of "most similar" ReferenceThings to be saved N is determined by the configuration.
     '''
 
+    #print("query marker 1: " + str(len(connection.queries)))
+    #print(str(timezone.now()) + " - started calculating reference similarities")
+
     settings = models.IotRecSettings.load()
     nr_of_top_ref_things_to_save = settings.nr_of_reference_things_per_thing
 
     ReferenceThing = apps.get_model('training.ReferenceThing')
     ref_things = ReferenceThing.objects.filter(active=True)
 
-    print("got the ref things")
+    #print("query marker 2: " + str(len(connection.queries)))
+    #print(str(timezone.now()) + " - got the reference things")
 
     nr_of_sr_deleted = 0
     nr_of_sr_created = 0
@@ -68,7 +75,8 @@ def calculate_similarity_references_per_thing(t):
         for ref_thing in ref_things
     ]
 
-    print("got the similarities")
+    #print("query marker 3: " + str(len(connection.queries)))
+    #print(str(timezone.now()) + " - got the similarities")
 
     # sort the results by score and truncate to N
     sorted(similarities, key=lambda elem: elem[1])
@@ -88,8 +96,9 @@ def calculate_similarity_references_per_thing(t):
                     ref_thing_names_found.append(sim[0].title)
                     unique_ref_things_found += 1
     top_similarities = similarities[:nr_of_top_ref_things_to_save]
-    print("top_similarities:")
-    print(top_similarities)
+
+    #print("query marker 4: " + str(len(connection.queries)))
+    #print(str(timezone.now()) + " - got the top similarities")
 
     # clear all existing similarity_references for the given thing
     delete_result = models.SimilarityReference.objects.filter(thing=t).delete()
@@ -100,6 +109,7 @@ def calculate_similarity_references_per_thing(t):
         models.SimilarityReference.objects.create(reference_thing=ref_thing, thing=t, similarity=similarity)
         nr_of_sr_created += 1
 
-    print("created similarity_references")
+    #print("query marker 5: " + str(len(connection.queries)))
+    #print(str(timezone.now()) + " - created reference similarities")
 
     return nr_of_sr_deleted, nr_of_sr_created

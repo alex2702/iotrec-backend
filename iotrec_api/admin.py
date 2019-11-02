@@ -11,7 +11,7 @@ from jwt.utils import force_unicode
 from mptt.admin import MPTTModelAdmin
 
 from iotrec_api.models import User, Thing, Category, Recommendation, Feedback, Preference, IotRecSettings, Rating, Stay, \
-    SimilarityReference, Context, AnalyticsEvent
+    SimilarityReference, Context
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.contrib import admin
@@ -25,6 +25,7 @@ from django import forms
 from django.conf.locale.en import formats as en_formats
 
 from iotrec_api.utils import similarity_reference
+from iotrec_api.utils.category import calc_items_in_cat_list
 
 en_formats.DATETIME_FORMAT = "d-m-Y H:i:s"
 
@@ -81,6 +82,13 @@ class IotRecUserAdmin(UserAdmin):
     #    (None, {'fields': ('preferences',)}),
     # )
     inlines = [PreferencesInLine]
+    list_display = UserAdmin.list_display + ('preferences_selected',)
+
+    def preferences_selected(self, obj):
+        return obj.preferences.count()
+
+    preferences_selected.short_description = 'Preferences Selected'
+    preferences_selected.admin_order_field = 'preferences_selected'
 
 
 # source: https://stackoverflow.com/a/17496836
@@ -221,8 +229,9 @@ class BulkDeleteMixin(object):
             for obj in self.wrapped_queryset:
                 categories = set(obj.categories.all())
                 obj.delete()
-                for cat in categories:
-                    cat.save()
+                #for cat in categories:
+                #    cat.save()
+                calc_items_in_cat_list(categories)
 
         def __getattr__(self, attr):
             if attr == 'delete':
@@ -252,12 +261,12 @@ class BulkDeleteMixin(object):
 
 
 class ThingAdmin(BulkDeleteMixin, admin.ModelAdmin):
-    fields = ['id', 'title', 'description', 'categories', 'type', 'ibeacon_uuid', 'ibeacon_major_id',
-              'ibeacon_minor_id', 'eddystone_namespace_id', 'eddystone_instance_id', 'image',
+    fields = ['id', 'title', 'description', 'categories_assigned', 'categories', 'type', 'ibeacon_uuid', 'ibeacon_major_id',
+              'ibeacon_minor_id', 'eddystone_namespace_id', 'eddystone_instance_id', 'scenario', 'image',
               'indoorsLocation', 'address', 'location', 'created_at', 'updated_at']
     # fields = [field.name for field in Thing._meta.get_fields()]
-    list_display = ('title', 'ibeacon_uuid', 'ibeacon_major_id', 'ibeacon_minor_id', 'eddystone_namespace_id',
-                    'eddystone_instance_id')
+    list_display = ('id', 'title', 'type', 'scenario', 'ibeacon_uuid', 'ibeacon_major_id', 'ibeacon_minor_id', 'eddystone_namespace_id',
+                    'eddystone_instance_id', 'categories_assigned')
     ordering = ('-created_at',)
     #form = ThingAdminForm
 
@@ -281,20 +290,28 @@ class ThingAdmin(BulkDeleteMixin, admin.ModelAdmin):
 
         new_categories = set(form.instance.categories.all())
 
-        for old_cat in old_categories:
-            old_cat.save()
-        for new_cat in new_categories:
-            new_cat.save()
+        #for old_cat in old_categories:
+        #    old_cat.save()
+        #for new_cat in new_categories:
+        #    new_cat.save()
+        calc_items_in_cat_list((old_categories | new_categories))
 
-        #similarity_reference.calculate_similarity_references_per_thing(form.instance)
+        similarity_reference.calculate_similarity_references_per_thing(form.instance)
 
     def delete_model(self, request, obj):
         categories = set(obj.categories.all())
 
         super(ThingAdmin, self).delete_model(self, obj)
 
-        for cat in categories:
-            cat.save()
+        #for cat in categories:
+        #    cat.save()
+        calc_items_in_cat_list(categories)
+
+    def categories_assigned(self, obj):
+        return obj.categories.count()
+
+    categories_assigned.short_description = 'Categories Assigned'
+    categories_assigned.admin_order_field = 'categories_assigned'
 
     """"
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
@@ -321,7 +338,7 @@ admin.site.register(Venue, VenueAdmin)
 
 
 class RecommendationAdmin(admin.ModelAdmin):
-    fields = ['id', 'user', 'thing', 'context', 'score', 'invoke_rec', 'created_at', 'updated_at']
+    fields = ['id', 'user', 'thing', 'context', 'experiment', 'score', 'preference_score', 'locality_score', 'context_score', 'invoke_rec', 'created_at', 'updated_at']
     list_display = ('id', 'created_at', 'user', 'thing', 'score', 'invoke_rec')
     ordering = ('-created_at',)
 
@@ -392,7 +409,7 @@ admin.site.register(SimilarityReference, SimilarityReferenceAdmin)
 
 
 class StayAdmin(admin.ModelAdmin):
-    fields = ['id', 'user', 'thing', 'start', 'last_checkin', 'end', 'created_at', 'updated_at']
+    fields = ['id', 'user', 'thing', 'start', 'last_checkin', 'end', 'experiment', 'created_at', 'updated_at']
     list_display = ('id', 'user', 'thing', 'start', 'last_checkin', 'end')
 
     def get_readonly_fields(self, request, obj=None):
@@ -413,12 +430,4 @@ class ContextAdmin(admin.ModelAdmin):
 admin.site.register(Context, ContextAdmin)
 
 
-class AnalyticsEventAdmin(admin.ModelAdmin):
-    fields = ['id', 'type', 'user', 'thing', 'recommendation', 'value', 'created_at', 'updated_at']
-    list_display = ('id', 'created_at', 'type', 'user', 'thing', 'recommendation', 'value')
 
-    def get_readonly_fields(self, request, obj=None):
-        return ['id', 'created_at', 'updated_at']
-
-
-admin.site.register(AnalyticsEvent, AnalyticsEventAdmin)

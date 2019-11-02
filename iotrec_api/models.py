@@ -1,27 +1,23 @@
-import math
 import uuid as uuid
-from time import sleep
 
+import numpy as np
 from django.contrib.auth.models import AbstractUser
 from django.core.cache import cache
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils import timezone
-from django.utils.translation import gettext as _
 
-from enumchoicefield import ChoiceEnum, EnumChoiceField
+from enumchoicefield import EnumChoiceField
 from location_field.models.plain import PlainLocationField
 from mptt.fields import TreeForeignKey, TreeManyToManyField
 from mptt.models import MPTTModel
 from django.core.exceptions import ValidationError
 from rest_framework import exceptions
 
-from iotrec_api.utils.analyticsevent import AnalyticsEventType
-from iotrec_api.utils.context import WeatherType, TemperatureType, LengthOfTripType, CrowdednessType, TimeOfDayType
+from evaluation.models import Experiment
+from iotrec_api.utils.context import WeatherType, CrowdednessType, TimeOfDayType
 from iotrec_api.utils.recommendation import get_recommendation_score
-from iotrec_api.utils.similarity_reference import calculate_similarity_references_per_thing
-from iotrec_api.utils.thing import ThingType, get_utility
-
+from iotrec_api.utils.thing import ThingType
 
 # source: https://steelkiwi.com/blog/practical-application-singleton-design-pattern/
 from training.models import ContextFactor, ContextFactorValue
@@ -66,11 +62,7 @@ class Category(MPTTModel):
     is_alias = models.BooleanField(default=False)
     alias_owner = TreeForeignKey('self', null=True, blank=True, related_name='target', db_index=True,
                                  on_delete=models.CASCADE)
-    #nr_of_items_flat = models.IntegerField(default=0) # TODO maybe use this to make calculations more efficient?
     nr_of_items_recursive = models.IntegerField(default=0)
-
-    #def save(self, *args, **kwargs):
-    #    super(Category, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -87,8 +79,34 @@ class Category(MPTTModel):
 
 class User(AbstractUser):
     """DB model for Users"""
-    # is_administrator = models.BooleanField(default=False) # TODO remove
-    # preferences = TreeManyToManyField('Category', blank=True)
+
+    def save(self, *args, **kwargs):
+        user = super(User, self).save(self, *args, **kwargs)
+        print(self.__dict__)
+
+        # create the four experiment variations of (context_active, preferences_active)
+        experiments = [
+            (True, True),
+            (True, False),
+            (False, True),
+            (False, False)
+        ]
+
+        np.random.shuffle(experiments)
+
+        for index, (context_act, preferences_act) in enumerate(experiments, start=1):
+            Experiment.objects.create(
+                user=self,
+                context_active=context_act,
+                preferences_active=preferences_act,
+                order=index,
+                completed=False,
+                ongoing=False
+            )
+
+
+
+
 
 
 """
@@ -116,6 +134,7 @@ class Thing(models.Model):
     location = PlainLocationField(based_fields=['address'], blank=True)
     categories = TreeManyToManyField('Category', blank=True)
     indoorsLocation = models.BooleanField(default=None, blank=True, null=True)
+    scenario = models.ForeignKey("evaluation.Scenario", on_delete=models.CASCADE, null=True, blank=True)
 
     #def clean(self):
     #    print("clean")
@@ -143,6 +162,9 @@ class Thing(models.Model):
         else:
             self.id = '{0}-{1}'.format(self.eddystone_namespace_id, self.eddystone_instance_id)
 
+        if self.scenario is not None:
+            self.id += self.id + '-' + self.scenario.text_id
+
         self.updated_at = timezone.now()
 
         try:
@@ -169,13 +191,16 @@ class Recommendation(models.Model):
     context = models.OneToOneField("Context", on_delete=models.CASCADE)
     invoke_rec = models.BooleanField(editable=False, default=False)
     score = models.FloatField(editable=False, default=0)
+    experiment = models.ForeignKey("evaluation.Experiment", on_delete=models.CASCADE, null=True, blank=True)
+    context_score = models.FloatField(editable=False, default=0)
+    preference_score = models.FloatField(editable=False, default=0)
 
     def save(self, *args, **kwargs):
         if not self.pk:
             self.pk = uuid.uuid4()
             self.created_at = timezone.now()
         self.updated_at = timezone.now()
-        self.score = get_recommendation_score(self.thing, self.user, self.context)
+        self.preference_score, self.context_score, self.score = get_recommendation_score(self.thing, self.user, self.context)
         self.invoke_rec = self.get_invoke_rec(self.score)
 
         try:
@@ -303,9 +328,10 @@ class Stay(models.Model):
     updated_at = models.DateTimeField(editable=False, null=True, blank=True)
     thing = models.ForeignKey("Thing", on_delete=models.CASCADE)
     user = models.ForeignKey("User", on_delete=models.CASCADE)
-    start = models.DateTimeField(editable=True, null=True, blank=True) # TODO make non-editable
-    end = models.DateTimeField(editable=True, null=True, blank=True) # TODO make non-editable
-    last_checkin = models.DateTimeField(editable=True, null=True, blank=True) # TODO make non-editable
+    start = models.DateTimeField(editable=False, null=True, blank=True)
+    end = models.DateTimeField(editable=False, null=True, blank=True)
+    last_checkin = models.DateTimeField(editable=False, null=True, blank=True)
+    experiment = models.ForeignKey("evaluation.Experiment", on_delete=models.CASCADE, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.pk:
@@ -402,20 +428,3 @@ class Context(models.Model):
 
         super(Context, self).save(*args, **kwargs)
 
-
-class AnalyticsEvent(models.Model):
-    id = models.CharField(max_length=255, primary_key=True, editable=False)
-    created_at = models.DateTimeField(editable=False, null=True, blank=True)
-    updated_at = models.DateTimeField(editable=False, null=True, blank=True)
-    type = EnumChoiceField(AnalyticsEventType, null=True, blank=True)
-    user = models.ForeignKey("User", on_delete=models.CASCADE, null=True, blank=True)
-    thing = models.ForeignKey("Thing", on_delete=models.CASCADE, null=True, blank=True)
-    recommendation = models.ForeignKey("Recommendation", on_delete=models.CASCADE, null=True, blank=True)
-    value = models.FloatField(default=0)
-
-    def save(self, *args, **kwargs):
-        if not self.pk:
-            self.pk = uuid.uuid4()
-            self.created_at = timezone.now()
-        self.updated_at = timezone.now()
-        super(AnalyticsEvent, self).save(*args, **kwargs)

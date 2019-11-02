@@ -10,7 +10,6 @@ router.register(r'categories', views.CategoryViewSet, base_name='category')
 router.register(r'categories-flat', views.CategoryFlatViewSet, base_name='category-flat')
 router.register(r'recommendations', views.RecommendationViewSet, base_name='recommendation')
 router.register(r'users', views.UserViewSet, base_name='user')
-router.register(r'analytics', views.AnalyticsEventViewSet, base_name='analytics')
 
 recommendations_router = routers.NestedSimpleRouter(router, r'recommendations', lookup='recommendation')
 recommendations_router.register(r'feedback', views.FeedbackViewSet, base_name='recommendation-feedback')
