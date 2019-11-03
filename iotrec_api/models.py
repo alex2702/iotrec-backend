@@ -82,31 +82,33 @@ class User(AbstractUser):
     """DB model for Users"""
 
     def save(self, *args, **kwargs):
-        user = super(User, self).save(self, *args, **kwargs)
         print(self.__dict__)
 
-        # create the four experiment variations of (context_active, preferences_active)
-        experiments = [
-            (True, True),
-            (True, False),
-            (False, True),
-            (False, False)
-        ]
+        if self.id is None:
+            super(User, self).save(self, *args, **kwargs)
 
-        scenarios = sorted(Scenario.objects.all(), key=lambda x: random.random())
+            # if they don't exist for this user, create the experiment variations of (context_active, preferences_active) and scenarios
+            experiments = [
+                (True, True),
+                (True, False),
+                (False, True),
+                (False, False)
+            ]
 
-        print(scenarios)
+            scenarios = sorted(Scenario.objects.all(), key=lambda x: random.random())
 
-        for sc in scenarios:
-            np.random.shuffle(experiments)
-            for index, (context_act, preferences_act) in enumerate(experiments, start=1):
-                Experiment.objects.create(
-                    user=self,
-                    context_active=context_act,
-                    preferences_active=preferences_act,
-                    order=index,
-                    scenario=sc
-                )
+            print(scenarios)
+
+            for sc in scenarios:
+                np.random.shuffle(experiments)
+                for index, (context_act, preferences_act) in enumerate(experiments, start=1):
+                    Experiment.objects.create(
+                        user=self,
+                        context_active=context_act,
+                        preferences_active=preferences_act,
+                        order=index,
+                        scenario=sc
+                    )
 
 
 

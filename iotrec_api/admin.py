@@ -29,6 +29,7 @@ from iotrec_api.utils.category import calc_items_in_cat_list
 
 en_formats.DATETIME_FORMAT = "d-m-Y H:i:s"
 
+
 class InlineFormset(forms.models.BaseInlineFormSet):
     def clean(self):
         for form in self.forms:
@@ -338,12 +339,12 @@ admin.site.register(Venue, VenueAdmin)
 
 
 class RecommendationAdmin(admin.ModelAdmin):
-    fields = ['id', 'user', 'thing', 'context', 'experiment', 'score', 'preference_score', 'locality_score', 'context_score', 'invoke_rec', 'created_at', 'updated_at']
+    fields = ['id', 'user', 'thing', 'context', 'experiment', 'score', 'preference_score', 'context_score', 'invoke_rec', 'created_at', 'updated_at']
     list_display = ('id', 'created_at', 'user', 'thing', 'score', 'invoke_rec')
     ordering = ('-created_at',)
 
     def get_readonly_fields(self, request, obj=None):
-        return ['id', 'created_at', 'updated_at', 'score', 'invoke_rec']
+        return ['id', 'created_at', 'updated_at', 'score', 'preference_score', 'context_score', 'invoke_rec']
 
 
 admin.site.register(Recommendation, RecommendationAdmin)
