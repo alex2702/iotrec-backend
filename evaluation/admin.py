@@ -4,8 +4,8 @@ from evaluation.models import Experiment, Questionnaire, Reply, Question, Analyt
 
 
 class ExperimentAdmin(admin.ModelAdmin):
-    fields = ['id', 'user', 'order', 'context_active', 'preferences_active', 'start', 'end', 'created_at', 'updated_at']
-    list_display = ['id', 'user', 'order', 'context_active', 'preferences_active', 'start', 'end']
+    fields = ['id', 'user', 'scenario', 'order', 'context_active', 'preferences_active', 'start', 'end', 'created_at', 'updated_at']
+    list_display = ['id', 'user', 'scenario', 'order', 'context_active', 'preferences_active', 'start', 'end']
 
     def get_readonly_fields(self, request, obj=None):
         return ['id', 'order', 'context_active', 'preferences_active', 'created_at', 'updated_at']

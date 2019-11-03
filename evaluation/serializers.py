@@ -1,9 +1,18 @@
 from rest_framework import serializers
 
 from evaluation.models import Experiment, Question, Reply, Questionnaire, AnalyticsEvent, Scenario
+from iotrec_api.models import Context
+
+
+class ContextSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Context
+        fields = '__all__'
 
 
 class ExperimentSerializer(serializers.ModelSerializer):
+    context = ContextSerializer(many=False)
+
     class Meta:
         model = Experiment
         fields = '__all__'

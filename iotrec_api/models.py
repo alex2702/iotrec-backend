@@ -82,7 +82,7 @@ class User(AbstractUser):
     """DB model for Users"""
 
     def save(self, *args, **kwargs):
-        print(self.__dict__)
+        #print(self.__dict__)
 
         if self.id is None:
             super(User, self).save(self, *args, **kwargs)
@@ -90,23 +90,21 @@ class User(AbstractUser):
             # if they don't exist for this user, create the experiment variations of (context_active, preferences_active) and scenarios
             experiments = [
                 (True, True),
-                (True, False),
-                (False, True),
-                (False, False)
+                (True, False)
             ]
 
             scenarios = sorted(Scenario.objects.all(), key=lambda x: random.random())
 
-            print(scenarios)
+            #print(scenarios)
 
-            for sc in scenarios:
+            for sc_index, sc in enumerate(scenarios, start=1):
                 np.random.shuffle(experiments)
-                for index, (context_act, preferences_act) in enumerate(experiments, start=1):
+                for exp_index, (context_act, preferences_act) in enumerate(experiments, start=1):
                     Experiment.objects.create(
                         user=self,
                         context_active=context_act,
                         preferences_active=preferences_act,
-                        order=index,
+                        order=(exp_index + ((sc_index - 1) * len(experiments))),
                         scenario=sc
                     )
 
@@ -377,13 +375,13 @@ class Context(models.Model):
         cf_temperature = ContextFactor.objects.get(title='temperature')
         if self.temperature_raw < 0:
             self.temperature = ContextFactorValue.objects.get(context_factor=cf_temperature, title='cold')
-        elif 0 >= self.temperature_raw < 10:
+        elif 0 <= self.temperature_raw < 10:
             self.temperature = ContextFactorValue.objects.get(context_factor=cf_temperature, title='cool')
-        elif 10 >= self.temperature_raw < 20:
+        elif 10 <= self.temperature_raw < 20:
             self.temperature = ContextFactorValue.objects.get(context_factor=cf_temperature, title='mild')
-        elif 20 >= self.temperature_raw < 30:
+        elif 20 <= self.temperature_raw < 30:
             self.temperature = ContextFactorValue.objects.get(context_factor=cf_temperature, title='warm')
-        else:
+        elif 30 <= self.temperature_raw:
             self.temperature = ContextFactorValue.objects.get(context_factor=cf_temperature, title='hot')
 
         # set length_of_trip
@@ -392,7 +390,7 @@ class Context(models.Model):
             self.length_of_trip = ContextFactorValue.objects.get(context_factor=cf_length_of_trip, title='upToAnHour')
         elif 60 < self.length_of_trip_raw <= 180:
             self.length_of_trip = ContextFactorValue.objects.get(context_factor=cf_length_of_trip, title='aFewHours')
-        else:
+        elif 180 < self.length_of_trip_raw:
             self.length_of_trip = ContextFactorValue.objects.get(context_factor=cf_length_of_trip, title='manyHours')
 
         # set weather

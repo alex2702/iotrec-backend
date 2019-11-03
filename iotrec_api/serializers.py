@@ -3,6 +3,8 @@ from django.utils import timezone
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 from rest_framework_jwt.settings import api_settings
+
+from evaluation.serializers import ExperimentSerializer
 from iotrec_api.models import User, Thing, Category, Recommendation, Feedback, Preference, Rating, Stay, Context
 
 # from django.contrib.auth.models import User
@@ -36,16 +38,18 @@ class PreferenceSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     preferences = PreferenceSerializer(many=True)
+    experiments = ExperimentSerializer(many=True)
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'preferences')
+        fields = ('id', 'username', 'email', 'preferences', 'experiments')
 
 
 class UserSerializerWithToken(serializers.ModelSerializer):
     token = serializers.SerializerMethodField()
     password = serializers.CharField(write_only=True)
     preferences = PreferenceSerializer(many=True, required=False)
+    experiments = ExperimentSerializer(many=True)
 
     def get_token(self, obj):
         jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
@@ -82,7 +86,7 @@ class UserSerializerWithToken(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'token', 'username', 'email', 'password', 'preferences')
+        fields = ('id', 'token', 'username', 'email', 'password', 'preferences', 'experiments')
 
 
 """

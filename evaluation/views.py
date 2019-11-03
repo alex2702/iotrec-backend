@@ -8,6 +8,7 @@ from evaluation.serializers import QuestionnaireSerializer, ReplySerializer, Que
 
 class ExperimentViewSet(viewsets.ModelViewSet):
     serializer_class = ExperimentSerializer
+    #queryset = Experiment.objects.all()
 
     def get_queryset(self):
         queryset = Experiment.objects.filter(user=self.request.user)

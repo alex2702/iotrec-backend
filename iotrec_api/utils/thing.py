@@ -260,12 +260,15 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
     categories_user = categories_user_immediate
 
     for node, meta in tree_item_iterator(categories_thing):
-        categories_thing = (categories_thing | node.get_ancestors()).distinct()
+        categories_thing = (categories_thing | node.get_ancestors())
 
     for node, meta in tree_item_iterator(categories_user):
-        categories_user = (categories_user | node.get_ancestors()).distinct()
+        categories_user = (categories_user | node.get_ancestors())
 
     categories_all = (categories_thing | categories_user).distinct()
+
+    categories_thing = categories_thing.distinct()
+    categories_user = categories_user.distinct()
 
     #print(str(timezone.now()) + " get_thing_user_similarity - marker 2")
 
@@ -312,7 +315,7 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
         # number of items classified in subtree for which the parent of i is the root
         # (loop through all descendants of that category, including itself, and add up the things count)
         n_i = cat.nr_of_items_recursive
-        if (cat.get_descendants(include_self=True) & categories_user).count() > 0:
+        if ((cat.get_descendants(include_self=True).distinct() & categories_user.distinct())).count() > 0:
             n_i += 1 # increase because user has one of the categories
 
         if cat.is_root_node():
@@ -320,7 +323,7 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
         else:
             parent = cat.parent
             n_p_i = parent.nr_of_items_recursive
-            if (parent.get_descendants(include_self=True) & categories_user).count() > 0:
+            if ((parent.get_descendants(include_self=True).distinct() & categories_user.distinct())).count() > 0:
                 n_p_i += 1  # increase because user has one of the categories
 
         #print("cat=" + str(cat) + ", tf_this_i=" + str(tf_this_i) + ", tf_user_i=" + str(tf_user_i) + ", n_p_i=" + str(n_p_i) + ", n_i=" + str(n_i))

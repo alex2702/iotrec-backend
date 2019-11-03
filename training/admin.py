@@ -27,7 +27,7 @@ class ReferenceThingAdmin(admin.ModelAdmin):
     deactivate.short_description = "Mark selected thing as inactive"
 
     def get_queryset(self, request):
-        return ReferenceThing.objects.annotate(samples_count=Count('sample'))
+        return ReferenceThing.objects.annotate(samples_count=Count('sample'), categories_assigned=Count('categories'))
 
     def samples_count(self, obj):
         return obj.samples_count
@@ -36,7 +36,7 @@ class ReferenceThingAdmin(admin.ModelAdmin):
     samples_count.admin_order_field = 'samples_count'
 
     def categories_assigned(self, obj):
-        return obj.categories.count()
+        return obj.categories_assigned
 
     categories_assigned.short_description = 'Categories Assigned'
     categories_assigned.admin_order_field = 'categories_assigned'
