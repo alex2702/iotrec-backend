@@ -24,6 +24,17 @@ class ReplyViewSet(viewsets.ModelViewSet):
     queryset = Reply.objects.all()
     serializer_class = ReplySerializer
 
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data={
+            **request.data,
+            "experiment": self.kwargs['experiment_pk'],
+            "user": request.user.id,
+        })
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
 
 class QuestionnaireViewSet(viewsets.ModelViewSet):
     queryset = Questionnaire.objects.all()

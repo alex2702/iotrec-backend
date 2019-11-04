@@ -307,7 +307,6 @@ class FeedbackViewSet(viewsets.ModelViewSet):
         return Feedback.objects.filter(recommendation=self.kwargs['recommendation_pk'])
 
     def create(self, request, *args, **kwargs):
-        print(request.data)
         serializer = self.get_serializer(data={
             **request.data,
             "recommendation": self.kwargs['recommendation_pk'],
