@@ -30,8 +30,23 @@ class Experiment(models.Model):
 
             Context = apps.get_model("iotrec_api", "Context")
 
-            # get a random temperature choice
-            temp_choice = random.choice(list(TemperatureType))
+            # get a random weather choice
+            random_weather = random.choice(list(WeatherType))
+
+            # get a random temperature choice (depending on the weather)
+            temp_choice = ""
+            if random_weather == WeatherType.SUNNY:
+                temp_choice = random.choice(list(TemperatureType))  # all temperatures are possible
+            elif random_weather == WeatherType.CLOUDY:
+                temp_choice = random.choice(list(TemperatureType))
+            elif random_weather == WeatherType.SNOWY:
+                temp_choice = random.choice(TemperatureType.COLD, TemperatureType.COOL)
+            elif random_weather == WeatherType.RAINY:
+                temp_choice = random.choice(TemperatureType.COOL, TemperatureType.MILD, TemperatureType.WARM)
+            elif random_weather == WeatherType.WINDY:
+                temp_choice = random.choice(list(TemperatureType))
+
+            print("temp_choice: " + str(temp_choice))
 
             # get a random temperature for this choice
             if temp_choice is TemperatureType.COLD:
@@ -57,7 +72,7 @@ class Experiment(models.Model):
                 lot_raw = random.randint(181, 601)
 
             self.context = Context.objects.create(
-                weather_raw=random.choice(list(WeatherType)),
+                weather_raw=random_weather,
                 temperature_raw=temp_raw,
                 length_of_trip_raw=lot_raw,
                 time_of_day_raw=random.choice(list(TimeOfDayType)),
