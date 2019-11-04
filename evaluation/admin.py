@@ -37,8 +37,8 @@ admin.site.register(Reply, ReplyAdmin)
 
 
 class QuestionnaireAdmin(admin.ModelAdmin):
-    fields = ['id', 'user', 'created_at', 'updated_at']
-    list_display = ['id', 'created_at', 'user', 'updated_at']
+    fields = ['id', 'user', 'age', 'gender', 'qualification', 'smartphone_usage', 'created_at', 'updated_at']
+    list_display = ['id', 'created_at', 'user', 'gender', 'qualification', 'smartphone_usage', 'updated_at']
 
     def get_readonly_fields(self, request, obj=None):
         return ['id', 'created_at', 'updated_at']

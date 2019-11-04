@@ -99,7 +99,10 @@ class Questionnaire(models.Model):
     created_at = models.DateTimeField(editable=False, null=True, blank=True)
     updated_at = models.DateTimeField(editable=False, null=True, blank=True)
     user = models.ForeignKey("iotrec_api.User", on_delete=models.CASCADE)
-    # TODO add fields for replies
+    age = models.CharField(max_length=255, null=True, blank=True)
+    gender = models.CharField(max_length=255, null=True, blank=True)
+    qualification = models.CharField(max_length=255, null=True, blank=True)
+    smartphone_usage = models.CharField(max_length=255, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.pk:
