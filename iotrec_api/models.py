@@ -291,15 +291,17 @@ class Preference(models.Model):
     value = models.IntegerField(choices=VALUE_CHOICES, default=0)
     user = models.ForeignKey("User", related_name="preferences", on_delete=models.CASCADE)
 
+    '''
     def validate_unique(self, exclude=None):
+        print(self.__dict__)
         # get all preferences of the given user
         user_prefs = Preference.objects.filter(user=self.user)
         # reject new preference if user has it already
         if user_prefs.filter(category=self.category).exists():
             raise ValidationError({'category': ["The user already has that preference.", ]})
+    '''
 
     def save(self, *args, **kwargs):
-        self.validate_unique()
         if not self.pk:
             self.pk = self.category.text_id
             self.created_at = timezone.now()
