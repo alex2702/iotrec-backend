@@ -49,7 +49,7 @@ class UserSerializerWithToken(serializers.ModelSerializer):
     token = serializers.SerializerMethodField()
     password = serializers.CharField(write_only=True)
     preferences = PreferenceSerializer(many=True, required=False)
-    experiments = ExperimentSerializer(many=True)
+    experiments = ExperimentSerializer(many=True, required=False)
 
     def get_token(self, obj):
         jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
