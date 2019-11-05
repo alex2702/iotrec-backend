@@ -40,9 +40,9 @@ class Experiment(models.Model):
             elif random_weather == WeatherType.CLOUDY:
                 temp_choice = random.choice(list(TemperatureType))
             elif random_weather == WeatherType.SNOWY:
-                temp_choice = random.choice(TemperatureType.COLD, TemperatureType.COOL)
+                temp_choice = random.choice([TemperatureType.COLD, TemperatureType.COOL])
             elif random_weather == WeatherType.RAINY:
-                temp_choice = random.choice(TemperatureType.COOL, TemperatureType.MILD, TemperatureType.WARM)
+                temp_choice = random.choice([TemperatureType.COOL, TemperatureType.MILD, TemperatureType.WARM])
             elif random_weather == WeatherType.WINDY:
                 temp_choice = random.choice(list(TemperatureType))
 
