@@ -11,7 +11,8 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework_jwt.views import ObtainJSONWebToken
 
 import iotrec_api
-from iotrec_api.models import Thing, Category, User, Recommendation, Feedback, Preference, Rating, Context, Stay
+from iotrec_api.models import Thing, Category, User, Recommendation, Feedback, Preference, Rating, Context, Stay, \
+    IotRecSettings
 from iotrec_api.permissions import IsSignupOrIsAuthenticated
 from iotrec_api.serializers import ThingSerializer, CategorySerializer, CategoryFlatSerializer, \
     RecommendationSerializer, FeedbackSerializer, PreferenceSerializer, RatingSerializer, ContextSerializer, \
@@ -280,8 +281,17 @@ class RecommendationViewSet(viewsets.ModelViewSet):
         return queryset
 
     def create(self, request, *args, **kwargs):
-        request.data['context']['crowdedness_raw'] = get_crowdedness(request.data['thing'])
-        request.data['context']['time_of_day_raw'] = get_time_of_day(datetime.datetime.now().time())
+        settings = IotRecSettings.load()
+
+        # only get real crowdedness if we're not in evaluation mode
+        # in evaluation mode, supply dummy data for crowdedness and time_of_day
+        if settings.evaluation_mode is True:
+            request.data['context']['crowdedness_raw'] = None
+            request.data['context']['time_of_day_raw'] = "NOON"
+        else:
+            request.data['context']['crowdedness_raw'] = get_crowdedness(request.data['thing'])
+            request.data['context']['time_of_day_raw'] = get_time_of_day(datetime.datetime.now().time())
+
         serializer = self.get_serializer(data={
             **request.data,
             "user": request.user.id

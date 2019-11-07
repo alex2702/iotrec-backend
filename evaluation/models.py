@@ -21,13 +21,13 @@ class Experiment(models.Model):
     context_active = models.BooleanField(editable=False, default=False)
     preferences_active = models.BooleanField(editable=False, default=False)
     order = models.IntegerField(editable=False, default=0)
-    #context = models.ForeignKey("iotrec_api.Context", on_delete=models.SET_NULL, null=True, blank=True)
-    context = models.OneToOneField("iotrec_api.Context", on_delete=models.CASCADE, null=True, blank=True)
+    #context = models.OneToOneField("iotrec_api.Context", on_delete=models.CASCADE, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.pk:
             self.created_at = timezone.now()
 
+            '''
             Context = apps.get_model("iotrec_api", "Context")
 
             # get a random weather choice
@@ -77,6 +77,7 @@ class Experiment(models.Model):
                 length_of_trip_raw=lot_raw,
                 time_of_day_raw=random.choice(list(TimeOfDayType)),
             )
+            '''
 
         self.updated_at = timezone.now()
         super(Experiment, self).save(*args, **kwargs)

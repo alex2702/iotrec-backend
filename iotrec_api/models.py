@@ -25,6 +25,7 @@ from training.models import ContextFactor, ContextFactorValue
 
 
 class IotRecSettings(models.Model):
+    evaluation_mode = models.BooleanField(default=True)
     recommendation_threshold = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(1)], default=0)
     nr_of_reference_things_per_thing = models.IntegerField(default=3)
     category_weight = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(1)], default=0)

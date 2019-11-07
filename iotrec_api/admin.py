@@ -115,7 +115,7 @@ class ThingsInLine(admin.TabularInline):
 # admin.site.register(Category, CategoryAdmin)
 
 class CategoryAdmin(MPTTModelAdmin):
-    list_display = ('name', 'text_id', 'nr_of_items_recursive', 'is_alias', 'get_alias_owner_full')
+    list_display = ('name', 'text_id', 'nr_of_items_recursive', 'things_assigned', 'ref_things_assigned', 'is_alias', 'get_alias_owner_full')
 
     def get_readonly_fields(self, request, obj=None):
         return ['nr_of_items_recursive']
@@ -130,6 +130,18 @@ class CategoryAdmin(MPTTModelAdmin):
             for a in ancestors:
                 output_string += '/' + a.name
             return output_string
+
+    def things_assigned(self, obj):
+        return obj.thing_set.count()
+
+    things_assigned.short_description = 'Things Assigned'
+    things_assigned.admin_order_field = 'things_assigned'
+
+    def ref_things_assigned(self, obj):
+        return obj.referencething_set.count()
+
+    ref_things_assigned.short_description = 'Reference Things Assigned'
+    ref_things_assigned.admin_order_field = 'ref_things_assigned'
 
 
 admin.site.register(Category, CategoryAdmin)
@@ -267,7 +279,7 @@ class ThingAdmin(BulkDeleteMixin, admin.ModelAdmin):
               'indoorsLocation', 'address', 'location', 'created_at', 'updated_at']
     # fields = [field.name for field in Thing._meta.get_fields()]
     list_display = ('id', 'title', 'type', 'scenario', 'ibeacon_uuid', 'ibeacon_major_id', 'ibeacon_minor_id', 'eddystone_namespace_id',
-                    'eddystone_instance_id', 'categories_assigned')
+                    'eddystone_instance_id', 'indoorsLocation', 'categories_assigned')
     ordering = ('-created_at',)
     #form = ThingAdminForm
 
