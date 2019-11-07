@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="09f20613-1e31-44ae-99f8-83d2ab175056" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evaluation/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/iotrec_api/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -288,7 +285,8 @@
       <workItem from="1572869657299" duration="4411000" />
       <workItem from="1572889550195" duration="1400000" />
       <workItem from="1572973174399" duration="675000" />
-      <workItem from="1573137532385" duration="2631000" />
+      <workItem from="1573137532385" duration="3594000" />
+      <workItem from="1573145658657" duration="33000" />
     </task>
     <servers />
   </component>

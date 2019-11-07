@@ -65,8 +65,8 @@ class PreferencesInLine(admin.TabularInline):
 
 
 class IotRecSettingsAdmin(admin.ModelAdmin):
-    fields = ['recommendation_threshold', 'nr_of_reference_things_per_thing', 'category_weight', 'locality_weight', 'prediction_weight', 'context_weight']
-    list_display = ('pk', 'recommendation_threshold', 'nr_of_reference_things_per_thing', 'category_weight', 'locality_weight', 'prediction_weight', 'context_weight')
+    fields = ['evaluation_mode', 'recommendation_threshold', 'nr_of_reference_things_per_thing', 'category_weight', 'locality_weight', 'prediction_weight', 'context_weight']
+    list_display = ('pk', 'evaluation_mode', 'recommendation_threshold', 'nr_of_reference_things_per_thing', 'category_weight', 'locality_weight', 'prediction_weight', 'context_weight')
 
     def get_readonly_fields(self, request, obj=None):
         return ['locality_weight', 'context_weight']
