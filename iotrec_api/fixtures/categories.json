@@ -549,22 +549,6 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
-      "name": "Magazines and E-zines",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Arts",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Arts_MagazinesandE-zines",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
       "name": "Movies",
       "is_alias": false,
       "alias_owner": null,
@@ -621,38 +605,6 @@
     },
     "type": "topic",
     "pk": "Arts_OnlineWriting",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
-      "name": "Organizations",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Arts",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Arts_Organizations",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
-      "name": "People",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Arts",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Arts_People",
     "level": 2
   },
   {
@@ -789,22 +741,6 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
-      "name": "Writers Resources",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Arts",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Arts_WritersResources",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
       "name": "Accounting",
       "is_alias": false,
       "alias_owner": null,
@@ -861,22 +797,6 @@
     },
     "type": "topic",
     "pk": "Business_ArtsandEntertainment",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
-      "name": "Associations",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Business",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Business_Associations",
     "level": 2
   },
   {
@@ -989,22 +909,6 @@
     },
     "type": "topic",
     "pk": "Business_ConsumerGoodsandServices",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
-      "name": "Cooperatives",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Business",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Business_Cooperatives",
     "level": 2
   },
   {
@@ -1445,22 +1349,6 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
-      "name": "Resources",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Business",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Business_Resources",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
       "name": "Retail Trade",
       "is_alias": false,
       "alias_owner": null,
@@ -1645,22 +1533,6 @@
     },
     "type": "topic",
     "pk": "Computers_ChatsandForums",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
-      "name": "Companies",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Computers",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Computers_Companies",
     "level": 2
   },
   {
@@ -2053,22 +1925,6 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
-      "name": "Organizations",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Computers",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Computers_Organizations",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
       "name": "Parallel Computing",
       "is_alias": false,
       "alias_owner": null,
@@ -2141,22 +1997,6 @@
     },
     "type": "topic",
     "pk": "Computers_Security",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
-      "name": "Shopping",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Computers",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Computers_Shopping",
     "level": 2
   },
   {
@@ -2549,22 +2389,6 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
-      "name": "Resources",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Games",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Games_Resources",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
       "name": "Roleplaying",
       "is_alias": false,
       "alias_owner": null,
@@ -2949,22 +2773,6 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
-      "name": "Organizations",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Health",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Health_Organizations",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
       "name": "Pharmacy",
       "is_alias": false,
       "alias_owner": null,
@@ -2973,22 +2781,6 @@
     },
     "type": "topic",
     "pk": "Health_Pharmacy",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
-      "name": "Products and Shopping",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Health",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Health_ProductsandShopping",
     "level": 2
   },
   {
@@ -3061,38 +2853,6 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
-      "name": "Resources",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Health",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Health_Resources",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
-      "name": "Search Engines",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Health",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Health_SearchEngines",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
       "name": "Senior Health",
       "is_alias": false,
       "alias_owner": null,
@@ -3117,22 +2877,6 @@
     },
     "type": "topic",
     "pk": "Health_Senses",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
-      "name": "Services",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Health",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Health_Services",
     "level": 2
   },
   {
@@ -3469,22 +3213,6 @@
     },
     "type": "topic",
     "pk": "Home_RuralLiving",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
-      "name": "Software",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Home",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Home_Software",
     "level": 2
   },
   {
@@ -4597,22 +4325,6 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
-      "name": "Academic Departments",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Science",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Science_AcademicDepartments",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
       "name": "Agriculture",
       "is_alias": false,
       "alias_owner": null,
@@ -4725,22 +4437,6 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
-      "name": "Employment",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Science",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Science_Employment",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
       "name": "Environment",
       "is_alias": false,
       "alias_owner": null,
@@ -4837,38 +4533,6 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
-      "name": "Organizations",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Science",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Science_Organizations",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
-      "name": "People",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Science",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Science_People",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
       "name": "Physics",
       "is_alias": false,
       "alias_owner": null,
@@ -4893,22 +4557,6 @@
     },
     "type": "topic",
     "pk": "Science_Publications",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
-      "name": "Reference",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Science",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Science_Reference",
     "level": 2
   },
   {
@@ -4949,22 +4597,6 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
-      "name": "Search Engines",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Science",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Science_SearchEngines",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
       "name": "Social Sciences",
       "is_alias": false,
       "alias_owner": null,
@@ -4973,22 +4605,6 @@
     },
     "type": "topic",
     "pk": "Science_SocialSciences",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
-      "name": "Software",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Science",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Science_Software",
     "level": 2
   },
   {
@@ -5813,22 +5429,6 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
-      "name": "Organizations",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Society",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Society_Organizations",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
       "name": "Paranormal",
       "is_alias": false,
       "alias_owner": null,
@@ -5837,22 +5437,6 @@
     },
     "type": "topic",
     "pk": "Society_Paranormal",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
-      "name": "People",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Society",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Society_People",
     "level": 2
   },
   {
@@ -6757,22 +6341,6 @@
       "lft": 0,
       "rght": 0,
       "tree_id": 0,
-      "name": "Organizations",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Sports",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Sports_Organizations",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
       "name": "Orienteering",
       "is_alias": false,
       "alias_owner": null,
@@ -6813,22 +6381,6 @@
     },
     "type": "topic",
     "pk": "Sports_Paintball",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
-      "name": "People",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Sports",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Sports_People",
     "level": 2
   },
   {
@@ -6893,22 +6445,6 @@
     },
     "type": "topic",
     "pk": "Sports_Racquetball",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
-      "name": "Resources",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Sports",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Sports_Resources",
     "level": 2
   },
   {
@@ -7053,22 +6589,6 @@
     },
     "type": "topic",
     "pk": "Sports_Softball",
-    "level": 2
-  },
-  {
-    "model": "iotrec_api.category",
-    "fields": {
-      "lft": 0,
-      "rght": 0,
-      "tree_id": 0,
-      "name": "Software",
-      "is_alias": false,
-      "alias_owner": null,
-      "parent": "Sports",
-      "level": 2
-    },
-    "type": "topic",
-    "pk": "Sports_Software",
     "level": 2
   },
   {

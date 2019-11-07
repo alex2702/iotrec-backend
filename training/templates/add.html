@@ -115,28 +115,14 @@
         }
     </style>
     <script>
-        $(document).ready(function() {
-            $("input[name=value_1]:checked").parent().addClass('active')
-            $("input[name=value_2]:checked").parent().addClass('active')
-            $("input[name=value_3]:checked").parent().addClass('active')
-            $("input[name=value_4]:checked").parent().addClass('active')
-            $("input[name=value_5]:checked").parent().addClass('active')
+        {% if training_active %}
+            $(document).ready(function() {
+                $("input[name=value_1]:checked").parent().addClass('active')
+                $("input[name=value_2]:checked").parent().addClass('active')
+                $("input[name=value_3]:checked").parent().addClass('active')
+                $("input[name=value_4]:checked").parent().addClass('active')
+                $("input[name=value_5]:checked").parent().addClass('active')
 
-            if(
-                $("input[name=value_1]:checked").length === 1 &&
-                $("input[name=value_2]:checked").length === 1 &&
-                $("input[name=value_3]:checked").length === 1 &&
-                $("input[name=value_4]:checked").length === 1 &&
-                $("input[name=value_5]:checked").length === 1
-            ) {
-                $('#iotrec-submit-button').prop('disabled', false);
-                $('.iotrec-submit-note').hide();
-            } else {
-                $('#iotrec-submit-button').prop('disabled', true);
-                $('.iotrec-submit-note').show();
-            }
-
-            $("input[type=radio]").change(function() {
                 if(
                     $("input[name=value_1]:checked").length === 1 &&
                     $("input[name=value_2]:checked").length === 1 &&
@@ -150,131 +136,153 @@
                     $('#iotrec-submit-button').prop('disabled', true);
                     $('.iotrec-submit-note').show();
                 }
+
+                $("input[type=radio]").change(function() {
+                    if(
+                        $("input[name=value_1]:checked").length === 1 &&
+                        $("input[name=value_2]:checked").length === 1 &&
+                        $("input[name=value_3]:checked").length === 1 &&
+                        $("input[name=value_4]:checked").length === 1 &&
+                        $("input[name=value_5]:checked").length === 1
+                    ) {
+                        $('#iotrec-submit-button').prop('disabled', false);
+                        $('.iotrec-submit-note').hide();
+                    } else {
+                        $('#iotrec-submit-button').prop('disabled', true);
+                        $('.iotrec-submit-note').show();
+                    }
+                });
             });
-        });
+        {% endif %}
     </script>
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-6 mx-auto">
-                <div class="jumbotron mt-3">
-                    <div class="lead"><div class="iotrec-instruction-nr">1.&nbsp;</div>Imagine that you encounter the following object somewhere in your home, at your workplace, at school, in the city, on vacation – really anywhere in your everyday life.</div>
-                    <hr />
-                    <p>Images only serve illustration purposes, they don't describe the specific object. Assume any version of the object in question, e.g. as you know it from your city.</p>
-                </div>
-                <div class="card mt-3">
-                    <img src="media/{{ thing.image }}" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ thing.display_title }}</h5>
-                        <p class="card-text">{{ thing.description }}</p>
-                        {% if thing.indoorsLocation is True %}<p class="card-text"><strong>The object is located <mark>indoors</mark>.</strong></p>{% endif %}
-                        {% if thing.indoorsLocation is False %}<p class="card-text"><strong>The object is located <mark>outdoors</mark>.</strong></p>{% endif %}
+            {% if training_active %}
+                <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-6 mx-auto">
+                    <div class="jumbotron mt-3">
+                        <div class="lead"><div class="iotrec-instruction-nr">1.&nbsp;</div>Imagine that you encounter the following object somewhere in your home, at your workplace, at school, in the city, on vacation – really anywhere in your everyday life.</div>
+                        <hr />
+                        <p>Images only serve illustration purposes, they don't describe the specific object. Assume any version of the object in question, e.g. as you know it from your city.</p>
                     </div>
-                </div>
-
-                <div class="jumbotron mt-3">
-                    <div class="lead"><div class="iotrec-instruction-nr">2.&nbsp;</div>Now please select if the scenarios mentioned below would influence your decision to visit/use the object above and if yes, how.</div>
-                    <hr />
-                    <p>Please make sure to only indicate any <strong>changes</strong> that the scenario causes. It does not matter what your initial impression of the object is.</p>
-                </div>
-
-                <form method="POST" class="sample-form">
-                    {% csrf_token %}
                     <div class="card mt-3">
-                        <div class="card-header"><h5>Imagine that...</h5></div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-sm iotrec-option-text">...{{ context_factor_value_1.description }}</div>
-                                    <div class="col-sm btn-group btn-group-toggle iotrec-option-buttons" data-toggle="buttons">
-                                        {% for radio in form.value_1 %}
-                                            <label for="{{ radio.id_for_label }}" class="btn {% if forloop.counter == 1 %}btn-danger{% elif forloop.counter == 2 %}btn-secondary{% elif forloop.counter == 3 %}btn-success{% endif %}">
-                                                {{ radio.choice_label }}
-                                                {{ radio.tag }}
-                                            </label>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-sm iotrec-option-text">...{{ context_factor_value_2.description }}</div>
-                                    <div class="col-sm btn-group btn-group-toggle iotrec-option-buttons" data-toggle="buttons">
-                                        {% for radio in form.value_2 %}
-                                            <label for="{{ radio.id_for_label }}" class="btn {% if forloop.counter == 1 %}btn-danger{% elif forloop.counter == 2 %}btn-secondary{% elif forloop.counter == 3 %}btn-success{% endif %}">
-                                                {{ radio.choice_label }}
-                                                {{ radio.tag }}
-                                            </label>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-sm iotrec-option-text">...{{ context_factor_value_3.description }}</div>
-                                    <div class="col-sm btn-group btn-group-toggle iotrec-option-buttons" data-toggle="buttons">
-                                        {% for radio in form.value_3 %}
-                                            <label for="{{ radio.id_for_label }}" class="btn {% if forloop.counter == 1 %}btn-danger{% elif forloop.counter == 2 %}btn-secondary{% elif forloop.counter == 3 %}btn-success{% endif %}">
-                                                {{ radio.choice_label }}
-                                                {{ radio.tag }}
-                                            </label>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-sm iotrec-option-text">...{{ context_factor_value_4.description }}</div>
-                                    <div class="col-sm btn-group btn-group-toggle iotrec-option-buttons" data-toggle="buttons">
-                                        {% for radio in form.value_4 %}
-                                            <label for="{{ radio.id_for_label }}" class="btn {% if forloop.counter == 1 %}btn-danger{% elif forloop.counter == 2 %}btn-secondary{% elif forloop.counter == 3 %}btn-success{% endif %}">
-                                                {{ radio.choice_label }}
-                                                {{ radio.tag }}
-                                            </label>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-sm iotrec-option-text">...{{ context_factor_value_5.description }}</div>
-                                    <div class="col-sm btn-group btn-group-toggle iotrec-option-buttons" data-toggle="buttons">
-                                        {% for radio in form.value_5 %}
-                                            <label for="{{ radio.id_for_label }}" class="btn {% if forloop.counter == 1 %}btn-danger{% elif forloop.counter == 2 %}btn-secondary{% elif forloop.counter == 3 %}btn-success{% endif %}">
-                                                {{ radio.choice_label }}
-                                                {{ radio.tag }}
-                                            </label>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        {{ form.thing }}
-                        {{ form.user }}
-                        {{ form.context_factor_1 }}
-                        {{ form.context_factor_2 }}
-                        {{ form.context_factor_3 }}
-                        {{ form.context_factor_4 }}
-                        {{ form.context_factor_5 }}
-                        {{ form.context_factor_value_1 }}
-                        {{ form.context_factor_value_2 }}
-                        {{ form.context_factor_value_3 }}
-                        {{ form.context_factor_value_4 }}
-                        {{ form.context_factor_value_5 }}
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="text-danger iotrec-submit-note text-center mt-3 mb-2">Please make a choice for every situation.</div>
+                        <img src="media/{{ thing.image }}" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ thing.display_title }}</h5>
+                            <p class="card-text">{{ thing.description }}</p>
+                            {% if thing.indoorsLocation is True %}<p class="card-text"><strong>The object is located <mark>indoors</mark>.</strong></p>{% endif %}
+                            {% if thing.indoorsLocation is False %}<p class="card-text"><strong>The object is located <mark>outdoors</mark>.</strong></p>{% endif %}
                         </div>
                     </div>
-                    <div class="row justify-content-md-center">
-                        <button type="submit" id="iotrec-submit-button" class="btn btn-success btn-lg mt-3 mx-auto col-6" disabled="disabled">Send</button>
+
+                    <div class="jumbotron mt-3">
+                        <div class="lead"><div class="iotrec-instruction-nr">2.&nbsp;</div>Now please select if the scenarios mentioned below would influence your decision to visit/use the object above and if yes, how.</div>
+                        <hr />
+                        <p>Please make sure to only indicate any <strong>changes</strong> that the scenario causes. It does not matter what your initial impression of the object is.</p>
                     </div>
-                </form>
-            </div>
+
+                    <form method="POST" class="sample-form">
+                        {% csrf_token %}
+                        <div class="card mt-3">
+                            <div class="card-header"><h5>Imagine that...</h5></div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-sm iotrec-option-text">...{{ context_factor_value_1.description }}</div>
+                                        <div class="col-sm btn-group btn-group-toggle iotrec-option-buttons" data-toggle="buttons">
+                                            {% for radio in form.value_1 %}
+                                                <label for="{{ radio.id_for_label }}" class="btn {% if forloop.counter == 1 %}btn-danger{% elif forloop.counter == 2 %}btn-secondary{% elif forloop.counter == 3 %}btn-success{% endif %}">
+                                                    {{ radio.choice_label }}
+                                                    {{ radio.tag }}
+                                                </label>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-sm iotrec-option-text">...{{ context_factor_value_2.description }}</div>
+                                        <div class="col-sm btn-group btn-group-toggle iotrec-option-buttons" data-toggle="buttons">
+                                            {% for radio in form.value_2 %}
+                                                <label for="{{ radio.id_for_label }}" class="btn {% if forloop.counter == 1 %}btn-danger{% elif forloop.counter == 2 %}btn-secondary{% elif forloop.counter == 3 %}btn-success{% endif %}">
+                                                    {{ radio.choice_label }}
+                                                    {{ radio.tag }}
+                                                </label>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-sm iotrec-option-text">...{{ context_factor_value_3.description }}</div>
+                                        <div class="col-sm btn-group btn-group-toggle iotrec-option-buttons" data-toggle="buttons">
+                                            {% for radio in form.value_3 %}
+                                                <label for="{{ radio.id_for_label }}" class="btn {% if forloop.counter == 1 %}btn-danger{% elif forloop.counter == 2 %}btn-secondary{% elif forloop.counter == 3 %}btn-success{% endif %}">
+                                                    {{ radio.choice_label }}
+                                                    {{ radio.tag }}
+                                                </label>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-sm iotrec-option-text">...{{ context_factor_value_4.description }}</div>
+                                        <div class="col-sm btn-group btn-group-toggle iotrec-option-buttons" data-toggle="buttons">
+                                            {% for radio in form.value_4 %}
+                                                <label for="{{ radio.id_for_label }}" class="btn {% if forloop.counter == 1 %}btn-danger{% elif forloop.counter == 2 %}btn-secondary{% elif forloop.counter == 3 %}btn-success{% endif %}">
+                                                    {{ radio.choice_label }}
+                                                    {{ radio.tag }}
+                                                </label>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-sm iotrec-option-text">...{{ context_factor_value_5.description }}</div>
+                                        <div class="col-sm btn-group btn-group-toggle iotrec-option-buttons" data-toggle="buttons">
+                                            {% for radio in form.value_5 %}
+                                                <label for="{{ radio.id_for_label }}" class="btn {% if forloop.counter == 1 %}btn-danger{% elif forloop.counter == 2 %}btn-secondary{% elif forloop.counter == 3 %}btn-success{% endif %}">
+                                                    {{ radio.choice_label }}
+                                                    {{ radio.tag }}
+                                                </label>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            {{ form.thing }}
+                            {{ form.user }}
+                            {{ form.context_factor_1 }}
+                            {{ form.context_factor_2 }}
+                            {{ form.context_factor_3 }}
+                            {{ form.context_factor_4 }}
+                            {{ form.context_factor_5 }}
+                            {{ form.context_factor_value_1 }}
+                            {{ form.context_factor_value_2 }}
+                            {{ form.context_factor_value_3 }}
+                            {{ form.context_factor_value_4 }}
+                            {{ form.context_factor_value_5 }}
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="text-danger iotrec-submit-note text-center mt-3 mb-2">Please make a choice for every situation.</div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-md-center">
+                            <button type="submit" id="iotrec-submit-button" class="btn btn-success btn-lg mt-3 mx-auto col-6" disabled="disabled">Send</button>
+                        </div>
+                    </form>
+                </div>
+            {% else %}
+                <div class="col-12 mx-auto">
+                    <div class="jumbotron mt-3">Training is completed. Thanks for participating!</div>
+                </div>
+            {% endif %}
         </div>
     </div>
 

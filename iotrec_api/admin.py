@@ -65,8 +65,11 @@ class PreferencesInLine(admin.TabularInline):
 
 
 class IotRecSettingsAdmin(admin.ModelAdmin):
-    fields = ['evaluation_mode', 'recommendation_threshold', 'nr_of_reference_things_per_thing', 'category_weight', 'locality_weight', 'prediction_weight', 'context_weight']
-    list_display = ('pk', 'evaluation_mode', 'recommendation_threshold', 'nr_of_reference_things_per_thing', 'category_weight', 'locality_weight', 'prediction_weight', 'context_weight')
+    fields = ['evaluation_mode', 'training_active', 'recommendation_threshold', 'nr_of_reference_things_per_thing',
+              'category_weight', 'locality_weight', 'prediction_weight', 'context_weight']
+    list_display = ('pk', 'evaluation_mode', 'training_active', 'recommendation_threshold',
+                    'nr_of_reference_things_per_thing', 'category_weight', 'locality_weight', 'prediction_weight',
+                    'context_weight')
 
     def get_readonly_fields(self, request, obj=None):
         return ['locality_weight', 'context_weight']
@@ -115,7 +118,8 @@ class ThingsInLine(admin.TabularInline):
 # admin.site.register(Category, CategoryAdmin)
 
 class CategoryAdmin(MPTTModelAdmin):
-    list_display = ('name', 'text_id', 'nr_of_items_recursive', 'things_assigned', 'ref_things_assigned', 'is_alias', 'get_alias_owner_full')
+    list_display = ('name', 'text_id', 'nr_of_items_recursive', 'things_assigned', 'ref_things_assigned',
+                    'user_prefs_positive', 'user_prefs_negative', 'is_alias', 'get_alias_owner_full')
 
     def get_readonly_fields(self, request, obj=None):
         return ['nr_of_items_recursive']
@@ -142,6 +146,18 @@ class CategoryAdmin(MPTTModelAdmin):
 
     ref_things_assigned.short_description = 'Reference Things Assigned'
     ref_things_assigned.admin_order_field = 'ref_things_assigned'
+
+    def user_prefs_positive(self, obj):
+        return obj.preferences.filter(value=1).count()
+
+    user_prefs_positive.short_description = 'User Prefs +'
+    user_prefs_positive.admin_order_field = 'user_prefs_positive'
+
+    def user_prefs_negative(self, obj):
+        return obj.preferences.filter(value=-1).count()
+
+    user_prefs_negative.short_description = 'User Prefs -'
+    user_prefs_negative.admin_order_field = 'user_prefs_negative'
 
 
 admin.site.register(Category, CategoryAdmin)

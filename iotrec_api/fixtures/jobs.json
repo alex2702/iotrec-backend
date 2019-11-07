@@ -122,7 +122,7 @@
     "fields": {
       "name": "Calculate Category Thing Counts",
       "frequency": "HOURLY",
-      "params": "",
+      "params": "interval=3",
       "command": "calculatethingcounts",
       "args": "",
       "raw_command": null,
