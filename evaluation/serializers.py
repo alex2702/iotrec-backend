@@ -11,8 +11,6 @@ class ContextSerializer(serializers.ModelSerializer):
 
 
 class ExperimentSerializer(serializers.ModelSerializer):
-    context = ContextSerializer(many=False)
-
     class Meta:
         model = Experiment
         fields = '__all__'

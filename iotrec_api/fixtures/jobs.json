@@ -44,7 +44,7 @@
     "fields": {
       "name": "Calculate Reference Similarities",
       "frequency": "HOURLY",
-      "params": "",
+      "params": "interval=3",
       "command": "calculatereferences",
       "args": "",
       "raw_command": null,
@@ -122,7 +122,7 @@
     "fields": {
       "name": "Calculate Category Thing Counts",
       "frequency": "HOURLY",
-      "params": "interval=3",
+      "params": "",
       "command": "calculatethingcounts",
       "args": "",
       "raw_command": null,
