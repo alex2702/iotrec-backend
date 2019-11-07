@@ -2,19 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09f20613-1e31-44ae-99f8-83d2ab175056" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/iotrec_api/fixtures/sites.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec/settings/development.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec/settings/development.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec/settings/production.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec/settings/production.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/fixtures/categories.json" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/fixtures/categories.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/fixtures/categories_original.json" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/fixtures/categories_full.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluation/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/iotrec_api/fixtures/jobs.json" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/fixtures/jobs.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/fixtures/things.json" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/fixtures/things.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training/templates/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/training/templates/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -298,7 +288,7 @@
       <workItem from="1572973174399" duration="675000" />
       <workItem from="1573137532385" duration="3594000" />
       <workItem from="1573145658657" duration="1712000" />
-      <workItem from="1573148788553" duration="3397000" />
+      <workItem from="1573148788553" duration="4256000" />
     </task>
     <servers />
   </component>
