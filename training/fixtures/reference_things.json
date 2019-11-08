@@ -1,1024 +1,1770 @@
 [
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 1,
     "fields": {
       "title": "public transport ticket machine",
       "display_title": "Public Transport Ticket Machine",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "public-transport-ticket-machine.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_Environment",
+        "Business_Regional",
+        "Business_RetailTrade",
+        "Business_TransportationandLogistics",
+        "Computers_Human-ComputerInteraction",
+        "Home_UrbanLiving",
+        "Recreation_Outdoors",
+        "Recreation_RoadsandHighways",
+        "Recreation_TrainsandRailroads",
+        "Recreation_Travel",
+        "Shopping_GeneralMerchandise",
+        "Shopping_Travel",
+        "Shopping_Vehicles"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 2,
     "fields": {
       "title": "public transport ticket machine",
       "display_title": "Public Transport Ticket Machine",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "public-transport-ticket-machine.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_Environment",
+        "Business_Regional",
+        "Business_RetailTrade",
+        "Business_TransportationandLogistics",
+        "Computers_Human-ComputerInteraction",
+        "Home_UrbanLiving",
+        "Recreation_Outdoors",
+        "Recreation_RoadsandHighways",
+        "Recreation_TrainsandRailroads",
+        "Recreation_Travel",
+        "Shopping_GeneralMerchandise",
+        "Shopping_Travel",
+        "Shopping_Vehicles"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 3,
     "fields": {
       "title": "railway ticket machine",
       "display_title": "Railway Ticket Machine",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "railway-ticket-machine.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 4,
     "fields": {
       "title": "railway ticket machine",
       "display_title": "Railway Ticket Machine",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "railway-ticket-machine.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 5,
     "fields": {
       "title": "public bathroom",
       "display_title": "Public Bathroom",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "public-bathroom.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 6,
     "fields": {
       "title": "ATM",
       "display_title": "ATM/Cashpoint",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "atm.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_FinancialServices",
+        "Business_RetailTrade",
+        "Home_PersonalFinance",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "Recreation_Travel",
+        "Shopping_AntiquesandCollectibles",
+        "Shopping_Auctions",
+        "Shopping_Children",
+        "Shopping_Classifieds",
+        "Shopping_Clothing",
+        "Shopping_ConsumerElectronics",
+        "Shopping_Crafts",
+        "Shopping_DeathCare",
+        "Shopping_Entertainment",
+        "Shopping_EthnicandRegional",
+        "Shopping_Flowers",
+        "Shopping_Food",
+        "Shopping_GeneralMerchandise",
+        "Shopping_Gifts",
+        "Shopping_Health",
+        "Shopping_Holidays",
+        "Shopping_HomeandGarden",
+        "Shopping_Jewelry",
+        "Shopping_Music",
+        "Shopping_Niche",
+        "Shopping_OfficeProducts",
+        "Shopping_Pets",
+        "Shopping_Photography",
+        "Shopping_Publications",
+        "Shopping_Recreation",
+        "Shopping_Sports",
+        "Shopping_Tobacco",
+        "Shopping_Tools",
+        "Shopping_ToysandGames",
+        "Shopping_Travel",
+        "Shopping_Vehicles",
+        "Shopping_VisualArts",
+        "Shopping_Weddings"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 7,
     "fields": {
       "title": "ATM",
       "display_title": "ATM/Cashpoint",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "atm.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_FinancialServices",
+        "Business_RetailTrade",
+        "Home_PersonalFinance",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "Recreation_Travel",
+        "Shopping_AntiquesandCollectibles",
+        "Shopping_Auctions",
+        "Shopping_Children",
+        "Shopping_Classifieds",
+        "Shopping_Clothing",
+        "Shopping_ConsumerElectronics",
+        "Shopping_Crafts",
+        "Shopping_DeathCare",
+        "Shopping_Entertainment",
+        "Shopping_EthnicandRegional",
+        "Shopping_Flowers",
+        "Shopping_Food",
+        "Shopping_GeneralMerchandise",
+        "Shopping_Gifts",
+        "Shopping_Health",
+        "Shopping_Holidays",
+        "Shopping_HomeandGarden",
+        "Shopping_Jewelry",
+        "Shopping_Music",
+        "Shopping_Niche",
+        "Shopping_OfficeProducts",
+        "Shopping_Pets",
+        "Shopping_Photography",
+        "Shopping_Publications",
+        "Shopping_Recreation",
+        "Shopping_Sports",
+        "Shopping_Tobacco",
+        "Shopping_Tools",
+        "Shopping_ToysandGames",
+        "Shopping_Travel",
+        "Shopping_Vehicles",
+        "Shopping_VisualArts",
+        "Shopping_Weddings"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 8,
     "fields": {
       "title": "vending machine with drinks",
       "display_title": "Vending Machine with Drinks",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "vending-machine-with-drinks.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_FoodandRelatedProducts",
+        "Business_Hospitality",
+        "Business_RetailTrade",
+        "Home_UrbanLiving",
+        "Recreation_Food",
+        "Shopping_Food"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 9,
     "fields": {
       "title": "vending machine with drinks",
       "display_title": "Vending Machine with Drinks",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "vending-machine-with-drinks.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_FoodandRelatedProducts",
+        "Business_Hospitality",
+        "Business_RetailTrade",
+        "Home_UrbanLiving",
+        "Recreation_Food",
+        "Shopping_Food"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 10,
     "fields": {
       "title": "vending machine with food",
       "display_title": "Vending Machine with Food",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "vending-machine-with-food.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_FoodandRelatedProducts",
+        "Business_Hospitality",
+        "Business_RetailTrade",
+        "Home_UrbanLiving",
+        "Recreation_Food",
+        "Shopping_Food"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 11,
     "fields": {
       "title": "vending machine with food",
       "display_title": "Vending Machine with Food",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "vending-machine-with-food.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_FoodandRelatedProducts",
+        "Business_Hospitality",
+        "Business_RetailTrade",
+        "Home_UrbanLiving",
+        "Recreation_Food",
+        "Shopping_Food"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 12,
     "fields": {
       "title": "printer",
       "display_title": "Printer",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "printer.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Business_BusinessServices",
+        "Business_ConsumerGoodsandServices",
+        "Business_PublishingandPrinting",
+        "Computers_Hardware",
+        "Computers_MobileComputing",
+        "Shopping_OfficeProducts"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 13,
     "fields": {
       "title": "photo booth",
       "display_title": "Photo Booth",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "photo-booth.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Arts_Photography",
+        "Arts_VisualArts",
+        "Business_ArtsandEntertainment",
+        "Business_ConsumerGoodsandServices",
+        "Business_PublishingandPrinting",
+        "Business_RetailTrade",
+        "Home_UrbanLiving",
+        "Shopping_Niche",
+        "Shopping_OfficeProducts",
+        "Shopping_Photography",
+        "Shopping_VisualArts"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 14,
     "fields": {
       "title": "coffee machine",
       "display_title": "Coffee Machine",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "coffee-machine.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_FoodandRelatedProducts",
+        "Business_Hospitality",
+        "Business_RetailTrade",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "Recreation_Food",
+        "Shopping_Food"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 15,
     "fields": {
       "title": "laundromat",
       "display_title": "Laundromat",
       "description": "Public self-service laundry.",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "laundromat.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_RetailTrade",
+        "Business_TextilesandNonwovens",
+        "Home_ApartmentLiving",
+        "Home_PersonalOrganization",
+        "Home_UrbanLiving"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 16,
     "fields": {
       "title": "electric car charger",
       "display_title": "Charging Station for Electric Cars",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "electric-car-charger.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 17,
     "fields": {
       "title": "electric car charger",
       "display_title": "Charging Station for Electric Cars",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "electric-car-charger.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": true,
+      "categories": [
+        "Business_Automotive",
+        "Business_ConsumerGoodsandServices",
+        "Business_Energy",
+        "Business_Environment",
+        "Business_TransportationandLogistics",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "Recreation_TrainsandRailroads",
+        "Recreation_Travel",
+        "Shopping_Sports",
+        "Shopping_Travel",
+        "Shopping_Vehicles"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 18,
     "fields": {
       "title": "phone charging station",
       "display_title": "Public Phone Charging Station",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "phone-charging-station.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_ElectronicsandElectrical",
+        "Business_Telecommunications",
+        "Computers_MobileComputing",
+        "Recreation_Travel",
+        "Shopping_Travel"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 19,
     "fields": {
       "title": "arcade",
       "display_title": "Arcade",
-      "description": "Video games, pinball, air hockey, other coin-operated machines, …",
-      "indoorsLocation": true,
-      "categories": "",
+      "description": "Video games, pinball, air hockey, other coin-operated machines, \\u2026",
       "type": "BCN_I",
       "image": "arcade.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Business_ArtsandEntertainment",
+        "Business_RetailTrade",
+        "Games_Hand-EyeCoordination",
+        "Games_Online",
+        "Games_VideoGames",
+        "Home_Entertaining",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "Shopping_Entertainment",
+        "Shopping_Recreation"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 20,
     "fields": {
       "title": "airport check-in kiosk",
       "display_title": "Airport Check-In Kiosk",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "airport-checkin-kiosk.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Business_AerospaceandDefense",
+        "Business_ConsumerGoodsandServices",
+        "Business_TransportationandLogistics",
+        "Computers_Human-ComputerInteraction",
+        "Recreation_Travel",
+        "Shopping_Travel"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 21,
     "fields": {
       "title": "photo printer",
       "display_title": "Photo Printing Station",
       "description": "Typically found in a supermarket, drugstore or similar.",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "photo-printer.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Arts_Crafts",
+        "Arts_Photography",
+        "Arts_VisualArts",
+        "Business_ArtsandEntertainment",
+        "Business_ConsumerGoodsandServices",
+        "Business_PublishingandPrinting",
+        "Business_RetailTrade",
+        "Computers_Human-ComputerInteraction",
+        "Home_Do-It-Yourself",
+        "Home_HomeImprovement",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "Shopping_Crafts",
+        "Shopping_Niche",
+        "Shopping_OfficeProducts",
+        "Shopping_Photography",
+        "Shopping_VisualArts"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 22,
     "fields": {
       "title": "food order machine in a restaurant",
       "display_title": "Order Kiosk in a Restaurant",
       "description": "Primarily used in fast food restaurants.",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "food-order-machine-restaurant.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_FoodandRelatedProducts",
+        "Business_Hospitality",
+        "Business_RetailTrade",
+        "Computers_Human-ComputerInteraction",
+        "Home_UrbanLiving",
+        "Recreation_Food",
+        "Shopping_Food"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 23,
     "fields": {
       "title": "smart home control unit",
       "display_title": "Smart Home Control Unit",
       "description": "Mounted screen somewhere in your home.",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "smart-home-control-unit.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Computers_Hardware",
+        "Computers_HomeAutomation",
+        "Computers_Human-ComputerInteraction",
+        "Computers_Internet",
+        "Computers_Intranet",
+        "Home_ApartmentLiving",
+        "Home_Do-It-Yourself",
+        "Home_Entertaining",
+        "Home_Gardening",
+        "Home_HomeImprovement",
+        "Home_Homemaking",
+        "Home_Homeowners",
+        "Home_RuralLiving",
+        "Home_UrbanLiving"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 24,
     "fields": {
       "title": "public computer",
       "display_title": "Public Computer or Internet Terminal",
-      "description": "Typically located in hotels, airports, …",
-      "indoorsLocation": true,
-      "categories": "",
+      "description": "Typically located in hotels, airports, \\u2026",
       "type": "BCN_I",
       "image": "public-computer.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Business_BusinessServices",
+        "Business_ConsumerGoodsandServices",
+        "Business_InformationServices",
+        "Business_InformationTechnology",
+        "Computers_ChatsandForums",
+        "Computers_Hardware",
+        "Computers_Internet",
+        "Computers_Multimedia",
+        "Computers_NewsandMedia",
+        "Games_Online",
+        "Games_VideoGames",
+        "News_Alternative",
+        "News_AnalysisandOpinion",
+        "News_BreakingNews",
+        "News_CollegesandUniversities",
+        "News_CurrentEvents",
+        "News_ExtendedCoverage",
+        "News_InternetBroadcasts",
+        "News_Journalism",
+        "News_MediaIndustry",
+        "News_PersonalizedNews",
+        "News_Satire",
+        "News_Weather"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 25,
     "fields": {
       "title": "drinking fountain",
       "display_title": "Drinking Fountain",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "drinking-fountain.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_FoodandRelatedProducts",
+        "Business_Hospitality",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "Recreation_Food",
+        "Shopping_Food"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 26,
     "fields": {
       "title": "drinking fountain",
       "display_title": "Drinking Fountain",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "drinking-fountain.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_FoodandRelatedProducts",
+        "Business_Hospitality",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "Recreation_Food",
+        "Shopping_Food"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 27,
     "fields": {
       "title": "gas station",
       "display_title": "Gas Station",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "gas-station.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 28,
     "fields": {
       "title": "bike sharing station",
       "display_title": "Bike Sharing Station",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "bike-sharing-station.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": true,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_Environment",
+        "Business_TransportationandLogistics",
+        "Health_Fitness",
+        "Health_WeightLoss",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "Recreation_Outdoors",
+        "Recreation_Travel",
+        "Shopping_Recreation",
+        "Shopping_Sports",
+        "Shopping_Travel",
+        "Shopping_Vehicles",
+        "Sports_Cycling"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 29,
     "fields": {
       "title": "shared bike",
       "display_title": "Sharing Bike",
       "description": "Bike from a sharing provider, located outside a station.",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "sharing-bike.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": true,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_Environment",
+        "Business_TransportationandLogistics",
+        "Health_Fitness",
+        "Health_WeightLoss",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "Recreation_Outdoors",
+        "Recreation_Travel",
+        "Shopping_Recreation",
+        "Shopping_Sports",
+        "Shopping_Travel",
+        "Shopping_Vehicles",
+        "Sports_Cycling"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 30,
     "fields": {
       "title": "e-scooter",
       "display_title": "E-Scooter",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "e-scooter.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": true,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_Environment",
+        "Business_TransportationandLogistics",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "Recreation_Outdoors",
+        "Recreation_Travel",
+        "Shopping_Travel",
+        "Shopping_Vehicles"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 31,
     "fields": {
       "title": "shared car",
       "display_title": "Sharing Car",
       "description": "Car from a sharing provider, located outside a station.",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "shared-car.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 32,
     "fields": {
       "title": "student card validation machine",
       "display_title": "Student Card Validation Machine",
       "description": "Machine used for extending your student ID (or some other identification).",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "student-card-validation-machine.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 33,
     "fields": {
       "title": "payment card top-up station",
       "display_title": "Payment Card Top-Up Station",
-      "description": "Payment cards for public transport, cashless payment at stadiums, …",
-      "indoorsLocation": true,
-      "categories": "",
+      "description": "Payment cards for public transport, cashless payment at stadiums, \\u2026",
       "type": "BCN_I",
       "image": "payment-card-topup-machine.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 34,
     "fields": {
       "title": "payment card top-up station",
       "display_title": "Payment Card Top-Up Station",
-      "description": "Payment cards for public transport, cashless payment at stadiums, …",
-      "indoorsLocation": false,
-      "categories": "",
+      "description": "Payment cards for public transport, cashless payment at stadiums, \\u2026",
       "type": "BCN_I",
       "image": "payment-card-topup-machine.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 35,
     "fields": {
       "title": "taxi",
       "display_title": "Taxi",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "taxi.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 36,
     "fields": {
       "title": "Uber car",
       "display_title": "Uber Car",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "uber.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 37,
     "fields": {
       "title": "your own bike",
       "display_title": "Your Own Bike",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "own-bike.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": true,
+      "categories": [
+        "Health_Fitness",
+        "Health_WeightLoss",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "Recreation_Outdoors",
+        "Recreation_Travel",
+        "Sports_Cycling"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 38,
     "fields": {
       "title": "your own car",
       "display_title": "Your Own Car",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "own-car.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 39,
     "fields": {
       "title": "train station",
       "display_title": "Train Station",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "train-station.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 40,
     "fields": {
       "title": "bottle return machine",
       "display_title": "Bottle Return Machine",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "bottle-return-machine.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_FoodandRelatedProducts",
+        "Business_RetailTrade",
+        "Home_PersonalOrganization",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "Shopping_Food"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 41,
     "fields": {
       "title": "phone booth",
       "display_title": "Phone Booth",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "phone-booth.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 42,
     "fields": {
       "title": "emergency phone",
       "display_title": "Emergency Phone",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "emergency-phone.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 43,
     "fields": {
       "title": "emergency phone",
       "display_title": "Emergency Phone",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "emergency-phone.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 44,
     "fields": {
       "title": "book vending machine",
       "display_title": "Book Vending Machine",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "book-vending-machine.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Arts_Comics",
+        "Arts_Literature",
+        "Arts_NewsandMedia",
+        "Business_ArtsandEntertainment",
+        "Business_ConsumerGoodsandServices",
+        "Business_NewsandMedia",
+        "Business_PublishingandPrinting",
+        "Business_RetailTrade",
+        "Computers_E-Books",
+        "Computers_Human-ComputerInteraction",
+        "Computers_NewsandMedia",
+        "Health_NewsandMedia",
+        "Home_ApartmentLiving",
+        "Home_Entertaining",
+        "Home_Family",
+        "Home_NewsandMedia",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "News_Journalism",
+        "Reference_Biography",
+        "Reference_Books",
+        "Reference_Dictionaries",
+        "Reference_Encyclopedias",
+        "Reference_Journals",
+        "Reference_Libraries",
+        "Reference_Thesauri",
+        "Science_NewsandMedia",
+        "Science_Publications",
+        "Shopping_AntiquesandCollectibles",
+        "Shopping_Entertainment",
+        "Shopping_Gifts",
+        "Shopping_Publications",
+        "Shopping_Recreation"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 45,
     "fields": {
       "title": "book vending machine",
       "display_title": "Book Vending Machine",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "book-vending-machine.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 46,
     "fields": {
       "title": "electronics vending machine",
       "display_title": "Electronics Vending Machine",
-      "description": "Selling charging cables, computer mouses, phones, powerbanks, …",
-      "indoorsLocation": true,
-      "categories": "",
+      "description": "Selling charging cables, computer mouses, phones, powerbanks, \\u2026",
       "type": "BCN_I",
       "image": "electronics-vending-machine.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Business_ArtsandEntertainment",
+        "Business_ConsumerGoodsandServices",
+        "Business_ElectronicsandElectrical",
+        "Business_InformationTechnology",
+        "Business_RetailTrade",
+        "Business_Telecommunications",
+        "Computers_Hardware",
+        "Computers_Human-ComputerInteraction",
+        "Computers_MobileComputing",
+        "Games_VideoGames",
+        "Home_Entertaining",
+        "Home_UrbanLiving",
+        "Recreation_Audio",
+        "Shopping_ConsumerElectronics",
+        "Shopping_Entertainment",
+        "Shopping_HomeandGarden",
+        "Shopping_OfficeProducts"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 47,
     "fields": {
       "title": "electronics vending machine",
       "display_title": "Electronics Vending Machine",
-      "description": "Selling charging cables, computer mouses, phones, powerbanks, …",
-      "indoorsLocation": false,
-      "categories": "",
+      "description": "Selling charging cables, computer mouses, phones, powerbanks, \\u2026",
       "type": "BCN_I",
       "image": "electronics-vending-machine.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 48,
     "fields": {
       "title": "cigarette vending machine",
       "display_title": "Cigarette Vending Machine",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "cigarette-vending-machine.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 49,
     "fields": {
       "title": "cigarette vending machine",
       "display_title": "Cigarette Vending Machine",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "cigarette-vending-machine.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": true,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_RetailTrade",
+        "Computers_Human-ComputerInteraction",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "Recreation_Drugs",
+        "Recreation_Tobacco",
+        "Shopping_Tobacco"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 50,
     "fields": {
       "title": "milk vending machine",
       "display_title": "Milk Vending Machine",
       "description": "Selling fresh, unprocessed milk. Typically requires you to bring your own bottle.",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "milk-vending-machine.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_FoodandRelatedProducts",
+        "Business_Hospitality",
+        "Business_Regional",
+        "Business_RetailTrade",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "Recreation_Food",
+        "Shopping_Food"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 51,
     "fields": {
       "title": "milk vending machine",
       "display_title": "Milk Vending Machine",
       "description": "Selling fresh, unprocessed milk. Typically requires you to bring your own bottle.",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "milk-vending-machine.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 52,
     "fields": {
       "title": "equipment vending machine",
       "display_title": "Equipment Vending Machine",
       "description": "Selling various pieces of equipment, such as bike tubes.",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "equipment-vending-machine.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 53,
     "fields": {
       "title": "equipment vending machine",
       "display_title": "Equipment Vending Machine",
       "description": "Selling various pieces of equipment, such as bike tubes.",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "equipment-vending-machine.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": true,
+      "categories": [
+        "Business_Automotive",
+        "Business_ConsumerGoodsandServices",
+        "Business_ElectronicsandElectrical",
+        "Business_RetailTrade",
+        "Business_TextilesandNonwovens",
+        "Business_TransportationandLogistics",
+        "Computers_Human-ComputerInteraction",
+        "Home_UrbanLiving",
+        "Recreation_Autos",
+        "Recreation_Camps",
+        "Recreation_Motorcycles",
+        "Shopping_GeneralMerchandise",
+        "Shopping_HomeandGarden",
+        "Shopping_Niche",
+        "Shopping_Recreation",
+        "Shopping_Tools",
+        "Shopping_Travel",
+        "Shopping_Vehicles",
+        "Sports_Cycling"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 54,
     "fields": {
       "title": "ice cream vending machine",
       "display_title": "Ice Cream Vending Machine",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "ice-cream-vending-machine.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_FoodandRelatedProducts",
+        "Business_Hospitality",
+        "Business_RetailTrade",
+        "Home_UrbanLiving",
+        "Recreation_Food",
+        "Shopping_Food"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 55,
     "fields": {
       "title": "ice cream vending machine",
       "display_title": "Ice Cream Vending Machine",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "ice-cream-vending-machine.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": [
+        "Business_ConsumerGoodsandServices",
+        "Business_FoodandRelatedProducts",
+        "Business_Hospitality",
+        "Business_RetailTrade",
+        "Home_UrbanLiving",
+        "Recreation_Food",
+        "Shopping_Food"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 56,
     "fields": {
       "title": "parking meter",
       "display_title": "Parking Meter",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "parking-meter.jgp",
-      "active": true
+      "indoorsLocation": false,
+      "active": true,
+      "categories": [
+        "Business_Automotive",
+        "Business_ConsumerGoodsandServices",
+        "Business_Regional",
+        "Business_RetailTrade",
+        "Business_TransportationandLogistics",
+        "Computers_Human-ComputerInteraction",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "Recreation_Autos",
+        "Recreation_Motorcycles",
+        "Recreation_RoadsandHighways",
+        "Recreation_Travel",
+        "Shopping_GeneralMerchandise",
+        "Shopping_Travel",
+        "Shopping_Vehicles"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 57,
     "fields": {
       "title": "stamps vending machine",
       "display_title": "Stamps Vending Machine",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "stamp-vending-machine.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 58,
     "fields": {
       "title": "stamps vending machine",
       "display_title": "Stamps Vending Machine",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "stamp-vending-machine.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": true,
+      "categories": [
+        "Business_BusinessServices",
+        "Business_ConsumerGoodsandServices",
+        "Business_RetailTrade",
+        "Business_TransportationandLogistics",
+        "Computers_Human-ComputerInteraction",
+        "Home_UrbanLiving",
+        "Recreation_Collecting",
+        "Shopping_AntiquesandCollectibles",
+        "Shopping_OfficeProducts",
+        "Shopping_Recreation"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 59,
     "fields": {
       "title": "public wifi access point",
       "display_title": "Public WiFi Access Point",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "public-wifi.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Arts_NewsandMedia",
+        "Arts_OnlineWriting",
+        "Business_E-Commerce",
+        "Business_InformationServices",
+        "Business_InformationTechnology",
+        "Business_NewsandMedia",
+        "Business_Telecommunications",
+        "Computers_DataCommunications",
+        "Computers_Hardware",
+        "Computers_Internet",
+        "Computers_MobileComputing",
+        "Computers_NewsandMedia",
+        "Computers_Security",
+        "Games_Online",
+        "Games_VideoGames",
+        "Health_NewsandMedia",
+        "Home_NewsandMedia",
+        "News_Alternative",
+        "News_AnalysisandOpinion",
+        "News_BreakingNews",
+        "News_CollegesandUniversities",
+        "News_CurrentEvents",
+        "News_ExtendedCoverage",
+        "News_InternetBroadcasts",
+        "News_Journalism",
+        "News_MediaIndustry",
+        "News_MuseumsandArchives",
+        "News_PersonalizedNews",
+        "News_Satire",
+        "News_Weather",
+        "Science_NewsandMedia"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 60,
     "fields": {
       "title": "public wifi access point",
       "display_title": "Public WiFi Access Point",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "public-wifi.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 61,
     "fields": {
       "title": "gambling machine",
       "display_title": "Gambling Machine",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "gambling-machine.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Business_ArtsandEntertainment",
+        "Business_RetailTrade",
+        "Computers_Human-ComputerInteraction",
+        "Games_Gambling",
+        "Games_Hand-EyeCoordination",
+        "Games_VideoGames",
+        "Home_Entertaining",
+        "Home_RuralLiving",
+        "Home_UrbanLiving"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 62,
     "fields": {
       "title": "trade show booth",
       "display_title": "Trade Show Booth",
       "description": "One out of multiple booths at a trade show.",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "trade-show-booth.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Business_Accounting",
+        "Business_AerospaceandDefense",
+        "Business_AgricultureandForestry",
+        "Business_ArtsandEntertainment",
+        "Business_Automotive",
+        "Business_BiotechnologyandPharmaceuticals",
+        "Business_BusinessServices",
+        "Business_Chemicals",
+        "Business_ConstructionandMaintenance",
+        "Business_ConsumerGoodsandServices",
+        "Business_E-Commerce",
+        "Business_EducationandTraining",
+        "Business_ElectronicsandElectrical",
+        "Business_Energy",
+        "Business_Environment",
+        "Business_FinancialServices",
+        "Business_FoodandRelatedProducts",
+        "Business_Healthcare",
+        "Business_Hospitality",
+        "Business_HumanResources",
+        "Business_IndustrialGoodsandServices",
+        "Business_InformationServices",
+        "Business_InformationTechnology",
+        "Business_InternationalBusinessandTrade",
+        "Business_MajorCompanies",
+        "Business_MarketingandAdvertising",
+        "Business_MiningandDrilling",
+        "Business_NewsandMedia",
+        "Business_Opportunities",
+        "Business_PublishingandPrinting",
+        "Business_RealEstate",
+        "Business_Regional",
+        "Business_SmallBusiness",
+        "Business_Telecommunications",
+        "Business_TextilesandNonwovens",
+        "Business_TransportationandLogistics"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 63,
     "fields": {
       "title": "trade show booth",
       "display_title": "Trade Show Booth",
       "description": "One out of multiple booths at a trade show.",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "trade-show-booth.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": [
+        "Business_Accounting",
+        "Business_AerospaceandDefense",
+        "Business_AgricultureandForestry",
+        "Business_ArtsandEntertainment",
+        "Business_Automotive",
+        "Business_BiotechnologyandPharmaceuticals",
+        "Business_BusinessServices",
+        "Business_Chemicals",
+        "Business_ConstructionandMaintenance",
+        "Business_ConsumerGoodsandServices",
+        "Business_E-Commerce",
+        "Business_EducationandTraining",
+        "Business_ElectronicsandElectrical",
+        "Business_Energy",
+        "Business_Environment",
+        "Business_FinancialServices",
+        "Business_FoodandRelatedProducts",
+        "Business_Healthcare",
+        "Business_Hospitality",
+        "Business_HumanResources",
+        "Business_IndustrialGoodsandServices",
+        "Business_InformationServices",
+        "Business_InformationTechnology",
+        "Business_InternationalBusinessandTrade",
+        "Business_MajorCompanies",
+        "Business_MarketingandAdvertising",
+        "Business_MiningandDrilling",
+        "Business_NewsandMedia",
+        "Business_Opportunities",
+        "Business_PublishingandPrinting",
+        "Business_RealEstate",
+        "Business_Regional",
+        "Business_SmallBusiness",
+        "Business_Telecommunications",
+        "Business_TextilesandNonwovens",
+        "Business_TransportationandLogistics"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 64,
     "fields": {
       "title": "multimedia device in a museum",
       "display_title": "Multimedia Device at a Museum",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "museum-multimedia.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Arts_Animation",
+        "Arts_Digital",
+        "Arts_Education",
+        "Arts_Entertainment",
+        "Arts_Illustration",
+        "Arts_Movies",
+        "Arts_Music",
+        "Arts_NewsandMedia",
+        "Arts_Photography",
+        "Arts_Radio",
+        "Arts_Television",
+        "Arts_Video",
+        "Arts_VisualArts",
+        "Business_ArtsandEntertainment",
+        "Computers_Multimedia",
+        "Computers_VirtualReality",
+        "Home_Entertaining",
+        "News_MuseumsandArchives",
+        "Reference_Museums"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 65,
     "fields": {
       "title": "painting in a museum",
       "display_title": "Painting at a Museum",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "art-painting.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Arts_ArtHistory",
+        "Arts_Crafts",
+        "Arts_CulturesandGroups",
+        "Arts_Illustration",
+        "Arts_PeriodsandMovements",
+        "Arts_VisualArts",
+        "Business_ArtsandEntertainment",
+        "Home_ApartmentLiving",
+        "Home_Entertaining",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "News_MuseumsandArchives",
+        "Recreation_Collecting",
+        "Reference_Museums",
+        "Shopping_AntiquesandCollectibles",
+        "Shopping_Auctions",
+        "Shopping_Entertainment",
+        "Shopping_Photography",
+        "Shopping_VisualArts"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 66,
     "fields": {
       "title": "sculptures in a museum",
       "display_title": "Sculpture at a Museum",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "art-sculpture.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Arts_ArtHistory",
+        "Arts_Crafts",
+        "Arts_CulturesandGroups",
+        "Arts_PeriodsandMovements",
+        "Arts_VisualArts",
+        "Business_ArtsandEntertainment",
+        "Home_ApartmentLiving",
+        "Home_Entertaining",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "News_MuseumsandArchives",
+        "Recreation_Collecting",
+        "Reference_Museums",
+        "Shopping_AntiquesandCollectibles",
+        "Shopping_Auctions",
+        "Shopping_Entertainment",
+        "Shopping_Photography",
+        "Shopping_VisualArts"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 67,
     "fields": {
       "title": "photography piece in a museum",
       "display_title": "Photography at a Museum",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "art-photography.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Arts_Crafts",
+        "Arts_Photography",
+        "Arts_VisualArts",
+        "Business_ArtsandEntertainment",
+        "Home_ApartmentLiving",
+        "Home_Entertaining",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "News_MuseumsandArchives",
+        "Recreation_Collecting",
+        "Reference_Museums",
+        "Shopping_AntiquesandCollectibles",
+        "Shopping_Auctions",
+        "Shopping_Entertainment",
+        "Shopping_Photography",
+        "Shopping_VisualArts"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 68,
     "fields": {
       "title": "ceramics piece in a museum",
       "display_title": "Ceramic/Pottery at a Museum",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "art-ceramics.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": false,
+      "categories": []
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 69,
     "fields": {
       "title": "art installation in a museum",
       "display_title": "Art Installation at a Museum",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "art-installation.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Arts_ArtHistory",
+        "Arts_ClassicalStudies",
+        "Arts_Crafts",
+        "Arts_CulturesandGroups",
+        "Arts_Design",
+        "Arts_PeriodsandMovements",
+        "Arts_Regional",
+        "Arts_VisualArts",
+        "Business_ArtsandEntertainment",
+        "Business_Regional",
+        "Home_ApartmentLiving",
+        "Home_Entertaining",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "News_MuseumsandArchives",
+        "Recreation_Antiques",
+        "Recreation_Collecting",
+        "Reference_Museums",
+        "Shopping_AntiquesandCollectibles",
+        "Shopping_VisualArts",
+        "Society_Folklore"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 70,
     "fields": {
       "title": "parking ticket machine",
       "display_title": "Parking Ticket Machine",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "parking-ticket-machine.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": true,
+      "categories": [
+        "Business_Automotive",
+        "Business_ConsumerGoodsandServices",
+        "Business_Regional",
+        "Business_RetailTrade",
+        "Business_TransportationandLogistics",
+        "Computers_Human-ComputerInteraction",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "Recreation_Autos",
+        "Recreation_Motorcycles",
+        "Recreation_RoadsandHighways",
+        "Recreation_Travel",
+        "Shopping_GeneralMerchandise",
+        "Shopping_Travel",
+        "Shopping_Vehicles"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 71,
     "fields": {
       "title": "post box",
       "display_title": "Post Box",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "post-box.png",
-      "active": true
+      "indoorsLocation": false,
+      "active": true,
+      "categories": [
+        "Business_BusinessServices",
+        "Business_ConsumerGoodsandServices",
+        "Business_Regional",
+        "Business_TransportationandLogistics",
+        "Home_ConsumerInformation",
+        "Home_RuralLiving",
+        "Home_UrbanLiving",
+        "Shopping_OfficeProducts"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 72,
     "fields": {
       "title": "toy vending machine",
       "display_title": "Toy Vending Machine",
       "description": "",
-      "indoorsLocation": true,
-      "categories": "",
       "type": "BCN_I",
       "image": "toy-vending-machine.jpg",
-      "active": true
+      "indoorsLocation": true,
+      "active": true,
+      "categories": [
+        "Arts_Entertainment",
+        "Business_ArtsandEntertainment",
+        "Business_ConsumerGoodsandServices",
+        "Business_RetailTrade",
+        "Computers_Human-ComputerInteraction",
+        "Games_BoardGames",
+        "Games_CardGames",
+        "Games_Dice",
+        "Games_Puzzles",
+        "Games_TileGames",
+        "Games_Yard,Deck,andTableGames",
+        "Home_Entertaining",
+        "Home_Family",
+        "Home_UrbanLiving",
+        "Shopping_Children",
+        "Shopping_Entertainment",
+        "Shopping_ToysandGames"
+      ]
     }
   },
   {
-    "model": "training.ReferenceThing",
+    "model": "training.referencething",
     "pk": 73,
     "fields": {
       "title": "toy vending machine",
       "display_title": "Toy Vending Machine",
       "description": "",
-      "indoorsLocation": false,
-      "categories": "",
       "type": "BCN_I",
       "image": "toy-vending-machine.jpg",
-      "active": true
+      "indoorsLocation": false,
+      "active": false,
+      "categories": []
     }
   }
 ]
