@@ -5,7 +5,8 @@
     "fields": {
       "title": "timeOfDay",
       "display_title": "Time of Day",
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -16,7 +17,8 @@
       "display_title": "early morning",
       "description": "it is early morning (04:00–08:00).",
       "context_factor": 1,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -27,7 +29,8 @@
       "display_title": "late morning",
       "description": "it is late morning (08:00–11:00).",
       "context_factor": 1,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -38,7 +41,8 @@
       "display_title": "noon",
       "description": "it is about noon (11:00–13:00).",
       "context_factor": 1,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -49,7 +53,8 @@
       "display_title": "afternoon",
       "description": "it is in the afternoon (13:00–18:00).",
       "context_factor": 1,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -60,7 +65,8 @@
       "display_title": "evening",
       "description": "it is in the evening (18:00–22:00).",
       "context_factor": 1,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -71,7 +77,8 @@
       "display_title": "night",
       "description": "it is night-time (22:00–04:00).",
       "context_factor": 1,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -80,7 +87,8 @@
     "fields": {
       "title": "dayOfTheWeek",
       "display_title": "Day of the Week",
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -91,7 +99,8 @@
       "display_title": "weekdays",
       "description": "it is a weekday.",
       "context_factor": 2,
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -102,7 +111,8 @@
       "display_title": "weekend",
       "description": "it is the weekend.",
       "context_factor": 2,
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -111,7 +121,8 @@
     "fields": {
       "title": "knowledgeOfTheArea",
       "display_title": "Knowledge of the Area",
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -122,7 +133,8 @@
       "display_title": "first-time visit",
       "description": "you're visiting this place for the first time.",
       "context_factor": 3,
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -133,7 +145,8 @@
       "display_title": "workplace",
       "description": "this is at your workplace.",
       "context_factor": 3,
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -144,7 +157,8 @@
       "display_title": "home",
       "description": "this is at your home.",
       "context_factor": 3,
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -155,7 +169,8 @@
       "display_title": "returning but irregular visit",
       "description": "you have been to this place before (but not regularly).",
       "context_factor": 3,
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -166,7 +181,8 @@
       "display_title": "regular visit",
       "description": "you're visiting this place frequently.",
       "context_factor": 3,
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -175,7 +191,8 @@
     "fields": {
       "title": "social",
       "display_title": "Social",
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -186,7 +203,8 @@
       "display_title": "alone",
       "description": "you're at this place by yourself.",
       "context_factor": 4,
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -197,7 +215,8 @@
       "display_title": "with partner",
       "description": "you're at this place with your partner (girlfriend/boyfriend/...).",
       "context_factor": 4,
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -208,7 +227,8 @@
       "display_title": "with family",
       "description": "you're at this place with your family and kids.",
       "context_factor": 4,
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -219,7 +239,8 @@
       "display_title": "with friends",
       "description": "you're at this place with your friends.",
       "context_factor": 4,
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -230,7 +251,8 @@
       "display_title": "with co-workers",
       "description": "you're at this place with your co-workers.",
       "context_factor": 4,
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -239,7 +261,8 @@
     "fields": {
       "title": "crowdedness",
       "display_title": "Crowdedness",
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : false
     }
   },
   {
@@ -250,7 +273,8 @@
       "display_title": "empty",
       "description": "nobody else is at the location or using the object.",
       "context_factor": 5,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : false
     }
   },
   {
@@ -261,7 +285,8 @@
       "display_title": "medium crowded",
       "description": "the place is a bit crowded.",
       "context_factor": 5,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : false
     }
   },
   {
@@ -272,7 +297,8 @@
       "display_title": "very crowded",
       "description": "the place is very crowded.",
       "context_factor": 5,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : false
     }
   },
   {
@@ -281,7 +307,8 @@
     "fields": {
       "title": "weather",
       "display_title": "Weather",
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -292,7 +319,8 @@
       "display_title": "sunny",
       "description": "the weather is sunny.",
       "context_factor": 6,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -303,7 +331,8 @@
       "display_title": "cloudy",
       "description": "the weather is cloudy (but not rainy).",
       "context_factor": 6,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -314,7 +343,8 @@
       "display_title": "snowy",
       "description": "the weather is snowy.",
       "context_factor": 6,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -325,7 +355,8 @@
       "display_title": "rainy",
       "description": "the weather is rainy.",
       "context_factor": 6,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -336,7 +367,8 @@
       "display_title": "windy",
       "description": "the weather is windy.",
       "context_factor": 6,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -345,7 +377,8 @@
     "fields": {
       "title": "temperature",
       "display_title": "Temperature",
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -356,7 +389,8 @@
       "display_title": "cold",
       "description": "the temperature is cold (< 0 °C).",
       "context_factor": 7,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -367,7 +401,8 @@
       "display_title": "cool",
       "description": "the temperature is cool (0-9 °C).",
       "context_factor": 7,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -378,7 +413,8 @@
       "display_title": "mild",
       "description": "the temperature is mild (10-19 °C).",
       "context_factor": 7,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -389,7 +425,8 @@
       "display_title": "warm",
       "description": "the temperature is warm (20-29 °C).",
       "context_factor": 7,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -400,7 +437,8 @@
       "display_title": "hot",
       "description": "the temperature is hot (> 30 °C).",
       "context_factor": 7,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -409,7 +447,8 @@
     "fields": {
       "title": "season",
       "display_title": "Season",
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -420,7 +459,8 @@
       "display_title": "Spring",
       "description": "it is spring.",
       "context_factor": 8,
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -431,7 +471,8 @@
       "display_title": "Summer",
       "description": "it is summer.",
       "context_factor": 8,
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -442,7 +483,8 @@
       "display_title": "Fall",
       "description": "it is fall.",
       "context_factor": 8,
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -453,7 +495,8 @@
       "display_title": "Winter",
       "description": "it is winter.",
       "context_factor": 8,
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -462,7 +505,8 @@
     "fields": {
       "title": "timeAvailable",
       "display_title": "Time Available",
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -473,7 +517,8 @@
       "display_title": "a few minutes",
       "description": "you have a few minutes available.",
       "context_factor": 9,
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -484,7 +529,8 @@
       "display_title": "a few hours",
       "description": "you have a few hours available.",
       "context_factor": 9,
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -495,7 +541,8 @@
       "display_title": "half a day",
       "description": "you have a half day available.",
       "context_factor": 9,
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -506,7 +553,8 @@
       "display_title": "whole day",
       "description": "you have a whole day available.",
       "context_factor": 9,
-      "active": true
+      "active_in_training": false,
+      "active_in_prediction" : false
     }
   },
   {
@@ -515,7 +563,8 @@
     "fields": {
       "title": "durationOfTrip",
       "display_title": "Duration of the Trip",
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -526,7 +575,8 @@
       "display_title": "up to an hour",
       "description": "your current trip has lasted up to an hour so far.",
       "context_factor": 10,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -537,7 +587,8 @@
       "display_title": "a few hours",
       "description": "your current trip has lasted a few hours so far.",
       "context_factor": 10,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   },
   {
@@ -548,7 +599,8 @@
       "display_title": "many hours",
       "description": "your current trip has lasted many hours or longer so far.",
       "context_factor": 10,
-      "active": true
+      "active_in_training": true,
+      "active_in_prediction" : true
     }
   }
 ]

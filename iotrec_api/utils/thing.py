@@ -439,19 +439,21 @@ def get_context_fit(thing, context):
         #minimum_rating = -1 * len(context_factors)
         #maximum_rating = len(context_factors)
         #normalized_rating = (prediction - minimum_rating) / (maximum_rating - minimum_rating)
-        normalized_rating = (prediction + 1) / 2
+        normalized_prediction = (prediction + 1) / 2
 
         #print("get_context_fit: minimum_rating(" + str(rs.reference_thing.title) + ") = " + str(minimum_rating))
         #print("get_context_fit: maximum_rating(" + str(rs.reference_thing.title) + ") = " + str(maximum_rating))
-        print("get_context_fit: normalized_rating(" + str(rs.reference_thing.title) + ") = " + str(normalized_rating))
+        print("get_context_fit: normalized_prediction(" + str(rs.reference_thing.title) + ") = " + str(normalized_prediction))
 
         # calculate weight of this reference_similarity
         weight = rs.similarity * weight_multiplicator
 
         # add weighted contribution to context_fit
-        context_fit += weight * normalized_rating
+        context_fit += weight * normalized_prediction
 
     print("get_context_fit end: context_fit = " + str(context_fit))
+
+    # TODO: normalize again to prevent imprecise predictions < 0 and > 1?
 
     return context_fit
 

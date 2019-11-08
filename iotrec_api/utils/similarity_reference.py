@@ -79,23 +79,26 @@ def calculate_similarity_references_per_thing(t):
     #print(str(timezone.now()) + " - got the similarities")
 
     # sort the results by score and truncate to N
-    sorted(similarities, key=lambda elem: elem[1])
+    similarities_sorted = sorted(similarities, key=lambda elem: elem[1])
+
+    # if the thing's locality is not given, eliminate duplicate reference_similarities (that only vary by locality)
     if t.indoorsLocation is None:
         # go through all similarities and find duplicate reference_things (by name)
         # we do this to avoid weighing the same ref_thing double, i.e. with "inside" AND "outside", even though we don't
         # know if the thing under consideration is inside or outside
         ref_thing_names_found = []
         unique_ref_things_found = 0
-        for sim in similarities:
+        for sim in similarities_sorted:
             if unique_ref_things_found >= nr_of_top_ref_things_to_save:
                 break
             else:
                 if sim[0].title in ref_thing_names_found:
-                    similarities.remove(sim)
+                    similarities_sorted.remove(sim)
                 else:
                     ref_thing_names_found.append(sim[0].title)
                     unique_ref_things_found += 1
-    top_similarities = similarities[:nr_of_top_ref_things_to_save]
+
+    top_similarities = similarities_sorted[:nr_of_top_ref_things_to_save]
 
     #print("query marker 4: " + str(len(connection.queries)))
     #print(str(timezone.now()) + " - got the top similarities")
