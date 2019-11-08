@@ -228,7 +228,7 @@ class ThingViewSet(viewsets.ModelViewSet):
         # check if there is an active Stay for the current User and Thing
         try:
             # if yes, update the last_checkin
-            stay = Stay.objects.get(thing=instance, user=request.user, end=None)
+            stay = Stay.objects.filter(thing=instance, user=request.user, end=None)[:1].get()
             stay.last_checkin = timezone.now()
             stay.save()
         except Stay.DoesNotExist:

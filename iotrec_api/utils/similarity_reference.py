@@ -32,7 +32,7 @@ def calculate_similarity_references():
         ]
 
         # sort the results by score and truncate to N
-        sorted_similarities = sorted(similarities, key=lambda elem: elem[1]) # TODO reverse=True
+        sorted_similarities = sorted(similarities, key=lambda elem: elem[1], reverse=True)
         top_similarities = sorted_similarities[:nr_of_top_ref_things_to_save]
 
         # clear all existing similarity_references for the given thing
@@ -79,7 +79,7 @@ def calculate_similarity_references_per_thing(t):
     #print(str(timezone.now()) + " - got the similarities")
 
     # sort the results by score and truncate to N
-    similarities_sorted = sorted(similarities, key=lambda elem: elem[1]) # TODO reverse=True
+    similarities_sorted = sorted(similarities, key=lambda elem: elem[1], reverse=True)
 
     # if the thing's locality is not given, eliminate duplicate reference_similarities (that only vary by locality)
     if t.indoorsLocation is None:

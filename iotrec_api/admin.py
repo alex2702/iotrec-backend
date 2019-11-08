@@ -368,7 +368,7 @@ admin.site.register(Venue, VenueAdmin)
 
 class RecommendationAdmin(admin.ModelAdmin):
     fields = ['id', 'user', 'thing', 'context', 'experiment', 'score', 'preference_score', 'context_score', 'invoke_rec', 'created_at', 'updated_at']
-    list_display = ('id', 'created_at', 'user', 'thing', 'score', 'invoke_rec')
+    list_display = ('id', 'created_at', 'user', 'thing', 'score', 'preference_score', 'context_score', 'invoke_rec')
     ordering = ('-created_at',)
 
     def get_readonly_fields(self, request, obj=None):
