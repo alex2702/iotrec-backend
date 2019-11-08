@@ -1,6 +1,6 @@
 iotrec/static/
 iotrec/media/
-.idea/
+.idea/*
 
 # db dumps
 *dumpdata*.json

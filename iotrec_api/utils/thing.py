@@ -281,11 +281,11 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
 
     #print(str(timezone.now()) + " get_thing_user_similarity - marker 2")
 
-    print(str(categories_thing_immediate))
-    print(str(categories_thing))
-    print(str(categories_user_immediate))
-    print(str(categories_user))
-    print(str(categories_all))
+    #print(str(categories_thing_immediate))
+    #print(str(categories_thing))
+    #print(str(categories_user_immediate))
+    #print(str(categories_user))
+    #print(str(categories_all))
 
     #print(str(timezone.now()) + " get_thing_user_similarity - marker 4")
 
@@ -351,16 +351,16 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
         #print("divisor_inner_this is now " + str(divisor_inner_this))
         #print("divisor_inner_other is now " + str(divisor_inner_other))
 
-        print("get_thing_user_similarity: tf_thing_i=" + str(tf_this_i) + ", tf_user_i=" + str(
-            tf_user_i) + ", factor_thing=" + str(factor_this) + ", factor_user=" + str(factor_other))
+        #print("get_thing_user_similarity: tf_thing_i=" + str(tf_this_i) + ", tf_user_i=" + str(
+        #    tf_user_i) + ", factor_thing=" + str(factor_this) + ", factor_user=" + str(factor_other))
 
     #print("query marker 8: " + str(len(connection.queries)))
     #print(str(timezone.now()) + " get_thing_user_similarity - marker 5")
 
     if math.sqrt(divisor_inner_this) * math.sqrt(divisor_inner_other) != 0:
         result = divident / (math.sqrt(divisor_inner_this) * math.sqrt(divisor_inner_other))
-        print("get_thing_user_similarity end: divident=" + str(divident) + ", divisor_inner_this=" + str(
-            divisor_inner_this) + ", divisor_inner_other=" + str(divisor_inner_other) + ", result=" + str((result + 1) / 2))
+        #print("get_thing_user_similarity end: divident=" + str(divident) + ", divisor_inner_this=" + str(
+        #    divisor_inner_this) + ", divisor_inner_other=" + str(divisor_inner_other) + ", result=" + str((result + 1) / 2))
     else:
         result = 0
 
@@ -400,14 +400,14 @@ def get_context_fit(thing, context):
     # get the reference similarities of the given thing
     reference_similarities = models.SimilarityReference.objects.filter(thing=thing)
 
-    print("get_context_fit: reference_similarities = " + str(reference_similarities))
+    #print("get_context_fit: reference_similarities = " + str(reference_similarities))
 
     # needed for weighing predictions
     sum_of_reference_similarities = 0
     for rs in reference_similarities:
         sum_of_reference_similarities += rs.similarity
 
-    print("get_context_fit: sum_of_reference_similarities = " + str(sum_of_reference_similarities))
+    #print("get_context_fit: sum_of_reference_similarities = " + str(sum_of_reference_similarities))
 
     if sum_of_reference_similarities > 0:
         weight_multiplicator = 1 / sum_of_reference_similarities
@@ -417,9 +417,9 @@ def get_context_fit(thing, context):
     # for every reference similarity element, get the predicted rating and sum up the result with the correct weight
     for rs in reference_similarities:
         thing_baseline = ThingBaseline.objects.get(reference_thing=rs.reference_thing).value
-        print("get_context_fit: thing_baseline(" + str(rs.reference_thing.title) + ") = " + str(thing_baseline))
+        #print("get_context_fit: thing_baseline(" + str(rs.reference_thing.title) + ") = " + str(thing_baseline))
 
-        print("get_context_fit: context_factors(" + str(rs.reference_thing.title) + ") = " + str(context_factors))
+        #print("get_context_fit: context_factors(" + str(rs.reference_thing.title) + ") = " + str(context_factors))
 
         sum_of_context_baselines = 0
         for cf in context_factors:
@@ -429,11 +429,11 @@ def get_context_fit(thing, context):
                 reference_thing=rs.reference_thing
             ).value
 
-        print("get_context_fit: sum_of_context_baselines(" + str(rs.reference_thing.title) + ") = " + str(sum_of_context_baselines))
+        #print("get_context_fit: sum_of_context_baselines(" + str(rs.reference_thing.title) + ") = " + str(sum_of_context_baselines))
 
         prediction = thing_baseline + sum_of_context_baselines
 
-        print("get_context_fit: prediction(" + str(rs.reference_thing.title) + ") = " + str(prediction))
+        #print("get_context_fit: prediction(" + str(rs.reference_thing.title) + ") = " + str(prediction))
 
         # normalize prediction according to number of context factors
         #minimum_rating = -1 * len(context_factors)
@@ -443,7 +443,7 @@ def get_context_fit(thing, context):
 
         #print("get_context_fit: minimum_rating(" + str(rs.reference_thing.title) + ") = " + str(minimum_rating))
         #print("get_context_fit: maximum_rating(" + str(rs.reference_thing.title) + ") = " + str(maximum_rating))
-        print("get_context_fit: normalized_prediction(" + str(rs.reference_thing.title) + ") = " + str(normalized_prediction))
+        #print("get_context_fit: normalized_prediction(" + str(rs.reference_thing.title) + ") = " + str(normalized_prediction))
 
         # calculate weight of this reference_similarity
         weight = rs.similarity * weight_multiplicator
@@ -451,9 +451,7 @@ def get_context_fit(thing, context):
         # add weighted contribution to context_fit
         context_fit += weight * normalized_prediction
 
-    print("get_context_fit end: context_fit = " + str(context_fit))
-
-    # TODO: normalize again to prevent imprecise predictions < 0 and > 1?
+    #print("get_context_fit end: context_fit = " + str(context_fit))
 
     return context_fit
 
