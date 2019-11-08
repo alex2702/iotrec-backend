@@ -44,7 +44,7 @@
     "fields": {
       "name": "Calculate Reference Similarities",
       "frequency": "HOURLY",
-      "params": "interval=3",
+      "params": "interval:3;",
       "command": "calculatereferences",
       "args": "",
       "raw_command": null,
