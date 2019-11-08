@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="09f20613-1e31-44ae-99f8-83d2ab175056" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evaluation/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/fixtures/jobs.json" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/fixtures/jobs.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/utils/thing.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/utils/thing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training/templates/results.html" beforeDir="false" afterPath="$PROJECT_DIR$/training/templates/results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training/utils/baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/utils/baseline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/utils/similarity_reference.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/utils/similarity_reference.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -296,7 +291,7 @@
       <workItem from="1573218840793" duration="10000" />
       <workItem from="1573220297128" duration="3381000" />
       <workItem from="1573224162434" duration="1416000" />
-      <workItem from="1573232775572" duration="4969000" />
+      <workItem from="1573232775572" duration="6372000" />
     </task>
     <servers />
   </component>

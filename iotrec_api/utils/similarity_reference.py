@@ -32,8 +32,8 @@ def calculate_similarity_references():
         ]
 
         # sort the results by score and truncate to N
-        sorted(similarities, key=lambda elem: elem[1])
-        top_similarities = similarities[:nr_of_top_ref_things_to_save]
+        sorted_similarities = sorted(similarities, key=lambda elem: elem[1])
+        top_similarities = sorted_similarities[:nr_of_top_ref_things_to_save]
 
         # clear all existing similarity_references for the given thing
         delete_result = models.SimilarityReference.objects.filter(thing=t).delete()
