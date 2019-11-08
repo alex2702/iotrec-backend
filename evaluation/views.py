@@ -37,6 +37,8 @@ class ExperimentViewSet(viewsets.ModelViewSet):
 class QuestionViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
+    authentication_classes = []
+    permission_classes = []
 
 
 class ReplyViewSet(viewsets.ModelViewSet):

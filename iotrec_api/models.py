@@ -320,6 +320,9 @@ class SimilarityReference(models.Model):
         self.updated_at = timezone.now()
         super(SimilarityReference, self).save(*args, **kwargs)
 
+    def __str__(self):
+        return str(self.reference_thing) + "/" + str(self.thing) + "/" + str(self.similarity)
+
 
 class Stay(models.Model):
     id = models.CharField(max_length=255, primary_key=True, editable=False)

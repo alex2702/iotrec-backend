@@ -55,6 +55,7 @@ def get_thing_similarity(this_thing, ref_thing, *args, **kwargs):
     categories_all = this_thing_categories_all.union(ref_thing_categories_all)
     '''
 
+    categories_all = set(models.Category.objects.all())
     this_thing_categories_immediate = models.Category.objects.filter(thing=this_thing)
     this_thing_categories_all = this_thing_categories_immediate
     ref_thing_categories_immediate = models.Category.objects.filter(referencething=ref_thing)
@@ -72,7 +73,7 @@ def get_thing_similarity(this_thing, ref_thing, *args, **kwargs):
 
     #print("get_thing_similarity - query marker 4: " + str(len(connection.queries)))
 
-    categories_all = (this_thing_categories_all | ref_thing_categories_all).distinct()
+    categories_of_both_all = (this_thing_categories_all | ref_thing_categories_all).distinct()
 
     this_thing_categories_all = this_thing_categories_all.distinct()
     ref_thing_categories_all = ref_thing_categories_all.distinct()
@@ -95,7 +96,9 @@ def get_thing_similarity(this_thing, ref_thing, *args, **kwargs):
     #print(categories_all)
 
     # for each category i
-    for cat in categories_all:
+    for cat in categories_of_both_all:
+    #for cat in this_thing_categories_all:
+    #for cat in categories_all:
         #print("get_thing_similarity - query marker 6.1: " + str(len(connection.queries)))
         #print("checking cat " + str(cat))
         #print("query marker 4.1: " + str(len(connection.queries)))
@@ -143,11 +146,15 @@ def get_thing_similarity(this_thing, ref_thing, *args, **kwargs):
                 n_i_things_counted = n_i_things_counted.union(sub_cat_things)
         '''
 
-        n_i = cat.nr_of_items_recursive + tf_other_i
+        #n_i = cat.nr_of_items_recursive + tf_other_i
+        n_i = cat.nr_of_items_recursive
+        #n_i = cat.nr_of_items_recursive + 1
         if cat.is_root_node():
             n_p_i = n_i
         else:
-            n_p_i = cat.parent.nr_of_items_recursive + tf_other_i
+            #n_p_i = cat.parent.nr_of_items_recursive + tf_other_i
+            n_p_i = cat.parent.nr_of_items_recursive
+            #n_p_i = cat.parent.nr_of_items_recursive + 1
 
         #print("get_thing_similarity - query marker 6.4: " + str(len(connection.queries)))
 
@@ -155,8 +162,10 @@ def get_thing_similarity(this_thing, ref_thing, *args, **kwargs):
 
         #print("cat=" + str(cat) + ", tf_this_i=" + str(tf_this_i) + ", tf_other_i=" + str(tf_other_i) + ", n_p_i=" + str(n_p_i) + ", n_i=" + str(n_i))
 
-        factor_this = tf_this_i * math.log(n_p_i / n_i)
-        factor_other = tf_other_i * math.log(n_p_i / n_i)
+        #factor_this = tf_this_i * math.log(n_p_i / n_i)
+        #factor_other = tf_other_i * math.log(n_p_i / n_i)
+        factor_this = tf_this_i * (math.log(n_p_i / (n_i + 1)) + 1)
+        factor_other = tf_other_i * (math.log(n_p_i / (n_i + 1)) + 1)
 
         divident += factor_this * factor_other
         divisor_inner_this += factor_this * factor_this
@@ -285,7 +294,8 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
     divisor_inner_other = 0
 
     # for each category i
-    for cat in categories_all:
+    #for cat in categories_all:
+    for cat in categories_thing:
         #print("query marker 2: " + str(len(connection.queries)))
         # 1 if thing has category i, 0 otherwise
         tf_this_i = 1 if (cat in categories_thing) else 0
@@ -315,21 +325,23 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
         # number of items classified in subtree for which the parent of i is the root
         # (loop through all descendants of that category, including itself, and add up the things count)
         n_i = cat.nr_of_items_recursive
-        if ((cat.get_descendants(include_self=True).distinct() & categories_user.distinct())).count() > 0:
-            n_i += 1 # increase because user has one of the categories
+        #if ((cat.get_descendants(include_self=True).distinct() & categories_user.distinct())).count() > 0:
+        #    n_i += 1 # increase because user has one of the categories
 
         if cat.is_root_node():
             n_p_i = n_i
         else:
             parent = cat.parent
             n_p_i = parent.nr_of_items_recursive
-            if ((parent.get_descendants(include_self=True).distinct() & categories_user.distinct())).count() > 0:
-                n_p_i += 1  # increase because user has one of the categories
+            #if ((parent.get_descendants(include_self=True).distinct() & categories_user.distinct())).count() > 0:
+            #    n_p_i += 1  # increase because user has one of the categories
 
         #print("cat=" + str(cat) + ", tf_this_i=" + str(tf_this_i) + ", tf_user_i=" + str(tf_user_i) + ", n_p_i=" + str(n_p_i) + ", n_i=" + str(n_i))
 
-        factor_this = tf_this_i * math.log(n_p_i / n_i)
-        factor_other = tf_user_i * math.log(n_p_i / n_i)
+        #factor_this = tf_this_i * math.log(n_p_i / n_i)
+        #factor_other = tf_user_i * math.log(n_p_i / n_i)
+        factor_this = tf_this_i * (math.log(n_p_i / (n_i + 1)) + 1)
+        factor_other = tf_user_i * (math.log(n_p_i / (n_i + 1)) + 1)
 
         divident += factor_this * factor_other
         divisor_inner_this += factor_this * factor_this
@@ -339,11 +351,16 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
         #print("divisor_inner_this is now " + str(divisor_inner_this))
         #print("divisor_inner_other is now " + str(divisor_inner_other))
 
+        print("get_thing_user_similarity: tf_thing_i=" + str(tf_this_i) + ", tf_user_i=" + str(
+            tf_user_i) + ", factor_thing=" + str(factor_this) + ", factor_user=" + str(factor_other))
+
     #print("query marker 8: " + str(len(connection.queries)))
     #print(str(timezone.now()) + " get_thing_user_similarity - marker 5")
 
     if math.sqrt(divisor_inner_this) * math.sqrt(divisor_inner_other) != 0:
         result = divident / (math.sqrt(divisor_inner_this) * math.sqrt(divisor_inner_other))
+        print("get_thing_user_similarity end: divident=" + str(divident) + ", divisor_inner_this=" + str(
+            divisor_inner_this) + ", divisor_inner_other=" + str(divisor_inner_other) + ", result=" + str((result + 1) / 2))
     else:
         result = 0
 
@@ -383,10 +400,14 @@ def get_context_fit(thing, context):
     # get the reference similarities of the given thing
     reference_similarities = models.SimilarityReference.objects.filter(thing=thing)
 
+    print("get_context_fit: reference_similarities = " + str(reference_similarities))
+
     # needed for weighing predictions
     sum_of_reference_similarities = 0
     for rs in reference_similarities:
         sum_of_reference_similarities += rs.similarity
+
+    print("get_context_fit: sum_of_reference_similarities = " + str(sum_of_reference_similarities))
 
     if sum_of_reference_similarities > 0:
         weight_multiplicator = 1 / sum_of_reference_similarities
@@ -396,6 +417,9 @@ def get_context_fit(thing, context):
     # for every reference similarity element, get the predicted rating and sum up the result with the correct weight
     for rs in reference_similarities:
         thing_baseline = ThingBaseline.objects.get(reference_thing=rs.reference_thing).value
+        print("get_context_fit: thing_baseline(" + str(rs.reference_thing.title) + ") = " + str(thing_baseline))
+
+        print("get_context_fit: context_factors(" + str(rs.reference_thing.title) + ") = " + str(context_factors))
 
         sum_of_context_baselines = 0
         for cf in context_factors:
@@ -405,18 +429,29 @@ def get_context_fit(thing, context):
                 reference_thing=rs.reference_thing
             ).value
 
+        print("get_context_fit: sum_of_context_baselines(" + str(rs.reference_thing.title) + ") = " + str(sum_of_context_baselines))
+
         prediction = thing_baseline + sum_of_context_baselines
 
+        print("get_context_fit: prediction(" + str(rs.reference_thing.title) + ") = " + str(prediction))
+
         # normalize prediction according to number of context factors
-        minimum_rating = -1 * len(context_factors)
-        maximum_rating = len(context_factors)
-        normalized_rating = (prediction - minimum_rating) / (maximum_rating - minimum_rating)
+        #minimum_rating = -1 * len(context_factors)
+        #maximum_rating = len(context_factors)
+        #normalized_rating = (prediction - minimum_rating) / (maximum_rating - minimum_rating)
+        normalized_rating = (prediction + 1) / 2
+
+        #print("get_context_fit: minimum_rating(" + str(rs.reference_thing.title) + ") = " + str(minimum_rating))
+        #print("get_context_fit: maximum_rating(" + str(rs.reference_thing.title) + ") = " + str(maximum_rating))
+        print("get_context_fit: normalized_rating(" + str(rs.reference_thing.title) + ") = " + str(normalized_rating))
 
         # calculate weight of this reference_similarity
         weight = rs.similarity * weight_multiplicator
 
         # add weighted contribution to context_fit
         context_fit += weight * normalized_rating
+
+    print("get_context_fit end: context_fit = " + str(context_fit))
 
     return context_fit
 
