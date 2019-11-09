@@ -199,11 +199,12 @@ class Recommendation(models.Model):
         self.updated_at = timezone.now()
 
         #get experiment
-        try:
-            experiment = Experiment.objects.filter(pk=self.experiment)[:1].get()
-            c_a = experiment.context_active
-            p_a = experiment.preferences_active
-        except Experiment.DoesNotExist:
+        if self.experiment is not None:
+            #experiment = Experiment.objects.filter(pk=self.experiment)[:1].get()
+            c_a = self.experiment.context_active
+            p_a = self.experiment.preferences_active
+        #except Experiment.DoesNotExist:
+        else:
             c_a = True
             p_a = True
 
