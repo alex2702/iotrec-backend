@@ -296,7 +296,7 @@ class Preference(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.pk:
-            self.pk = self.category.text_id
+            #self.pk = self.category.text_id
             self.created_at = timezone.now()
         self.updated_at = timezone.now()
         super(Preference, self).save(*args, **kwargs)
