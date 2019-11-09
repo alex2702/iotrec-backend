@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09f20613-1e31-44ae-99f8-83d2ab175056" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/utils/similarity_reference.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/utils/similarity_reference.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training/fixtures/reference_things.json" beforeDir="false" afterPath="$PROJECT_DIR$/training/fixtures/reference_things_old.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -119,19 +117,19 @@
     </option>
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/iotrec_api/fixtures" />
-      <recent name="$PROJECT_DIR$/evaluation/utils" />
-      <recent name="$PROJECT_DIR$/iotrec_api/static" />
-      <recent name="$PROJECT_DIR$/iotrec" />
-      <recent name="$PROJECT_DIR$/training/static" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/iotrec_api/fixtures" />
       <recent name="$PROJECT_DIR$/iotrec_api/migrations" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/iotrec_api" />
       <recent name="$PROJECT_DIR$/training/media" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/training/fixtures" />
+      <recent name="$PROJECT_DIR$/iotrec_api/fixtures" />
+      <recent name="$PROJECT_DIR$/evaluation/utils" />
+      <recent name="$PROJECT_DIR$/iotrec_api/static" />
+      <recent name="$PROJECT_DIR$/iotrec" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -293,7 +291,9 @@
       <workItem from="1573218840793" duration="10000" />
       <workItem from="1573220297128" duration="3381000" />
       <workItem from="1573224162434" duration="1416000" />
-      <workItem from="1573232775572" duration="9670000" />
+      <workItem from="1573232775572" duration="12716000" />
+      <workItem from="1573252381304" duration="1304000" />
+      <workItem from="1573283650505" duration="400000" />
     </task>
     <servers />
   </component>
