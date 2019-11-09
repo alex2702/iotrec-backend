@@ -484,10 +484,10 @@ def get_utility(thing, user, context, context_active, preferences_active):
         return thing_user_similarity, context_fit, (prediction_weight * thing_user_similarity + context_weight * context_fit)
     elif thing_user_similarity >= 0:
         #print(str(timezone.now()) + " get_utility returned")
-        return thing_user_similarity, 0, (prediction_weight * thing_user_similarity)
+        return thing_user_similarity, 0, thing_user_similarity
     elif context_fit >= 0:
         #print(str(timezone.now()) + " get_utility returned")
-        return 0, context_fit, (context_weight * context_fit)
+        return 0, context_fit, context_fit
     else:
         #print(str(timezone.now()) + " get_utility returned")
         return 0, 0, 0
