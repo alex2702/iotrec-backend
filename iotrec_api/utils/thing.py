@@ -302,7 +302,7 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
         # 1 or -1 if user has category i, 0 otherwise
         # get frequency of category in user preferences
         if cat in categories_user_immediate:
-            cat_preference_value = preferences_user.get(category=cat).value
+            cat_preference_value = preferences_user.all()[:1].get(category=cat).value
             if cat_preference_value != 0:
                 # check if category is directly part of a user preference and if yes, get the value
                 tf_user_i = cat_preference_value
@@ -315,7 +315,7 @@ def get_thing_user_similarity(this_thing, user, *args, **kwargs):
                 values_of_user_prefs_below_cat = 0
                 for i in user_prefs_below_cat:
                     # get the corresponding preference
-                    pref = preferences_user.get(category=i)
+                    pref = preferences_user.all()[:1].get(category=i)
                     # add up the value
                     values_of_user_prefs_below_cat += pref.value
                 tf_user_i = values_of_user_prefs_below_cat / nr_of_user_prefs_below_cat
@@ -416,14 +416,14 @@ def get_context_fit(thing, context):
 
     # for every reference similarity element, get the predicted rating and sum up the result with the correct weight
     for rs in reference_similarities:
-        thing_baseline = ThingBaseline.objects.get(reference_thing=rs.reference_thing).value
+        thing_baseline = ThingBaseline.objects.all()[:1].get(reference_thing=rs.reference_thing).value
         #print("get_context_fit: thing_baseline(" + str(rs.reference_thing.title) + ") = " + str(thing_baseline))
 
         #print("get_context_fit: context_factors(" + str(rs.reference_thing.title) + ") = " + str(context_factors))
 
         sum_of_context_baselines = 0
         for cf in context_factors:
-            sum_of_context_baselines += ContextBaseline.objects.get(
+            sum_of_context_baselines += ContextBaseline.objects.all()[:1].get(
                 context_factor=cf.context_factor,
                 context_factor_value=cf,
                 reference_thing=rs.reference_thing
