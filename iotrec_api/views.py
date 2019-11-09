@@ -286,7 +286,7 @@ class RecommendationViewSet(viewsets.ModelViewSet):
         # if given experiment ID is 0, set it to none
         if request.data.get('experiment') != None and request.data['experiment'] == 0:
             request.data['experiment'] = None
-        elif request.data.get('experiment') != None:
+        elif request.data.get('experiment') is None:
             request.data['experiment'] = None
 
         # only get real crowdedness if we're not in evaluation mode
