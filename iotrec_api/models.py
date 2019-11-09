@@ -197,7 +197,7 @@ class Recommendation(models.Model):
             self.pk = uuid.uuid4()
             self.created_at = timezone.now()
         self.updated_at = timezone.now()
-        self.preference_score, self.context_score, self.score = get_recommendation_score(self.thing, self.user, self.context)
+        self.preference_score, self.context_score, self.score = get_recommendation_score(self.thing, self.user, self.context, self.experiment.context_active, self.experiment.preferences_active)
         self.invoke_rec = self.get_invoke_rec(self.score)
 
         try:

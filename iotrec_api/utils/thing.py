@@ -456,14 +456,24 @@ def get_context_fit(thing, context):
     return context_fit
 
 
-def get_utility(thing, user, context):
+def get_utility(thing, user, context, context_active, preferences_active):
     #print(str(timezone.now()) + " get_utility started")
-    thing_user_similarity = get_thing_user_similarity(thing, user)
+
     #print("thing_user_similarity: " + str(thing_user_similarity))
     #print(str(timezone.now()) + " thing_user_similarity returned")
-    context_fit = get_context_fit(thing, context)
+
     #print("context_fit: " + str(context_fit))
     #print(str(timezone.now()) + " context_fit returned")
+
+    if context_active:
+        context_fit = get_context_fit(thing, context)
+    else:
+        context_fit = -1
+
+    if preferences_active:
+        thing_user_similarity = get_thing_user_similarity(thing, user)
+    else:
+        thing_user_similarity = -1
 
     settings = models.IotRecSettings.load()
     prediction_weight = settings.prediction_weight
