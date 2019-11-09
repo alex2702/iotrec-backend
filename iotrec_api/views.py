@@ -283,6 +283,10 @@ class RecommendationViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         settings = IotRecSettings.load()
 
+        # if given experiment ID is 0, set it to none
+        if request.data['experiment'] == 0:
+            request.data['experiment'] = None
+
         # only get real crowdedness if we're not in evaluation mode
         # in evaluation mode, supply dummy data for crowdedness and time_of_day
         if settings.evaluation_mode is True:
@@ -296,7 +300,7 @@ class RecommendationViewSet(viewsets.ModelViewSet):
             **request.data,
             "user": request.user.id
         })
-        print(request.data)
+
         try:
             if serializer.is_valid():
                 self.perform_create(serializer)
