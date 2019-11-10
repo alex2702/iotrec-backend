@@ -281,6 +281,8 @@ class RecommendationViewSet(viewsets.ModelViewSet):
         return queryset
 
     def create(self, request, *args, **kwargs):
+        print(request.data)
+        
         settings = IotRecSettings.load()
 
         # if given experiment ID is 0, set it to none
@@ -323,6 +325,7 @@ class FeedbackViewSet(viewsets.ModelViewSet):
         return Feedback.objects.filter(recommendation=self.kwargs['recommendation_pk'])
 
     def create(self, request, *args, **kwargs):
+        print(request.data)
         serializer = self.get_serializer(data={
             **request.data,
             "recommendation": self.kwargs['recommendation_pk'],
