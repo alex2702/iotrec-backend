@@ -28,6 +28,7 @@ admin.site.register(Question, QuestionAdmin)
 class ReplyAdmin(admin.ModelAdmin):
     fields = ['id', 'user', 'experiment', 'question', 'value', 'created_at', 'updated_at']
     list_display = ['created_at', 'user', 'experiment', 'question', 'value']
+    list_filter = ['user', 'experiment', 'question', 'created_at']
 
     def get_readonly_fields(self, request, obj=None):
         return ['id', 'created_at', 'updated_at']
@@ -39,6 +40,7 @@ admin.site.register(Reply, ReplyAdmin)
 class QuestionnaireAdmin(admin.ModelAdmin):
     fields = ['id', 'user', 'age', 'gender', 'qualification', 'smartphone_usage', 'created_at', 'updated_at']
     list_display = ['id', 'created_at', 'user', 'gender', 'qualification', 'smartphone_usage', 'updated_at']
+    list_filter = ['user', 'created_at']
 
     def get_readonly_fields(self, request, obj=None):
         return ['id', 'created_at', 'updated_at']
@@ -50,6 +52,7 @@ admin.site.register(Questionnaire, QuestionnaireAdmin)
 class AnalyticsEventAdmin(admin.ModelAdmin):
     fields = ['id', 'type', 'user', 'thing', 'recommendation', 'value', 'created_at', 'updated_at']
     list_display = ('id', 'created_at', 'type', 'user', 'thing', 'recommendation', 'value')
+    list_filter = ['user', 'created_at']
 
     def get_readonly_fields(self, request, obj=None):
         return ['id', 'created_at', 'updated_at']

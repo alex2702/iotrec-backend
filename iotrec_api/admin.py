@@ -370,6 +370,7 @@ class RecommendationAdmin(admin.ModelAdmin):
     fields = ['id', 'user', 'thing', 'context', 'experiment', 'score', 'preference_score', 'context_score', 'invoke_rec', 'created_at', 'updated_at']
     list_display = ('id', 'created_at', 'user', 'thing', 'score', 'preference_score', 'context_score', 'invoke_rec')
     ordering = ('-created_at',)
+    list_filter = ['user', 'thing', 'experiment', 'created_at']
 
     def get_readonly_fields(self, request, obj=None):
         return ['id', 'created_at', 'updated_at', 'score', 'preference_score', 'context_score', 'invoke_rec']
@@ -440,6 +441,7 @@ admin.site.register(SimilarityReference, SimilarityReferenceAdmin)
 class StayAdmin(admin.ModelAdmin):
     fields = ['id', 'user', 'thing', 'start', 'last_checkin', 'end', 'experiment', 'created_at', 'updated_at']
     list_display = ('id', 'user', 'thing', 'start', 'last_checkin', 'end')
+    list_filter = ['user', 'thing', 'experiment', 'created_at']
 
     def get_readonly_fields(self, request, obj=None):
         return ['id', 'created_at', 'updated_at']
@@ -451,6 +453,7 @@ admin.site.register(Stay, StayAdmin)
 class ContextAdmin(admin.ModelAdmin):
     fields = ['id', 'weather', 'temperature_raw', 'temperature', 'length_of_trip_raw', 'length_of_trip', 'crowdedness', 'time_of_day', 'created_at', 'updated_at']
     list_display = ('id', 'created_at', 'weather', 'temperature', 'length_of_trip', 'crowdedness', 'time_of_day')
+    list_filter = ['created_at', 'recommendation__user']
 
     def get_readonly_fields(self, request, obj=None):
         return ['id', 'created_at', 'updated_at']

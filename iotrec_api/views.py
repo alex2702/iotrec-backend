@@ -286,7 +286,7 @@ class RecommendationViewSet(viewsets.ModelViewSet):
         settings = IotRecSettings.load()
 
         # if given experiment ID is 0, set it to none
-        if request.data.get('experiment') != None and request.data['experiment'] == 0:
+        if request.data.get('experiment') is not None and request.data['experiment'] == 0:
             request.data['experiment'] = None
         elif request.data.get('experiment') is None:
             request.data['experiment'] = None
@@ -300,10 +300,19 @@ class RecommendationViewSet(viewsets.ModelViewSet):
             request.data['context']['crowdedness_raw'] = get_crowdedness(request.data['thing'])
             request.data['context']['time_of_day_raw'] = get_time_of_day(datetime.datetime.now().time())
 
+        # convert empty context strings to None
+        if request.data.get('context') is not None:
+            if request.data['context'].get('weather_raw') is not None and request.data['context']['weather_raw'] == "":
+                request.data['context']['weather_raw'] = None
+            if request.data['context'].get('crowdedness_raw') is not None and request.data['context']['crowdedness_raw'] == "":
+                request.data['context']['crowdedness_raw'] = None
+
         serializer = self.get_serializer(data={
             **request.data,
             "user": request.user.id
         })
+
+        print(serializer.__dict__)
 
         try:
             if serializer.is_valid():
@@ -312,6 +321,7 @@ class RecommendationViewSet(viewsets.ModelViewSet):
                 return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         except KeyError as e:
+            print(e.__dict__)
             return Response("", status=status.HTTP_400_BAD_REQUEST)
 
 

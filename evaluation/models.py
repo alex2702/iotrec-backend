@@ -82,6 +82,9 @@ class Experiment(models.Model):
         self.updated_at = timezone.now()
         super(Experiment, self).save(*args, **kwargs)
 
+    def __str__(self):
+        return self.user.username + " - " + self.scenario.title + " (C: " + str(self.context_active) + " - P: " + str(self.preferences_active) + ")"
+
 
 class Question(models.Model):
     created_at = models.DateTimeField(editable=False, null=True, blank=True)
@@ -94,6 +97,9 @@ class Question(models.Model):
             self.created_at = timezone.now()
         self.updated_at = timezone.now()
         super(Question, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.short_name
 
 
 class Reply(models.Model):
@@ -109,6 +115,9 @@ class Reply(models.Model):
             self.created_at = timezone.now()
         self.updated_at = timezone.now()
         super(Reply, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.question.short_name + " (" + str(self.value) + ")"
 
 
 class Questionnaire(models.Model):
