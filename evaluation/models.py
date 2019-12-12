@@ -21,7 +21,7 @@ class Experiment(models.Model):
     context_active = models.BooleanField(editable=False, default=False)
     preferences_active = models.BooleanField(editable=False, default=False)
     order = models.IntegerField(editable=False, default=0)
-    #context = models.OneToOneField("iotrec_api.Context", on_delete=models.CASCADE, null=True, blank=True)
+    #context = models.OneToOneField("iotrec_api.Context", on_delete=models.CASCADE, null=True, blank=True)python
 
     def save(self, *args, **kwargs):
         if not self.pk:

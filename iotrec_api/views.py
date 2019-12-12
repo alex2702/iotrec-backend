@@ -130,7 +130,6 @@ class UserViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.Upd
 #    queryset = Thing.objects.all()
 #    serializer_class = ThingSerializer
 
-
 class ThingViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows things to be viewed or edited.
