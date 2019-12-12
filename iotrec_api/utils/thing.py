@@ -493,8 +493,8 @@ def get_utility(thing, user, context, context_active, preferences_active):
         return 0, 0, 0
 
 
-
 def get_crowdedness(thing):
+    # calculate the time that (start, end) tuples of two things overlap
     def get_overlap_times_of_things(thing1, thing2):
         # overlap start is the later start time of the two stays
         if thing1.start > thing2.start:

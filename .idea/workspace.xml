@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09f20613-1e31-44ae-99f8-83d2ab175056" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/iotrec-backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/iotrec-backend.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotrec_api/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluation/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/utils/thing.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/utils/thing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -104,9 +111,9 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/iotrec_api/fixtures" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/venv/bin" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -153,9 +160,9 @@
         <env name="PYTHONUNBUFFERED" value="1" />
         <env name="DJANGO_SETTINGS_MODULE" value="iotrec.settings.development" />
       </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="launchJavascriptDebuger" value="false" />
@@ -295,7 +302,18 @@
       <workItem from="1573252381304" duration="1304000" />
       <workItem from="1573283650505" duration="400000" />
       <workItem from="1573427418971" duration="1281000" />
-      <workItem from="1573907933136" duration="4704000" />
+      <workItem from="1573907933136" duration="5307000" />
+      <workItem from="1575025594612" duration="61000" />
+      <workItem from="1575241616486" duration="6000" />
+      <workItem from="1575407124114" duration="685000" />
+      <workItem from="1575480812796" duration="1265000" />
+      <workItem from="1575884953581" duration="2146000" />
+      <workItem from="1575973174762" duration="1780000" />
+      <workItem from="1576077251578" duration="33000" />
+      <workItem from="1576077295819" duration="52000" />
+      <workItem from="1576077356963" duration="735000" />
+      <workItem from="1576078101502" duration="5081000" />
+      <workItem from="1576137653339" duration="50000" />
     </task>
     <servers />
   </component>

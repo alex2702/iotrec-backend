@@ -118,7 +118,9 @@ class Thing(models.Model):
     id = models.CharField(max_length=128, default=None, primary_key=True)
     title = models.CharField(max_length=128, default='New Thing')
     description = models.TextField(blank=True)
+    # beacon type, e.g. iBeacon or Eddystone
     type = EnumChoiceField(ThingType, default=ThingType.BCN_I)
+    # UUID elements for various beacon types
     ibeacon_uuid = models.UUIDField(default=uuid.uuid4, null=True, blank=True)
     ibeacon_major_id = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(65535)], default=0, null=True, blank=True)
     ibeacon_minor_id = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(65535)], default=0, null=True, blank=True)
@@ -127,6 +129,7 @@ class Thing(models.Model):
     image = models.ImageField(blank=True)
     created_at = models.DateTimeField(editable=False, null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
+    # physical address and location
     address = models.CharField(max_length=255, blank=True)
     location = PlainLocationField(based_fields=['address'], blank=True)
     categories = TreeManyToManyField('Category', blank=True)
