@@ -1,39 +1,14 @@
-
 from django.utils import timezone
 from rest_framework import serializers
-from rest_framework.exceptions import ValidationError
 from rest_framework_jwt.settings import api_settings
-
 from evaluation.serializers import ExperimentSerializer
 from iotrec_api.models import User, Thing, Category, Recommendation, Feedback, Preference, Rating, Stay, Context
 
-# from django.contrib.auth.models import User
-
-'''
-class PreferenceRelatedField(serializers.RelatedField):
-    def to_representation(self, obj):
-        return {
-            'id': obj.pk,
-            'category': obj.category,
-            'value': obj.value,
-        }
-'''
-
 
 class PreferenceSerializer(serializers.ModelSerializer):
-    #def create(self, validated_data):
-    #    validated_data['user'] = User.objects.get('user')
-    #    return Preference.objects.create(**validated_data)
-
-    #def get_fields(self):
-    #    fields = super(PreferenceSerializer, self).get_fields()
-    #    del fields['category']
-    #    return fields
-
     class Meta:
         model = Preference
         fields = '__all__'
-        #fields = ('id', 'created_at', 'updated_at', 'category', 'value', 'user')
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -89,24 +64,13 @@ class UserSerializerWithToken(serializers.ModelSerializer):
         fields = ('id', 'token', 'username', 'email', 'password', 'preferences', 'experiments')
 
 
-"""
-class VenueSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Venue
-        fields = '__all__'
-"""
-
-
 class ThingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Thing
-        # fields = ('title', 'description', 'image')
         fields = '__all__'
 
 
 class CategorySerializer(serializers.ModelSerializer):
-    #children = CategorySerializer(many=True)
-
     class Meta:
         model = Category
         fields = ('text_id', 'name')
