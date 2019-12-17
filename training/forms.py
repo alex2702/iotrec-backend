@@ -25,12 +25,6 @@ class SampleForm(forms.Form):
         ('1', 'positive effect')
     ]
 
-    #value_1 = forms.IntegerField(min_value=-1, max_value=1)
-    #value_2 = forms.IntegerField(min_value=-1, max_value=1)
-    #value_3 = forms.IntegerField(min_value=-1, max_value=1)
-    #value_4 = forms.IntegerField(min_value=-1, max_value=1)
-    #value_5 = forms.IntegerField(min_value=-1, max_value=1)
-
     value_1 = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect)
     value_2 = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect)
     value_3 = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect)

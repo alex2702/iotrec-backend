@@ -146,44 +146,6 @@ def add_sample(request, context_factor=None):
             # get random thing, context factor and context factor value
             random_thing = random.choice(ReferenceThing.objects.filter(active=True))
 
-
-
-            '''
-            random_context_factor_1 = random.choice(ContextFactor.objects.filter(active=True))
-            random_context_factor_2 = random.choice(ContextFactor.objects.filter(active=True)
-                                                    .exclude(pk=random_context_factor_1.pk))
-            random_context_factor_3 = random.choice(ContextFactor.objects.filter(active=True)
-                                                    .exclude(pk=random_context_factor_1.pk)
-                                                    .exclude(pk=random_context_factor_2.pk))
-            random_context_factor_4 = random.choice(ContextFactor.objects.filter(active=True)
-                                                    .exclude(pk=random_context_factor_1.pk)
-                                                    .exclude(pk=random_context_factor_2.pk)
-                                                    .exclude(pk=random_context_factor_3.pk))
-            random_context_factor_5 = random.choice(ContextFactor.objects.filter(active=True)
-                                                    .exclude(pk=random_context_factor_1.pk)
-                                                    .exclude(pk=random_context_factor_2.pk)
-                                                    .exclude(pk=random_context_factor_3.pk)
-                                                    .exclude(pk=random_context_factor_4.pk))
-    
-            random_context_factor_value_1 = random.choice(random_context_factor_1.values.filter(active=True))
-            random_context_factor_value_2 = random.choice(random_context_factor_2.values.filter(active=True)
-                                                          .exclude(pk=random_context_factor_value_1.pk))
-            random_context_factor_value_3 = random.choice(random_context_factor_3.values.filter(active=True)
-                                                          .exclude(pk=random_context_factor_value_1.pk)
-                                                          .exclude(pk=random_context_factor_value_2.pk))
-            random_context_factor_value_4 = random.choice(random_context_factor_4.values.filter(active=True)
-                                                          .exclude(pk=random_context_factor_value_1.pk)
-                                                          .exclude(pk=random_context_factor_value_2.pk)
-                                                          .exclude(pk=random_context_factor_value_3.pk))
-            random_context_factor_value_5 = random.choice(random_context_factor_5.values.filter(active=True)
-                                                          .exclude(pk=random_context_factor_value_1.pk)
-                                                          .exclude(pk=random_context_factor_value_2.pk)
-                                                          .exclude(pk=random_context_factor_value_3.pk)
-                                                          .exclude(pk=random_context_factor_value_4.pk))
-            '''
-
-
-
             while True:
                 try:
                     random_context_factor_1 = random.choice(ContextFactor.objects.filter(active_in_training=True))

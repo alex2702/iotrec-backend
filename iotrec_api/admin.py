@@ -1,32 +1,21 @@
-import pdb
-
 from django.contrib.admin.actions import delete_selected
-from django.db.models import Count
 from django.forms import Select, SelectMultiple
 from django.utils.encoding import smart_text
 from django.utils.html import conditional_escape, escape
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy
-from jwt.utils import force_unicode
 from mptt.admin import MPTTModelAdmin
-
-from iotrec_api.models import User, Thing, Category, Recommendation, Feedback, Preference, IotRecSettings, Rating, Stay, \
-    SimilarityReference, Context
+from iotrec_api.models import User, Thing, Category, Recommendation, Feedback, Preference, IotRecSettings, Rating, \
+    Stay, SimilarityReference, Context
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.contrib import admin
 from django import forms
-
-
-# source: https://stackoverflow.com/a/17496836
-# from iotrec_api.utils.venue import VenueChoiceField
-
-# display seconds in admin
-from django.conf.locale.en import formats as en_formats
-
 from iotrec_api.utils import similarity_reference
 from iotrec_api.utils.category import calc_items_in_cat_list
 
+# display seconds in admin
+from django.conf.locale.en import formats as en_formats
 en_formats.DATETIME_FORMAT = "d-m-Y H:i:s"
 
 
@@ -37,6 +26,7 @@ class InlineFormset(forms.models.BaseInlineFormSet):
                 print(form.cleaned_data[field])
 
 
+# source: https://stackoverflow.com/a/17496836
 class IotRecUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
         model = User
@@ -58,8 +48,6 @@ class IotRecUserCreationForm(UserCreationForm):
 
 class PreferencesInLine(admin.TabularInline):
     model = Preference
-    # fields = ['category', 'value']
-    # readonly_fields = ['id', 'created_at', 'updated_at']
     extra = 0
     formset = InlineFormset
 
@@ -82,9 +70,6 @@ admin.site.register(IotRecSettings, IotRecSettingsAdmin)
 class IotRecUserAdmin(UserAdmin):
     form = IotRecUserChangeForm
     add_form = IotRecUserCreationForm
-    # fieldsets = UserAdmin.fieldsets + (
-    #    (None, {'fields': ('preferences',)}),
-    # )
     inlines = [PreferencesInLine]
     list_display = UserAdmin.list_display + ('preferences_selected',)
 
@@ -95,27 +80,8 @@ class IotRecUserAdmin(UserAdmin):
     preferences_selected.admin_order_field = 'preferences_selected'
 
 
-# source: https://stackoverflow.com/a/17496836
 admin.site.register(User, IotRecUserAdmin)
 
-"""
-class ThingsInLine(admin.TabularInline):
-    model = Thing
-    extra = 0
-"""
-
-
-# class CategoriesInLine(admin.TabularInline):
-#    model = Thing.categories.through
-#    extra = 0
-
-
-# class CategoryAdmin(admin.ModelAdmin):
-#    fields = ['name', 'parent_category']
-#    list_display = ['name', 'parent_category']
-
-
-# admin.site.register(Category, CategoryAdmin)
 
 class CategoryAdmin(MPTTModelAdmin):
     list_display = ('name', 'text_id', 'nr_of_items_recursive', 'things_assigned', 'ref_things_assigned',
@@ -214,39 +180,6 @@ class ThingAdminForm(forms.ModelForm):
                     (value, {'selected': item in self.instance.categories.all(), 'label': label, 'disabled': True}))
 
         self.fields['categories'] = forms.ChoiceField(choices=choices, widget=SelectMultipleWithDisabled)
-        # self.fields['categories'] = forms.ModelChoiceField(queryset=Category.objects.all(), widget=SelectMultipleWithDisabled)
-
-    '''
-    def clean_categories(self):
-        print("clean_categories")
-        print(self.__dict__)
-        data = self.cleaned_data.get('categories', '')
-        print(data)
-        return data
-
-    def clean(self):
-        pdb.set_trace()
-        print("clean")
-        print(self.data)
-        data = dict(self.data)
-        string_categories = data['categories']
-        for i in range(len(string_categories)):
-            print(string_categories[i])
-
-        super(ThingAdminForm, self).clean()
-    '''
-
-    '''
-    def save(self, commit=True):
-        self.full_clean()
-        print("save")
-        pdb.set_trace()
-        instance = super().save(commit=False)
-        # categories = self.cleaned_data['categories']
-        # instance.publication = Publication.objects.get(pk=pub)
-        instance.save(commit)
-        return instance
-    '''
 
 
 class BulkDeleteMixin(object):
@@ -258,8 +191,6 @@ class BulkDeleteMixin(object):
             for obj in self.wrapped_queryset:
                 categories = set(obj.categories.all())
                 obj.delete()
-                #for cat in categories:
-                #    cat.save()
                 calc_items_in_cat_list(categories)
 
         def __getattr__(self, attr):
@@ -279,7 +210,6 @@ class BulkDeleteMixin(object):
             return len(self.wrapped_queryset)
 
     def get_actions(self, request):
-        #actions = super(BulkDeleteMixin, self).get_actions(request)
         actions = getattr(super(BulkDeleteMixin, self), "get_actions")(request)
         actions['delete_selected'] = (BulkDeleteMixin.action_safe_bulk_delete, 'delete_selected', ugettext_lazy("Delete selected %(verbose_name_plural)s"))
         return actions
@@ -293,82 +223,48 @@ class ThingAdmin(BulkDeleteMixin, admin.ModelAdmin):
     fields = ['id', 'title', 'description', 'categories', 'type', 'ibeacon_uuid', 'ibeacon_major_id',
               'ibeacon_minor_id', 'eddystone_namespace_id', 'eddystone_instance_id', 'scenario', 'image',
               'indoorsLocation', 'address', 'location', 'created_at', 'updated_at']
-    # fields = [field.name for field in Thing._meta.get_fields()]
-    list_display = ('id', 'title', 'type', 'scenario', 'ibeacon_uuid', 'ibeacon_major_id', 'ibeacon_minor_id', 'eddystone_namespace_id',
-                    'eddystone_instance_id', 'indoorsLocation', 'categories_assigned')
+    list_display = ('id', 'title', 'type', 'scenario', 'ibeacon_uuid', 'ibeacon_major_id', 'ibeacon_minor_id',
+                    'eddystone_namespace_id', 'eddystone_instance_id', 'indoorsLocation', 'categories_assigned')
     ordering = ('-created_at',)
-    #form = ThingAdminForm
 
+    # load custom CSS and JS for more comfortable category selection
     class Media:
         js = ('js/thing_admin.js',)
         css = {
             'all': ('css/thing_admin.css',)
         }
 
-    # inlines = [
-    #    CategoriesInLine
-    # ]
-
     def get_readonly_fields(self, request, obj=None):
         return ['id', 'created_at', 'updated_at']
 
     def save_related(self, request, form, formsets, change):
         old_categories = set(form.instance.categories.all())
-
         super(ThingAdmin, self).save_related(request, form, formsets, change)
-
         new_categories = set(form.instance.categories.all())
-
-        #for old_cat in old_categories:
-        #    old_cat.save()
-        #for new_cat in new_categories:
-        #    new_cat.save()
         calc_items_in_cat_list((old_categories | new_categories))
-
         similarity_reference.calculate_similarity_references_per_thing(form.instance)
 
     def delete_model(self, request, obj):
         categories = set(obj.categories.all())
-
         super(ThingAdmin, self).delete_model(self, obj)
-
-        #for cat in categories:
-        #    cat.save()
         calc_items_in_cat_list(categories)
 
+    # add categories counter to list
     def categories_assigned(self, obj):
         return obj.categories.count()
 
     categories_assigned.short_description = 'Categories Assigned'
     categories_assigned.admin_order_field = 'categories_assigned'
 
-    """"
-    def formfield_for_foreignkey(self, db_field, request, **kwargs):
-        if db_field.name == 'venue':
-            return VenueChoiceField(queryset=Venue.objects.all())
-        return super().formfield_for_foreignkey(db_field, request, **kwargs)
-    """
-
 
 admin.site.register(Thing, ThingAdmin)
 
-"""
-class VenueAdmin(admin.ModelAdmin):
-    fields = ['title', 'description', 'image']
-    # fields = [field.name for field in Venue._meta.get_fields()]
-    list_display = ('title', 'description', 'image')
-    inlines = [
-        ThingsInLine
-    ]
-
-
-admin.site.register(Venue, VenueAdmin)
-"""
-
 
 class RecommendationAdmin(admin.ModelAdmin):
-    fields = ['id', 'user', 'thing', 'context', 'experiment', 'score', 'preference_score', 'context_score', 'invoke_rec', 'created_at', 'updated_at']
-    list_display = ('id', 'created_at', 'user', 'thing', 'score', 'preference_score', 'context_score', 'experiment', 'invoke_rec')
+    fields = ['id', 'user', 'thing', 'context', 'experiment', 'score', 'preference_score', 'context_score',
+              'invoke_rec', 'created_at', 'updated_at']
+    list_display = ('id', 'created_at', 'user', 'thing', 'score', 'preference_score', 'context_score', 'experiment',
+                    'invoke_rec')
     ordering = ('-created_at',)
     list_filter = ['user', 'thing', 'experiment', 'created_at', 'invoke_rec']
 
@@ -401,18 +297,6 @@ class RatingAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Rating, RatingAdmin)
-
-
-'''
-class ThingsInLine(admin.TabularInline):
-    model = Thing
-    extra = 0
-
-
-class CategoriesInLine(admin.TabularInline):
-    model = Thing
-    extra = 0
-'''
 
 
 class PreferenceAdmin(admin.ModelAdmin):
@@ -451,7 +335,8 @@ admin.site.register(Stay, StayAdmin)
 
 
 class ContextAdmin(admin.ModelAdmin):
-    fields = ['id', 'weather', 'temperature_raw', 'temperature', 'length_of_trip_raw', 'length_of_trip', 'crowdedness', 'time_of_day', 'created_at', 'updated_at']
+    fields = ['id', 'weather', 'temperature_raw', 'temperature', 'length_of_trip_raw', 'length_of_trip', 'crowdedness',
+              'time_of_day', 'created_at', 'updated_at']
     list_display = ('id', 'created_at', 'weather', 'temperature', 'length_of_trip', 'crowdedness', 'time_of_day')
     list_filter = ['created_at', 'recommendation__user']
 

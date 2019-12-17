@@ -1,37 +1,36 @@
 import random
 import uuid as uuid
-
 import numpy as np
 from django.contrib.auth.models import AbstractUser
 from django.core.cache import cache
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils import timezone
-
 from enumchoicefield import EnumChoiceField
 from location_field.models.plain import PlainLocationField
 from mptt.fields import TreeForeignKey, TreeManyToManyField
 from mptt.models import MPTTModel
 from django.core.exceptions import ValidationError
 from rest_framework import exceptions
-
 from evaluation.models import Experiment, Scenario
 from iotrec_api.utils.context import WeatherType, CrowdednessType, TimeOfDayType
 from iotrec_api.utils.recommendation import get_recommendation_score
 from iotrec_api.utils.thing import ThingType
-
-# source: https://steelkiwi.com/blog/practical-application-singleton-design-pattern/
 from training.models import ContextFactor, ContextFactorValue
 
 
+# source: https://steelkiwi.com/blog/practical-application-singleton-design-pattern/
 class IotRecSettings(models.Model):
     evaluation_mode = models.BooleanField(default=True)
+    # disable training tool
     training_active = models.BooleanField(default=True)
     recommendation_threshold = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(1)], default=0)
     nr_of_reference_things_per_thing = models.IntegerField(default=3)
     category_weight = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(1)], default=0)
+    # non-editable because locality_weight = 1 - category_weight (see save method)
     locality_weight = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(1)], default=0, editable=False)
     prediction_weight = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(1)], default=0)
+    # non-editable because context_weight = 1 - prediction_weight (see save method)
     context_weight = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(1)], default=0, editable=False)
 
     def save(self, *args, **kwargs):
@@ -57,14 +56,16 @@ class IotRecSettings(models.Model):
 
 
 class Category(MPTTModel):
-    # parent = models.ForeignKey('self', null=True, blank=True, related_name='subcategories', on_delete=models.CASCADE)
     text_id = models.CharField(max_length=255, primary_key=True)
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True,
                             on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
+
+    # alias functionality is not used, thus not documented
     is_alias = models.BooleanField(default=False)
     alias_owner = TreeForeignKey('self', null=True, blank=True, related_name='target', db_index=True,
                                  on_delete=models.CASCADE)
+
     nr_of_items_recursive = models.IntegerField(default=0)
 
     def __str__(self):
@@ -75,9 +76,6 @@ class Category(MPTTModel):
 
     class Meta:
         verbose_name_plural = 'Categories'
-
-    # class Meta:
-    #    ordering = ('tree_id', 'level')
 
 
 class User(AbstractUser):
@@ -106,13 +104,6 @@ class User(AbstractUser):
                         scenario=sc
                     )
 
-"""
-class Venue(models.Model):
-    title = models.CharField(max_length=128)
-    description = models.TextField()
-    image = models.ImageField(blank=True)
-"""
-
 
 class Thing(models.Model):
     id = models.CharField(max_length=128, default=None, primary_key=True)
@@ -135,23 +126,6 @@ class Thing(models.Model):
     categories = TreeManyToManyField('Category', blank=True)
     indoorsLocation = models.BooleanField(default=None, blank=True, null=True)
     scenario = models.ForeignKey("evaluation.Scenario", on_delete=models.CASCADE, null=True, blank=True)
-
-    #def clean(self):
-    #    print("clean")
-    #    print(self.categories.all())
-    #    super(Thing, self).clean()
-
-    #def clean(self):
-    #    for category in self.categories.all():
-    #        print(category)
-    #        if category.get_level() < 2:
-    #            raise ValidationError({
-    #                'categories': ValidationError(_('Selected categories must be in level 2.'), code='invalid'),
-    #            })
-    #    super(Thing, self).clean()
-
-    #def clean_categories(self):
-    #    print("clean_categories in Thing model")
 
     def save(self, *args, **kwargs):
         if not self.pk:
@@ -176,11 +150,6 @@ class Thing(models.Model):
     def __str__(self):
         return self.title
 
-    # def calculate_similarity(self, other):
-
-    # def clean_id(self):
-    #    return '{0}-{1}-{2}'.format(self.uuid, self.major_id, self.minor_id)
-
 
 class Recommendation(models.Model):
     id = models.UUIDField(default=None, primary_key=True, editable=False)
@@ -201,17 +170,16 @@ class Recommendation(models.Model):
             self.created_at = timezone.now()
         self.updated_at = timezone.now()
 
-        #get experiment
+        # get experiment and set context and preference components accordingly
         if self.experiment is not None:
-            #experiment = Experiment.objects.filter(pk=self.experiment)[:1].get()
             c_a = self.experiment.context_active
             p_a = self.experiment.preferences_active
-        #except Experiment.DoesNotExist:
         else:
             c_a = True
             p_a = True
 
-        self.preference_score, self.context_score, self.score = get_recommendation_score(self.thing, self.user, self.context, c_a, p_a)
+        self.preference_score, self.context_score, self.score = \
+            get_recommendation_score(self.thing, self.user, self.context, c_a, p_a)
         self.invoke_rec = self.get_invoke_rec(self.score)
 
         try:
@@ -219,13 +187,11 @@ class Recommendation(models.Model):
             super(Recommendation, self).save(*args, **kwargs)
         except ValidationError as e:
             print(e)
-            #raise exceptions.ValidationError({'id': ["Thing with this Id already exists.", ]})
-
 
     def __str__(self):
         return str(self.id)
 
-    def get_invoke_rec(self, score, *args, **kwargs):
+    def get_invoke_rec(self, score):
         settings = IotRecSettings.load()
         return score > settings.recommendation_threshold
 
@@ -242,13 +208,7 @@ class Feedback(models.Model):
     recommendation = models.OneToOneField("Recommendation", on_delete=models.CASCADE)
     value = models.IntegerField(choices=VALUE_CHOICES, default=0)
 
-    #def validate_unique(self, exclude=None):
-    #    # reject if the given recommendation has a feedback already
-    #    if Feedback.objects.filter(recommendation=self.recommendation).exists():
-    #        raise ValidationError({'recommendation': ["The recommendation already has received feedback.", ]})
-
     def save(self, *args, **kwargs):
-    #    self.validate_unique()
         if not self.pk:
             self.pk = uuid.uuid4()
             self.created_at = timezone.now()
@@ -267,13 +227,7 @@ class Rating(models.Model):
     value = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=0)
     improvements = models.CharField(max_length=1024, null=True, blank=True)
 
-    #def validate_unique(self, exclude=None):
-    #    # reject if the given recommendation has a feedback already
-    #    if Rating.objects.filter(recommendation=self.recommendation).exists():
-    #        raise ValidationError({'recommendation': ["The recommendation already has received a rating.", ]})
-
     def save(self, *args, **kwargs):
-    #    self.validate_unique()
         if not self.pk:
             self.pk = uuid.uuid4()
             self.created_at = timezone.now()
@@ -290,7 +244,6 @@ class Preference(models.Model):
         (1, '1'),
     ]
 
-    #id = models.UUIDField(default=None, primary_key=True, editable=False)
     id = models.CharField(max_length=255, primary_key=True, editable=False)
     created_at = models.DateTimeField(editable=False, null=True, blank=True)
     updated_at = models.DateTimeField(editable=False, null=True, blank=True)
@@ -298,19 +251,8 @@ class Preference(models.Model):
     value = models.IntegerField(choices=VALUE_CHOICES, default=0)
     user = models.ForeignKey("User", related_name="preferences", on_delete=models.CASCADE)
 
-    '''
-    def validate_unique(self, exclude=None):
-        print(self.__dict__)
-        # get all preferences of the given user
-        user_prefs = Preference.objects.filter(user=self.user)
-        # reject new preference if user has it already
-        if user_prefs.filter(category=self.category).exists():
-            raise ValidationError({'category': ["The user already has that preference.", ]})
-    '''
-
     def save(self, *args, **kwargs):
         if not self.pk:
-            #self.pk = self.category.text_id
             self.pk = uuid.uuid4()
             self.created_at = timezone.now()
         self.updated_at = timezone.now()
