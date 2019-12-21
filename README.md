@@ -2,11 +2,16 @@
 
 ## Setup & Deployment
 
-TODO explain DMOZ and parser
-
 ### Development
 
 Make sure to set environment variable `DJANGO_SETTINGS_MODULE` to `iotrec.settings.development`.
+
+Customize development settings in `iotrec-backend/iotrec/settings/development.py`
+
+* add a `SECRET_KEY`
+* add your local IP address to `ALLOWED_HOSTS`
+
+In `iotrec_api/fixtures/sites.json`, insert IP address and domain of your local and remote (i.e. production) application instances.
 
 ### Production
 
