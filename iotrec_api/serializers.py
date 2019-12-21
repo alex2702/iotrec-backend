@@ -12,6 +12,7 @@ class PreferenceSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    # preferences and experiments are part of user object, so the API has to (de)serialize them
     preferences = PreferenceSerializer(many=True)
     experiments = ExperimentSerializer(many=True)
 
@@ -127,6 +128,7 @@ class RecommendationSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         context_data = validated_data.pop('context')
+        # create a context object from submitted raw fields
         context = Context.objects.create(
             weather_raw=context_data['weather_raw'],
             temperature_raw=context_data['temperature_raw'],

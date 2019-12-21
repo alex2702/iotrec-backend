@@ -50,6 +50,8 @@ def calculate_baselines():
 
         return predicted_rating
 
+    # normalize rating
+    # necessary because the number of context factors is flexible
     def get_normalized_rating(ref_thing, cf_values):
         non_normalized_rating = get_rating(ref_thing, cf_values)
 

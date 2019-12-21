@@ -73,6 +73,7 @@ class IotRecUserAdmin(UserAdmin):
     inlines = [PreferencesInLine]
     list_display = UserAdmin.list_display + ('preferences_selected',)
 
+    # custom calculated field to get the number of preferences per user in the list
     def preferences_selected(self, obj):
         return obj.preferences.count()
 
@@ -101,24 +102,28 @@ class CategoryAdmin(MPTTModelAdmin):
                 output_string += '/' + a.name
             return output_string
 
+    # number of things in a category
     def things_assigned(self, obj):
         return obj.thing_set.count()
 
     things_assigned.short_description = 'Things Assigned'
     things_assigned.admin_order_field = 'things_assigned'
 
+    # number of reference things in a category
     def ref_things_assigned(self, obj):
         return obj.referencething_set.count()
 
     ref_things_assigned.short_description = 'Reference Things Assigned'
     ref_things_assigned.admin_order_field = 'ref_things_assigned'
 
+    # number of users that like this category
     def user_prefs_positive(self, obj):
         return obj.preferences.filter(value=1).count()
 
     user_prefs_positive.short_description = 'User Prefs +'
     user_prefs_positive.admin_order_field = 'user_prefs_positive'
 
+    # number of users that dislike this category
     def user_prefs_negative(self, obj):
         return obj.preferences.filter(value=-1).count()
 
@@ -237,6 +242,8 @@ class ThingAdmin(BulkDeleteMixin, admin.ModelAdmin):
     def get_readonly_fields(self, request, obj=None):
         return ['id', 'created_at', 'updated_at']
 
+    # store old/previous categories and find new categories
+    # then re-calculate the nr of items per category (for the changed one)
     def save_related(self, request, form, formsets, change):
         old_categories = set(form.instance.categories.all())
         super(ThingAdmin, self).save_related(request, form, formsets, change)

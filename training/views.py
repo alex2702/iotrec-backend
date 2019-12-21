@@ -1,22 +1,18 @@
 import datetime
 import random
-
 import scipy.stats
-import numpy as np
 from django.contrib import messages
 from django.db.models import Avg
-from django.db.models.functions import Coalesce
 from django.forms import model_to_dict
 from django.shortcuts import render, redirect
-
 from iotrec_api.models import IotRecSettings
 from training.forms import SampleForm
 from training.models import TrainingUser, ReferenceThing, ContextFactor, Sample, ContextFactorValue
 from training.utils.baseline import calculate_baselines
 
 
+# check if we already have an unambiguous influence on the given thing/context_factor/cf_value combination
 def is_combination_unambiguous(thing, context_factor, context_factor_value, min_nr_of_samples):
-    # check if we already have an unambiguous influence on the given thing/context_factor/cf_value combination
     samples = Sample.objects.filter(thing=thing, context_factor=context_factor,
                                     context_factor_value=context_factor_value)
     # we need at least min_nr_of_samples samples
@@ -51,9 +47,7 @@ def is_combination_significant(thing, context_factor, context_factor_value, min_
 
         # check if significant and return
         return p_value
-        #return p_value <= 0.05
     return -1
-    #return False
 
 
 # checks if a combination should be asked to the given user, depending on three criteria
@@ -68,14 +62,6 @@ def is_combination_qualified(user, thing, context_factor, context_factor_value):
     if len(samples) > 0:
         return False
 
-    '''
-    if is_combination_unambiguous(thing, context_factor, context_factor_value, 4):
-        return False
-
-    if 0 <= is_combination_significant(thing, context_factor, context_factor_value, 6) <= 0.1:
-        return False
-    '''
-
     return True
 
 
@@ -83,6 +69,7 @@ def add_sample(request, context_factor=None):
     settings = IotRecSettings.load()
 
     if settings.training_active:
+        # POST request is a submitted form
         if request.method == "POST":
             form = SampleForm(request.POST)
             if form.is_valid():
@@ -132,7 +119,7 @@ def add_sample(request, context_factor=None):
                 return redirect('add_sample')
             else:
                 print(form.errors)
-                # return redirect('add_sample')
+        # else, its a GET request, so we have to render the form
         else:
             # create user if needed
             if 'iotrec_training_user' in request.COOKIES:
@@ -146,6 +133,7 @@ def add_sample(request, context_factor=None):
             # get random thing, context factor and context factor value
             random_thing = random.choice(ReferenceThing.objects.filter(active=True))
 
+            # while the combination is not qualified (see function above), generate a new combination
             while True:
                 try:
                     random_context_factor_1 = random.choice(ContextFactor.objects.filter(active_in_training=True))
@@ -225,10 +213,6 @@ def add_sample(request, context_factor=None):
                 except IndexError:
                     continue
                 break
-
-
-
-
 
             form = SampleForm(
                 initial={
@@ -361,6 +345,7 @@ def get_statistics(request):
                       })
 
     return response
+
 
 def get_results(request):
     context_factor_values = ContextFactorValue.objects.filter(active_in_training=True)

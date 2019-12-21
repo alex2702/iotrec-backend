@@ -1,15 +1,14 @@
 from rest_framework import viewsets, mixins, status
 from rest_framework.response import Response
-
-from evaluation.models import Experiment, Question, Reply, Questionnaire, Scenario
+from evaluation.models import Experiment, Question, Reply, Scenario
 from evaluation.serializers import QuestionnaireSerializer, ReplySerializer, QuestionSerializer, \
     ExperimentSerializer, AnalyticsEventSerializer, ScenarioSerializer
 
 
 class ExperimentViewSet(viewsets.ModelViewSet):
     serializer_class = ExperimentSerializer
-    #queryset = Experiment.objects.all()
 
+    # only return experiments of the requesting user
     def get_queryset(self):
         queryset = Experiment.objects.filter(user=self.request.user)
         return queryset
@@ -37,6 +36,7 @@ class ExperimentViewSet(viewsets.ModelViewSet):
 class QuestionViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
+    # make this endpoint publicly available, i.e. use empty sets of authentication and permission classes
     authentication_classes = []
     permission_classes = []
 
@@ -46,6 +46,7 @@ class ReplyViewSet(viewsets.ModelViewSet):
     serializer_class = ReplySerializer
 
     def create(self, request, *args, **kwargs):
+        # add experiment and user properties to new reply
         serializer = self.get_serializer(data={
             **request.data,
             "experiment": self.kwargs['experiment_pk'],
@@ -61,6 +62,7 @@ class QuestionnaireViewSet(viewsets.ModelViewSet):
     serializer_class = QuestionnaireSerializer
 
     def create(self, request, *args, **kwargs):
+        # add user property to new reply
         serializer = self.get_serializer(data={
             **request.data,
             "user": request.user.id,
@@ -75,6 +77,7 @@ class AnalyticsEventViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     serializer_class = AnalyticsEventSerializer
 
     def create(self, request, *args, **kwargs):
+        # add user property to new reply
         serializer = self.get_serializer(data={
             **request.data,
             "user": request.user.id,

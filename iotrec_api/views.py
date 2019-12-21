@@ -21,9 +21,11 @@ def current_user(request):
     Determine the current user by their token, and return their data
     """
 
+    # a GET request indicates that the user profile was requested
     if request.method == 'GET':
         serializer = UserSerializer(request.user)
         return Response(serializer.data)
+    # a PATCH request indicates that he user was modified
     elif request.method == 'PATCH':
         serializer = UserSerializer(request.user, data=request.data)
         if serializer.is_valid():
@@ -64,9 +66,9 @@ class ThingViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
 
+        # calculate similarity references and the number of items in the categories involved
         instance = serializer.instance
         calc_items_in_cat_list(instance.categories.all())
-
         similarity_reference.calculate_similarity_references_per_thing(instance)
 
         headers = self.get_success_headers(serializer.data)
@@ -76,6 +78,7 @@ class ThingViewSet(viewsets.ModelViewSet):
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
 
+        # calculate similarity references and the number of items in the categories involved
         categories_before = set(instance.categories.all())
 
         serializer = self.get_serializer(instance, data=request.data, partial=partial)
@@ -131,6 +134,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class CategoryFlatViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategoryFlatSerializer
+    # make this endpoint open to the public
     authentication_classes = []
     permission_classes = []
 

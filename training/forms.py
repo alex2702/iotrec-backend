@@ -3,8 +3,9 @@ import random
 from django import forms
 from .models import Sample, ReferenceThing, ContextFactor
 
-
+# form to collect five training samples for a reference thing
 class SampleForm(forms.Form):
+    # thing, CF and CFV fields are all hidden
     thing = forms.IntegerField(widget=forms.HiddenInput())
 
     context_factor_1 = forms.IntegerField(widget=forms.HiddenInput())
@@ -37,6 +38,6 @@ class SampleForm(forms.Form):
         model = Sample
         fields = ['thing',
                   'context_factor_1', 'context_factor_2', 'context_factor_3', 'context_factor_4', 'context_factor_5',
-                  'context_factor_value_1', 'context_factor_value_2', 'context_factor_value_3', 'context_factor_value_4', 'context_factor_value_5',
-                  'value_1', 'value_2', 'value_3', 'value_4', 'value_5',
-                  'user']
+                  'context_factor_value_1', 'context_factor_value_2', 'context_factor_value_3',
+                  'context_factor_value_4', 'context_factor_value_5','value_1', 'value_2', 'value_3', 'value_4',
+                  'value_5', 'user']

@@ -17,6 +17,7 @@ class ReferenceThingAdmin(admin.ModelAdmin):
             'all': ('css/ref_thing_admin.css',)
         }
 
+    # custom list actions to batch-activate and -deactive reference things
     def activate(self, request, queryset):
         queryset.update(active=True)
 
@@ -29,12 +30,14 @@ class ReferenceThingAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         return ReferenceThing.objects.annotate(samples_count=Count('sample'))
 
+    # calculated field to show number of training samples per reference thing
     def samples_count(self, obj):
         return obj.samples_count
 
     samples_count.short_description = 'Samples Count'
     samples_count.admin_order_field = 'samples_count'
 
+    # calculated field to show number of categories per reference thing
     def categories_assigned(self, obj):
         return obj.categories.count()
 
@@ -53,6 +56,7 @@ class ContextFactorAdmin(admin.ModelAdmin):
     list_display = ['display_title', 'active_in_training', 'active_in_prediction', 'samples_count']
     list_filter = ['active_in_training', 'active_in_prediction']
 
+    # custom list actions to batch-activate and -deactive context factors for training and evaluation
     def activate_in_training(self, request, queryset):
         queryset.update(active_in_training=True)
 
@@ -87,9 +91,10 @@ admin.site.register(ContextFactor, ContextFactorAdmin)
 
 class ContextFactorValueAdmin(admin.ModelAdmin):
     readonly_fields = ['title', 'context_factor_active_training', 'context_factor_active_prediction', 'samples_count']
-    fields = ['title', 'display_title', 'description', 'active_in_training', 'active_in_prediction', 'context_factor', 'context_factor_active_training', 'context_factor_active_prediction',
-              'samples_count']
-    list_display = ['display_title', 'active_in_training', 'active_in_prediction', 'context_factor_active_training', 'context_factor_active_prediction', 'context_factor', 'samples_count']
+    fields = ['title', 'display_title', 'description', 'active_in_training', 'active_in_prediction', 'context_factor',
+              'context_factor_active_training', 'context_factor_active_prediction', 'samples_count']
+    list_display = ['display_title', 'active_in_training', 'active_in_prediction', 'context_factor_active_training',
+                    'context_factor_active_prediction', 'context_factor', 'samples_count']
     list_filter = ['active_in_training', 'active_in_prediction']
 
     def activate_training(self, request, queryset):

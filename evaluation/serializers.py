@@ -1,5 +1,4 @@
 from rest_framework import serializers
-
 from evaluation.models import Experiment, Question, Reply, Questionnaire, AnalyticsEvent, Scenario
 from iotrec_api.models import Context
 

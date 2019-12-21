@@ -64,7 +64,8 @@ class Sample(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.thing.title + "/" + self.context_factor.title + "/" + self.context_factor_value.title + " - " + self.created_at.strftime("%d.%m. %H:%M:%S")
+        return self.thing.title + "/" + self.context_factor.title + "/" + self.context_factor_value.title + " - " + \
+               self.created_at.strftime("%d.%m. %H:%M:%S")
 
 
 class ContextBaseline(models.Model):
