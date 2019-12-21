@@ -20,6 +20,9 @@
     <orderEntry type="jdk" jdkName="Python 3.8 (iotrec-backend)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
+  <component name="PyDocumentationSettings">
+    <option name="myDocStringFormat" value="NumPy" />
+  </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
     <option name="TEMPLATE_FOLDERS">

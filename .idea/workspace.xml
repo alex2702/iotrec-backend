@@ -2,15 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09f20613-1e31-44ae-99f8-83d2ab175056" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/iotrec-backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/iotrec-backend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/20191107_2_full_backup_live.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/evaluation/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluation/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluation/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluation/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec/settings/development.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec/settings/development.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec/settings/production.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec/settings/production.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/fixtures/sites.json" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/fixtures/sites.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/management/commands/calculatereferences.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/management/commands/calculatereferences.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/management/commands/calculatethingcounts.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/management/commands/calculatethingcounts.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/iotrec_api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/static/js/thing_admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/static/js/thing_admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iotrec_api/utils/similarity_reference.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/utils/similarity_reference.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/iotrec_api/utils/thing.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/utils/thing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/iotrec_api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/iotrec_api/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/utils/baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/utils/baseline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -113,7 +131,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/venv/bin" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -313,7 +332,15 @@
       <workItem from="1576077295819" duration="52000" />
       <workItem from="1576077356963" duration="735000" />
       <workItem from="1576078101502" duration="5081000" />
-      <workItem from="1576137653339" duration="50000" />
+      <workItem from="1576137653339" duration="3657000" />
+      <workItem from="1576160762358" duration="11795000" />
+      <workItem from="1576182914232" duration="11927000" />
+      <workItem from="1576241972370" duration="15222000" />
+      <workItem from="1576312207582" duration="8917000" />
+      <workItem from="1576483905541" duration="2761000" />
+      <workItem from="1576951149349" duration="654000" />
+      <workItem from="1576958772011" duration="2811000" />
+      <workItem from="1576961614953" duration="141000" />
     </task>
     <servers />
   </component>

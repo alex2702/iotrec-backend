@@ -34,12 +34,13 @@ class IotRecSettings(models.Model):
     context_weight = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(1)], default=0, editable=False)
 
     def save(self, *args, **kwargs):
-        self.pk = 1
+        self.pk = 1     # there can only be one object of this
         self.locality_weight = 1 - self.category_weight
         self.context_weight = 1 - self.prediction_weight
         super(IotRecSettings, self).save(*args, **kwargs)
         self.set_cache()
 
+    # do not allow removal
     def delete(self, *args, **kwargs):
         pass
 
@@ -62,6 +63,9 @@ class Category(MPTTModel):
     name = models.CharField(max_length=255)
 
     # alias functionality is not used, thus not documented
+    # it allows a category to be an alias of another category
+    # it's a way to place a category in multiple parent categories
+    # put a "real" category in one parent category and put aliases in other parent categories
     is_alias = models.BooleanField(default=False)
     alias_owner = TreeForeignKey('self', null=True, blank=True, related_name='target', db_index=True,
                                  on_delete=models.CASCADE)
@@ -91,11 +95,15 @@ class User(AbstractUser):
                 (True, False)
             ]
 
+            # get all (two) scenarios and shuffle their order
             scenarios = sorted(Scenario.objects.all(), key=lambda x: random.random())
 
+            # for each scenario
             for sc_index, sc in enumerate(scenarios, start=1):
+                # shuffle experiment order
                 np.random.shuffle(experiments)
                 for exp_index, (context_act, preferences_act) in enumerate(experiments, start=1):
+                    # create an experiment object
                     Experiment.objects.create(
                         user=self,
                         context_active=context_act,
@@ -131,11 +139,13 @@ class Thing(models.Model):
         if not self.pk:
             self.created_at = timezone.now()
 
+        # id depends on beacon type (iBeacon has three components, eddystone just two)
         if self.type is ThingType.BCN_I:
             self.id = '{0}-{1}-{2}'.format(self.ibeacon_uuid, self.ibeacon_major_id, self.ibeacon_minor_id)
         else:
             self.id = '{0}-{1}'.format(self.eddystone_namespace_id, self.eddystone_instance_id)
 
+        # attach scenario name to thing id
         if self.scenario is not None:
             self.id = self.id + '-' + self.scenario.text_id
 
@@ -178,6 +188,7 @@ class Recommendation(models.Model):
             c_a = True
             p_a = True
 
+        # get recommendation result data
         self.preference_score, self.context_score, self.score = \
             get_recommendation_score(self.thing, self.user, self.context, c_a, p_a)
         self.invoke_rec = self.get_invoke_rec(self.score)
@@ -297,6 +308,7 @@ class Stay(models.Model):
             self.pk = uuid.uuid4()
             self.created_at = timezone.now()
             self.start = timezone.now()
+            # when a stay is saved, refresh last_checkin
             self.last_checkin = timezone.now()
         self.updated_at = timezone.now()
         super(Stay, self).save(*args, **kwargs)
@@ -309,16 +321,25 @@ class Context(models.Model):
     id = models.CharField(max_length=255, primary_key=True, editable=False)
     created_at = models.DateTimeField(editable=False, null=True, blank=True)
     updated_at = models.DateTimeField(editable=False, null=True, blank=True)
+
+    # raw context data contains actual numbers
     weather_raw = EnumChoiceField(WeatherType, blank=True, null=True)
     temperature_raw = models.IntegerField(default=0)
     length_of_trip_raw = models.IntegerField(validators=[MinValueValidator(0)], default=0)
     crowdedness_raw = EnumChoiceField(CrowdednessType, blank=True, null=True)
     time_of_day_raw = EnumChoiceField(TimeOfDayType, blank=True, null=True)
-    weather = models.ForeignKey('training.ContextFactorValue', related_name='weather', on_delete=models.SET_NULL, blank=True, null=True)
-    temperature = models.ForeignKey('training.ContextFactorValue', related_name='temperature', on_delete=models.SET_NULL, blank=True, null=True)
-    length_of_trip = models.ForeignKey('training.ContextFactorValue', related_name='length_of_trip', on_delete=models.SET_NULL, blank=True, null=True)
-    crowdedness = models.ForeignKey('training.ContextFactorValue', related_name='crowdedness', on_delete=models.SET_NULL, blank=True, null=True)
-    time_of_day = models.ForeignKey('training.ContextFactorValue', related_name='time_of_day', on_delete=models.SET_NULL, blank=True, null=True)
+
+    # context properties that contain predefined ContextFactorValue instances
+    weather = models.ForeignKey('training.ContextFactorValue', related_name='weather',
+                                on_delete=models.SET_NULL, blank=True, null=True)
+    temperature = models.ForeignKey('training.ContextFactorValue', related_name='temperature',
+                                    on_delete=models.SET_NULL, blank=True, null=True)
+    length_of_trip = models.ForeignKey('training.ContextFactorValue', related_name='length_of_trip',
+                                       on_delete=models.SET_NULL, blank=True, null=True)
+    crowdedness = models.ForeignKey('training.ContextFactorValue', related_name='crowdedness',
+                                    on_delete=models.SET_NULL, blank=True, null=True)
+    time_of_day = models.ForeignKey('training.ContextFactorValue', related_name='time_of_day',
+                                    on_delete=models.SET_NULL, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         if not self.pk:

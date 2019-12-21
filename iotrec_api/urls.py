@@ -11,10 +11,12 @@ router.register(r'categories-flat', views.CategoryFlatViewSet, base_name='catego
 router.register(r'recommendations', views.RecommendationViewSet, base_name='recommendation')
 router.register(r'users', views.UserViewSet, base_name='user')
 
+# nested router for /recommendations/{recommendationId}/feedback/ and /recommendations/{recommendationId}/rating/
 recommendations_router = routers.NestedSimpleRouter(router, r'recommendations', lookup='recommendation')
 recommendations_router.register(r'feedback', views.FeedbackViewSet, base_name='recommendation-feedback')
 recommendations_router.register(r'rating', views.RatingViewSet, base_name='recommendation-rating')
 
+# nested router for /users/{usersId}/preferences/ and /users/{usersId}/stays/
 users_router = routers.NestedSimpleRouter(router, r'users', lookup='user')
 users_router.register(r'preferences', views.PreferenceViewSet, base_name='user-preference')
 users_router.register(r'stays', views.StayViewSet, base_name='user-stay')

@@ -10,6 +10,7 @@ router.register(r'questions', views.QuestionViewSet, base_name='question')
 router.register(r'analytics', views.AnalyticsEventViewSet, base_name='analytics')
 router.register(r'scenarios', views.ScenarioViewSet, base_name='scenarios')
 
+# nested router to create /experiments/{experimentId}/replies URL
 experiments_router = routers.NestedSimpleRouter(router, r'experiments', lookup='experiment')
 experiments_router.register(r'replies', views.ReplyViewSet, base_name='experiment-reply')
 

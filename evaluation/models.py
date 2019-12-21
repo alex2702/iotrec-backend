@@ -1,14 +1,8 @@
-import random
-import uuid
-
 from django.db import models
 from django.utils import timezone
 from enumchoicefield import EnumChoiceField
 from rest_framework.compat import MinValueValidator, MaxValueValidator
-
 from evaluation.utils.analyticsevent import AnalyticsEventType
-from iotrec_api.utils.context import WeatherType, TemperatureType, LengthOfTripType, TimeOfDayType, CrowdednessType
-from django.apps import apps
 
 
 class Experiment(models.Model):
@@ -21,69 +15,17 @@ class Experiment(models.Model):
     context_active = models.BooleanField(editable=False, default=False)
     preferences_active = models.BooleanField(editable=False, default=False)
     order = models.IntegerField(editable=False, default=0)
-    #context = models.OneToOneField("iotrec_api.Context", on_delete=models.CASCADE, null=True, blank=True)python
 
     def save(self, *args, **kwargs):
-        
+        # if self does not have a pk (primary key) attribute, it must be new
+        # => set created_at date
         if not self.pk:
             self.created_at = timezone.now()
-
-            '''
-            Context = apps.get_model("iotrec_api", "Context")
-
-            # get a random weather choice
-            random_weather = random.choice(list(WeatherType))
-
-            # get a random temperature choice (depending on the weather)
-            temp_choice = ""
-            if random_weather == WeatherType.SUNNY:
-                temp_choice = random.choice(list(TemperatureType))  # all temperatures are possible
-            elif random_weather == WeatherType.CLOUDY:
-                temp_choice = random.choice(list(TemperatureType))
-            elif random_weather == WeatherType.SNOWY:
-                temp_choice = random.choice([TemperatureType.COLD, TemperatureType.COOL])
-            elif random_weather == WeatherType.RAINY:
-                temp_choice = random.choice([TemperatureType.COOL, TemperatureType.MILD, TemperatureType.WARM])
-            elif random_weather == WeatherType.WINDY:
-                temp_choice = random.choice(list(TemperatureType))
-
-            print("temp_choice: " + str(temp_choice))
-
-            # get a random temperature for this choice
-            if temp_choice is TemperatureType.COLD:
-                temp_raw = random.randint(-20, 0)
-            elif temp_choice is TemperatureType.COOL:
-                temp_raw = random.randint(0, 10)
-            elif temp_choice is TemperatureType.MILD:
-                temp_raw = random.randint(10, 20)
-            elif temp_choice is TemperatureType.WARM:
-                temp_raw = random.randint(20, 30)
-            elif temp_choice is TemperatureType.HOT:
-                temp_raw = random.randint(30, 40)
-
-            # get a random length_of_trip choice
-            lot_choice = random.choice(list(LengthOfTripType))
-
-            # get a random nr of minutes for this choice
-            if lot_choice is LengthOfTripType.ONE_HR:
-                lot_raw = random.randint(0, 61)
-            elif lot_choice is LengthOfTripType.FEW_HRS:
-                lot_raw = random.randint(61, 181)
-            elif lot_choice is LengthOfTripType.MANY_HRS:
-                lot_raw = random.randint(181, 601)
-
-            self.context = Context.objects.create(
-                weather_raw=random_weather,
-                temperature_raw=temp_raw,
-                length_of_trip_raw=lot_raw,
-                time_of_day_raw=random.choice(list(TimeOfDayType)),
-            )
-            '''
-
         self.updated_at = timezone.now()
         super(Experiment, self).save(*args, **kwargs)
 
     def __str__(self):
+        # include user, title, and configuration in string
         return self.user.username + " - " + self.scenario.title + " (C: " + str(self.context_active) + " - P: " + str(self.preferences_active) + ")"
 
 

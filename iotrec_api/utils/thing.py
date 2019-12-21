@@ -56,18 +56,8 @@ def get_thing_similarity(this_thing, ref_thing):
         if cat.is_root_node():
             n_p_i = n_i
         else:
-            #n_p_i = cat.parent.nr_of_items_recursive + tf_other_i
             n_p_i = cat.parent.nr_of_items_recursive
-            #n_p_i = cat.parent.nr_of_items_recursive + 1
 
-        #print("get_thing_similarity - query marker 6.4: " + str(len(connection.queries)))
-
-        #print("query marker 4.6: " + str(len(connection.queries)))
-
-        #print("cat=" + str(cat) + ", tf_this_i=" + str(tf_this_i) + ", tf_other_i=" + str(tf_other_i) + ", n_p_i=" + str(n_p_i) + ", n_i=" + str(n_i))
-
-        #factor_this = tf_this_i * math.log(n_p_i / n_i)
-        #factor_other = tf_other_i * math.log(n_p_i / n_i)
         factor_this = tf_this_i * (math.log(n_p_i / (n_i + 1)) + 1)
         factor_other = tf_other_i * (math.log(n_p_i / (n_i + 1)) + 1)
 

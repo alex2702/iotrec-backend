@@ -1,8 +1,6 @@
 from django.core.management import BaseCommand
-
-from iotrec_api.models import Thing, Category
+from iotrec_api.models import Category
 from iotrec_api.utils.category import calc_items_in_cat_full
-from iotrec_api.utils.similarity_reference import calculate_similarity_references
 
 
 class Command(BaseCommand):

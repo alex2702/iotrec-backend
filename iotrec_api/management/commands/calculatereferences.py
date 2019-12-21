@@ -1,5 +1,4 @@
 from django.core.management import BaseCommand
-
 from iotrec_api.models import Thing
 from iotrec_api.utils.similarity_reference import calculate_similarity_references
 
