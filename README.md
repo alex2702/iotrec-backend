@@ -1,4 +1,10 @@
-# iotrec-backend
+# IoT Rec Backend
+
+This is the backend for the IoT Rec project. It provides an API for the Android app (see [iotrec-android](https://github.com/alex2702/iotrec-android)), an admin interface to manage hardware devices and system data, as well as a public frontend page to gather training data from visitors.
+
+The project is implemented in Python using [Django](https://www.djangoproject.com/) and [Django REST framework](https://www.django-rest-framework.org/).
+
+The API is responsible for user authentication and authorization as well as providing information on known BLE beacons and their metadata to the Android app. It also takes care of calculating the recommendations that the system makes. The Android app makes requests containing a BLE beacon ID and some context data. The API then assesses whether a recommendation should be made to the user. This calculation is based on a recommendation model which is based on – among other things – training data elicited from a specialized page. In order to improve recommendation quality, the API can receive and process feedback entries. Since the project was created in the context of a Master's thesis, the API also facilitates user tests made at the end of the thesis.
 
 ## Setup & Deployment
 
