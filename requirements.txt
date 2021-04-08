@@ -1,5 +1,5 @@
 beautifulsoup4==4.8.0
-Django==2.2.8
+Django==2.2.20
 django-bootstrap4==1.0.1
 django-braces==1.13.0
 django-chroniker==1.0.16
